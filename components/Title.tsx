@@ -1,15 +1,12 @@
 import { BackHandler, StyleSheet, Text, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { PRIMARY } from "../colors";
-import { useNavigation } from "@react-navigation/native";
 
 type Props = {
   text: string;
 };
 
 export default function Title({ text }: Props) {
-  const navigation = useNavigation();
-
   return (
     <View style={styles.container}>
       <MaterialCommunityIcons

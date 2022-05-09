@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { PRIMARY, SECONDARY } from "./colors";
+import MoodDiary from "./components/MoodDiary";
 
 const Tab = createBottomTabNavigator();
 
@@ -34,7 +35,7 @@ export default function App() {
             />
             <Tab.Screen
               name="MoodDiary"
-              component={NotImplemented}
+              component={MoodDiary}
               options={{
                 title: "Stimmungs\u00adtagebuch",
                 tabBarIcon: () => <FontAwesome5 name="calendar-alt" size={24} />,
