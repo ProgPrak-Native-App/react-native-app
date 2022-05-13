@@ -1,6 +1,5 @@
 name: app_build
 on: [pull_request]
-# on every PR for now
 
 jobs:
   publish:
@@ -27,7 +26,7 @@ jobs:
       - name: Build app
         run: expo publish --release-channel=pr-${{ github.event.number }} --non-interactive
 
-      - name: Expo save Metadata
+      - name: Save Expo Metadata
         uses: expo/expo-github-action/preview-comment@v7
         id: preview
         with:
