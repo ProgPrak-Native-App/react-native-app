@@ -3,10 +3,10 @@ name: app_build
 on: [push]
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     env:
-      apk_location: android_build/kopfsachen-${{ github.ref_name }}-${{ github.event.number }}.apk
+      APK_LOCATION: android_build/kopfsachen-${{ github.ref_name }}-${{ github.event.number }}.apk
     steps:
       - name: Setup repo
         uses: actions/checkout@v2
@@ -28,11 +28,11 @@ jobs:
         run: npm ci
 
       - name: Build app
-        run: eas build -p android --profile=preview --local --non-interactive --output=$apk_location
+        run: eas build -p android --profile=preview --local --non-interactive --output=${{env.APK_LOCATION}}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         if: success()
         with:
           name: android-build
-          path: $apk_location
+          path: ${{env.APK_LOCATION}}
