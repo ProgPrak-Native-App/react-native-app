@@ -1,5 +1,6 @@
 name: app_build
-on: [pull_request]
+#on: [pull_request] change before merge!
+on: [push]
 
 jobs:
   publish:
@@ -18,27 +19,18 @@ jobs:
         uses: expo/expo-github-action@v7
         with:
           expo-version: latest
+          eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build app
-        run: expo publish --release-channel=pr-${{ github.event.number }} --non-interactive
+        run: eas build -p android --profile=preview --local --non-interactive --output=android_build/kopfsachen_${{ github.ref_name }}_pr-${{ github.event.number }}.apk
 
-      - name: Save Expo Metadata
-        uses: expo/expo-github-action/preview-comment@v7
-        id: preview
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        if: success()
         with:
-          comment: false
-          channel: pr-${{ github.event.number }}
-
-      - name: Comment on PR
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '## Expo Build report for Pull Request #${{ github.event.number }} \n This pull request was automatically deployed for project **${{ steps.preview.outputs.projectSlug }}** on channel **pr-${{ github.event.number }}** . \n ### Project Info: \n - Name: **${{ steps.preview.outputs.projectName }}** \n - Link: ${{ steps.preview.outputs.projectLink }} \n <img src="${{ steps.preview.outputs.projectQR }}" width="200" height="200"> \n \n ### Build .apk/.ipa \n To build the app in Expo for internal distribution install expo-cli  by running `npm install -g expo-cli`. In order to build the app you will need an Expo account and the run `expo build:android -t apk` in the root folder.'})
+          name: android-build
+          path: android_build/kopfsachen_${{ github.ref_name }}_pr-${{ github.event.number }}.apk
