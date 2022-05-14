@@ -36,14 +36,6 @@ jobs:
           comment: false
           channel: pr-${{ github.event.number }}
 
-      - name: Comment on PR
-        uses: actions-cool/maintain-one-comment@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          body: |
-            ## Expo Build report for Pull Request #${{ github.event.number }} \n This pull request was automatically deployed for project **${{ steps.preview.outputs.projectSlug }}** on channel **pr-${{ github.event.number }}** . \n ### Project Info: \n - Name: **${{ steps.preview.outputs.projectName }}** \n - Link: ${{ steps.preview.outputs.projectLink }} \n <img src="${{ steps.preview.outputs.projectQR }}" width="200" height="200"> \n \n ### Build .apk/.ipa \n To build the app in Expo for internal distribution install expo-cli  by running `npm install -g expo-cli`. In order to build the app you will need an Expo account and the run `expo build:android -t apk` in the root folder.
-          emojis: 'rocket'
-
       - name: Build app
         run: eas build -p android --profile=preview --local --non-interactive --output=${{env.APK_LOCATION}}
 
@@ -53,3 +45,15 @@ jobs:
         with:
           name: android-build
           path: ${{env.APK_LOCATION}}
+
+      - name: Comment on PR
+        uses: actions-cool/maintain-one-comment@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            ## Expo Build report for Pull Request #${{ github.event.number }}
+            This App was automatically deployed for project **${{ steps.preview.outputs.projectName }}** on channel **pr-${{ github.event.number }}**.
+            ### Current Build :rocket:
+            - App built as `.apk` artifact [here](https://github.com/ProgPrak-Native-App/react-native-app/actions/runs/${{ github.run_id }})
+            - Expo link [here](${{ steps.preview.outputs.projectLink }})
+            <img src="${{ steps.preview.outputs.projectQR }}" width="200" height="200">
