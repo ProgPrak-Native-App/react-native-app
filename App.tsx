@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { PRIMARY, SECONDARY } from "./colors";
-import MoodDiary from "./components/MoodDiary";
+import MoodDiary from "./components/mood_diary/MoodDiary";
 
 const Tab = createBottomTabNavigator();
 

@@ -41,12 +41,13 @@ const styles = StyleSheet.create({
     backgroundColor: PRIMARY,
     flexGrow: 0,
     flexShrink: 1,
-    flexBasis: "35%",
+    flexBasis: "30%",
     justifyContent: "center",
     alignItems: "center",
   },
   text: {
     fontSize: 30,
     fontWeight: "bold",
+    textAlign: "center",
   },
 });
