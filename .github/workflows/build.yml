@@ -1,0 +1,55 @@
+name: app_publish_build
+on: [pull_request]
+
+jobs:
+  Publish-and-Build:
+    runs-on: ubuntu-latest
+    env:
+      APK_LOCATION: android_build/kopfsachen-${{ github.ref_name }}-${{ github.event.number }}.apk
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: npm
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish app
+        run: expo publish --release-channel=pr-${{ github.event.number }} --non-interactive
+
+      - name: Save Expo Metadata
+        uses: expo/expo-github-action/preview-comment@v7
+        id: preview
+        with:
+          comment: false
+          channel: pr-${{ github.event.number }}
+
+      - name: Comment on PR
+        uses: actions-cool/maintain-one-comment@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            ## Expo Build report for Pull Request #${{ github.event.number }} \n This pull request was automatically deployed for project **${{ steps.preview.outputs.projectSlug }}** on channel **pr-${{ github.event.number }}** . \n ### Project Info: \n - Name: **${{ steps.preview.outputs.projectName }}** \n - Link: ${{ steps.preview.outputs.projectLink }} \n <img src="${{ steps.preview.outputs.projectQR }}" width="200" height="200"> \n \n ### Build .apk/.ipa \n To build the app in Expo for internal distribution install expo-cli  by running `npm install -g expo-cli`. In order to build the app you will need an Expo account and the run `expo build:android -t apk` in the root folder.
+          emojis: 'rocket'
+
+      - name: Build app
+        run: eas build -p android --profile=preview --local --non-interactive --output=${{env.APK_LOCATION}}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        if: success()
+        with:
+          name: android-build
+          path: ${{env.APK_LOCATION}}
