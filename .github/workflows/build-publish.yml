@@ -71,7 +71,6 @@ jobs:
           path: ${{env.IOS_LOCATION}}
 
   Publish:
-    needs: [IOS, Android]
     runs-on: ubuntu-latest
     steps:
       - name: Setup repo
