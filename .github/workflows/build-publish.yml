@@ -111,6 +111,6 @@ jobs:
             ## Expo Build report for Pull Request #${{ github.event.number }}
             This App was automatically deployed for project **${{ steps.preview.outputs.projectName }}** on channel **pr-${{ github.event.number }}**.
             ### Current Build :rocket:
-            - built `.apk` for Android and `.app` for iOS Simulator [here](https://github.com/ProgPrak-Native-App/react-native-app/actions/runs/${{ github.run_id }})
+            - Built `.apk` for Android and `.app` for iOS Simulator [here](https://github.com/ProgPrak-Native-App/react-native-app/actions/runs/${{ github.run_id }})
             - Expo link [here](${{ steps.preview.outputs.projectLink }})
             <img src="${{ steps.preview.outputs.projectQR }}" width="200" height="200">
