@@ -1,6 +1,6 @@
-import { BackHandler, StyleSheet, Text, View } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { PRIMARY } from "../colors";
+import { BackHandler, StyleSheet, Text, View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { PRIMARY } from '../colors';
 
 type Props = {
   text: string;
@@ -11,15 +11,15 @@ export default function Title({ text }: Props) {
     <View style={styles.container}>
       <MaterialCommunityIcons
         name="help-circle-outline"
+        onPress={() => console.log('Help!')}
         size={40}
         style={styles.helpButton}
-        onPress={() => console.log("Help!")}
       />
       <MaterialCommunityIcons
         name="exit-to-app"
+        onPress={() => BackHandler.exitApp()}
         size={40}
         style={styles.exitButton}
-        onPress={() => BackHandler.exitApp()}
       />
       <Text style={styles.text}>{text}</Text>
     </View>
@@ -28,12 +28,12 @@ export default function Title({ text }: Props) {
 
 const styles = StyleSheet.create({
   helpButton: {
-    position: "absolute",
+    position: 'absolute',
     top: 5,
     left: 5,
   },
   exitButton: {
-    position: "absolute",
+    position: 'absolute',
     top: 5,
     right: 5,
   },
@@ -41,12 +41,12 @@ const styles = StyleSheet.create({
     backgroundColor: PRIMARY,
     flexGrow: 0,
     flexShrink: 1,
-    flexBasis: "35%",
-    justifyContent: "center",
-    alignItems: "center",
+    flexBasis: '35%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
     fontSize: 30,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });
