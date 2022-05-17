@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
-import Title from "./Title";
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
+import Title from './Title';
 
-const BASE_URL = "http://192.168.82.174:4010";
+const BASE_URL = 'http://192.168.82.174:4010';
 
 type Mood = {
   type: string;
@@ -12,14 +12,14 @@ type Mood = {
 };
 
 async function getMoods(): Promise<Mood[]> {
-  return (await fetch(BASE_URL + "/diary/1").then((response) => response.json())) as Mood[];
+  return (await fetch(BASE_URL + '/diary/1').then((response) => response.json())) as Mood[];
 }
 
 async function createMood(mood: Mood) {
-  return await fetch(BASE_URL + "/diary/1", {
-    method: "POST",
+  return await fetch(BASE_URL + '/diary/1', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(mood),
   });
@@ -45,16 +45,16 @@ export default function MoodDiary() {
       ))}
       <View style={styles.calendar}>
         <FontAwesome5
+          color="black"
+          name="calendar-plus"
           onPress={() =>
             createMood({
-              type: "negative",
-              description: "stressed",
+              type: 'negative',
+              description: 'stressed',
               timestamp: new Date().toISOString(),
             })
           }
-          name="calendar-plus"
           size={40}
-          color="black"
           style={styles.icon}
         />
       </View>
@@ -65,13 +65,13 @@ export default function MoodDiary() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   calendar: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   icon: {
-    alignSelf: "center",
+    alignSelf: 'center',
   },
 });
