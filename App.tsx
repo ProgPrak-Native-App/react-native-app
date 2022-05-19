@@ -8,7 +8,8 @@ import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { PRIMARY, SECONDARY } from "./colors";
 import MoodDiary from "./components/mood_diary/MoodDiary";
-import Introduction from "./components/Introduction";
+import RegistrationScreen from "./components/profile/RegistrationScreen";
+
 
 const Tab = createBottomTabNavigator();
 
@@ -67,7 +68,7 @@ export default function App() {
             />
             <Tab.Screen
               name="Profil"
-              component={Introduction}
+              component={RegistrationScreen}
               options={{
                 tabBarIcon: () => <Ionicons name="person-circle-outline" size={24} />,
               }}
