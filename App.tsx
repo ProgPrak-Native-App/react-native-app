@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import NotImplemented from "./components/NotImplemented";
+
 import React from "react";
 import Home from "./components/Home";
 import { StyleSheet } from "react-native";
@@ -9,7 +9,8 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { PRIMARY, SECONDARY } from "./styles";
 import MoodDiary from "./components/mood_diary/MoodDiary";
 import WikiNavigation from "./components/Wiki/components/WikiNavigation";
-import Introduction from "./components/Introduction";
+import RegistrationScreen from "./components/profile/RegistrationScreen";
+
 
 
 import Motivator from "./components/motivators/Motivator";
@@ -75,7 +76,7 @@ export default function App() {
             />
             <Tab.Screen
               name="Profil"
-              component={Introduction}
+              component={RegistrationScreen}
               options={{
                 tabBarIcon: () => <Ionicons name="person-circle-outline" size={24} />,
               }}
