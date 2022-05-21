@@ -7,6 +7,7 @@ import BasicDay from "react-native-calendars/src/calendar/day/basic";
 import { useNavigation } from "@react-navigation/native";
 import { LocaleConfig } from "react-native-calendars";
 import { LocalDate, LocalDateTime } from "@js-joda/core";
+import Title from "../Title";
 
 LocaleConfig.locales["de"] = {
   monthNames: [
@@ -85,11 +86,14 @@ export default function MoodCalendar() {
   }, []);
 
   return (
-    <Calendar
-      theme={{ calendarBackground: undefined }}
-      dayComponent={Day(moods ?? [])}
-      displayLoadingIndicator={moods === null}
-    />
+    <>
+      <Title text="Stimmungstagebuch" />
+      <Calendar
+        theme={{ calendarBackground: undefined }}
+        dayComponent={Day(moods ?? [])}
+        displayLoadingIndicator={moods === null}
+      />
+    </>
   );
 }
 

@@ -4,11 +4,13 @@ import { PRIMARY } from "../colors";
 
 type Props = {
   text: string;
+  color?: string;
+  Icon?: () => JSX.Element;
 };
 
-export default function Title({ text }: Props) {
+export default function Title({ text, color, Icon }: Props) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: color ?? PRIMARY }]}>
       <MaterialCommunityIcons
         name="help-circle-outline"
         size={40}
@@ -22,6 +24,11 @@ export default function Title({ text }: Props) {
         onPress={() => BackHandler.exitApp()}
       />
       <Text style={styles.text}>{text}</Text>
+      {Icon && (
+        <View style={styles.icon}>
+          <Icon />
+        </View>
+      )}
     </View>
   );
 }
@@ -38,7 +45,6 @@ const styles = StyleSheet.create({
     right: 5,
   },
   container: {
-    backgroundColor: PRIMARY,
     flexGrow: 0,
     flexShrink: 1,
     flexBasis: "30%",
@@ -49,5 +55,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  icon: {
+    marginTop: 20
   },
 });
