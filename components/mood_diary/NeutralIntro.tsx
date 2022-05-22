@@ -1,13 +1,14 @@
 import Title from "../Title";
 import React from "react";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { TabRoutes } from "../../App";
+import { NEUTRAL } from "../../colors";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 import KopfsachenButton from "../KopfsachenButton";
-import { useNavigation } from "@react-navigation/native";
-import { NEUTRAL } from "../../colors";
 
 export default function NeutralIntro() {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp<TabRoutes>>();
 
   return (
     <>
@@ -22,7 +23,10 @@ export default function NeutralIntro() {
         aus!
       </Text>
       <View style={styles.buttonList}>
-        <KopfsachenButton onPress={() => navigation.navigate("SafetyNet")} style={styles.button}>
+        <KopfsachenButton
+          onPress={() => console.log("SafetyNet not implemented")}
+          style={styles.button}
+        >
           Sicherheitsnetz
         </KopfsachenButton>
         <KopfsachenButton onPress={() => navigation.navigate("Motivators")} style={styles.button}>

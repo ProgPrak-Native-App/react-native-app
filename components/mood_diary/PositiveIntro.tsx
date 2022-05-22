@@ -3,11 +3,12 @@ import React from "react";
 import { POSITIVE } from "../../colors";
 import { StyleSheet, Text, View } from "react-native";
 import KopfsachenButton from "../KopfsachenButton";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { TabRoutes } from "../../App";
 
 export default function PositiveIntro() {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp<TabRoutes>>();
 
   return (
     <>
