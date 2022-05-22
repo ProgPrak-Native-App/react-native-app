@@ -30,6 +30,7 @@ export default function Title({ text, color, Icon, back, style}: Props) {
         </View>
       )}
     </View>
+
   );
 }
 
@@ -42,11 +43,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    height: "30%",
-    justifyContent: "center",
+    flexGrow: 0,
+    flexShrink: 1,
+    flexBasis: "30%",
+    justifyContent: 'center',
     alignItems: "center",
   },
   text: {
+   
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
