@@ -3,12 +3,13 @@ import React from "react";
 import { NEGATIVE } from "../../colors";
 import { StyleSheet, Text, View } from "react-native";
 import KopfsachenButton from "../KopfsachenButton";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import Bold from "../Bold";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { TabRoutes } from "../../App";
 
 export default function NegativeIntro() {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp<TabRoutes>>();
 
   return (
     <>
@@ -25,11 +26,14 @@ export default function NegativeIntro() {
         <Bold>Beratungsstellen</Bold> für dich.
       </Text>
       <View style={styles.buttonList}>
-        <KopfsachenButton onPress={() => navigation.navigate("SafetyNet")} style={styles.button}>
+        <KopfsachenButton
+          onPress={() => console.log("EmotionRegulation not implemented")}
+          style={styles.button}
+        >
           Sicherheits-&#13;netz
         </KopfsachenButton>
         <KopfsachenButton
-          onPress={() => navigation.navigate("EmotionRegulation")}
+          onPress={() => console.log("EmotionRegulation not implemented")}
           style={styles.button}
         >
           Neue Strategie

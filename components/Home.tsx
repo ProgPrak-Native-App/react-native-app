@@ -1,10 +1,11 @@
 import Title from "./Title";
 import { StyleSheet, Text, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import KopfsachenButton from "./KopfsachenButton";
+import { TabRoutes } from "../App";
 
 export default function Home() {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp<TabRoutes>>();
 
   return (
     <>
@@ -46,6 +47,6 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     flexBasis: 80,
     marginHorizontal: "10%",
-    marginBottom: 10
+    marginBottom: 10,
   },
 });

@@ -2,16 +2,17 @@ import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import Title from "../Title";
-import { useNavigation } from "@react-navigation/native";
+import { MoodDiaryRoutes } from "./MoodDiary";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { NEGATIVE, NEUTRAL, POSITIVE } from "../../colors";
 
 function MoodButton(props: {
   color: string;
   iconName: string;
-  linkTo: string;
+  linkTo: keyof MoodDiaryRoutes;
   descriptions: string[];
 }) {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp<MoodDiaryRoutes>>();
   const { color, iconName, linkTo, descriptions } = props;
   return (
     <Pressable

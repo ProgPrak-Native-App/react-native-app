@@ -6,7 +6,15 @@ import NegativeIntro from "./NegativeIntro";
 import PositiveIntro from "./PositiveIntro";
 import NeutralIntro from "./NeutralIntro";
 
-const Stack = createNativeStackNavigator();
+export type MoodDiaryRoutes = {
+  Calendar: undefined;
+  MoodEntry: undefined;
+  PositiveIntro: undefined;
+  NeutralIntro: undefined;
+  NegativeIntro: undefined;
+};
+
+const Stack = createNativeStackNavigator<MoodDiaryRoutes>();
 
 export default function MoodDiary() {
   return (

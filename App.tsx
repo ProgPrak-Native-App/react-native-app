@@ -10,7 +10,16 @@ import { PRIMARY, SECONDARY } from "./colors";
 import MoodDiary from "./components/mood_diary/MoodDiary";
 import MotivatorCreator from "./components/motivators/MotivatorCreator";
 
-const Tab = createBottomTabNavigator();
+export type TabRoutes = {
+  Home: undefined;
+  MoodDiary: undefined;
+  Wiki: undefined;
+  Motivators: undefined;
+  EmergencyNumbers: undefined;
+  Profil: undefined;
+};
+
+const Tab = createBottomTabNavigator<TabRoutes>();
 
 export default function App() {
   return (
