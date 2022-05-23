@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     textcontainer: {
-        flex: 1,
         flexGrow: 0,
         flexShrink: 1,
         justifyContent: "center"
