@@ -3,7 +3,6 @@ import { Image, StyleSheet, View, Text, ImageSourcePropType } from "react-native
 
 type Props = {
     title: string;
-    //TODO: icon  
     icon: ImageSourcePropType 
     description: string;
 }
