@@ -42,40 +42,6 @@ jobs:
           name: android
           path: ${{env.ANDROID_LOCATION}}
 
-  IOS:
-    runs-on: macos-latest
-    env:
-      IOS_LOCATION: build/ios/build-ios-${{ github.sha }}.tar.gz
-    steps:
-      - name: Setup repo
-        uses: actions/checkout@v2
-
-      - name: Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16.x
-          cache: npm
-
-      - name: Setup Expo
-        uses: expo/expo-github-action@v7
-        with:
-          expo-version: latest
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build ios
-        run: eas build -p ios --profile=preview --local --non-interactive --output=${{env.IOS_LOCATION}}
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        if: success()
-        with:
-          name: ios
-          path: ${{env.IOS_LOCATION}}
-
   Publish:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: [ self-hosted, linux, x64 ]
@@ -117,6 +83,6 @@ jobs:
             ## Expo Build report for Pull Request #${{ github.event.number }}
             This App was automatically deployed for project **${{ steps.preview.outputs.projectName }}** on channel **pr-${{ github.event.number }}**.
             ### Current Build :rocket:
-            - Built `.apk` for Android and `.app` for iOS Simulator [here](https://github.com/ProgPrak-Native-App/react-native-app/actions/runs/${{ github.run_id }})
+            - Built `.apk` for Android [here](https://github.com/ProgPrak-Native-App/react-native-app/actions/runs/${{ github.run_id }})
             - Expo link [here](${{ steps.preview.outputs.projectLink }})
             <img src="${{ steps.preview.outputs.projectQR }}" width="200" height="200">
