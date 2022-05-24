@@ -9,7 +9,7 @@ on:
       - '*'
 jobs:
   Android:
-    runs-on: ubuntu-latest
+    runs-on: [ self-hosted, linux, x64 ]
     env:
       ANDROID_LOCATION: build/android/build-android-${{ github.sha }}.apk
     steps:
@@ -78,7 +78,7 @@ jobs:
 
   Publish:
     if: ${{ github.event_name == 'pull_request' }}
-    runs-on: ubuntu-latest
+    runs-on: [ self-hosted, linux, x64 ]
     steps:
       - name: Setup repo
         uses: actions/checkout@v2
