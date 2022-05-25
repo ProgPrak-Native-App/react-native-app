@@ -16,6 +16,7 @@ export default function NeutralIntro() {
         text="Stimmungstagebuch"
         color={NEUTRAL}
         Icon={() => <FontAwesome5 name="meh" size={80} />}
+        back
       />
       <Text style={styles.text}>
         Wenn du heute eher unmotiviert oder müde bist, kannst du entweder in deinem Sicherheitsnetz

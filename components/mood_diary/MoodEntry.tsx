@@ -36,7 +36,7 @@ function MoodButton(props: {
 export default function MoodEntry() {
   return (
     <>
-      <Title text="Stimmungstagebuch" />
+      <Title text="Stimmungstagebuch" back />
       <View style={styles.container}>
         <View style={styles.greetingContainer}>
           <Text style={styles.greeting}>Hallo,{"\n"}wie geht's dir?</Text>
