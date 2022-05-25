@@ -61,3 +61,5 @@ jobs:
             ### Current Build :rocket:
             - Expo link [here](${{ steps.preview.outputs.projectLink }})
             <img src="${{ steps.preview.outputs.projectQR }}" width="200" height="200">
+            <!-- created by publish workflow -->
+          body-include: <!-- created by publish workflow -->
