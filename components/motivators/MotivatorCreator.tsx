@@ -54,9 +54,7 @@ const styles = StyleSheet.create({
       flexShrink: 1,
       flexGrow: 0,
       flexDirection: "row",
-      justifyContent: "center",
       alignItems: "center",
-      alignSelf: "center",
     },
     arrowContainer: {
       flexDirection: "column",
