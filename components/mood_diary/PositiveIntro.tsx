@@ -16,6 +16,7 @@ export default function PositiveIntro() {
         text="Stimmungstagebuch"
         color={POSITIVE}
         Icon={() => <FontAwesome5 name="smile-beam" size={80} />}
+        back
       />
       <Text style={styles.text}>
         Wenn du dich gerade gut fühlst, ist das genau der richtige Moment, um an deinen Starkmachern

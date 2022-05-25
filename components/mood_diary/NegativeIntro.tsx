@@ -17,6 +17,7 @@ export default function NegativeIntro() {
         text="Stimmungstagebuch"
         color={NEGATIVE}
         Icon={() => <FontAwesome5 name="frown" size={80} />}
+        back
       />
       <Text style={styles.text}>
         Wenn es dir schlecht geht, haben wir verschiedene Optionen für dich: entweder du schaust in
