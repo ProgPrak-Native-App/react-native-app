@@ -1,0 +1,63 @@
+name: publish
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  Publish:
+    runs-on: [ self-hosted, linux, x64 ]
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: npm
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set release channel to PR number
+        if: ${{ github.event_name == 'pull_request' }}
+        run: echo "release_channel=pr-${{ github.event.number }}" >> $GITHUB_ENV
+
+      - name: Set release channel to branch name
+        if: ${{ github.event_name == 'push' }}
+        run: echo "release_channel=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - name: Publish app
+        run: expo publish --release-channel=${{ env.release_channel }} --non-interactive
+
+      - name: Save Expo Metadata
+        uses: expo/expo-github-action/preview-comment@v7
+        id: preview
+        with:
+          comment: false
+          channel: ${{ env.release_channel }}
+
+      - name: Comment on PR
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions-cool/maintain-one-comment@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            ## Expo Build report for Pull Request #${{ github.event.number }}
+            This App was automatically deployed for project **${{ steps.preview.outputs.projectName }}** on channel **${{ env.release_channel }}**.
+            ### Current Build :rocket:
+            - Expo link [here](${{ steps.preview.outputs.projectLink }})
+            <img src="${{ steps.preview.outputs.projectQR }}" width="200" height="200">
