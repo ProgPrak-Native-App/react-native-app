@@ -8,6 +8,7 @@ import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { PRIMARY, SECONDARY } from './colors';
 import MoodDiary from './components/MoodDiary';
+import MotivatorCreator from './components/motivators/MotivatorCreator';
 
 const Tab = createBottomTabNavigator();
 
@@ -48,7 +49,7 @@ export default function App() {
               }}
             />
             <Tab.Screen
-              component={NotImplemented}
+              component={MotivatorCreator}
               name="Starkmacher"
               options={{
                 title: 'Starkmacher',

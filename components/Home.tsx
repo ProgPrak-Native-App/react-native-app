@@ -7,16 +7,20 @@ export default function Home() {
   const navigation = useNavigation<any>();
 
   return (
-    <View style={styles.container}>
+    <>
       <Title text="Herzlich Willkommen!" />
-      <Text style={styles.text}>Schön, dass du da bist.</Text>
-      <Pressable onPress={() => navigation.navigate('MoodDiary')} style={styles.button}>
-        <Text style={styles.buttonText}>Ab zum Stimmungstagebuch.</Text>
-      </Pressable>
-      <Pressable onPress={() => console.log('Not implemented')} style={styles.button}>
-        <Text style={styles.buttonText}>Ich möchte an meinen offenen Aufgaben weiterarbeiten.</Text>
-      </Pressable>
-    </View>
+      <View style={styles.container}>
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>Schön, dass du da bist.</Text>
+        </View>
+        <Pressable onPress={() => navigation.navigate('MoodDiary')} style={styles.button}>
+          <Text style={styles.buttonText}>Ab zum Stimmungstagebuch.</Text>
+        </Pressable>
+        <Pressable onPress={() => console.log('Not implemented')} style={styles.button}>
+          <Text style={styles.buttonText}>Ich möchte an meinen offenen Aufgaben weiterarbeiten.</Text>
+        </Pressable>
+      </View>
+    </>
   );
 }
 
@@ -24,13 +28,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    maxHeight: 600,
+    justifyContent: 'flex-start',
   },
   text: {
     fontSize: 30,
     fontWeight: 'bold',
-    alignSelf: 'center',
+    textAlign: 'center',
+  },
+  textContainer: {
+    flexGrow: 0,
+    flexShrink: 1,
+    flexBasis: 150,
+    justifyContent: 'center',
   },
   button: {
     flexGrow: 0,
@@ -42,6 +51,7 @@ const styles = StyleSheet.create({
     backgroundColor: TERTIARY,
     borderWidth: 1,
     borderRadius: 20,
+    marginBottom: 10,
   },
   buttonText: {
     textAlign: 'center',
