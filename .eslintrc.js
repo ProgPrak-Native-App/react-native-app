@@ -5,6 +5,7 @@ module.exports = {
   env: {
     node: true,
     jest: true,
+    'react-native/react-native': true
   },
 
   parserOptions: {
@@ -15,6 +16,9 @@ module.exports = {
 
     sourceType: 'module',
     ecmaVersion: 2020,
+    'ecmaFeatures': {
+      'jsx': true
+    }
   },
 
   plugins: [
@@ -25,6 +29,8 @@ module.exports = {
     // Prettier has not been included as plugin to avoid performance impact
     // add it as an extension for your IDE
     'prettier',
+    'react',
+    'react-native'
   ],
 
   extends: [
@@ -57,7 +63,6 @@ module.exports = {
       },
     ],
 
-    // allow async-await
     'generator-star-spacing': 'off',
 
     // allow paren-less arrow functions
@@ -72,8 +77,13 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
-    "@typescript-eslint/no-empty-interface": "off",
-
+    '@typescript-eslint/no-empty-interface': "off",
+    'react-native/no-unused-styles': 2,
+    'react-native/split-platform-components': 2,
+    'react-native/no-inline-styles': 2,
+    'react-native/no-color-literals': 2,
+    'react-native/no-raw-text': 2,
+    'react-native/no-single-element-style-arrays': 2,
     'prefer-promise-reject-errors': 'off',
     semi: ['error', 'always'],
     '@typescript-eslint/semi': ['error', 'always'],
