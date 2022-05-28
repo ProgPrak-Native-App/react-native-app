@@ -3,9 +3,9 @@ import { View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import PracticeOldMotivator, { exercise } from "./PracticeOldMotivator";
 
-let mockExercise1: exercise = {title: "ALPEN-Methode", screen: "Home"}
-let mockExercise2: exercise = {title: "übung 2", screen: "Home"}
-let mockExercise3: exercise = {title: "übung 3", screen: "Home"}
+let mockExercise1: exercise = {title: "ALPEN-Methode", screen: "NotImplemented"}
+let mockExercise2: exercise = {title: "übung 2", screen: "NotImplemented"}
+let mockExercise3: exercise = {title: "übung 3", screen: "NotImplemented"}
 
 let mockExercises = [mockExercise1, mockExercise2, mockExercise3]
 

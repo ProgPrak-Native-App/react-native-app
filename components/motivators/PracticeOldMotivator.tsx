@@ -2,7 +2,7 @@ import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Title from "../Title";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { TabRoutes } from "../../App";
+import { MotivatorRoutes } from "./Motivator";
 
 type motivatorProps = {
   motivatorName: string;
@@ -11,16 +11,16 @@ type motivatorProps = {
   exercises: exercise[]
 }
 
-export type exercise = {title: string; screen: keyof TabRoutes }
+export type exercise = {title: string; screen: keyof MotivatorRoutes }
 
 export default function PracticeOldMotivator(props: motivatorProps) {
-  const navigation = useNavigation<NavigationProp<TabRoutes>>();
+  const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   return (
     <>
       <Title color={props.motivatorColor} Icon={props.motivatorIcon} text={props.motivatorName}/>
       <View style={styles.container}>
         {props.exercises.map(exercise =>
-          <Pressable style={styles.taskButton} onPress={() => navigation.navigate(exercise.screen)}>
+          <Pressable key={exercise.title} style={styles.taskButton} onPress={() => navigation.navigate(exercise.screen)}>
             <Text style={styles.taskButtonText}>{exercise.title}</Text>
           </Pressable>
         )}

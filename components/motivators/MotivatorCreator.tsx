@@ -1,11 +1,11 @@
 import React from "react";
 import { Text, StyleSheet, View, Pressable } from "react-native";
-import { TERTIARY, MOTIVATOR } from "../../colors";
+import { TERTIARY } from "../../colors";
 import { AntDesign } from "@expo/vector-icons";
-import Motivator from "./Motivator";
+import MotivatorOverview from "./MotivatorOverview";
 import Title from "../Title";
 
-export default function CreateMotivator() {
+export default function MotivatorCreator() {
     return (
       <>
         <Title text="Neue Starkmacher"/>
@@ -17,7 +17,7 @@ export default function CreateMotivator() {
             <View style={styles.arrowContainer}>
               <AntDesign name="left" size={48} />
             </View>
-            <Motivator icon={require("../../assets/reframeicon.png")} title="Reframing" description="Beim Reframing geht es darum, deine eigene Einschätzung der Situation zu überprüfen und ggf. zu einer anderen Interpretation zu kommen."/>
+            <MotivatorOverview icon={require("../../assets/reframeicon.png")} title="Reframing" description="Beim Reframing geht es darum, deine eigene Einschätzung der Situation zu überprüfen und ggf. zu einer anderen Interpretation zu kommen."/>
             <Pressable>
               <View style={styles.arrowContainer}>
                 <AntDesign name="right" size={48}/>
