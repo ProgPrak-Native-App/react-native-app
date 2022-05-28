@@ -1,25 +1,29 @@
 import React from "react";
-import { Text, StyleSheet, View, Pressable } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import Title from "../Title";
-import { FontAwesome5 } from '@expo/vector-icons';
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { TabRoutes } from "../../App";
 
-export default function PracticeOldMotivator() {
+type motivatorProps = {
+  motivatorName: string;
+  motivatorColor: string;
+  motivatorIcon: () => JSX.Element;
+  exercises: exercise[]
+}
+
+export type exercise = {title: string; screen: keyof TabRoutes }
+
+export default function PracticeOldMotivator(props: motivatorProps) {
+  const navigation = useNavigation<NavigationProp<TabRoutes>>();
   return (
     <>
-      <Title color={'#F2C7D0'} Icon={() => <FontAwesome5 name="list" size={60} color="black"/>} text="Situationskontrolle"/>
+      <Title color={props.motivatorColor} Icon={props.motivatorIcon} text={props.motivatorName}/>
       <View style={styles.container}>
-          <Pressable style={styles.taskButton}>
-            <Text style={styles.taskButtonText}>ALPEN-Methode</Text>
+        {props.exercises.map(exercise =>
+          <Pressable style={styles.taskButton} onPress={() => navigation.navigate(exercise.screen)}>
+            <Text style={styles.taskButtonText}>{exercise.title}</Text>
           </Pressable>
-
-          <Pressable style={styles.taskButton}>
-            <Text style={styles.taskButtonText}>Übung 2</Text>
-          </Pressable>
-
-          <Pressable style={styles.taskButton}>
-            <Text style={styles.taskButtonText}>Übung 3</Text>
-          </Pressable>
-
+        )}
       </View>
     </>
   );

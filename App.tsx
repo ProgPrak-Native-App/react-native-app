@@ -9,7 +9,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { PRIMARY, SECONDARY } from "./colors";
 import MoodDiary from "./components/mood_diary/MoodDiary";
 import MotivatorCreator from "./components/motivators/MotivatorCreator";
-import PracticeOldMotivator from "./components/motivators/PracticeOldMotivator";
+import SituationControl from "./components/motivators/SituationControl";
 
 export type TabRoutes = {
   Home: undefined;
@@ -70,7 +70,7 @@ export default function App() {
             <Tab.Screen
               name="EmergencyNumbers"
               //TODO remove before push
-              component={PracticeOldMotivator}
+              component={SituationControl}
               options={{
                 title: "Notfall\u00adnummern",
                 tabBarIcon: () => <FontAwesome5 name="first-aid" size={24} />,
