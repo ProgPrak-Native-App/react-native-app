@@ -1,22 +1,17 @@
 import React from "react";
-import { View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import PracticeOldMotivator, { exercise } from "./PracticeOldMotivator";
+import OldMotivatorPractice, { Exercise } from "./OldMotivatorPractice";
 
-let mockExercise1: exercise = {title: "ALPEN-Methode", screen: "NotImplemented"}
-let mockExercise2: exercise = {title: "übung 2", screen: "NotImplemented"}
-let mockExercise3: exercise = {title: "übung 3", screen: "NotImplemented"}
+const mockExercise1: Exercise = {title: "ALPEN-Methode", screen: "NotImplemented"}
+const mockExercise2: Exercise = {title: "übung 2", screen: "NotImplemented"}
+const mockExercise3: Exercise = {title: "übung 3", screen: "NotImplemented"}
 
-let mockExercises = [mockExercise1, mockExercise2, mockExercise3]
+const mockExercises = [mockExercise1, mockExercise2, mockExercise3]
 
 export default function SituationControl() {
   const icon = <FontAwesome5 name="list" size={60} color="black" />
   return (
-    <>
-      <View>
-        <PracticeOldMotivator exercises={mockExercises} motivatorName={"Situationskontrolle"} motivatorColor={"#F2C7D0"} motivatorIcon={() => icon}/>
-      </View>
-    </>
+    <OldMotivatorPractice exercises={mockExercises} motivatorName={"Situationskontrolle"} motivatorColor={"#F2C7D0"} motivatorIcon={() => icon}/>
   );
 }
 

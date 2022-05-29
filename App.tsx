@@ -68,7 +68,6 @@ export default function App() {
             />
             <Tab.Screen
               name="EmergencyNumbers"
-              //TODO remove before push
               component={NotImplemented}
               options={{
                 title: "Notfall\u00adnummern",

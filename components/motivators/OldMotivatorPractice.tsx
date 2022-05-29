@@ -4,16 +4,16 @@ import Title from "../Title";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { MotivatorRoutes } from "./Motivator";
 
-type motivatorProps = {
+type MotivatorProps = {
   motivatorName: string;
   motivatorColor: string;
   motivatorIcon: () => JSX.Element;
-  exercises: exercise[]
+  exercises: Exercise[]
 }
 
-export type exercise = {title: string; screen: keyof MotivatorRoutes }
+export type Exercise = {title: string; screen: keyof MotivatorRoutes }
 
-export default function PracticeOldMotivator(props: motivatorProps) {
+export default function OldMotivatorPractice(props: MotivatorProps) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   return (
     <>
