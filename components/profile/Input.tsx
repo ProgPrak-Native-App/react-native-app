@@ -6,7 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 interface InputData {
     label: string;
     iconName: any;
-    error?: string;
+    error: string;
     password: boolean;
     onFocus: () => void;
     onChangeText: (text: string) => void;

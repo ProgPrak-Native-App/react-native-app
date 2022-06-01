@@ -11,11 +11,6 @@ import { useNavigation } from "@react-navigation/native";
 import { TERTIARY } from "../../colors";
 
 
-//mail
-//password
-//repeatpassword
-//age
-
 const styles = StyleSheet.create({
 
     button: {
@@ -37,7 +32,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
     },
     label: {
-        fontSize: 16
+        fontSize: 18
     },
     input: {
         height: 40,
@@ -87,6 +82,8 @@ export default function RegistrationScreen(){
         
         if(!inputs.age) {
             handleError('Bitte Alter eingeben', 'age')
+        }else if(!inputs.age.match("^[0-9]*$")){
+            handleError('Das Alter muss eine Zahl sein', 'age')
         }
     
    };
@@ -105,61 +102,61 @@ export default function RegistrationScreen(){
 
     return(
         <SafeAreaProvider >
-            <SafeAreaView style={{ flex: 1, height: 1000}}>    
-                <ScrollView style = {{height: 1000}}>      
-                    <Title text="Mein Profil" />
-                    <Input 
-                    iconName="email-outline" 
-                    label="Mailadresse" 
-                    password = {false}
-                    error= {errors.email}
-                    onFocus={() => {
-                        handleError('', 'email')
-                    }}
-                    onChangeText={(text: string) => handleOnChange(text, 'email')} >
-                    </Input>  
-                    <Input 
-                    label={"Passwort"} 
-                    iconName={"lock-outline"} 
-                    password={true}
-                    error= {errors.password}
-                    onFocus={() => {
-                        handleError('', 'password')
-                    }} 
-                    onChangeText={(text: string) => handleOnChange(text, 'password')} >
-                    </Input>
-                    <Input 
-                    label={"Passwort wiederholen"} 
-                    iconName={"lock-outline"} 
-                    password={true}
-                    error= {errors.repeatPassword}
-                    onFocus={() => {
-                        handleError('', 'repeatPassword')
-                    }} 
-                    onChangeText={(text: string) => handleOnChange(text, 'repeatPassword')} >
-                    </Input>
-                    <Input 
-                    label={"Alter"} 
-                    iconName={"ghost"} 
-                    password={false}
-                    error= {errors.age}
-                    onFocus={() => {
-                        handleError('', 'age')
-                    }}  
-                    onChangeText={(text: string) => handleOnChange(text, 'age')} >
-                    </Input>
-                    <Pressable onPress={() => validate()} style={styles.button}>
-                        <Text style={styles.buttonText}>
-                            Registrieren
-                        </Text>
-                    </Pressable>
-                        <Text 
-                        onPress={() => console.log("navigate to Login")}
-                        style={{textAlign: "center", fontSize: 16, fontWeight: 'bold', marginTop: 20}}  
-                        >
-                        Ich habe bereits einen Account. Zum Login
-                        </Text>
-                </ScrollView>   
+            <SafeAreaView style={{ flex: 1, height: 1000}}>  
+                <Title text="Mein Profil" />    
+                    <ScrollView >  
+                        <Input 
+                        iconName="email-outline" 
+                        label="Mailadresse" 
+                        password = {false}
+                        error= {errors.email}
+                        onFocus={() => {
+                            handleError('', 'email')
+                        }}
+                        onChangeText={(text: string) => handleOnChange(text, 'email')} >
+                        </Input>  
+                        <Input 
+                        label={"Passwort"} 
+                        iconName={"lock-outline"} 
+                        password={true}
+                        error= {errors.password}
+                        onFocus={() => {
+                            handleError('', 'password')
+                        }} 
+                        onChangeText={(text: string) => handleOnChange(text, 'password')} >
+                        </Input>
+                        <Input 
+                        label={"Passwort wiederholen"} 
+                        iconName={"lock-outline"} 
+                        password={true}
+                        error= {errors.repeatPassword}
+                        onFocus={() => {
+                            handleError('', 'repeatPassword')
+                        }} 
+                        onChangeText={(text: string) => handleOnChange(text, 'repeatPassword')} >
+                        </Input>
+                        <Input 
+                        label={"Alter"} 
+                        iconName={"ghost"} 
+                        password={false}
+                        error= {errors.age}
+                        onFocus={() => {
+                            handleError('', 'age')
+                        }}  
+                        onChangeText={(text: string) => handleOnChange(text, 'age')} >
+                        </Input>
+                        <Pressable onPress={() => validate()} style={styles.button}>
+                            <Text style={styles.buttonText}>
+                                Registrieren
+                            </Text>
+                        </Pressable>
+                            <Text 
+                            onPress={() => console.log("navigate to Login")}
+                            style={{textAlign: "center", fontSize: 16, fontWeight: 'bold', marginTop: 20}}  
+                            >
+                            Ich habe bereits einen Account. Zum Login
+                            </Text>
+                    </ScrollView>   
             </SafeAreaView>
         </SafeAreaProvider>
     );
