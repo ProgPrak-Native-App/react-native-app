@@ -4,7 +4,7 @@ import Title from "../Title";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { MotivatorRoutes } from "./Motivator";
 
-type MotivatorProps = {
+export type MotivatorProps = {
   motivatorName: string;
   motivatorColor: string;
   motivatorIcon: () => JSX.Element;
