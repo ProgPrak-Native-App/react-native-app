@@ -9,6 +9,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { PRIMARY, SECONDARY } from "./colors";
 import MoodDiary from "./components/mood_diary/MoodDiary";
 import MotivatorCreator from "./components/motivators/MotivatorCreator";
+import Profile from "./components/profile/Profile";
 
 export type TabRoutes = {
   Home: undefined;
@@ -76,7 +77,7 @@ export default function App() {
             />
             <Tab.Screen
               name="Profil"
-              component={NotImplemented}
+              component={Profile}
               options={{
                 tabBarIcon: () => <Ionicons name="person-circle-outline" size={24} />,
               }}
