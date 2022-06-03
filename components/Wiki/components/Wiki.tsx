@@ -3,8 +3,9 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import Title from "../../Title";
 import  WikiHeader  from "./WikiHeader";
 import  EntryTitle  from "./EntryTitle";
-import { EntryProps, wikiEntry, BASE_URL } from "../constant/constants";
-import { TERTIARY } from "../../../colors";
+import { EntryProps, wikiEntry, BASE_URL, SIZES } from "../constant/constants";
+import { TERTIARY } from "../../../styles";
+
 
 const alphaBet: Set<String> = new Set()
 
@@ -15,76 +16,81 @@ async function getEntries(): Promise<wikiEntry[]> {
         .then(data => data.slice(0,6))) as wikiEntry[];
   }
     
-/* entry = has all entries from fetch, first unorddered then sorted alphab.
+/* 
 *  dataBase = Database in form EntryProps, to do filetring on, 
-*  search holds filtered search dataBase
+*  filteredEntries = holds filtered search dataBase
 */ 
 const Wiki = () => {
-    const [entry, setEntry] = useState<wikiEntry[]>([]);
     const [dataBase, setDataBase] = useState<EntryProps[]>([])
-    const [search, setSearch] = useState<EntryProps[]>([])
+    const [filteredEntries, setFilteredEntries] = useState<EntryProps[]>([])
+   
 
     /** handles search in realtime if typed into bar */
     const handleSearch = (value:string) => {
         if(!value.length){
-            setSearch(dataBase);  
+            setFilteredEntries(dataBase);  
             return;
         }
        
          /** not happy with this but apperently 
-        * must map specifically to filteredData elese dataBase gets courrupted ?*/
+        * must map specifically to filteredData else dataBase gets courrupted ?
+        * filter index letters A, B, C
+        * */
         let filteredData = dataBase.filter((item) => 
                 item.entry.filter(elem =>  
                     elem.title.toLowerCase().includes(value.toLowerCase()) ).length > 0);
-       
+
+        /* filter entries in A=>{....} */
+
         filteredData = filteredData.map((item) => ({
                 letter: item.letter, 
                 entry: item.entry.filter(element => 
                     element.title.toLowerCase().includes(value.toLowerCase()))
                 }) 
             ) 
-
-        setSearch(filteredData)
-    }
-    /*** populate dataBase the first time, if not done */
-    const populateData = () => {
-        if (dataBase.length === 0){
-            alphaBet.forEach(item => 
-                dataBase.push( {
-                    letter: item.toString(), 
-                    entry: entry.filter(element => 
-                        element.title.charAt(0).toUpperCase() === item) 
-                    }
-                )
-            )
-        }
+       
+        setFilteredEntries(filteredData)
     }
 
+    /*** populate dataBase in the scheme of {A => {[....], title: "A ..."}, B=>{...}, ...} the first time */
+    const populateData = (entries : wikiEntry[]) => {
+        let helperArray : EntryProps [] = []
+        entries.forEach(element => { alphaBet.add( element.title.charAt(0).toUpperCase())});
+        
+        alphaBet.forEach(item => {
+            helperArray.push(
+                {
+                letter: item.toString(),
+                entry: entries.filter(element => 
+                    element.title.charAt(0).toUpperCase() === item )
+                }
+            )    
+        })   
+        setDataBase(helperArray)
+        setFilteredEntries(helperArray)
+    }
+
+    const sortEntries = (entries: wikiEntry[]) => {
+        return entries.sort((a, b) => {return a.title.localeCompare(b.title)})
+       
+    }
+    // if first rodeo, sort fetch reponse acc. to alphabetical order
     useEffect(() => {
-        if (entry.length === 0) {
-          getEntries().then(setEntry)
-          
-        }
-      });
+        getEntries().then(entries => sortEntries(entries)).then((entries) => populateData(entries))
+    },[]);
      
-    /** if first rodeo, sort fetch reponse acc. to alphabetical order
-     * add sorted first char to a set so that we can create an index like A,B,C 
+    /** add sorted first char to a set so that we can create an index like A,B,C 
      * set serach as dataBase so we can work with 'search' from now on
+     * only use once after OG array has been sorted
      */
-    if(entry.length > 0 && alphaBet.size === 0){
-        entry.sort((a, b) => {return a.title.localeCompare(b.title)})
-        entry.forEach(element => { alphaBet.add( element.title.charAt(0).toUpperCase() )});
-        setSearch(dataBase)
-      }
-    populateData()
 
     return(
         <View>
-            <Title text="Wiki" color={TERTIARY} img={"../assets:/libary.png"} />   
+            <Title text="Wiki" color={TERTIARY} />   
             <WikiHeader onSearch={handleSearch}/>    
             <ScrollView >
                 <View style={styles.container}>
-                    {search.map((item, idx) =>
+                    {filteredEntries.map((item, idx) =>
                     <View key={idx}>
                         <EntryTitle letter={item.letter} entry={item.entry} />   
                     </View>
@@ -100,6 +106,7 @@ const styles = StyleSheet.create({
         height: "100%",
         marginHorizontal: 24,
         marginVertical: 8,
+        marginBottom: SIZES.font * SIZES.font,
         zIndex: -1,
     },
 })

@@ -3,7 +3,7 @@ import { TextInput, View, StyleSheet } from "react-native"
 import { FontAwesome5} from "@expo/vector-icons";
 
 /* --------- Wiki Header: basically just styles and serach   ----------------- */
-const WikiHeader = ({onSearch}:any) => {
+const WikiHeader = ( {onSearch} : {onSearch: (text:string) => void}) => {
     return (
         <View style={styles.container }>
           <View style ={{marginTop: 8}}>
@@ -17,8 +17,8 @@ const WikiHeader = ({onSearch}:any) => {
             />
               <TextInput
                 placeholder="Suche im Wiki"
-                accessibilityLabel= "Suche im Wiki"
-                placeholderTextColor={'#4F4F4F'}
+                accessibilityLabel="Suche im Wiki"
+                placeholderTextColor='#4F4F4F'
                 style={styles.text}
                 onChangeText={onSearch}
               />
@@ -56,3 +56,7 @@ const styles = StyleSheet.create({
 })
 
 export default WikiHeader
+
+function value(value: any): ((text: string) => void) | undefined {
+  throw new Error("Function not implemented.");
+}

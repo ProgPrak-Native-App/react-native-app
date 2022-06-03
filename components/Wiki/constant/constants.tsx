@@ -1,5 +1,3 @@
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-
 /* ----- const for export ---- */
 export const ALPHABET = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 export const BASE_URL = "http://127.0.0.1:4010";
@@ -11,25 +9,14 @@ export type EntryProps = {
 }
 
 export type wikiEntry = {
-    "id": "string",
-    "title": "string",
-    "contents": [
+    id: string,
+    title : string,
+    contents : 
         {
-        "type": "text",
-        "content": "string"
-        }
-    ]
+        type: "text" | "url",
+        content: string
+        }[],
 }
-
-/* ----------------- types for navigatin wiki ----------------- */
-export type RootStackParamList = {
-    WikiEntry: undefined;
-    Wiki: undefined;
-  };
-  
-export type RootStackScreenProps<T extends keyof RootStackParamList> =
-    NativeStackScreenProps<RootStackParamList, T>;
-
 
 /* ----- sytles ---- */
 export const SIZES = {

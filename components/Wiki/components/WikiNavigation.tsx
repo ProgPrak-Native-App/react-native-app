@@ -1,22 +1,31 @@
 import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { WikiEntry } from "..";
 import Wiki from "./Wiki"
+import { wikiEntry } from "../constant/constants";
 
-const Stack = createNativeStackNavigator();
 
-function WikiNavigation(){
+export type WikiStackParamList = {
+  WikiEntry: wikiEntry;
+  WikiStart: undefined;
+};
+
+export type WikiStackScreenProps<T extends keyof WikiStackParamList> =
+  NativeStackScreenProps<WikiStackParamList, T>;
+
+const WikiStack = createNativeStackNavigator();
+
+export default function WikiNavigation(){
     return(
-      <Stack.Navigator
+      <WikiStack.Navigator
       screenOptions={{
         headerShown: false,
       }}
       initialRouteName="WikiStart"
     >
-      <Stack.Screen name="WikiStart" component={Wiki} />
-      <Stack.Screen name="WikiEntry" component={WikiEntry} />
-    </Stack.Navigator>
+      <WikiStack.Screen name="WikiStart" component={Wiki} />
+      <WikiStack.Screen name="WikiEntry" component={WikiEntry} />
+    </WikiStack.Navigator>
     )
   }
 
-  export default WikiNavigation

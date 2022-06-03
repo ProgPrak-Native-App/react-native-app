@@ -1,48 +1,40 @@
 import { Text, TouchableOpacity, View , StyleSheet, ScrollView} from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Title from '../../Title'
-import { FontAwesome5, AntDesign  } from "@expo/vector-icons";
-import { Accordion} from '..';
-import { SIZES, wikiEntry } from '../constant/constants';
-import { RootStackScreenProps } from '../constant/constants';
-import { TERTIARY } from '../../../colors';
+import { AntDesign  } from "@expo/vector-icons";
+import { SIZES } from "../constant/constants";
+import { TERTIARY } from '../../../styles';
+import { WikiStackScreenProps } from './WikiNavigation';
+import Accordion from './Accordion';
+import Accordions from './Accordion';
 
 
-const WikiEntry = ({route, navigation}:RootStackScreenProps<'WikiEntry'>) => {
-  const [Data, setData] = useState<wikiEntry>()
-  useEffect(() => {
-    setData(route.params)
-  }, [])
-  /* ----------------- try accordion as well plz ?  -----------------
-  *  <Accordion title = {Data.title} descr={Data.contents} />
-  */
+const WikiEntry = ({route, navigation}:WikiStackScreenProps<'WikiEntry'>) => {
 
+  const Data = route.params
+
+ 
   if(Data){
     return (
-      <View>
+      <View >
         <TouchableOpacity style={styles.goBack} onPress={()=> {navigation.goBack()}}>
           <AntDesign name="left" size={30} color="black" />
           <Text style={{left: -5, fontSize:12}}>Zurück</Text>
         </TouchableOpacity> 
-        <Title 
-          text={Data.title} 
-          color={TERTIARY} 
-        /> 
-     
-      <ScrollView style={styles.container}>
-      
-        <Text style={styles.title}>{Data.title}</Text>
-        <Text style={{lineHeight: 30}}>{
-              Data['contents'].map( (item, idx) => 
-                item.type.match('url') 
-                ? <Text key={idx} style={[styles.content,{textDecorationLine: 'underline'} ]}>{ item.content + ' ' }</Text> 
-                : <Text key={idx} style={{fontSize: 18}}>{item.content + ' ' }</Text>)
-        }</Text>
-      </ScrollView>
-       
-    </View>
-     
-      )
+        <Title text={Data.title} color={TERTIARY} /> 
+    
+        <ScrollView style={styles.container}>
+          <Text style={styles.title}>{Data.title}</Text>
+          <Text style={styles.textContainer}>{
+            Data['contents'].map( (item, idx) => 
+              item.type === 'url' 
+              ? <Text key={idx} style={[styles.content,{textDecorationLine: 'underline'} ]}>{ item.content + ' ' }</Text> 
+              : <Text key={idx} style={{fontSize: 18}}>{item.content + ' ' }</Text>)
+            }
+          </Text>
+        </ScrollView>
+      </View>  
+    )
   }else{
     return(null)
   }
@@ -50,6 +42,10 @@ const WikiEntry = ({route, navigation}:RootStackScreenProps<'WikiEntry'>) => {
 
 
 const styles = StyleSheet.create({
+  textContainer: {
+    textAlign: 'left', 
+    lineHeight: 30
+  },
   content: {
     fontSize: SIZES.font, 
     lineHeight: SIZES.default_line_height 
@@ -79,6 +75,27 @@ const styles = StyleSheet.create({
 })
 export default WikiEntry
 
-function render(arg0: JSX.Element) {
-  throw new Error('Function not implemented.');
-}
+/**
+ *    <View>
+        <TouchableOpacity style={styles.goBack} onPress={()=> {navigation.goBack()}}>
+          <AntDesign name="left" size={30} color="black" />
+          <Text style={{left: -5, fontSize:12}}>Zurück</Text>
+        </TouchableOpacity> 
+        <Title 
+          text={Data.title} 
+          color={TERTIARY} 
+        /> 
+     
+ * between ScrollView: 
+        <ScrollView>
+ * <Text style={styles.title}>{Data.title}</Text>
+          <Text style={styles.textContainer}>{
+            Data['contents'].map( (item, idx) => 
+              item.type === 'url' 
+              ? <Text key={idx} style={[styles.content,{textDecorationLine: 'underline'} ]}>{ item.content + ' ' }</Text> 
+              : <Text key={idx} style={{fontSize: 18}}>{item.content + ' ' }</Text>)
+          }
+          </Text>
+          </ScrollView>
+          </View>
+ */
