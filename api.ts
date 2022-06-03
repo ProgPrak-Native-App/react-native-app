@@ -1,7 +1,9 @@
 import { LocalDate } from "@js-joda/core";
 
+export type MoodType = "positive" | "neutral" | "negative";
+
 export type Mood = {
-  type: string;
+  type: MoodType;
   description: string;
   timestamp: string;
 };

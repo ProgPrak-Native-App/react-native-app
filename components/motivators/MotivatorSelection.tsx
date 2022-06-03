@@ -1,25 +1,24 @@
-import React from "react";
-import Title from "./Title";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import KopfsachenButton from "./KopfsachenButton";
-import { TabRoutes } from "../App";
+import { MotivatorRoutes } from "./Motivator";
+import KopfsachenButton from "../KopfsachenButton";
+import Title from "../Title";
 
-export default function Home() {
-  const navigation = useNavigation<NavigationProp<TabRoutes>>();
+export default function MotivatorSelection() {
+  const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
 
   return (
     <>
-      <Title text="Herzlich Willkommen!" />
+      <Title text="Starkmacher" />
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <Text style={styles.text}>Schön, dass du da bist.</Text>
+          <Text style={styles.text}>Dieser Screen wird in Issue #4 implementiert.</Text>
         </View>
-        <KopfsachenButton onPress={() => navigation.navigate("MoodDiary")} style={styles.button}>
-          Ab zum Stimmungstagebuch.
+        <KopfsachenButton onPress={() => navigation.navigate("MotivatorCreator")} style={styles.button}>
+          Neue Starkmacher entdecken!
         </KopfsachenButton>
-        <KopfsachenButton onPress={() => console.log("Not implemented")} style={styles.button}>
-          Ich möchte an meinen offenen Aufgaben weiterarbeiten.
+        <KopfsachenButton onPress={() => navigation.navigate("SituationControl")} style={styles.button}>
+          Alter Starkmacher (Situationskontrolle).
         </KopfsachenButton>
       </View>
     </>
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   text: {
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
   },

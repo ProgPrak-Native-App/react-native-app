@@ -4,9 +4,11 @@ import { getMoods, Mood } from "../../api";
 import { Calendar } from "react-native-calendars/src";
 import { DateData } from "react-native-calendars/src/types";
 import BasicDay from "react-native-calendars/src/calendar/day/basic";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { LocaleConfig } from "react-native-calendars";
 import { LocalDate, LocalDateTime } from "@js-joda/core";
+import Title from "../Title";
+import { MoodDiaryRoutes } from "./MoodDiary";
 
 LocaleConfig.locales["de"] = {
   monthNames: [
@@ -53,7 +55,7 @@ function DayWithMood({ mood }: { mood: Mood }) {
 }
 
 function AddMoodButton() {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp<MoodDiaryRoutes>>();
   return (
     <Pressable onPress={() => navigation.navigate("MoodEntry")}>
       <Image source={require("../../assets/icon_plus.png")} style={styles.icon} />
@@ -85,11 +87,14 @@ export default function MoodCalendar() {
   }, []);
 
   return (
-    <Calendar
-      theme={{ calendarBackground: undefined }}
-      dayComponent={Day(moods ?? [])}
-      displayLoadingIndicator={moods === null}
-    />
+    <>
+      <Title text="Stimmungstagebuch" />
+      <Calendar
+        theme={{ calendarBackground: undefined }}
+        dayComponent={Day(moods ?? [])}
+        displayLoadingIndicator={moods === null}
+      />
+    </>
   );
 }
 

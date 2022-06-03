@@ -10,8 +10,18 @@ import { PRIMARY, SECONDARY } from "./colors";
 import MoodDiary from "./components/mood_diary/MoodDiary";
 import RegistrationScreen from "./components/profile/RegistrationScreen";
 
+import Motivator from "./components/motivators/Motivator";
 
-const Tab = createBottomTabNavigator();
+export type TabRoutes = {
+  Home: undefined;
+  MoodDiary: undefined;
+  Wiki: undefined;
+  Motivators: undefined;
+  EmergencyNumbers: undefined;
+  Profil: undefined;
+};
+
+const Tab = createBottomTabNavigator<TabRoutes>();
 
 export default function App() {
   return (
@@ -51,8 +61,8 @@ export default function App() {
               }}
             />
             <Tab.Screen
-              name="Starkmacher"
-              component={NotImplemented}
+              name="Motivators"
+              component={Motivator}
               options={{
                 title: "Starkmacher",
                 tabBarIcon: () => <MaterialCommunityIcons name="arm-flex" size={24} />,

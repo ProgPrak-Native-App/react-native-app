@@ -1,0 +1,44 @@
+name: build-ios
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch: { }
+
+jobs:
+  IOS:
+    runs-on: macos-latest
+    env:
+      IOS_LOCATION: build/ios/build-ios-${{ github.sha }}.tar.gz
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: npm
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+          packager: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build ios
+        run: eas build -p ios --profile=preview --local --non-interactive --output=${{env.IOS_LOCATION}}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        if: success()
+        with:
+          name: ios
+          path: ${{env.IOS_LOCATION}}
