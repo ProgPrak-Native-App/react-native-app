@@ -21,3 +21,14 @@ export const RED = '#ED6E6F';
 export const LIGHT_YELLOW = '#FCF7CB';
 export const DARK_YELLOW = '#FECB87';
 export const NAVY = '#A28FFF';
+
+/* ----- sytles ---- */
+export const SIZES = {
+    font: 18,
+    default_line_height: 1.5 * 18, 
+    default_pSpace: 1.5 * 1.5 * 18, 
+    min_margin: 8, 
+    max_margin: 32,
+    target_size: 48
+  }
+  

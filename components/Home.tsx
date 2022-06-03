@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import KopfsachenButton from "./KopfsachenButton";
 import { TabRoutes } from "../App";
-import { PRIMARY } from "../colors";
+import { PRIMARY} from "../styles";
 
 export default function Home() {
   const navigation = useNavigation<NavigationProp<TabRoutes>>();
@@ -29,6 +29,7 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
+    zIndex: -2,
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",

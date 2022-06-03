@@ -1,13 +1,11 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { EntryProps, wikiEntry } from "../constant/constants";
-import { useNavigation } from "@react-navigation/native";
+import { EntryProps } from "../constant/constants";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { WikiStackParamList } from './WikiNavigation';
 
 const EntryTitle = ({letter, entry}: EntryProps) => {
-    type Nav = {
-        navigate: (value: string, item:wikiEntry) => void;
-    }
-    const {navigate} = useNavigation<Nav>();
+    const {navigate} = useNavigation<NavigationProp<WikiStackParamList>>();
     
     return(
         <View>
