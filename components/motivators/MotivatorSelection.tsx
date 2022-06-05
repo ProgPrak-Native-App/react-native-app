@@ -12,7 +12,9 @@ async function getMotivators(){
   //change to BASE_URL once merged -> feature/7/wiki
   return (await fetch('http://localhost:4010/motivator')
     .then(response => response.json())
-    .then(data => {data.forEach(function (value: any) {newMotivators.push(parseMotivator(value.type))})
+    .then(data => {data.forEach(function (value: any) {
+      newMotivators.push(parseMotivator(value.type))
+    })
       return newMotivators})
     .catch(()=>[parseMotivator("noMotivator")]))
 }

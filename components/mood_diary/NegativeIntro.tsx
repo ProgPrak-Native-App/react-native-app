@@ -34,7 +34,7 @@ export default function NegativeIntro() {
           Sicherheits-&#13;netz
         </KopfsachenButton>
         <KopfsachenButton
-          onPress={() => console.log("EmotionRegulation not implemented")}
+          onPress={() => navigation.navigate("Motivators")}
           style={styles.button}
         >
           Neue Strategie
