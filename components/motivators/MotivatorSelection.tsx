@@ -12,10 +12,9 @@ async function getMotivators(){
   //change to BASE_URL once merged -> feature/7/wiki
   return (await fetch('http://localhost:4010/motivator')
     .then(response => response.json())
-    .then(data => {data.forEach(function (value: any) {
-      newMotivators.push(parseMotivator(value.type))
-    })
-      return newMotivators}).catch(()=>[parseMotivator("noMotivator")]))
+    .then(data => {data.forEach(function (value: any) {newMotivators.push(parseMotivator(value.type))})
+      return newMotivators})
+    .catch(()=>[parseMotivator("noMotivator")]))
 }
 
 function oldMotivatorGridView(motivators: MotivatorProps[]) {
@@ -24,11 +23,7 @@ function oldMotivatorGridView(motivators: MotivatorProps[]) {
     {motivators.map((data, index) => (
       <Pressable onPress={() => navigation.navigate(data.screen)} style={[styles.gridItem, { backgroundColor: data.color }, styles.shadow]} key={index}>
         <Text style={styles.text}>{data.name}</Text>
-        {data.icon && (
-          <View>
-            <data.icon />
-          </View>
-        )}
+        {data.icon}
       </Pressable>
     ))}
   </>;
@@ -39,6 +34,7 @@ export default function MotivatorSelection() {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   const [oldMotivators, setOldMotivators] = useState(initialState)
 
+  //update state with motivators
   if (oldMotivators.length == 0){
     getMotivators().then(setOldMotivators)
   }
@@ -102,7 +98,7 @@ const styles = StyleSheet.create({
     marginHorizontal: "13%",
   },
   shadow: {
-    elevation: 5,
+    elevation: 4,
     shadowColor: '#171717',
     shadowOffset: {width: -2, height: 2},
     shadowOpacity: 0.2,

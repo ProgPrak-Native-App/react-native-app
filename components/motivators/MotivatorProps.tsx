@@ -1,6 +1,6 @@
 import { MotivatorRoutes } from "./Motivator";
 import React from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image } from "react-native";
 import { MOTIVATOR } from "../../colors";
 
 export type Exercise = {title: string; screen: keyof MotivatorRoutes }
@@ -14,7 +14,7 @@ export type MotivatorTypes = {
 export type MotivatorProps = {
   name: string;
   color: string;
-  icon: () => JSX.Element;
+  icon: JSX.Element;
   exercises: Exercise[]
   screen: keyof MotivatorRoutes
 }
@@ -26,13 +26,13 @@ const mockExercise3: Exercise = {title: "Übung 3", screen: "NotImplemented"}
 
 const mockExercises = [mockExercise1, mockExercise2, mockExercise3]
 
-//Situationkontrolle
+//Situationskontrolle
 
 const situationControl: MotivatorProps = {
   name: "Situationskontrolle",
   color: MOTIVATOR.SITUATIONCONTROLL,
   exercises: mockExercises,
-  icon: () => <Image style={styles.image} source={require("../../assets/situationControlIcon.png")} />,
+  icon: <Image style={{height: 54, width: 54 }} source={require("../../assets/situationControlIcon.png")} />,
   screen: "SituationControl"
 }
 
@@ -41,7 +41,7 @@ const relaxation: MotivatorProps = {
   name: "Sicherheitsnetz",
   color: MOTIVATOR.SECURITYNET,
   exercises: mockExercises,
-  icon: () => <Image style={styles.image} source={require("../../assets/securitynetIcon.png")} />,
+  icon: <Image style={{height: 54, width: 54 }} source={require("../../assets/securitynetIcon.png")} />,
   screen: "SecurityNet"
 }
 
@@ -54,14 +54,6 @@ export function parseMotivator(name: keyof MotivatorTypes){
       return relaxation
     case "noMotivator":
     default:
-      return { name: "Not a Motivator", screen: "NotImplemented"} as MotivatorProps
+      return { name: "Not a Motivator", screen: "NotImplemented", color: 'white'} as MotivatorProps
   }
 }
-
-const styles = StyleSheet.create({
-  image: {
-    width: 54,
-    height: 54
-  }
-});
-
