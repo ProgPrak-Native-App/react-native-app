@@ -41,11 +41,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    flexGrow: 0,
-    flexShrink: 1,
-    flexBasis: '30%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    minHeight: "30%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
     fontSize: 30,

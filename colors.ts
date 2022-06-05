@@ -6,4 +6,9 @@ export const POSITIVE = "#FDE802";
 export const NEUTRAL = "#F3803E";
 export const NEGATIVE = "#BB9AF3";
 
-export const MOTIVATOR = "#f2c7d0";
+
+export const MOTIVATOR = {
+  "DEFAULT": "#f2c7d0",
+  "SITUATIONCONTROLL": "#f2c7d0",
+  "SECURITYNET": "#EAFAFE"
+}
