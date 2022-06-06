@@ -7,13 +7,11 @@ import React, { useEffect, useState } from "react";
 import { MotivatorProps, MotivatorTypes, parseMotivator } from "./MotivatorProps";
 import { MOTIVATOR } from "../../colors";
 
-type Motivator = { type: keyof MotivatorTypes }
-
 async function getMotivators(){
   //change to BASE_URL once merged -> feature/7/wiki
   return (await fetch('http://localhost:4010/motivator')
     .then(response => response.json())
-    .then((data: Motivator[]) => data.map(value => parseMotivator(value.type)))
+    .then((data: { type: keyof MotivatorTypes }[]) => data.map(value => parseMotivator(value.type)))
     .catch(()=>[parseMotivator("noMotivator")]))
 }
 
@@ -41,9 +39,7 @@ export default function MotivatorSelection() {
 
   return (
     <>
-      <View style={styles.shadow}>
-        <Title text="Meine Starkmacher" Icon={() => <Image source={require("../../assets/motivator.png")} />} color={MOTIVATOR.DEFAULT} />
-      </View>
+      <Title style={styles.shadow} text="Meine Starkmacher" Icon={() => <Image source={require("../../assets/motivator.png")} />} color={MOTIVATOR.DEFAULT} />
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.text}>Du hast schon so viele Starkmacher erkannt.{"\n"}Wenn du an deinen bestehenden
@@ -95,7 +91,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0
   },
   button: {
-    marginHorizontal: "13%",
+    paddingHorizontal: 4,
+    alignSelf: 'center'
   },
   shadow: {
     elevation: 4,
