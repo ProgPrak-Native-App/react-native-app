@@ -1,6 +1,6 @@
 import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { PRIMARY } from "../colors";
+import { PRIMARY } from "../styles";
 import React from "react";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 
