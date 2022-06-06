@@ -4,7 +4,7 @@ import Title from "./Title";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { TERTIARY } from "../colors";
+import { TERTIARY } from "../styles";
 
 
 const styles = StyleSheet.create({
