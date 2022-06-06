@@ -6,7 +6,7 @@ import React from "react";
 import Home from "./components/Home";
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { PRIMARY } from "./styles";
+import { PRIMARY, SECONDARY } from "./styles";
 import MoodDiary from "./components/mood_diary/MoodDiary";
 import RegistrationScreen from "./components/profile/RegistrationScreen";
 import WikiNavigation from "./components/Wiki/components/WikiNavigation";
