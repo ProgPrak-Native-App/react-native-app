@@ -1,6 +1,6 @@
 import Title from "../Title";
 import React from "react";
-import { POSITIVE } from "../../colors";
+import { POSITIVE } from "../../styles";
 import { StyleSheet, Text, View } from "react-native";
 import KopfsachenButton from "../KopfsachenButton";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
