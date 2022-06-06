@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    minHeight: "30%",
+    height: "30%",
     justifyContent: "center",
     alignItems: "center",
   },

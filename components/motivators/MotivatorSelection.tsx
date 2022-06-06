@@ -3,19 +3,17 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { MotivatorRoutes } from "./Motivator";
 import KopfsachenButton from "../KopfsachenButton";
 import Title from "../Title";
-import React, { useState } from "react";
-import { MotivatorProps, parseMotivator } from "./MotivatorProps";
+import React, { useEffect, useState } from "react";
+import { MotivatorProps, MotivatorTypes, parseMotivator } from "./MotivatorProps";
 import { MOTIVATOR } from "../../colors";
 
+type Motivator = { type: keyof MotivatorTypes }
+
 async function getMotivators(){
-  let newMotivators: MotivatorProps[] = []
   //change to BASE_URL once merged -> feature/7/wiki
   return (await fetch('http://localhost:4010/motivator')
     .then(response => response.json())
-    .then(data => {data.forEach(function (value: any) {
-      newMotivators.push(parseMotivator(value.type))
-    })
-      return newMotivators})
+    .then((data: Motivator[]) => data.map(value => parseMotivator(value.type)))
     .catch(()=>[parseMotivator("noMotivator")]))
 }
 
@@ -37,9 +35,9 @@ export default function MotivatorSelection() {
   const [oldMotivators, setOldMotivators] = useState(initialState)
 
   //update state with motivators
-  if (oldMotivators.length == 0){
-    getMotivators().then(setOldMotivators)
-  }
+  useEffect(() => {
+    getMotivators().then(setOldMotivators);
+  }, [])
 
   return (
     <>
