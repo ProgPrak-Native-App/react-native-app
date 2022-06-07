@@ -8,7 +8,7 @@ import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { PRIMARY, SECONDARY } from "./colors";
 import MoodDiary from "./components/mood_diary/MoodDiary";
-import MotivatorCreator from "./components/motivators/MotivatorCreator";
+import Motivator from "./components/motivators/Motivator";
 import Profile from "./components/profile/Profile";
 
 export type TabRoutes = {
@@ -61,7 +61,7 @@ export default function App() {
             />
             <Tab.Screen
               name="Motivators"
-              component={MotivatorCreator}
+              component={Motivator}
               options={{
                 title: "Starkmacher",
                 tabBarIcon: () => <MaterialCommunityIcons name="arm-flex" size={24} />,
