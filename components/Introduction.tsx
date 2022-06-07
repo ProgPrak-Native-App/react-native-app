@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
 
 export default function Introduction() {
 
-    const navigation = useNavigation<any>();
 
     
     return (
@@ -73,7 +72,7 @@ export default function Introduction() {
                 </Text>
             </View>
             <View style={styles.buttonContainer}>
-                <Pressable style={styles.button} onPress={() => navigation.navigate("CreateProfile")}>
+                <Pressable style={styles.button} onPress={() => console.log("clicked further")}>
                     <Text style={styles.text}>Los geht's</Text>
                 </Pressable>
             </View>
