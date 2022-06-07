@@ -22,9 +22,6 @@ export default function Profile() {
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
-      flexDirection: "column",
-      justifyContent: "flex-start",
       marginTop: 35,
   },
 });
