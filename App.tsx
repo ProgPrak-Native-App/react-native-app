@@ -33,28 +33,27 @@ export default function App() {
               tabBarLabelStyle: styles.label,
               tabBarInactiveBackgroundColor: PRIMARY,
               tabBarActiveBackgroundColor: SECONDARY,
-              tabBarInactiveTintColor: "black",
-              tabBarActiveTintColor: "black",
-            }}
-          >
+              tabBarInactiveTintColor: 'black',
+              tabBarActiveTintColor: 'black',
+            }}>
             <Tab.Screen
-              name="Home"
               component={Home}
+              name="Home"
               options={{
                 tabBarIcon: () => <FontAwesome5 name="home" size={24} />,
               }}
             />
             <Tab.Screen
-              name="MoodDiary"
               component={MoodDiary}
+              name="MoodDiary"
               options={{
-                title: "Stimmungs\u00adtagebuch",
+                title: 'Stimmungs\u00adtagebuch',
                 tabBarIcon: () => <FontAwesome5 name="calendar-alt" size={24} />,
               }}
             />
             <Tab.Screen
-              name="Wiki"
               component={NotImplemented}
+              name="Wiki"
               options={{
                 tabBarIcon: () => <FontAwesome5 name="book" size={24} />,
               }}
@@ -63,15 +62,15 @@ export default function App() {
               component={Motivator}
               name="Motivators"
               options={{
-                title: "Starkmacher",
+                title: 'Starkmacher',
                 tabBarIcon: () => <MaterialCommunityIcons name="arm-flex" size={24} />,
               }}
             />
             <Tab.Screen
-              name="EmergencyNumbers"
               component={NotImplemented}
+              name="EmergencyNumbers"
               options={{
-                title: "Notfall\u00adnummern",
+                title: 'Notfall\u00adnummern',
                 tabBarIcon: () => <FontAwesome5 name="first-aid" size={24} />,
               }}
             />

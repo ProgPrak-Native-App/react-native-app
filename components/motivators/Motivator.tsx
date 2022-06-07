@@ -1,50 +1,26 @@
 import React from "react";
-import { Image, StyleSheet, View, Text, ImageSourcePropType } from "react-native";
+import MotivatorCreator from "./MotivatorCreator";
+import SituationControl from "./SituationControl";
+import MotivatorSelection from "./MotivatorSelection";
+import NotImplemented from "../NotImplemented";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-type Props = {
-    title: string;
-    icon: ImageSourcePropType 
-    description: string;
+export type MotivatorRoutes = {
+  MotivatorCreator: undefined;
+  SituationControl: undefined;
+  MotivatorSelection: undefined;
+  NotImplemented: undefined;
+};
+
+const StackNavigator = createNativeStackNavigator<MotivatorRoutes>();
+
+export default function Motivator() {
+  return (
+    <StackNavigator.Navigator screenOptions={{ headerShown: false }}>
+      <StackNavigator.Screen name="MotivatorSelection" component={MotivatorSelection} />
+      <StackNavigator.Screen name="MotivatorCreator" component={MotivatorCreator} />
+      <StackNavigator.Screen name="SituationControl" component={SituationControl} />
+      <StackNavigator.Screen name="NotImplemented" component={NotImplemented} />
+    </StackNavigator.Navigator>
+  )
 }
-
-
-export default function Motivator({title, description, icon}: Props) {
-    return (
-        <View style={styles.container}>
-            <View style={styles.textcontainer}>
-                <Text style={styles.titletext}>{title}</Text>
-            </View>
-            <Image source={icon} style={styles.icon}></Image>
-            <View style={styles.textcontainer}>
-                <Text style={styles.descriptiontext}>{description}</Text>
-            </View>
-        </View>
-    );
-}
-
-const styles = StyleSheet.create({
-    titletext: {
-        fontSize: 30,
-        fontWeight: "bold",
-        textAlign: "center",
-    },
-    descriptiontext: {
-        fontSize: 20,
-        textAlign: "center"
-    },
-    textcontainer: {
-        flexGrow: 0,
-        flexShrink: 1,
-        justifyContent: "center"
-    },
-    container: {
-        flexGrow: 0,
-        flexShrink: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    icon: {
-        width: 128,
-        height: 128,
-    }
-})
