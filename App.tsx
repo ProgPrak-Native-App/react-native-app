@@ -60,8 +60,8 @@ export default function App() {
               }}
             />
             <Tab.Screen
-              name="Motivators"
               component={Motivator}
+              name="Motivators"
               options={{
                 title: "Starkmacher",
                 tabBarIcon: () => <MaterialCommunityIcons name="arm-flex" size={24} />,
@@ -76,8 +76,8 @@ export default function App() {
               }}
             />
             <Tab.Screen
-              name="Profil"
               component={Profile}
+              name="Profil"
               options={{
                 tabBarIcon: () => <Ionicons name="person-circle-outline" size={24} />,
               }}
