@@ -1,21 +1,22 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import { PRIMARY } from '../colors';
-import React from 'react';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import { PRIMARY } from "../colors";
+import React from "react";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 type Props = {
   text: string;
   color?: string;
   Icon?: () => JSX.Element;
   back?: true;
+  style?: StyleProp<ViewStyle>;
 };
 
-export default function Title({ text, color, Icon, back }: Props) {
+export default function Title({ text, color, Icon, back, style}: Props) {
   const navigation = useNavigation<NavigationProp<never>>();
 
   return (
-    <View style={[styles.container, { backgroundColor: color ?? PRIMARY }]}>
+    <View style={[styles.container, { backgroundColor: color ?? PRIMARY }, style]}>
       {back && navigation.canGoBack() && (
         <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
           <AntDesign color="black" name="left" size={30} />
@@ -41,11 +42,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    flexGrow: 0,
-    flexShrink: 1,
-    flexBasis: '30%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: "30%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
     fontSize: 30,

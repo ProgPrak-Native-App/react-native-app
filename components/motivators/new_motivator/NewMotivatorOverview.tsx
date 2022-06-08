@@ -7,7 +7,7 @@ type Props = {
     description: string;
 }
 
-export default function MotivatorOverview({title, description, icon}: Props) {
+export default function NewMotivatorOverview({title, description, icon}: Props) {
     return (
         <View style={styles.container}>
             <View style={styles.textcontainer}>

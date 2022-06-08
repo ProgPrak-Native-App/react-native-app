@@ -17,7 +17,7 @@ export default function Home() {
         <KopfsachenButton onPress={() => navigation.navigate('MoodDiary')} style={styles.button}>
           Ab zum Stimmungstagebuch.
         </KopfsachenButton>
-        <KopfsachenButton onPress={() => console.log('Not implemented')} style={styles.button}>
+        <KopfsachenButton onPress={() => navigation.navigate("Motivators")} style={styles.button}>
           Ich möchte an meinen offenen Aufgaben weiterarbeiten.
         </KopfsachenButton>
       </View>
