@@ -5,9 +5,6 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Title from "../Title";
 import Input from "./Input";
 
-
-
-import { useNavigation } from "@react-navigation/native";
 import { TERTIARY } from "../../styles";
 
 
@@ -27,20 +24,6 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
 
-    inputContainer : {
-        marginVertical:  10,
-        marginHorizontal: 20,
-    },
-    label: {
-        fontSize: 18
-    },
-    input: {
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
-        padding: 10,
-        borderRadius: 25
-    }
 });
 
 
@@ -61,10 +44,10 @@ export default function RegistrationScreen(){
 
    const validate = () => {
        Keyboard.dismiss();
-       let valid = true;
        if(!inputs.email){
            handleError('Bitte Mailadresse eingeben', 'email')
-           valid = false;
+
+        //source: https://www.emailregex.com
        }else if(!inputs.email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
            handleError('Bitte gültige Mailadresse eingeben', 'email')
        }
@@ -88,10 +71,6 @@ export default function RegistrationScreen(){
     
    };
 
-   const register = () => {
-
-   }
-
    const handleOnChange = (text: string, input: string) => {
        setInputs((prevState => ({...prevState, [input]: text})));
    };
@@ -105,57 +84,56 @@ export default function RegistrationScreen(){
             <SafeAreaView style={{ flex: 1, height: 1000}}>  
                 <Title text="Mein Profil" />    
                     <ScrollView >  
-                        <Input 
-                        iconName="email-outline" 
-                        label="Mailadresse" 
-                        password = {false}
-                        error= {errors.email}
-                        onFocus={() => {
-                            handleError('', 'email')
-                        }}
-                        onChangeText={(text: string) => handleOnChange(text, 'email')} >
-                        </Input>  
-                        <Input 
-                        label={"Passwort"} 
-                        iconName={"lock-outline"} 
-                        password={true}
-                        error= {errors.password}
-                        onFocus={() => {
-                            handleError('', 'password')
-                        }} 
-                        onChangeText={(text: string) => handleOnChange(text, 'password')} >
-                        </Input>
-                        <Input 
-                        label={"Passwort wiederholen"} 
-                        iconName={"lock-outline"} 
-                        password={true}
-                        error= {errors.repeatPassword}
-                        onFocus={() => {
-                            handleError('', 'repeatPassword')
-                        }} 
-                        onChangeText={(text: string) => handleOnChange(text, 'repeatPassword')} >
-                        </Input>
-                        <Input 
-                        label={"Alter"} 
-                        iconName={"ghost"} 
-                        password={false}
-                        error= {errors.age}
-                        onFocus={() => {
-                            handleError('', 'age')
-                        }}  
-                        onChangeText={(text: string) => handleOnChange(text, 'age')} >
-                        </Input>
-                        <Pressable onPress={() => validate()} style={styles.button}>
-                            <Text style={styles.buttonText}>
-                                Registrieren
-                            </Text>
-                        </Pressable>
+                        <View style={{paddingVertical: 10}}>
+                            <Input 
+                            iconName="email-outline" 
+                            label="Mailadresse" 
+                            password = {false}
+                            error= {errors.email}
+                            onFocus={() => {
+                                handleError('', 'email')
+                            }}
+                            onChangeText={(text: string) => handleOnChange(text, 'email')} 
+                            />
+                            <Input 
+                            label={"Passwort"} 
+                            iconName={"lock-outline"} 
+                            password={true}
+                            error= {errors.password}
+                            onFocus={() => {
+                                handleError('', 'password')
+                            }} 
+                            onChangeText={(text: string) => handleOnChange(text, 'password')} />
+                            <Input 
+                            label={"Passwort wiederholen"} 
+                            iconName={"lock-outline"} 
+                            password={true}
+                            error= {errors.repeatPassword}
+                            onFocus={() => {
+                                handleError('', 'repeatPassword')
+                            }} 
+                            onChangeText={(text: string) => handleOnChange(text, 'repeatPassword')} />
+                            <Input 
+                            label={"Alter"} 
+                            iconName={"ghost"} 
+                            password={false}
+                            error= {errors.age}
+                            onFocus={() => {
+                                handleError('', 'age')
+                            }}  
+                            onChangeText={(text: string) => handleOnChange(text, 'age')} />
+                            <Pressable onPress={() => validate()} style={styles.button}>
+                                <Text style={styles.buttonText}>
+                                    Registrieren
+                                </Text>
+                            </Pressable>
                             <Text 
                             onPress={() => console.log("navigate to Login")}
                             style={{textAlign: "center", fontSize: 16, fontWeight: 'bold', marginTop: 20}}  
                             >
                             Ich habe bereits einen Account. Zum Login
                             </Text>
+                        </View>
                     </ScrollView>   
             </SafeAreaView>
         </SafeAreaProvider>
