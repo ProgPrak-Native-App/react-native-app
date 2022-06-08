@@ -1,16 +1,16 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import NotImplemented from "../components/NotImplemented";
+import NotImplemented from "./NotImplemented";
 
-import Home from "../components/Home";
+import Home from "./Home";
 import { PRIMARY, SECONDARY } from "../colors";
-import MoodDiary from "../components/mood_diary/MoodDiary";
-import RegistrationScreen from "../components/profile/RegistrationScreen";
-import Motivator from "../components/motivators/Motivator";
+import MoodDiary from "./mood_diary/MoodDiary";
+import RegistrationScreen from "./profile/RegistrationScreen";
+import Motivator from "./motivators/Motivator";
+import Introduction from "./Introduction";
 
 export type TabRoutes = {
     Home: undefined;
@@ -24,15 +24,14 @@ export type TabRoutes = {
 const Tab = createBottomTabNavigator<TabRoutes>();
 
 const styles = StyleSheet.create({
-    label: {
-      fontSize: 11,
-    },
-  });
+  label: {
+    fontSize: 11,
+  },
+});
 
 
 export default function Routes () {
     return (
-        <NavigationContainer>
         <Tab.Navigator
           screenOptions={{
             headerShown: false,
@@ -87,8 +86,7 @@ export default function Routes () {
             options={{
               tabBarIcon: () => <Ionicons name="person-circle-outline" size={24} />,
             }}
-          />
+          />   
         </Tab.Navigator>
-      </NavigationContainer>
     );
 }

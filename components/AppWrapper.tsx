@@ -1,10 +1,17 @@
+import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
-import {useCurrentUser} from "../components/stores"
+import {useUserContext} from "./UserProvider"
 import Introduction from "./Introduction";
-import Routers from "./Routers";
+import Routes from "./Routes";
+
 
 export default function AppWrapper() {
-    const {user} = useCurrentUser();
-    console.log(user, "wasggeht")
-    return user ? <Routers/>: <Introduction/>
-};
+
+    const {user} = useUserContext();
+
+    return (
+        <NavigationContainer>
+            {user ? <Routes/>: <Introduction /> }
+        </NavigationContainer>
+    );
+}
