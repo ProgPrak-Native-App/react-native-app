@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { TERTIARY } from "../styles";
+import { TERTIARY } from "../colors";
 import {useUserContext} from "./UserProvider"
 
 
