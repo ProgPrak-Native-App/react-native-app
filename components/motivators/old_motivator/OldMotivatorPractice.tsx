@@ -1,26 +1,18 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import Title from "../Title";
+import Title from "../../Title";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { MotivatorRoutes } from "./Motivator";
-
-type MotivatorProps = {
-  motivatorName: string;
-  motivatorColor: string;
-  motivatorIcon: () => JSX.Element;
-  exercises: Exercise[]
-}
-
-export type Exercise = {title: string; screen: keyof MotivatorRoutes }
+import { MotivatorRoutes } from "../Motivator";
+import { MotivatorProps } from "../MotivatorProps";
 
 export default function OldMotivatorPractice(props: MotivatorProps) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   return (
     <>
-      <Title color={props.motivatorColor} Icon={props.motivatorIcon} text={props.motivatorName}/>
+      <Title color={props.color} Icon={() => props.icon} text={props.name}/>
       <View style={styles.container}>
-        {props.exercises.map(exercise =>
-          <Pressable key={exercise.title} style={styles.taskButton} onPress={() => navigation.navigate(exercise.screen)}>
+        {props.exercises?.map(exercise =>
+          <Pressable key={exercise.title} style={[styles.taskButton, styles.shadow]} onPress={() => navigation.navigate(exercise.screen)}>
             <Text style={styles.taskButtonText}>{exercise.title}</Text>
           </Pressable>
         )}
@@ -35,7 +27,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   taskButton: {
-    backgroundColor: 'transparent',
+    backgroundColor: '#EAFAFE',
     borderWidth: 1,
     borderRadius: 20,
     marginBottom: 20,
@@ -45,5 +37,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     margin: 16,
     textAlign: "left",
+  },
+  shadow: {
+    elevation: 5,
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 2},
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
   }
 });
