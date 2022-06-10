@@ -29,6 +29,8 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
           packager: npm
+          expo-cache: false
+          eas-cache: false
 
       - name: Install dependencies
         run: npm ci
