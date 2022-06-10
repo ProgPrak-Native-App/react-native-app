@@ -11,7 +11,7 @@ on:
 
 jobs:
   Publish:
-    runs-on: [ self-hosted, linux, x64 ]
+    runs-on: ubuntu-latest
     steps:
       - name: Setup repo
         uses: actions/checkout@v2

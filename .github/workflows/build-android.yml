@@ -9,7 +9,7 @@ on:
 
 jobs:
   Android:
-    runs-on: [ self-hosted, linux, x64 ]
+    runs-on: ubuntu-latest
     env:
       ANDROID_LOCATION: build/android/build-android-${{ github.sha }}.apk
     steps:
