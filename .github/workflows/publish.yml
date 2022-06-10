@@ -1,16 +1,14 @@
-name: publish
+name: "Publish on expo.dev"
 
 on:
-  push:
-    branches:
-      - main
-      - develop
+  workflow_dispatch:
+  workflow_call:
   pull_request:
     branches:
       - '*'
 
 jobs:
-  Publish:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Setup repo
@@ -35,13 +33,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Set release channel to PR number
-        if: ${{ github.event_name == 'pull_request' }}
-        run: echo "release_channel=pr-${{ github.event.number }}" >> $GITHUB_ENV
-
-      - name: Set release channel to branch name
-        if: ${{ github.event_name == 'push' }}
-        run: echo "release_channel=${GITHUB_REF##*/}" >> $GITHUB_ENV
+      - name: Set release channel
+        run: |
+          case "$GITHUB_REF" in
+            refs/pull/*/merge)
+              release_channel="pr-${{ github.event.number }}"
+              ;;
+            refs/heads/main|refs/heads/develop)
+              release_channel="${GITHUB_REF#refs/heads/}"
+              ;;
+            refs/heads/release/*)
+              release_channel="rc-${GITHUB_REF#refs/heads/release/}"
+              ;;
+            refs/heads/**)
+              release_channel="${GITHUB_REF#refs/heads/}"
+              ;;
+            *)
+              echo "::error title='Unsupported ref'::Can't infer expo release channel since ref '$GITHUB_REF' is neither a branch nor a PR."
+              exit 1
+              ;;
+          esac
+          echo "release_channel=$release_channel" | tee "$GITHUB_ENV"
 
       - name: Publish app
         run: expo publish --release-channel=${{ env.release_channel }} --non-interactive

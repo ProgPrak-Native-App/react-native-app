@@ -1,17 +1,12 @@
-name: build-android
+name: "Build Android APK"
 
 on:
-  push:
-    branches:
-      - main
-      - develop
   workflow_dispatch: { }
+  workflow_call:
 
 jobs:
-  Android:
+  build-android:
     runs-on: ubuntu-latest
-    env:
-      ANDROID_LOCATION: build/android/build-android-${{ github.sha }}.apk
     steps:
       - name: Setup repo
         uses: actions/checkout@v2
@@ -41,15 +36,21 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
+      - name: Get current package version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+
+      - run: echo OUTPUT_LOCATION=build/android/KopfsachenRNA-${{ steps.extract_version.outputs.version }}.apk | tee "$GITHUB_ENV"
+
       - name: Install dependencies
         run: npm ci
 
       - name: Build Android
-        run: eas build -p android --profile=preview --local --non-interactive --output=${{env.ANDROID_LOCATION}}
+        run: eas build -p android --profile=preview --local --non-interactive --output=${{env.OUTPUT_LOCATION}}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         if: success()
         with:
           name: android
-          path: ${{env.ANDROID_LOCATION}}
+          path: ${{ env.OUTPUT_LOCATION }}
