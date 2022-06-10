@@ -85,7 +85,7 @@ const Wiki = () => {
      */
 
     return(
-        <View>
+        <>
             <Title text="Wiki" color={TERTIARY} />   
             <WikiHeader onSearch={handleSearch}/>    
             <ScrollView >
@@ -97,7 +97,7 @@ const Wiki = () => {
                     )}     
                 </View >
             </ScrollView>
-        </View> 
+        </> 
     )
 }
 

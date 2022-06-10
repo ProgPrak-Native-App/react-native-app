@@ -95,16 +95,16 @@ const styles = StyleSheet.create({
     paddingBottom: 5
   },
   bar:{
-    borderRadius: 20,
-    height: 90,
-    marginTop: 10,
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    flex: 0.1,
     shadowColor: 'grey',
     shadowOffset: {
       width: 0,
-      height: -5,
+      height: -2,
     },
     shadowOpacity: 0.8,
-    shadowRadius: 5,
+    shadowRadius: 4,
 
     elevation: -34,
    
@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
   items: {
     borderRadius: 15,
     marginHorizontal: 4, 
-    marginTop: 4,
-  
+    marginVertical: 4,
   }
 });

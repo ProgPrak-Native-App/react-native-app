@@ -1,12 +1,11 @@
-import { Text, TouchableOpacity, View , StyleSheet, ScrollView} from 'react-native'
+import { Text, StyleSheet, ScrollView, Pressable} from 'react-native'
 import React from 'react'
 import Title from '../../Title'
 import { AntDesign  } from "@expo/vector-icons";
 import { SIZES } from "../constant/constants";
 import { TERTIARY } from '../../../styles';
 import { WikiStackScreenProps } from './WikiNavigation';
-import Accordion from './Accordion';
-import Accordions from './Accordion';
+
 
 
 const WikiEntry = ({route, navigation}:WikiStackScreenProps<'WikiEntry'>) => {
@@ -16,11 +15,11 @@ const WikiEntry = ({route, navigation}:WikiStackScreenProps<'WikiEntry'>) => {
  
   if(Data){
     return (
-      <View >
-        <TouchableOpacity style={styles.goBack} onPress={()=> {navigation.goBack()}}>
+      <>
+        <Pressable style={styles.goBack} onPress={()=> {navigation.goBack()}}>
           <AntDesign name="left" size={30} color="black" />
           <Text style={{left: -5, fontSize:12}}>Zurück</Text>
-        </TouchableOpacity> 
+        </Pressable> 
         <Title text={Data.title} color={TERTIARY} /> 
     
         <ScrollView style={styles.container}>
@@ -33,7 +32,7 @@ const WikiEntry = ({route, navigation}:WikiStackScreenProps<'WikiEntry'>) => {
             }
           </Text>
         </ScrollView>
-      </View>  
+      </>  
     )
   }else{
     return(null)

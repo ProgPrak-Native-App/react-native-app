@@ -61,9 +61,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
   },
   container: {
-    flexGrow: 0,
-    flexShrink: 1,
-    flexBasis: "30%",
+    height: "30%",
     justifyContent: 'center',
     alignItems: "center",
   },
