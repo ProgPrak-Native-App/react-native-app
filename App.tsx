@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
    
   }, 
   items: {
-    borderRadius: 50,
+    borderRadius: 15,
     marginHorizontal: 4, 
     marginTop: 4,
   
