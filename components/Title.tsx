@@ -1,8 +1,9 @@
 import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { PRIMARY } from "../colors";
+import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
+import { PRIMARY } from "../styles";
 import React from "react";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { TabRoutes } from "../App";
 
 type Props = {
   text: string;
@@ -14,6 +15,7 @@ type Props = {
 
 export default function Title({ text, color, Icon, back, style}: Props) {
   const navigation = useNavigation<NavigationProp<never>>();
+  const mainNav = useNavigation<NavigationProp<TabRoutes>>();
 
   return (
     <View style={[styles.container, { backgroundColor: color ?? PRIMARY }, style]}>
@@ -29,7 +31,14 @@ export default function Title({ text, color, Icon, back, style}: Props) {
           <Icon />
         </View>
       )}
+       <Pressable 
+          style={styles.firstAidBtn} 
+          onPress={()=> {mainNav.navigate("EmergencyNumbers")}} >
+            <FontAwesome5 name="first-aid" size={30}/>
+            <Text style={{fontSize: 11}}>Notfall</Text>
+        </Pressable>
     </View>
+
   );
 }
 
@@ -41,12 +50,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  firstAidBtn: {
+    position: "absolute",
+    top: 15,
+    right: 15,
+    height: 48,
+    width: 48,
+    flexDirection: "column",
+    alignItems: 'center',
+    fontSize: 11,
+  },
   container: {
     height: "30%",
-    justifyContent: "center",
+    justifyContent: 'center',
     alignItems: "center",
   },
   text: {
+   
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',

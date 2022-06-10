@@ -7,7 +7,7 @@ import {
   ViewStyle,
 } from "react-native";
 import { ReactNode } from "react";
-import { TERTIARY } from "../colors";
+import { TERTIARY } from "../styles";
 
 export type Props = {
   onPress?: (event: GestureResponderEvent) => void;
