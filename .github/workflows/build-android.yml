@@ -9,7 +9,7 @@ on:
 
 jobs:
   Android:
-    runs-on: [ self-hosted, linux, x64 ]
+    runs-on: ubuntu-latest
     env:
       ANDROID_LOCATION: build/android/build-android-${{ github.sha }}.apk
     steps:
@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
-          cache: npm
+          #cache: npm
 
       - name: Setup Expo
         uses: expo/expo-github-action@v7
@@ -29,6 +29,8 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
           packager: npm
+          expo-cache: false
+          eas-cache: false
 
       - name: Set up JDK 11
         uses: actions/setup-java@v3
