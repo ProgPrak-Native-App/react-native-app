@@ -4,7 +4,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import Title from "../Title";
 import { MoodDiaryRoutes } from "./MoodDiary";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { NEGATIVE, NEUTRAL, POSITIVE } from "../../colors";
+import { NEGATIVE, NEUTRAL, POSITIVE } from "../../styles";
 
 function MoodButton(props: {
   color: string;

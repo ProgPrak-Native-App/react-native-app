@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, StyleSheet, View, Pressable } from "react-native";
-import { TERTIARY } from "../../../colors";
+import { TERTIARY } from "../../../styles";
 import { AntDesign } from "@expo/vector-icons";
 import NewMotivatorOverview from "./NewMotivatorOverview";
 import Title from "../../Title";

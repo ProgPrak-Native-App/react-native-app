@@ -1,7 +1,7 @@
 import { MotivatorRoutes } from "./Motivator";
 import React from "react";
 import { Image } from "react-native";
-import { MOTIVATOR } from "../../colors";
+import { MOTIVATOR } from "../../styles";
 
 export type Exercise = {title: string; screen: keyof MotivatorRoutes }
 

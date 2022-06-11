@@ -5,7 +5,7 @@ import KopfsachenButton from "../KopfsachenButton";
 import Title from "../Title";
 import React, { useEffect, useState } from "react";
 import { MotivatorProps, MotivatorTypes, parseMotivator } from "./MotivatorProps";
-import { MOTIVATOR } from "../../colors";
+import { MOTIVATOR } from "../../styles";
 
 async function getMotivators(){
   //change to BASE_URL once merged -> feature/7/wiki
