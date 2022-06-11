@@ -12,14 +12,17 @@ jobs:
   publish:
     name: "Publish on expo.dev"
     uses: ./.github/workflows/publish.yml
+    secrets: inherit
 
   build-android:
     name: "Build Android APK"
     uses: ./.github/workflows/build-android.yml
+    secrets: inherit
 
   build-ios:
     name: "Build iOS App"
     uses: ./.github/workflows/build-ios.yml
+    secrets: inherit
 
   check-release-version:
     name: "Check release version"
