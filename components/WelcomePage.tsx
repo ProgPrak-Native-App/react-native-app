@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 
 
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { TERTIARY } from "../colors";
+import { TERTIARY } from "../styles";
 
 
 
