@@ -1,52 +1,77 @@
-import { BackHandler, StyleSheet, Text, View } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { PRIMARY } from "../colors";
+import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
+import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
+import { PRIMARY } from "../styles";
+import React from "react";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { TabRoutes } from "../App";
 
 type Props = {
   text: string;
+  color?: string;
+  Icon?: () => JSX.Element;
+  back?: true;
+  style?: StyleProp<ViewStyle>;
 };
 
-export default function Title({ text }: Props) {
+export default function Title({ text, color, Icon, back, style}: Props) {
+  const navigation = useNavigation<NavigationProp<never>>();
+  const mainNav = useNavigation<NavigationProp<TabRoutes>>();
+
   return (
-    <View style={styles.container}>
-      <MaterialCommunityIcons
-        name="help-circle-outline"
-        size={40}
-        style={styles.helpButton}
-        onPress={() => console.log("Help!")}
-      />
-      <MaterialCommunityIcons
-        name="exit-to-app"
-        size={40}
-        style={styles.exitButton}
-        onPress={() => BackHandler.exitApp()}
-      />
+    <View style={[styles.container, { backgroundColor: color ?? PRIMARY }, style]}>
+      {back && navigation.canGoBack() && (
+        <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
+          <AntDesign color="black" name="left" size={30} />
+          <Text style={{ left: -5, fontSize: 12 }}>Zurück</Text>
+        </Pressable>
+      )}
       <Text style={styles.text}>{text}</Text>
+      {Icon && (
+        <View style={styles.icon}>
+          <Icon />
+        </View>
+      )}
+       <Pressable 
+          style={styles.firstAidBtn} 
+          onPress={()=> {mainNav.navigate("EmergencyNumbers")}} >
+            <FontAwesome5 name="first-aid" size={30}/>
+            <Text style={{fontSize: 11}}>Notfall</Text>
+        </Pressable>
     </View>
+
   );
 }
 
 const styles = StyleSheet.create({
-  helpButton: {
-    position: "absolute",
-    top: 5,
-    left: 5,
+  backButton: {
+    position: 'absolute',
+    top: 15,
+    left: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  exitButton: {
+  firstAidBtn: {
     position: "absolute",
-    top: 5,
-    right: 5,
+    top: 15,
+    right: 15,
+    height: 48,
+    width: 48,
+    flexDirection: "column",
+    alignItems: 'center',
+    fontSize: 11,
   },
   container: {
-    backgroundColor: PRIMARY,
-    flexGrow: 0,
-    flexShrink: 1,
-    flexBasis: "35%",
-    justifyContent: "center",
+    height: "30%",
+    justifyContent: 'center',
     alignItems: "center",
   },
   text: {
+   
     fontSize: 30,
-    fontWeight: "bold",
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  icon: {
+    marginTop: 20,
   },
 });

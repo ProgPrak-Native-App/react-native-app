@@ -1,7 +1,8 @@
 {
   "name": "react-native-app",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "node_modules/expo/AppEntry.js",
+  "license": "MIT",
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",
@@ -9,21 +10,20 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
-  "prettier": {
-    "printWidth": 100,
-    "semi": true,
-    "trailingComma": "es5"
-  },
   "dependencies": {
+    "@js-joda/core": "^5.2.0",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
     "expo": "~44.0.0",
     "expo-splash-screen": "~0.14.1",
     "expo-status-bar": "~1.2.0",
+    "expo-updates": "~0.11.7",
+    "node-fetch": "^3.2.6",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
+    "react-native-calendars": "^1.1283.0",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1"
@@ -32,8 +32,24 @@
     "@babel/core": "^7.12.9",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
+    "@typescript-eslint/eslint-plugin": "5.24.0",
+    "@typescript-eslint/parser": "5.24.0",
+    "eslint": "8.15.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-config-react-app": "7.0.1",
+    "eslint-config-standard": "17.0.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jest": "26.2.2",
+    "eslint-plugin-n": "15.2.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-promise": "6.0.0",
+    "eslint-plugin-react": "7.29.4",
+    "eslint-plugin-react-hooks": "4.5.0",
+    "eslint-plugin-react-native": "^4.0.0",
+    "eslint-webpack-plugin": "3.1.1",
     "prettier": "^2.6.2",
-    "typescript": "~4.3.5"
+    "typescript": "~4.3.5",
+    "yarn": "^1.22.18"
   },
   "private": true
 }

@@ -1,0 +1,80 @@
+name: "Publish on expo.dev"
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          #cache: npm
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+          packager: npm
+          expo-cache: false
+          eas-cache: false
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set release channel
+        run: |
+          case "$GITHUB_REF" in
+            refs/pull/*/merge)
+              release_channel="pr-${{ github.event.number }}"
+              ;;
+            refs/heads/main|refs/heads/develop)
+              release_channel="${GITHUB_REF#refs/heads/}"
+              ;;
+            refs/heads/release/*)
+              release_channel="rc-${GITHUB_REF#refs/heads/release/}"
+              ;;
+            refs/heads/**)
+              release_channel="${GITHUB_REF#refs/heads/}"
+              ;;
+            *)
+              echo "::error title='Unsupported ref'::Can't infer expo release channel since ref '$GITHUB_REF' is neither a branch nor a PR."
+              exit 1
+              ;;
+          esac
+          echo "release_channel=$release_channel" | tee "$GITHUB_ENV"
+
+      - name: Publish app
+        run: expo publish --release-channel=${{ env.release_channel }} --non-interactive
+
+      - name: Save Expo Metadata
+        uses: expo/expo-github-action/preview-comment@v7
+        id: preview
+        with:
+          comment: false
+          channel: ${{ env.release_channel }}
+
+      - name: Comment on PR
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions-cool/maintain-one-comment@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            ## Expo Build report for Pull Request #${{ github.event.number }}
+            This App was automatically deployed for project **${{ steps.preview.outputs.projectName }}** on channel **${{ env.release_channel }}**.
+            ### Current Build :rocket:
+            - Expo link [here](${{ steps.preview.outputs.projectLink }})
+            <img src="${{ steps.preview.outputs.projectQR }}" width="200" height="200">
+            <!-- created by publish workflow -->
+          body-include: <!-- created by publish workflow -->

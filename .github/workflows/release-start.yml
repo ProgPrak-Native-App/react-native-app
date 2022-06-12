@@ -1,0 +1,46 @@
+name: "Start a release"
+
+concurrency: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: New version (x.y.z)
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  create-release-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ steps.generate_token.outputs.token }}
+
+      - name: Setup git name
+        run: |
+          git config --local user.name "kopfsachen-rna-bot"
+          git config --local user.email "<>"
+
+      - name: Create release branch
+        run: git switch -c "release/${{ github.event.inputs.version }}"
+
+      - name: Bump package.json version
+        run: |
+          # https://stackoverflow.com/a/60744617/5390250
+          cat <<< "$(jq '.version = "${{ github.event.inputs.version }}"' package.json)" > package.json
+          git add package.json
+          git commit -m "chore(release): bump version to ${{ github.event.inputs.version }}"
+
+      - name: Push
+        run: git push -u origin "release/${{ github.event.inputs.version }}"
