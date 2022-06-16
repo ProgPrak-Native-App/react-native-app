@@ -1,24 +1,20 @@
 {
-    "eslint.format.enable": true,
-    "eslint.validate": [
-      "javascript",
-      "typescript",
-      "typescriptreact"
-    ],
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "[typescript]": {
-      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-      },
-    },
-    "[javascript]": {
-      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-      },
-    },
-    "[typescriptreact]": {
-      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-      },
+  "eslint.format.enable": true,
+  "eslint.validate": ["javascript", "typescript", "typescriptreact"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+  "[javascript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+  "[typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
     }
   }
+}

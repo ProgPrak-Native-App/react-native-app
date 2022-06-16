@@ -1,11 +1,11 @@
-const { resolve } = require('path');
+const {resolve} = require('path');
 
 module.exports = {
   root: true,
   env: {
     node: true,
     jest: true,
-    'react-native/react-native': true
+    'react-native/react-native': true,
   },
 
   parserOptions: {
@@ -16,9 +16,9 @@ module.exports = {
 
     sourceType: 'module',
     ecmaVersion: 2020,
-    'ecmaFeatures': {
-      'jsx': true
-    }
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
 
   plugins: [
@@ -30,7 +30,7 @@ module.exports = {
     // add it as an extension for your IDE
     'prettier',
     'react',
-    'react-native'
+    'react-native',
   ],
 
   extends: [
@@ -52,7 +52,7 @@ module.exports = {
   ],
 
   rules: {
-    'prettier/prettier': ['warn', {}, { usePrettierrc: true }], // Use our .prettierrc file as source
+    'prettier/prettier': ['warn', {}, {usePrettierrc: true}], // Use our .prettierrc file as source
 
     'max-len': [
       'warn',
@@ -77,11 +77,10 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
-    '@typescript-eslint/no-empty-interface': "off",
+    '@typescript-eslint/no-empty-interface': 'off',
     'react-native/no-unused-styles': 2,
     'react-native/split-platform-components': 2,
     'react-native/no-color-literals': 2,
-    'react-native/no-raw-text': 2,
     'react-native/no-single-element-style-arrays': 2,
     'prefer-promise-reject-errors': 'off',
     semi: ['error', 'always'],
@@ -92,9 +91,8 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['warn'],
 
-    "no-undefined": ['error'],
-    "no-eq-null": ['error'],
-
+    'no-undefined': ['error'],
+    'no-eq-null': ['error'],
 
     'no-useless-constructor': 'off',
     'new-cap': 'off',
@@ -148,22 +146,17 @@ module.exports = {
     '@typescript-eslint/require-await': 'off',
 
     // react parser bug: https://stackoverflow.com/questions/63818415/react-was-used-before-it-was-defined/64024916#64024916
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": "off",
-
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
 
     // allow debugger during development only
     'no-debugger': process.env.NODE_ENV === `production` ? `error` : `off`,
-
 
     'react/jsx-sort-props': `warn`,
     'react-hooks/exhaustive-deps': `off`,
   },
 
-  "settings": {
-    "import/ignore": [
-        "node_modules/react-native/index\\.js$"
-    ]
-  }
-
+  settings: {
+    'import/ignore': ['node_modules/react-native/index\\.js$'],
+  },
 };
