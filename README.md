@@ -4,11 +4,13 @@
 Kopfsachen Native App is a <a href="https://reactnative.dev">React Native</a> based App build for <a href="https://www.kopfsachen.org">Kopfsachen eV.</a> which is an association for the promotion of young people's mental health. (add intended use here) For development and prototyping we use <a href="https://expo.dev">Expo</a>.
 </p>
 
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ProgPrak-Native-App/react-native-app)
+
 <p align="center">
   <a href="https://github.com/ProgPrak-Native-App/react-native-app/blob/develop/LICENSE.md">
     <img alt="GitHub license" src="https://img.shields.io/github/license/ProgPrak-Native-App/react-native-app">
   </a>
-  <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/ProgPrak-Native-App/react-native-app">
+  <img alt="GitHub package version" src="https://img.shields.io/github/package-json/v/ProgPrak-Native-App/react-native-app">
   <a href="https://github.com/ProgPrak-Native-App/react-native-app/compare">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome">
   </a>
