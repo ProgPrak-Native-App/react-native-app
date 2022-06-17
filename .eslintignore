@@ -1,2 +1,9 @@
 /dist
-/.eslintrc.js
+/LICENSE.md
+/.nvmrc
+/node_modules/
+/.vscode/
+/.github/
+/.expo-shared/
+/.expo/
+

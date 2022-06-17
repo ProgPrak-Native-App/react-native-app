@@ -1,1 +1,17 @@
 *.yml
+*.md
+/LICENSE.md
+/metro.config.js
+/.prettierrc
+/.prettierignore
+/.nvmrc
+/.gitignore
+/.gitattributes
+/.eslintrc.js
+/.eslintignore
+/.editorconfig
+/node_modules/
+/.vscode/
+/.github/
+/.expo-shared/
+/.expo/
