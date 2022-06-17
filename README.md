@@ -1,11 +1,22 @@
-# Kopfsachen Native App
-
-Kopfsachen Native App is a [React Native](https://reactnative.dev) based App build for [Kopfsachen eV.](https://www.kopfsachen.org) which is an association for the promotion of young people's mental health. (add intended use here) For development and prototyping we use [Expo](https://expo.dev).
+<h1 align="center"> Kopfsachen Native App </h1>
 
 <p align="center">
-  <img alt="GitHub" src="https://img.shields.io/github/license/ProgPrak-Native-App/react-native-app">
-  <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/ProgPrak-Native-App/react-native-app">
-  <img alt="runs with expo" src="https://img.shields.io/badge/Runs%20with%20Expo-000.svg?style=flat&logo=EXPO&labelColor=ffffff&logoColor=000">
+Kopfsachen Native App is a <a href="https://reactnative.dev">React Native</a> based App build for <a href="https://www.kopfsachen.org">Kopfsachen eV.</a> which is an association for the promotion of young people's mental health. (add intended use here) For development and prototyping we use <a href="https://expo.dev">Expo</a>.
+</p>
+
+<p align="center">
+  <a href="./LICENSE.md">
+    <img alt="GitHub" src="https://img.shields.io/github/license/ProgPrak-Native-App/react-native-app">
+  </a>
+  <a href="https://github.com/ProgPrak-Native-App/react-native-app/releases">
+    <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/ProgPrak-Native-App/react-native-app">
+  </a>
+  <a href="https://github.com/ProgPrak-Native-App/react-native-app/compare">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome">
+  </a>
+  <a href="https://expo.dev">
+    <img alt="runs with expo" src="https://img.shields.io/badge/Runs%20with%20Expo-000.svg?style=flat&logo=EXPO&labelColor=ffffff&logoColor=000">
+  </a>
 </p>
 
 ---
@@ -20,7 +31,7 @@ Kopfsachen Native App is a [React Native](https://reactnative.dev) based App bui
 ## 🎉 Latest Release
 The latest Expo release is available on the default Expo release-channel [here](https://expo.dev/@progprak_kopfsachen/kopfsachen?release-channel=default).
 
-You can also scan the QR-code with the Expo Go app on your phone:
+You can also scan the QR code with the Expo Go app on your phone:
 
 <img alt="Expo QR" src="https://qr.expo.dev/expo-go?owner=progprak_kopfsachen&slug=kopfsachen&releaseChannel=default" width="200" height="200">
 
@@ -29,14 +40,14 @@ You can also scan the QR-code with the Expo Go app on your phone:
 - Create an Expo account [here](http://expo.dev/signup)
 - Install Expo with `npm install --global expo-cli`
 - Login to Expo with `expo login`
-- Verify instillation with `expo whoami`
+- Verify installation with `expo whoami`
 
-Optionally decide on which platform you want to run the App. The easiest way is running it in your browser of choice.
+Optionally, decide on which platform you want to run the App. The easiest way is running it in your browser of choice.
 
-Alternatively install `Expo Go` on your phone for mobile use or `iOS Simulator` / `Android Emulator` for running the App locally.
+Alternatively, install `Expo Go` on your phone for mobile use or `iOS Simulator` / `Android Emulator` for running the App locally.
 
 ### Run
-In the root directory of the cloned repo run `expo start` to start Expo. From here, use the context menu to compile and launch the App on the platform of your preference.
+In the root directory of the cloned repo, run `expo start` to start Expo. From here, use the context menu to compile and launch the App on the platform of your choice.
 It should look something like this:
 
 ```
@@ -64,7 +75,7 @@ If you want to publish a version of your app using Expo run the following:
 Make sure to replace the release channel with an appropriate name.
 
 ### Build
-To build a version of the app for internal distribution it is advised to use `eas-cli`. This can be done either locally or using the Expo services.
+To build a version of the app for internal distribution, it is advised to use `eas-cli`. This can be done either locally or using the Expo services.
 
 ```bash
 # Install eas-cli
@@ -85,13 +96,13 @@ eas build -p ios --profile=preview --local
 
 To build using Expo services, remove the `--local` tag from the build command.
 This can be especially helpful if you have problems building locally or just want to leave the heavy lifting to Expo.
-To specify the output path use the `--output={/path/filename}` tag.
+To specify the output path, use the `--output={/path/filename}` tag.
 
 ## ❌ Limitations
 
-Unfortunately there are some limitations when it comes to developing cross-platform.
+Unfortunately, there are some limitations when it comes to developing cross-platform.
 - Building an `.ipa` for distribution on iOS devices is not possible without being enrolled in the [Apple Developer Program](https://developer.apple.com/programs/enroll/). As an alternative, we can build an `.app` for use on the iOS Simulator, which is specified by using the `--profile=preview` tag while building.
-- Not all components native to Expo behave the same on both platforms. Some of which are exclusive to one dplatform.
+- Not all components native to Expo behave the same on both platforms, some of which are exclusive to one platform.
 ## 👏 Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
