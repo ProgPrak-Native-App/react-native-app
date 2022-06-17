@@ -5,12 +5,10 @@ Kopfsachen Native App is a <a href="https://reactnative.dev">React Native</a> ba
 </p>
 
 <p align="center">
-  <a href="./LICENSE.md">
-    <img alt="GitHub" src="https://img.shields.io/github/license/ProgPrak-Native-App/react-native-app">
+  <a href="https://github.com/ProgPrak-Native-App/react-native-app/blob/develop/LICENSE.md">
+    <img alt="GitHub license" src="https://img.shields.io/github/license/ProgPrak-Native-App/react-native-app">
   </a>
-  <a href="https://github.com/ProgPrak-Native-App/react-native-app/releases">
-    <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/ProgPrak-Native-App/react-native-app">
-  </a>
+  <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/ProgPrak-Native-App/react-native-app">
   <a href="https://github.com/ProgPrak-Native-App/react-native-app/compare">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome">
   </a>
