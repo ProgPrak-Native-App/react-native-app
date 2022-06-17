@@ -6,10 +6,11 @@ import Title from '../Title';
 import React, {useEffect, useState} from 'react';
 import {MotivatorProps, MotivatorTypes, parseMotivator} from './MotivatorProps';
 import {GREY, MOTIVATOR, SHADOW} from '../../styles';
+import {BASE_URL} from '../Wiki/constant/constants';
 
 async function getMotivators() {
   // change to BASE_URL once merged -> feature/7/wiki
-  return await fetch('http://localhost:4010/motivator')
+  return await fetch(BASE_URL + '/motivator')
     .then(response => response.json())
     .then((data: {type: keyof MotivatorTypes}[]) => data.map(value => parseMotivator(value.type)))
     .catch(() => [parseMotivator('noMotivator')]);
