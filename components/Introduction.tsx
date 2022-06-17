@@ -2,14 +2,14 @@ import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import {TERTIARY} from '../styles';
+import {MOTIVATOR, TERTIARY} from '../styles';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    backgroundColor: '#e0ffff',
+    backgroundColor: MOTIVATOR.SECURITYNET,
   },
 
   headerContainer: {

@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
+import {ERROR, GREY, VALID} from '../../styles';
 
 interface InputData {
   label: string;
@@ -15,16 +16,16 @@ const styles = StyleSheet.create({
   label: {
     marginHorizontal: 20,
     fontSize: 12,
-    color: '#c0c0c0',
+    color: GREY,
   },
   icon: {
     fontSize: 22,
-    color: '#4682b4',
+    color: VALID,
     marginRight: 20,
   },
   inputContainer: {
     height: 55,
-    backgroundColor: '#c0c0c0',
+    backgroundColor: GREY,
     marginVertical: 10,
     marginHorizontal: 20,
     paddingHorizontal: 15,
@@ -33,12 +34,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textInput: {
-    //   color: "#4682b4",
     flex: 1,
   },
   error: {
     marginHorizontal: 20,
-    color: '#ff0000',
+    color: ERROR,
     fontSize: 12,
     marginTop: 7,
   },
@@ -50,7 +50,7 @@ const Input = ({label, iconName, error, password, onFocus, onChangeText}: InputD
   return (
     <View style={{marginBottom: 20}}>
       <Text style={styles.label}>{label}</Text>
-      <View style={[styles.inputContainer, {borderColor: error ? '#ff0000' : isFocused ? '#4682b4' : '#f0ffff'}]}>
+      <View style={[styles.inputContainer, {borderColor: error ? ERROR : isFocused ? '#4682b4' : ERROR}]}>
         <MaterialCommunityIcons name={iconName} style={styles.icon} />
         <TextInput
           autoCorrect={false}
@@ -72,7 +72,7 @@ const Input = ({label, iconName, error, password, onFocus, onChangeText}: InputD
           <MaterialCommunityIcons
             name={hidePassword ? 'eye-outline' : 'eye-off-outline'}
             onPress={() => setHidePassword(!hidePassword)}
-            style={{fontSize: 22, color: '#4682b4'}}
+            style={{fontSize: 22, color: VALID}}
           />
         ) : null}
       </View>

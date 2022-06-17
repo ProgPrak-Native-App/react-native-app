@@ -6,6 +6,12 @@ export const POSITIVE = '#FDE802';
 export const NEUTRAL = '#F3803E';
 export const NEGATIVE = '#BB9AF3';
 
+export const BACKGROUND = '#f2f2f2';
+export const SHADOW = '#f2f2f2';
+export const ERROR = '#ff0000';
+export const VALID = '#4682b4';
+export const GREY = '#808080';
+
 export const MOTIVATOR = {
   DEFAULT: '#f2c7d0',
   SITUATIONCONTROLL: '#f2c7d0',

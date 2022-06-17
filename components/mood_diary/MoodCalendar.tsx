@@ -51,7 +51,7 @@ function AddMoodButton() {
 }
 
 const Day = (moods: Mood[]) => (props: {date?: DateData}) => {
-  const date = LocalDate.parse(props.date!.dateString);
+  const date = LocalDate.parse(props.date?.dateString as string);
   const moodAtDate = moods.find(mood => LocalDateTime.parse(mood.timestamp).toLocalDate().equals(date));
   if (moodAtDate) {
     // User has previously entered a mood for this day, so we show it

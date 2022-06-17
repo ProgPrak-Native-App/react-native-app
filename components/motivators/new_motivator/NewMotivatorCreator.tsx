@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, StyleSheet, View, Pressable} from 'react-native';
-import {TERTIARY} from '../../../styles';
+import {SHADOW, TERTIARY} from '../../../styles';
 import {AntDesign} from '@expo/vector-icons';
 import NewMotivatorOverview from './NewMotivatorOverview';
 import Title from '../../Title';
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   },
   shadow: {
     elevation: 5,
-    shadowColor: '#171717',
+    shadowColor: SHADOW,
     shadowOffset: {width: -2, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 2,

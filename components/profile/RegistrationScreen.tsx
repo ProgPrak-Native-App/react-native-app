@@ -54,7 +54,7 @@ export default function RegistrationScreen() {
     }
     if (!inputs.repeatPassword) {
       handleError('Bitte Passwort erneut eingeben', 'repeatPassword');
-    } else if (inputs.repeatPassword != inputs.password) {
+    } else if (inputs.repeatPassword !== inputs.password) {
       handleError('Passwörter müssen übereinstimmen', 'repeatPassword');
     }
 
