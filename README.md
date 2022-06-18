@@ -5,7 +5,7 @@ Kopfsachen Native App is a <a href="https://reactnative.dev">React Native</a> ba
 </p>
 
 <p align="center">
-  <a href="https://github.com/ProgPrak-Native-App/react-native-app/blob/develop/LICENSE.md">
+  <a href="LICENSE.md">
     <img alt="GitHub license" src="https://img.shields.io/badge/license-MIT-brightgreen">
   </a>
   <a href="https://github.com/ProgPrak-Native-App/react-native-app/releases">
@@ -104,9 +104,12 @@ Unfortunately, there are some limitations when it comes to developing cross-plat
 - Building an `.ipa` for distribution on iOS devices is not possible without being enrolled in the [Apple Developer Program](https://developer.apple.com/programs/enroll/). As an alternative, we can build an `.app` for use on the iOS Simulator, which is specified by using the `--profile=preview` tag while building.
 - Not all components native to Expo behave the same on both platforms, some of which are exclusive to one platform.
 ## 👏 Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Please follow our brief [contributing guide](CONTRIBUTING.md).
 
 ## 💙 Credits
+<a href="https://github.com/ProgPrak-Native-App/react-native-app/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ProgPrak-Native-App/react-native-app"  alt="contributors"/>
+</a>
 
 ## 📄 License
-[MIT](./LICENSE.md)
+[MIT](LICENSE.md)
