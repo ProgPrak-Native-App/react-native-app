@@ -106,6 +106,9 @@ Unfortunately, there are some limitations when it comes to developing cross-plat
 ## 👏 Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Please follow our brief [contributing guide](CONTRIBUTING.md).
 
+## Code of conduct
+Please follow our [code of conduct](CODE_OF_CONDUCT.md).
+
 ## 💙 Credits
 <a href="https://github.com/ProgPrak-Native-App/react-native-app/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=ProgPrak-Native-App/react-native-app"  alt="contributors"/>
