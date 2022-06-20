@@ -29,11 +29,11 @@ Kopfsachen Native App is a <a href="https://reactnative.dev">React Native</a> ba
 - [License](#-license)
 
 ## 🎉 Latest Release
-The latest Expo release is available on the default Expo release-channel [here](https://expo.dev/@progprak_kopfsachen/kopfsachen?release-channel=default).
+The latest Expo release is available on the `main` Expo release-channel [here](https://expo.dev/@progprak_kopfsachen/kopfsachen?release-channel=main).
 
 You can also scan the QR code with the Expo Go app on your phone:
 
-<img alt="Expo QR" src="https://qr.expo.dev/expo-go?owner=progprak_kopfsachen&slug=kopfsachen&releaseChannel=default" width="200" height="200">
+<img alt="Expo QR" src="https://qr.expo.dev/expo-go?owner=progprak_kopfsachen&slug=kopfsachen&releaseChannel=main" width="200" height="200">
 
 ## 🚀 Usage
 ### Prerequisites
