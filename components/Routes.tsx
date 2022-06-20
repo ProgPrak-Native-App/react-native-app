@@ -6,11 +6,11 @@ import { FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-ico
 import NotImplemented from "./NotImplemented";
 
 import Home from "./Home";
-import { PRIMARY, SECONDARY } from "../colors";
+import { PRIMARY, SECONDARY } from "../styles";
 import MoodDiary from "./mood_diary/MoodDiary";
 import RegistrationScreen from "./profile/RegistrationScreen";
 import Motivator from "./motivators/Motivator";
-import Introduction from "./Introduction";
+import { Wiki } from "./Wiki";
 
 export type TabRoutes = {
     Home: undefined;
@@ -59,7 +59,7 @@ export default function Routes () {
           />
           <Tab.Screen
             name="Wiki"
-            component={NotImplemented}
+            component={Wiki}
             options={{
               tabBarIcon: () => <FontAwesome5 name="book" size={24} />,
             }}

@@ -5,7 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Title from "../Title";
 import Input from "./Input";
 
-import { TERTIARY } from "../../colors";
+import { TERTIARY } from "../../styles";
 
 
 const styles = StyleSheet.create({
