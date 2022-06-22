@@ -35,8 +35,9 @@ export default function App() {
               tabBarStyle: styles.bar,
               tabBarActiveBackgroundColor: PRIMARY,
               tabBarInactiveTintColor: 'black',
-              tabBarActiveTintColor: 'black',
-            }}>
+              tabBarActiveTintColor: "black",
+            }}
+          >
             <Tab.Screen
               component={Home}
               name="Home"
@@ -48,13 +49,13 @@ export default function App() {
               component={MoodDiary}
               name="MoodDiary"
               options={{
-                title: 'Kalender',
+                title: "Kalender",
                 tabBarIcon: () => <FontAwesome5 name="calendar-alt" size={24} />,
               }}
             />
             <Tab.Screen
-              component={WikiNavigation}
               name="Wiki"
+              component={WikiNavigation}
               options={{
                 tabBarIcon: () => <FontAwesome5 name="book" size={24} />,
               }}
@@ -63,7 +64,7 @@ export default function App() {
               component={Motivator}
               name="Motivators"
               options={{
-                title: 'Übungen',
+                title: "Übungen",
                 tabBarIcon: () => <MaterialCommunityIcons name="arm-flex" size={24} />,
               }}
             />
@@ -85,9 +86,9 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     paddingHorizontal: 4,
-    paddingBottom: 5,
+    paddingBottom: 5
   },
-  bar: {
+  bar:{
     borderTopRightRadius: 15,
     borderTopLeftRadius: 15,
     flex: 0.1,
@@ -100,10 +101,11 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
 
     elevation: -34,
-  },
+   
+  }, 
   items: {
     borderRadius: 15,
-    marginHorizontal: 4,
+    marginHorizontal: 4, 
     marginVertical: 4,
-  },
+  }
 });
