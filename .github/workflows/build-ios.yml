@@ -1,17 +1,12 @@
-name: build-ios
+name: "Build iOS App"
 
 on:
-  push:
-    branches:
-      - main
-      - develop
   workflow_dispatch: { }
+  workflow_call:
 
 jobs:
-  IOS:
+  build-ios:
     runs-on: macos-latest
-    env:
-      IOS_LOCATION: build/ios/build-ios-${{ github.sha }}.tar.gz
     steps:
       - name: Setup repo
         uses: actions/checkout@v2
@@ -30,15 +25,21 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
           packager: npm
 
+      - name: Get current package version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+
+      - run: echo OUTPUT_LOCATION=build/ios/KopfsachenRNA-${{ steps.extract_version.outputs.version }}.tar.gz | tee "$GITHUB_ENV"
+
       - name: Install dependencies
         run: npm ci
 
       - name: Build ios
-        run: eas build -p ios --profile=preview --local --non-interactive --output=${{env.IOS_LOCATION}}
+        run: eas build -p ios --profile=preview --local --non-interactive --output=${{env.OUTPUT_LOCATION}}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         if: success()
         with:
           name: ios
-          path: ${{env.IOS_LOCATION}}
+          path: ${{ env.OUTPUT_LOCATION }}
