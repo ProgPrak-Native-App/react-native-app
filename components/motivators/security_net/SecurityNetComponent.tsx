@@ -3,17 +3,22 @@ import Title from "../../Title";
 import KopfsachenButton from "../../KopfsachenButton";
 import { parseMotivator } from "../MotivatorProps";
 import { MotivatorRoutes } from "../Motivator";
+import { iconMap, SafetyNetDType } from "./SecurityNet";
 import { View, Text, StyleSheet, Pressable, TextInput } from "react-native";
 import { FontAwesome, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
 import { NavigationProp } from "@react-navigation/core";
-import SecurityNetAssistance from "./SecurityNetAssistance";
 
-export type SafetyNetDType = {
-  type: string,
-  icon: JSX.Element,
-  title: string,
-  strategies: [string, string, string],
+export const currentComponent: SafetyNetDType = {
+  type: "NONE",
+  icon: undefined,
+  title: "",
+  strategies: ["", "", ""],
+}
+
+function setTypeAndIcon(type: string) {
+  currentComponent.type = type;
+  currentComponent.icon = iconMap.get(type);
 }
 
 export default function SecurityNetComponent() {
@@ -21,13 +26,6 @@ export default function SecurityNetComponent() {
   var iconSize = 40
 
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
-
-  const currentComponent: SafetyNetDType = {
-    type: "NONE",
-    icon: <Text/>,
-    title: "",
-    strategies: ["", "", ""],
-  }
 
   return (
     <>
@@ -37,22 +35,22 @@ export default function SecurityNetComponent() {
         <TextInput style={styles.textinput} placeholder="..." onChangeText={(input) => currentComponent.title=input}/>
         <Text style={styles.text}>Zu welcher Kategorie gehört diese Ressource?</Text>
         <View style={styles.iconcontainer}>
-          <Pressable onPress={() => currentComponent.type = "Persönlichkeitseigenschaft"}>
+          <Pressable onPress={() => setTypeAndIcon("personality")}>
             <Ionicons name="person" size={iconSize} style={styles.icon}></Ionicons>
           </Pressable>
-          <Pressable onPress={() => currentComponent.type = "Freunde"}>
+          <Pressable onPress={() => setTypeAndIcon("friends")}>
             <FontAwesome5 name="user-friends" size={iconSize} style={styles.icon}></FontAwesome5>
           </Pressable>
-          <Pressable onPress={() => currentComponent.type = "Tiere"}>
+          <Pressable onPress={() => setTypeAndIcon("pet")}>
             <FontAwesome name="paw" size={iconSize} style={styles.icon}></FontAwesome>
           </Pressable>
-          <Pressable onPress={() => currentComponent.type = "Sport"}>
+          <Pressable onPress={() => setTypeAndIcon("sport")}>
             <FontAwesome name="soccer-ball-o" size={iconSize} style={styles.icon}></FontAwesome>
           </Pressable>
-          <Pressable onPress={() => currentComponent.type = "Musik"}>
+          <Pressable onPress={() => setTypeAndIcon("music")}>
             <FontAwesome name="music" size={iconSize} style={styles.icon}></FontAwesome>
           </Pressable>
-          <Pressable onPress={() => currentComponent.type = "Filme"}>
+          <Pressable onPress={() => setTypeAndIcon("other")}>
             <FontAwesome5 name="tv" size={iconSize} style={styles.icon}></FontAwesome5>
           </Pressable>
         </View>
