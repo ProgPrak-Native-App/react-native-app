@@ -1,17 +1,17 @@
-import React from 'react';
-import Title from './Title';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import KopfsachenButton from './KopfsachenButton';
-import { TabRoutes } from '../App';
-import { PRIMARY } from '../styles';
+import React from "react";
+import Title from "./Title";
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import KopfsachenButton from "./KopfsachenButton";
+import { TabRoutes } from "../App";
+import { PRIMARY} from "../styles";
 
 export default function Home() {
   const navigation = useNavigation<NavigationProp<TabRoutes>>();
 
   return (
     <>
-      <Title color={PRIMARY} text="Herzlich Willkommen!" />
+      <Title text="Herzlich Willkommen!" color={PRIMARY}/>
       <View style={styles.container}>
         <View style={styles.textContainer}>
           <Text style={styles.text}>Schön, dass du da bist.</Text>
@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
   container: {
     zIndex: -2,
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    backgroundColor: '#f2f2f2',
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    backgroundColor: '#f2f2f2'
   },
   text: {
     fontSize: 30,

@@ -52,6 +52,3 @@ const styles = StyleSheet.create({
 
 export default WikiHeader;
 
-function value(value: any): ((text: string) => void) | undefined {
-  throw new Error('Function not implemented.');
-}

@@ -31,15 +31,14 @@ export default function Title({ text, color, Icon, back, style }: Props) {
           <Icon />
         </View>
       )}
-      <Pressable
-        onPress={() => {
-          mainNav.navigate('EmergencyNumbers');
-        }}
-        style={styles.firstAidBtn}>
-        <FontAwesome5 name="first-aid" size={30} />
-        <Text style={{ fontSize: 11 }}>Notfall</Text>
-      </Pressable>
+       <Pressable 
+          style={styles.firstAidBtn} 
+          onPress={()=> {mainNav.navigate("EmergencyNumbers")}} >
+            <FontAwesome5 name="first-aid" size={30}/>
+            <Text style={{fontSize: 11}}>Notfall</Text>
+        </Pressable>
     </View>
+
   );
 }
 
@@ -67,6 +66,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
+   
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
