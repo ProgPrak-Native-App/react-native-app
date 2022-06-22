@@ -7,32 +7,36 @@ import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { FontAwesome5, FontAwesome, Ionicons } from "@expo/vector-icons";
 
+export type SafetyNetDType = {
+  type: string,
+  icon: JSX.Element | undefined,
+  title: string,
+  strategies: [string, string, string],
+}
 
-let iconMap = new Map<String, JSX.Element>([
-  ["Persönlichkeitseigenschaft", <Ionicons name="person"></Ionicons>],
-  ["Freunde", <FontAwesome5 name="user-friends"></FontAwesome5>],
-  ["Sport", <FontAwesome name="soccer-ball-o"></FontAwesome>],
-  ["Musik", <FontAwesome name="music"></FontAwesome>],
-  ["Filme", <FontAwesome5 name="tv"></FontAwesome5>],
-  ["Tiere", <FontAwesome name="paw"></FontAwesome>],
+export let iconMap = new Map<String, JSX.Element>([
+  ["personality", <Ionicons name="person"></Ionicons>],
+  ["friends", <FontAwesome5 name="user-friends"></FontAwesome5>],
+  ["sport", <FontAwesome name="soccer-ball-o"></FontAwesome>],
+  ["music", <FontAwesome name="music"></FontAwesome>],
+  ["other", <FontAwesome5 name="tv"></FontAwesome5>],
+  ["pet", <FontAwesome name="paw"></FontAwesome>],
 ]);
 
-export var safetyList = []
+export var safetyList : SafetyNetDType[] = []
 
 async function getSecurityNet() {
-  return (await fetch('http://localhost:4010/safetyNet/874')
+  return (await fetch('http://localhost:4010/safetyNet/285')
     .then(response => response.json()))
 }
 
-export const components = []
-
 export default function SecurityNet() {
+  console.log(safetyList)
   const props = parseMotivator("relaxation")
 
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
 
   console.log(getSecurityNet());
-
 
   return (
     <>
