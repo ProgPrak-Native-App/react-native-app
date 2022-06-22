@@ -1,7 +1,6 @@
 import React from "react";
 import Title from "../../Title";
 import KopfsachenButton from "../../KopfsachenButton";
-import { safetyList } from "./SecurityNet";
 import {parseMotivator } from "../MotivatorProps";
 import { SafetyNetDType } from "./SecurityNet";
 import { currentComponent } from "./SecurityNetComponent";
@@ -13,7 +12,7 @@ import { MotivatorRoutes } from "../Motivator";
 export var completeComponent = currentComponent
 
 function appendToList(navigation: NavigationProp<MotivatorRoutes>, newComponent: SafetyNetDType) {
-  safetyList.push(newComponent);
+  // TODO: send SafetyNetItem to DB with POST
   navigation.navigate("SecurityNet")
 }
 
