@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 100,
         shadowRadius: 1,
+        elevation: 5
       },
     button:{
         flexGrow: 0,
