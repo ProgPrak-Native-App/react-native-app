@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import Title from '../../Title';
-import WikiHeader from './WikiHeader';
-import EntryTitle from './EntryTitle';
-import { BASE_URL, EntryProps, SIZES, wikiEntry } from '../constant/constants';
-import { TERTIARY } from '../../../styles';
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
+import Title from "../../Title";
+import  WikiHeader  from "./WikiHeader";
+import  EntryTitle  from "./EntryTitle";
+import { EntryProps, wikiEntry, BASE_URL } from "../constant/constants";
+import { TERTIARY, SIZES } from "../../../styles";
 
 const alphaBet: Set<string> = new Set();
 

@@ -172,8 +172,9 @@ const SocialStart = ({route}: SocialSupportStackScreenProps<'SupportExercise'>) 
     return (
         <>
         { onBoardingVisible && <OnBoardingModal level={route.params.level} toggle={toggleOnBoard}/>}
-            <Title text="Soziale Unterstützung" color={ORANGE} />
-           
+            <Title text="Soziale Unterstützung" color={ORANGE} back/>
+            <ScrollView contentContainerStyle={{minHeight: "100%"}}>
+            <View>
                 <View style={{ minHeight: 142}}>  
                     <TextHeader 
                         id= {currScreen.id}
@@ -201,17 +202,10 @@ const SocialStart = ({route}: SocialSupportStackScreenProps<'SupportExercise'>) 
                             width: innerSize,
                     }]}>
                     </Animated.View>
-                    <View style={styles.me}><Text style={{fontSize: 18}}>Ich</Text></View>
-
+                    <View style={styles.me}><Text style={{fontSize: 18}}>Ich</Text></View>   
                 </View> 
                 <View style={ [styles.container] }>
-                    <Circle people={people} 
-                                toggleUpdate={fillUpdate}
-                                deletePerson={deletePerson} 
-                                updatePerson={updatePerson}
-                                level={level}
-                                />
-                    <Pressable 
+                <Pressable 
                         style={styles.plus} 
                         onPress={() => setAddVisible(prev => !prev)} 
                         accessibilityLabel="Person hinzufügen" >
@@ -220,8 +214,16 @@ const SocialStart = ({route}: SocialSupportStackScreenProps<'SupportExercise'>) 
                             name="plus"
                             resizeMode="contain"
                             style={{ alignSelf: 'center'}} />
-                    </Pressable>    
+                    </Pressable> 
+                    <Circle people={people} 
+                                toggleUpdate={fillUpdate}
+                                deletePerson={deletePerson} 
+                                updatePerson={updatePerson}
+                                level={level}
+                                />
                 </View>
+            </View>
+            </ScrollView>
                 { updateVisible && (
                     <UpdatePopUp 
                         level={level} 
@@ -237,13 +239,13 @@ const SocialStart = ({route}: SocialSupportStackScreenProps<'SupportExercise'>) 
                         toggle={toggleAdd} 
                         addPerson={addPerson}/>
                 )}
-               
-           
     </>
   )         
 }
 const styles = StyleSheet.create({
     container: {
+        width: 300,
+        alignSelf: 'center',
         alignItems: 'center', 
         justifyContent: 'center', 
         position: 'relative',
@@ -252,15 +254,19 @@ const styles = StyleSheet.create({
     plus: {
         zIndex: 10,
         alignItems: 'center', 
+        
         justifyContent: 'center',
-        right: 60,
+        alignSelf: 'flex-end',
+        right: 20,
         bottom: 80,
+
         borderColor: 'black', 
         backgroundColor: '#fff',
         height: 48, 
         width: 48, 
         borderWidth: 2, 
         borderRadius: 48/2, 
+       
         position: 'absolute'
     },
    outer_circle: {

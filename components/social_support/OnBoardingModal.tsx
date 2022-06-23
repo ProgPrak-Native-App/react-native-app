@@ -34,12 +34,6 @@ const textLvl2 = [
 export default function OnBoardingModal( {toggle, level} :{ toggle: () => void, level: number}) {
     const {navigate} = useNavigation<NavigationProp<SocialSupportStackParamList>>();
 
-    const find_dimesions = (layout:any) => {
-        const { width, height} = layout;
-        console.warn("width: ",width);
-        console.warn(height);
-      }
-
     const [innerColor, setInnerColor] = useState('#f9bf9e')
     const [middleColor, setMiddleColor] = useState('#e9dffb')
     const [outerColor, setOuterColor] = useState('#c8feed')
