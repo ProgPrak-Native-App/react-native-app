@@ -11,13 +11,12 @@ import { MotivatorRoutes } from "../Motivator";
 
 export var completeComponent = currentComponent
 
-function appendToList(navigation: NavigationProp<MotivatorRoutes>, newComponent: SafetyNetDType) {
+async function finishSecurityNetComponent(navigation: NavigationProp<MotivatorRoutes>, newComponent: SafetyNetDType) {
   // TODO: send SafetyNetItem to DB with POST
   navigation.navigate("SecurityNet")
 }
 
 export default function SecurityNetAssistance() {
-
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
 
   return (
@@ -29,7 +28,7 @@ export default function SecurityNetAssistance() {
         <TextInput style={styles.textinput} placeholder="..." onChangeText={(input) => completeComponent.strategies[1] = input}></TextInput>
         <TextInput style={styles.textinput} placeholder="..." onChangeText={(input) => completeComponent.strategies[2] = input}></TextInput>
       </View>
-      <KopfsachenButton style={[styles.button, styles.shadow]} onPress={() => appendToList(navigation, completeComponent)}>Weiter!</KopfsachenButton>
+      <KopfsachenButton style={[styles.button, styles.shadow]} onPress={() => finishSecurityNetComponent(navigation, completeComponent)}>Weiter!</KopfsachenButton>
     </>
   )
 }

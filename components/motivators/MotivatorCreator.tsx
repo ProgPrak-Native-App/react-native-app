@@ -2,7 +2,7 @@ import React from "react";
 import { Text, StyleSheet, View, Pressable } from "react-native";
 import { TERTIARY } from "../../styles";
 import { AntDesign } from "@expo/vector-icons";
-import MotivatorOverview from "./MotivatorOverview";
+import NewMotivatorOverview from "./new_motivator/NewMotivatorOverview";
 import Title from "../Title";
 
 export default function MotivatorCreator() {
@@ -17,7 +17,7 @@ export default function MotivatorCreator() {
             <View style={styles.arrowContainer}>
               <AntDesign name="left" size={48} />
             </View>
-            <MotivatorOverview icon={require("../../assets/reframeicon.png")} title="Reframing" description="Beim Reframing geht es darum, deine eigene Einschätzung der Situation zu überprüfen und ggf. zu einer anderen Interpretation zu kommen."/>
+            <NewMotivatorOverview icon={require("../../assets/reframeicon.png")} title="Reframing" description="Beim Reframing geht es darum, deine eigene Einschätzung der Situation zu überprüfen und ggf. zu einer anderen Interpretation zu kommen."/>
             <Pressable>
               <View style={styles.arrowContainer}>
                 <AntDesign name="right" size={48}/>
