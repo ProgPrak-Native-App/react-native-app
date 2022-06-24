@@ -20,9 +20,6 @@ export default function Circle( props: circleProps){
 
     /** fix magic numbers 120 */
     const calc = (elem : personProp, angle: number) => {
-        console.log(Math.round(width/2 + radius * Math.cos(angle) - width/2) + 120,
-        Math.round(height/2 + radius * Math.sin(angle) - height/2) + 120
-            )
         return(
             <Pressable
                 accessibilityHint='Klicken um Daten der Person zu ändern oder zu löschen'
