@@ -1,9 +1,9 @@
-import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
-import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
-import { PRIMARY } from "../styles";
-import React from "react";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { TabRoutes } from "../App";
+import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
+import { PRIMARY } from '../styles';
+import React from 'react';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { TabRoutes } from '../App';
 
 type Props = {
   text: string;
@@ -13,7 +13,7 @@ type Props = {
   style?: StyleProp<ViewStyle>;
 };
 
-export default function Title({ text, color, Icon, back, style}: Props) {
+export default function Title({ text, color, Icon, back, style }: Props) {
   const navigation = useNavigation<NavigationProp<never>>();
   const mainNav = useNavigation<NavigationProp<TabRoutes>>();
 
@@ -31,14 +31,15 @@ export default function Title({ text, color, Icon, back, style}: Props) {
           <Icon />
         </View>
       )}
-       <Pressable 
-          style={styles.firstAidBtn} 
-          onPress={()=> {mainNav.navigate("EmergencyNumbers")}} >
-            <FontAwesome5 name="first-aid" size={30}/>
-            <Text style={{fontSize: 11}}>Notfall</Text>
-        </Pressable>
+      <Pressable
+        style={styles.firstAidBtn}
+        onPress={() => {
+          mainNav.navigate('EmergencyNumbers');
+        }}>
+        <FontAwesome5 name="first-aid" size={30} />
+        <Text style={{ fontSize: 11 }}>Notfall</Text>
+      </Pressable>
     </View>
-
   );
 }
 
@@ -51,22 +52,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   firstAidBtn: {
-    position: "absolute",
+    position: 'absolute',
     top: 15,
     right: 15,
     height: 48,
     width: 48,
-    flexDirection: "column",
+    flexDirection: 'column',
     alignItems: 'center',
     fontSize: 11,
   },
   container: {
-    height: "30%",
+    height: '30%',
     justifyContent: 'center',
-    alignItems: "center",
+    alignItems: 'center',
   },
   text: {
-   
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
