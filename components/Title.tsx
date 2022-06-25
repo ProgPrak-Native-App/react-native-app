@@ -32,10 +32,10 @@ export default function Title({ text, color, Icon, back, style }: Props) {
         </View>
       )}
       <Pressable
-        style={styles.firstAidBtn}
         onPress={() => {
           mainNav.navigate('EmergencyNumbers');
-        }}>
+        }}
+        style={styles.firstAidBtn}>
         <FontAwesome5 name="first-aid" size={30} />
         <Text style={{ fontSize: 11 }}>Notfall</Text>
       </Pressable>

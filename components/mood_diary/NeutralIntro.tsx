@@ -12,7 +12,7 @@ export default function NeutralIntro() {
 
   return (
     <>
-      <Title text="Stimmungstagebuch" color={NEUTRAL} Icon={() => <FontAwesome5 name="meh" size={80} />} back />
+      <Title Icon={() => <FontAwesome5 name="meh" size={80} />} back color={NEUTRAL} text="Stimmungstagebuch" />
       <Text style={styles.text}>
         Wenn du heute eher unmotiviert oder müde bist, kannst du entweder in deinem Sicherheitsnetz schauen, was dir
         sonst eine Freude bereitet oder du probierst eine neue Starkmacher-Übung aus!

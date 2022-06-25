@@ -12,7 +12,7 @@ export default function PositiveIntro() {
 
   return (
     <>
-      <Title text="Stimmungstagebuch" color={POSITIVE} Icon={() => <FontAwesome5 name="smile-beam" size={80} />} back />
+      <Title Icon={() => <FontAwesome5 name="smile-beam" size={80} />} back color={POSITIVE} text="Stimmungstagebuch" />
       <Text style={styles.text}>
         Wenn du dich gerade gut fühlst, ist das genau der richtige Moment, um an deinen Starkmachern zu arbeiten!
       </Text>

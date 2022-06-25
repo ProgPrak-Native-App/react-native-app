@@ -8,7 +8,7 @@ import { MotivatorProps, MotivatorTypes, parseMotivator } from './MotivatorProps
 import { MOTIVATOR } from '../../styles';
 
 async function getMotivators() {
-  //change to BASE_URL once merged -> feature/7/wiki
+  // change to BASE_URL once merged -> feature/7/wiki
   return await fetch('http://localhost:4010/motivator')
     .then((response) => response.json())
     .then((data: { type: keyof MotivatorTypes }[]) => data.map((value) => parseMotivator(value.type)))
@@ -21,9 +21,9 @@ function oldMotivatorGridView(motivators: MotivatorProps[]) {
     <>
       {motivators.map((data, index) => (
         <Pressable
+          key={index}
           onPress={() => navigation.navigate(data.screen)}
-          style={[styles.gridItem, { backgroundColor: data.color }, styles.shadow]}
-          key={index}>
+          style={[styles.gridItem, { backgroundColor: data.color }, styles.shadow]}>
           <Text style={styles.text}>{data.name}</Text>
           {data.icon}
         </Pressable>
@@ -37,7 +37,7 @@ export default function MotivatorSelection() {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   const [oldMotivators, setOldMotivators] = useState(initialState);
 
-  //update state with motivators
+  // update state with motivators
   useEffect(() => {
     getMotivators().then(setOldMotivators);
   }, []);
@@ -45,10 +45,10 @@ export default function MotivatorSelection() {
   return (
     <>
       <Title
-        style={styles.shadow}
-        text="Meine Starkmacher"
         Icon={() => <Image source={require('../../assets/motivator.png')} />}
         color={MOTIVATOR.DEFAULT}
+        style={styles.shadow}
+        text="Meine Starkmacher"
       />
       <ScrollView>
         <View style={styles.container}>

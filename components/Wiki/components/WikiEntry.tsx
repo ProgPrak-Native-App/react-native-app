@@ -1,4 +1,4 @@
-import { Text, StyleSheet, ScrollView, Pressable } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
 import React from 'react';
 import Title from '../../Title';
 import { AntDesign } from '@expo/vector-icons';
@@ -13,19 +13,19 @@ const WikiEntry = ({ route, navigation }: WikiStackScreenProps<'WikiEntry'>) => 
     return (
       <>
         <Pressable
-          style={styles.goBack}
           onPress={() => {
             navigation.goBack();
-          }}>
-          <AntDesign name="left" size={30} color="black" />
+          }}
+          style={styles.goBack}>
+          <AntDesign color="black" name="left" size={30} />
           <Text style={{ left: -5, fontSize: 12 }}>Zurück</Text>
         </Pressable>
-        <Title text={Data.title} color={TERTIARY} />
+        <Title color={TERTIARY} text={Data.title} />
 
         <ScrollView style={styles.container}>
           <Text style={styles.title}>{Data.title}</Text>
           <Text style={styles.textContainer}>
-            {Data['contents'].map((item, idx) =>
+            {Data.contents.map((item, idx) =>
               item.type === 'url' ? (
                 <Text key={idx} style={[styles.content, { textDecorationLine: 'underline' }]}>
                   {item.content + ' '}

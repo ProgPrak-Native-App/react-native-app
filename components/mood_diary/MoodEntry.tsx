@@ -10,9 +10,9 @@ function MoodButton(props: { color: string; iconName: string; linkTo: keyof Mood
   const navigation = useNavigation<NavigationProp<MoodDiaryRoutes>>();
   const { color, iconName, linkTo, descriptions } = props;
   return (
-    <Pressable style={[styles.moodButton, { backgroundColor: color }]} onPress={() => navigation.navigate(linkTo)}>
+    <Pressable onPress={() => navigation.navigate(linkTo)} style={[styles.moodButton, { backgroundColor: color }]}>
       <View style={styles.moodButtonInner}>
-        <FontAwesome5 name={iconName} size={80} color="black" />
+        <FontAwesome5 color="black" name={iconName} size={80} />
         <View style={styles.moodDescriptionList}>
           {descriptions.map((description) => (
             <Text key={description} style={styles.moodDescription}>
@@ -28,28 +28,28 @@ function MoodButton(props: { color: string; iconName: string; linkTo: keyof Mood
 export default function MoodEntry() {
   return (
     <>
-      <Title text="Stimmungstagebuch" back />
+      <Title back text="Stimmungstagebuch" />
       <View style={styles.container}>
         <View style={styles.greetingContainer}>
           <Text style={styles.greeting}>Hallo,{'\n'}wie geht's dir?</Text>
         </View>
         <MoodButton
           color={NEGATIVE}
+          descriptions={['wütend', 'traurig', 'ängstlich']}
           iconName="frown"
           linkTo="NegativeIntro"
-          descriptions={['wütend', 'traurig', 'ängstlich']}
         />
         <MoodButton
           color={NEUTRAL}
+          descriptions={['unmotiviert', 'müde', 'gleichgültig']}
           iconName="meh"
           linkTo="NeutralIntro"
-          descriptions={['unmotiviert', 'müde', 'gleichgültig']}
         />
         <MoodButton
           color={POSITIVE}
+          descriptions={['fröhlich', 'aufgeregt', 'entspannt']}
           iconName="smile-beam"
           linkTo="PositiveIntro"
-          descriptions={['fröhlich', 'aufgeregt', 'entspannt']}
         />
       </View>
     </>

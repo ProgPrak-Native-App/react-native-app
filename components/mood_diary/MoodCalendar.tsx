@@ -10,7 +10,7 @@ import { LocalDate, LocalDateTime } from '@js-joda/core';
 import Title from '../Title';
 import { MoodDiaryRoutes } from './MoodDiary';
 
-LocaleConfig.locales['de'] = {
+LocaleConfig.locales.de = {
   monthNames: [
     'Januar',
     'Februar',
@@ -75,9 +75,9 @@ export default function MoodCalendar() {
     <>
       <Title text="Stimmungstagebuch" />
       <Calendar
-        theme={{ calendarBackground: undefined }}
         dayComponent={Day(moods ?? [])}
         displayLoadingIndicator={moods === null}
+        theme={{ calendarBackground: undefined }}
       />
     </>
   );

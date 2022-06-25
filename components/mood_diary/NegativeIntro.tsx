@@ -13,7 +13,7 @@ export default function NegativeIntro() {
 
   return (
     <>
-      <Title text="Stimmungstagebuch" color={NEGATIVE} Icon={() => <FontAwesome5 name="frown" size={80} />} back />
+      <Title Icon={() => <FontAwesome5 name="frown" size={80} />} back color={NEGATIVE} text="Stimmungstagebuch" />
       <Text style={styles.text}>
         Wenn es dir schlecht geht, haben wir verschiedene Optionen für dich: entweder du schaust in deinem{' '}
         <Bold>Sicherheitsnetz</Bold>, welche Aktivitäten dir in der Vergangenheit in solchen Situationen geholfen haben,

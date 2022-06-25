@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import Title from '../../Title';
 import WikiHeader from './WikiHeader';
 import EntryTitle from './EntryTitle';
-import { EntryProps, wikiEntry, BASE_URL, SIZES } from '../constant/constants';
+import { BASE_URL, EntryProps, SIZES, wikiEntry } from '../constant/constants';
 import { TERTIARY } from '../../../styles';
 
-const alphaBet: Set<String> = new Set();
+const alphaBet: Set<string> = new Set();
 
 /** fetch wiki data and slice first 6 just for easier debbuging from API */
 async function getEntries(): Promise<wikiEntry[]> {
@@ -48,9 +48,9 @@ const Wiki = () => {
     setFilteredEntries(filteredData);
   };
 
-  /*** populate dataBase in the scheme of {A => {[....], title: "A ..."}, B=>{...}, ...} the first time */
+  /** * populate dataBase in the scheme of {A => {[....], title: "A ..."}, B=>{...}, ...} the first time */
   const populateData = (entries: wikiEntry[]) => {
-    let helperArray: EntryProps[] = [];
+    const helperArray: EntryProps[] = [];
     entries.forEach((element) => {
       alphaBet.add(element.title.charAt(0).toUpperCase());
     });
@@ -84,13 +84,13 @@ const Wiki = () => {
 
   return (
     <>
-      <Title text="Wiki" color={TERTIARY} />
+      <Title color={TERTIARY} text="Wiki" />
       <WikiHeader onSearch={handleSearch} />
       <ScrollView>
         <View style={styles.container}>
           {filteredEntries.map((item, idx) => (
             <View key={idx}>
-              <EntryTitle letter={item.letter} entry={item.entry} />
+              <EntryTitle entry={item.entry} letter={item.letter} />
             </View>
           ))}
         </View>

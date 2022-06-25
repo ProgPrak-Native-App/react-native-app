@@ -19,11 +19,11 @@ const StackNavigator = createNativeStackNavigator<MotivatorRoutes>();
 export default function Motivator() {
   return (
     <StackNavigator.Navigator screenOptions={{ headerShown: false }}>
-      <StackNavigator.Screen name="MotivatorSelection" component={MotivatorSelection} />
-      <StackNavigator.Screen name="MotivatorCreator" component={NewMotivatorCreator} />
-      <StackNavigator.Screen name="SituationControl" component={SituationControl} />
-      <StackNavigator.Screen name="SecurityNet" component={SecurityNet} />
-      <StackNavigator.Screen name="NotImplemented" component={NotImplemented} />
+      <StackNavigator.Screen component={MotivatorSelection} name="MotivatorSelection" />
+      <StackNavigator.Screen component={NewMotivatorCreator} name="MotivatorCreator" />
+      <StackNavigator.Screen component={SituationControl} name="SituationControl" />
+      <StackNavigator.Screen component={SecurityNet} name="SecurityNet" />
+      <StackNavigator.Screen component={NotImplemented} name="NotImplemented" />
     </StackNavigator.Navigator>
   );
 }
