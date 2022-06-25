@@ -18,9 +18,9 @@ export default function MotivatorCreator() {
             <AntDesign name="left" size={48} />
           </View>
           <MotivatorOverview
+            description="Beim Reframing geht es darum, deine eigene Einschätzung der Situation zu überprüfen und ggf. zu einer anderen Interpretation zu kommen."
             icon={require('../../assets/reframeicon.png')}
             title="Reframing"
-            description="Beim Reframing geht es darum, deine eigene Einschätzung der Situation zu überprüfen und ggf. zu einer anderen Interpretation zu kommen."
           />
           <Pressable>
             <View style={styles.arrowContainer}>

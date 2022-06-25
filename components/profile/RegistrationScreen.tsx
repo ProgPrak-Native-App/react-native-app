@@ -1,10 +1,8 @@
 import React from 'react';
-import { Keyboard, Pressable, StyleSheet, ScrollView, Text, TextInput, View } from 'react-native';
+import { Keyboard, Pressable, ScrollView, StyleSheet, Text } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import Title from '../Title';
 import Input from './Input';
-
-import { useNavigation } from '@react-navigation/native';
 import { TERTIARY } from '../../styles';
 
 const styles = StyleSheet.create({
@@ -20,21 +18,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     fontWeight: 'bold',
-  },
-
-  inputContainer: {
-    marginVertical: 10,
-    marginHorizontal: 20,
-  },
-  label: {
-    fontSize: 18,
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 25,
   },
 });
 
@@ -73,7 +56,7 @@ export default function RegistrationScreen() {
     }
     if (!inputs.repeatPassword) {
       handleError('Bitte Passwort erneut eingeben', 'repeatPassword');
-    } else if (inputs.repeatPassword != inputs.password) {
+    } else if (inputs.repeatPassword !== inputs.password) {
       handleError('Passwörter müssen übereinstimmen', 'repeatPassword');
     }
 
@@ -99,41 +82,41 @@ export default function RegistrationScreen() {
         <Title text="Mein Profil" />
         <ScrollView>
           <Input
+            error={errors.email}
             iconName="email-outline"
             label="Mailadresse"
-            password={false}
-            error={errors.email}
+            onChangeText={(text: string) => handleOnChange(text, 'email')}
             onFocus={() => {
               handleError('', 'email');
             }}
-            onChangeText={(text: string) => handleOnChange(text, 'email')}></Input>
+            password={false}></Input>
           <Input
-            label={'Passwort'}
-            iconName={'lock-outline'}
-            password={true}
             error={errors.password}
+            iconName={'lock-outline'}
+            label={'Passwort'}
+            onChangeText={(text: string) => handleOnChange(text, 'password')}
             onFocus={() => {
               handleError('', 'password');
             }}
-            onChangeText={(text: string) => handleOnChange(text, 'password')}></Input>
+            password={true}></Input>
           <Input
-            label={'Passwort wiederholen'}
-            iconName={'lock-outline'}
-            password={true}
             error={errors.repeatPassword}
+            iconName={'lock-outline'}
+            label={'Passwort wiederholen'}
+            onChangeText={(text: string) => handleOnChange(text, 'repeatPassword')}
             onFocus={() => {
               handleError('', 'repeatPassword');
             }}
-            onChangeText={(text: string) => handleOnChange(text, 'repeatPassword')}></Input>
+            password={true}></Input>
           <Input
-            label={'Alter'}
-            iconName={'ghost'}
-            password={false}
             error={errors.age}
+            iconName={'ghost'}
+            label={'Alter'}
+            onChangeText={(text: string) => handleOnChange(text, 'age')}
             onFocus={() => {
               handleError('', 'age');
             }}
-            onChangeText={(text: string) => handleOnChange(text, 'age')}></Input>
+            password={false}></Input>
           <Pressable onPress={() => validate()} style={styles.button}>
             <Text style={styles.buttonText}>Registrieren</Text>
           </Pressable>

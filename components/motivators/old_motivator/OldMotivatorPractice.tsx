@@ -9,13 +9,13 @@ export default function OldMotivatorPractice(props: MotivatorProps) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   return (
     <>
-      <Title color={props.color} Icon={() => props.icon} text={props.name} />
+      <Title Icon={() => props.icon} color={props.color} text={props.name} />
       <View style={styles.container}>
         {props.exercises?.map((exercise) => (
           <Pressable
             key={exercise.title}
-            style={[styles.taskButton, styles.shadow]}
-            onPress={() => navigation.navigate(exercise.screen)}>
+            onPress={() => navigation.navigate(exercise.screen)}
+            style={[styles.taskButton, styles.shadow]}>
             <Text style={styles.taskButtonText}>{exercise.title}</Text>
           </Pressable>
         ))}

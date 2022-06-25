@@ -6,11 +6,11 @@ export default function SituationControl() {
   const props = parseMotivator('situationControl');
   return (
     <OldMotivatorPractice
-      screen={'NotImplemented'}
-      exercises={props.exercises}
-      name={props.name}
       color={props.color}
+      exercises={props.exercises}
       icon={props.icon}
+      name={props.name}
+      screen={'NotImplemented'}
     />
   );
 }

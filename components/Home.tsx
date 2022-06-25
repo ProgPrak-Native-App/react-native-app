@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <>
-      <Title text="Herzlich Willkommen!" color={PRIMARY} />
+      <Title color={PRIMARY} text="Herzlich Willkommen!" />
       <View style={styles.container}>
         <View style={styles.textContainer}>
           <Text style={styles.text}>Schön, dass du da bist.</Text>

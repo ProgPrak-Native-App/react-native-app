@@ -19,33 +19,33 @@ export type MotivatorProps = {
   screen: keyof MotivatorRoutes;
 };
 
-//mock exercise screens
+// mock exercise screens
 const mockExercise1: Exercise = { title: 'Übung 1', screen: 'NotImplemented' };
 const mockExercise2: Exercise = { title: 'Übung 2', screen: 'NotImplemented' };
 const mockExercise3: Exercise = { title: 'Übung 3', screen: 'NotImplemented' };
 
 const mockExercises = [mockExercise1, mockExercise2, mockExercise3];
 
-//Situationskontrolle
+// Situationskontrolle
 
 const situationControl: MotivatorProps = {
   name: 'Situationskontrolle',
   color: MOTIVATOR.SITUATIONCONTROLL,
   exercises: mockExercises,
-  icon: <Image style={{ height: 54, width: 54 }} source={require('../../assets/situationControlIcon.png')} />,
+  icon: <Image source={require('../../assets/situationControlIcon.png')} style={{ height: 54, width: 54 }} />,
   screen: 'SituationControl',
 };
 
-//Sicherheitsnetz
+// Sicherheitsnetz
 const relaxation: MotivatorProps = {
   name: 'Sicherheitsnetz',
   color: MOTIVATOR.SECURITYNET,
   exercises: mockExercises,
-  icon: <Image style={{ height: 54, width: 54 }} source={require('../../assets/securitynetIcon.png')} />,
+  icon: <Image source={require('../../assets/securitynetIcon.png')} style={{ height: 54, width: 54 }} />,
   screen: 'SecurityNet',
 };
 
-//export parsing of motivator type
+// export parsing of motivator type
 export function parseMotivator(name: keyof MotivatorTypes) {
   switch (name) {
     case 'situationControl':

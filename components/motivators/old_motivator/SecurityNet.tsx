@@ -6,11 +6,11 @@ export default function SecurityNet() {
   const props = parseMotivator('relaxation');
   return (
     <OldMotivatorPractice
-      screen={'NotImplemented'}
-      exercises={props.exercises}
-      name={props.name}
       color={props.color}
+      exercises={props.exercises}
       icon={props.icon}
+      name={props.name}
+      screen={'NotImplemented'}
     />
   );
 }

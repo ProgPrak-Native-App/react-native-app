@@ -9,11 +9,11 @@ export default function Profile() {
     <>
       <Title text="Profil" />
       <View style={styles.container}>
-        <ProfileOption title="Account" icon="user-alt" />
-        <ProfileOption title="Stimmungsverlauf" icon="chart-bar" />
-        <ProfileOption title="Benachrichtigungen" icon="bell" />
-        <ProfileOption title="Datenschutz" icon="shield-alt" />
-        <ProfileOption title="Einstellungen" icon="sliders-h" />
+        <ProfileOption icon="user-alt" title="Account" />
+        <ProfileOption icon="chart-bar" title="Stimmungsverlauf" />
+        <ProfileOption icon="bell" title="Benachrichtigungen" />
+        <ProfileOption icon="shield-alt" title="Datenschutz" />
+        <ProfileOption icon="sliders-h" title="Einstellungen" />
       </View>
     </>
   );

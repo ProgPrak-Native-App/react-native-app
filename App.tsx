@@ -57,8 +57,8 @@ export default function App() {
               }}
             />
             <Tab.Screen
-              name="Wiki"
               component={WikiNavigation}
+              name="Wiki"
               options={{
                 tabBarIcon: () => <FontAwesome5 name="book" size={24} />,
               }}

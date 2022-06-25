@@ -53,8 +53,10 @@ const Input = ({ label, iconName, error, password, onFocus, onChangeText }: Inpu
       <View style={[styles.inputContainer, { borderColor: error ? '#ff0000' : isFocused ? '#4682b4' : '#f0ffff' }]}>
         <MaterialCommunityIcons name={iconName} style={styles.icon} />
         <TextInput
-          secureTextEntry={hidePassword}
           autoCorrect={false}
+          onBlur={() => {
+            setIsFocused(false);
+          }}
           onChangeText={(text) => {
             onChangeText(text);
           }}
@@ -62,16 +64,14 @@ const Input = ({ label, iconName, error, password, onFocus, onChangeText }: Inpu
             onFocus();
             setIsFocused(true);
           }}
-          onBlur={() => {
-            setIsFocused(false);
-          }}
+          secureTextEntry={hidePassword}
           style={styles.textInput}
         />
 
         {password ? (
           <MaterialCommunityIcons
-            onPress={() => setHidePassword(!hidePassword)}
             name={hidePassword ? 'eye-outline' : 'eye-off-outline'}
+            onPress={() => setHidePassword(!hidePassword)}
             style={{ fontSize: 22, color: '#4682b4' }}
           />
         ) : null}

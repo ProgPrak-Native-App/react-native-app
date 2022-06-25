@@ -69,7 +69,7 @@ export default function Introduction() {
           </Text>
         </View>
         <View style={styles.buttonContainer}>
-          <Pressable style={styles.button} onPress={() => navigation.navigate('CreateProfile')}>
+          <Pressable onPress={() => navigation.navigate('CreateProfile')} style={styles.button}>
             <Text style={styles.text}>Los geht's</Text>
           </Pressable>
         </View>

@@ -11,9 +11,9 @@ const Accordion = ({ title, descr }: { title: string; descr: any }) => {
   };
   return (
     <View style={{ borderBottomWidth: 2, borderBottomColor: 'red' }}>
-      <TouchableOpacity style={styles.container} onPress={toggle}>
+      <TouchableOpacity onPress={toggle} style={styles.container}>
         <Text style={{ textTransform: 'capitalize' }}>{title}</Text>
-        <FontAwesome5 size={24} name={collapsed ? 'caret-down' : 'caret-up'} />
+        <FontAwesome5 name={collapsed ? 'caret-down' : 'caret-up'} size={24} />
       </TouchableOpacity>
       <View>
         {!collapsed && (
