@@ -6,20 +6,30 @@ on:
       - main
       - develop
       - release/*
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - '*'
+  workflow_dispatch: { }
 
 jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+    secrets: inherit
+
   publish:
+    needs: lint
     name: "Publish on expo.dev"
     uses: ./.github/workflows/publish.yml
     secrets: inherit
 
   build-android:
+    if: github.event_name != 'pull_request'
     name: "Build Android APK"
     uses: ./.github/workflows/build-android.yml
     secrets: inherit
 
   build-ios:
+    if: github.event_name != 'pull_request'
     name: "Build iOS App"
     uses: ./.github/workflows/build-ios.yml
     secrets: inherit
@@ -59,7 +69,7 @@ jobs:
   release:
     name: "Release"
     if: github.ref == 'refs/heads/main'
-    needs: [ publish, build-android, build-ios, check-release-version ]
+    needs: [ lint, publish, build-android, build-ios, check-release-version ]
     runs-on: ubuntu-latest
     # Prevent multiple release jobs running at once
     concurrency: release
