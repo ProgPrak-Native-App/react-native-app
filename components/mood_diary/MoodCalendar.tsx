@@ -61,7 +61,7 @@ const Day = (moods: Mood[]) => (props: { date?: DateData }) => {
     return <AddMoodButton />;
   } else {
     // User has not entered a mood for this day, so we use react-native-calendars' default day component
-    return <BasicDay {...props} date={props.date} state="inactive" />;
+    return <BasicDay {...props} date={props.date?.dateString} state="inactive" />;
   }
 };
 
