@@ -5,7 +5,7 @@ import KopfsachenButton from '../KopfsachenButton';
 import Title from '../Title';
 import React, { useEffect, useState } from 'react';
 import { MotivatorProps, MotivatorTypes, parseMotivator } from './MotivatorProps';
-import { MOTIVATOR } from '../../styles';
+import { GREY, MOTIVATOR, SHADOW } from '../../styles';
 
 async function getMotivators() {
   // change to BASE_URL once merged -> feature/7/wiki
@@ -15,7 +15,7 @@ async function getMotivators() {
     .catch(() => [parseMotivator('noMotivator')]);
 }
 
-function oldMotivatorGridView(motivators: MotivatorProps[]) {
+function OldMotivatorGridView(motivators: MotivatorProps[]) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   return (
     <>
@@ -65,7 +65,7 @@ export default function MotivatorSelection() {
           </KopfsachenButton>
         </View>
 
-        <View style={styles.gridContainer}>{oldMotivatorGridView(oldMotivators)}</View>
+        <View style={styles.gridContainer}>{OldMotivatorGridView(oldMotivators)}</View>
       </ScrollView>
     </>
   );
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
     borderWidth: 0.5,
-    borderColor: '#D3D3D3',
+    borderColor: GREY,
   },
   gridContainer: {
     marginVertical: 5,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   shadow: {
     elevation: 4,
-    shadowColor: '#171717',
+    shadowColor: SHADOW,
     shadowOffset: { width: -2, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 2,

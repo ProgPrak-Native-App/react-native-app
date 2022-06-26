@@ -37,10 +37,8 @@ export default function RegistrationScreen() {
 
   const validate = () => {
     Keyboard.dismiss();
-    let valid = true;
     if (!inputs.email) {
       handleError('Bitte Mailadresse eingeben', 'email');
-      valid = false;
     } else if (
       !inputs.email.match(
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -67,8 +65,6 @@ export default function RegistrationScreen() {
     }
   };
 
-  const register = () => {};
-
   const handleOnChange = (text: string, input: string) => {
     setInputs((prevState) => ({ ...prevState, [input]: text }));
   };
@@ -89,7 +85,8 @@ export default function RegistrationScreen() {
             onFocus={() => {
               handleError('', 'email');
             }}
-            password={false}></Input>
+            password={false}
+          />
           <Input
             error={errors.password}
             iconName={'lock-outline'}
@@ -98,7 +95,8 @@ export default function RegistrationScreen() {
             onFocus={() => {
               handleError('', 'password');
             }}
-            password={true}></Input>
+            password={true}
+          />
           <Input
             error={errors.repeatPassword}
             iconName={'lock-outline'}
@@ -107,7 +105,8 @@ export default function RegistrationScreen() {
             onFocus={() => {
               handleError('', 'repeatPassword');
             }}
-            password={true}></Input>
+            password={true}
+          />
           <Input
             error={errors.age}
             iconName={'ghost'}
@@ -116,7 +115,8 @@ export default function RegistrationScreen() {
             onFocus={() => {
               handleError('', 'age');
             }}
-            password={false}></Input>
+            password={false}
+          />
           <Pressable onPress={() => validate()} style={styles.button}>
             <Text style={styles.buttonText}>Registrieren</Text>
           </Pressable>

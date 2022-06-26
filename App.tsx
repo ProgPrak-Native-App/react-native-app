@@ -1,16 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import NotImplemented from './components/NotImplemented';
 import React from 'react';
 import Home from './components/Home';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { PRIMARY, SECONDARY } from './styles';
+import { BACKGROUND, PRIMARY, SHADOW } from './styles';
 import MoodDiary from './components/mood_diary/MoodDiary';
-import RegistrationScreen from './components/profile/RegistrationScreen';
 import WikiNavigation from './components/Wiki/components/WikiNavigation';
-
 import Motivator from './components/motivators/Motivator';
 import Profile from './components/profile/Profile';
 
@@ -28,7 +25,7 @@ const Tab = createBottomTabNavigator<TabRoutes>();
 export default function App() {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#f2f2f2' }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: BACKGROUND }}>
         <NavigationContainer>
           <Tab.Navigator
             screenOptions={{
@@ -36,7 +33,6 @@ export default function App() {
               tabBarLabelStyle: styles.label,
               tabBarItemStyle: styles.items,
               tabBarStyle: styles.bar,
-              tabBarInactiveBackgroundColor: '#fff',
               tabBarActiveBackgroundColor: PRIMARY,
               tabBarInactiveTintColor: 'black',
               tabBarActiveTintColor: 'black',
@@ -95,7 +91,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderTopLeftRadius: 15,
     flex: 0.1,
-    shadowColor: 'grey',
+    shadowColor: SHADOW,
     shadowOffset: {
       width: 0,
       height: -2,

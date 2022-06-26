@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import KopfsachenButton from './KopfsachenButton';
 import { TabRoutes } from '../App';
-import { PRIMARY } from '../styles';
+import { BACKGROUND, PRIMARY } from '../styles';
 
 export default function Home() {
   const navigation = useNavigation<NavigationProp<TabRoutes>>();
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: BACKGROUND,
   },
   text: {
     fontSize: 30,
