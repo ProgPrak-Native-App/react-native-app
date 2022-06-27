@@ -1,52 +1,56 @@
-import React, { useEffect, useState } from "react";
-import { MotivatorRoutes } from "../Motivator";
-import { iconMap, SafetyNetDType } from "./SecurityNet";
-import Title from "../../Title";
-import { View, Text, StyleSheet, Image, Pressable, ScrollView } from "react-native";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { FontAwesome5, FontAwesome, Ionicons } from "@expo/vector-icons";
+import React, { useEffect, useState } from 'react';
+import { MotivatorRoutes } from '../Motivator';
+import { iconMap, SafetyNetDType } from './SecurityNet';
+import Title from '../../Title';
+import { Text, View, StyleSheet, ScrollView } from 'react-native';
 
 async function getSafetyNet() {
-  return (await fetch('http://localhost:4010/safetyNet/285')
-    .then(response =>response.json())
-    .then(data => {
-      var items: SafetyNetDType[] = []
-      for (var i in data) {
-        var item = data[i]
-        var new_item: SafetyNetDType = {
+  return await fetch('http://localhost:4010/safetyNet/285')
+    .then((response) => response.json())
+    .then((data) => {
+      const items: SafetyNetDType[] = [];
+      for (const i in data) {
+        const item = data[i];
+        const newItem: SafetyNetDType = {
           type: item.type,
           icon: iconMap.get(item.type),
           title: item.name,
-          strategies: item.strategies.slice(0, 3)
-        }
-        items.push(new_item);
+          strategies: item.strategies.slice(0, 3),
+        };
+        items.push(newItem);
       }
-      return items
-    })
-    )
+      return items;
+    });
 }
 
-function securityNetItemGridView(safetyNetItems: SafetyNetDType[]){
-  console.log(getSafetyNet());
-  return <>
-    {
-
-    }
-  </>;
-}
-
-
-export default function SecurityNetItemView() {
-  const initialState: SafetyNetDType[] = []
-  const [safetyNetItems, setSafetyNetItems] = useState(initialState)
-
+function securityNetItemGridView(safetyNetItems: SafetyNetDType[]) {
+  let items: SafetyNetDType[];
+  getSafetyNet().then((response) => {
+    items = response;
+  });
   return (
     <>
-      <Title text="Mein Sicherheitsnetz"/>
+      {safetyNetItems.map((data, index) => (
+        <Text key={index} style={styles.text}>
+          {data.type}
+        </Text>
+      ))}
+    </>
+  );
+}
+
+export default function SecurityNetItemView() {
+  const initialState: SafetyNetDType[] = [];
+  const [safetyNetItems, setSafetyNetItems] = useState(initialState);
+
+  useEffect(() => {
+    getSafetyNet().then(setSafetyNetItems);
+  }, []);
+  return (
+    <>
+      <Title text="Mein Sicherheitsnetz" />
       <ScrollView>
-        <View style={styles.gridContainer}>
-          {securityNetItemGridView(safetyNetItems)}
-        </View>
+        <View style={styles.gridContainer}>{securityNetItemGridView(safetyNetItems)}</View>
       </ScrollView>
     </>
   );
@@ -54,43 +58,43 @@ export default function SecurityNetItemView() {
 
 const styles = StyleSheet.create({
   gridItem: {
-    alignItems: "center",
-    justifyContent: "space-around",
+    alignItems: 'center',
+    justifyContent: 'space-around',
     width: '46%',
     height: 120,
     marginVertical: 5,
     padding: 10,
     borderRadius: 20,
     borderWidth: 0.5,
-    borderColor: "#D3D3D3"
+    borderColor: '#D3D3D3',
   },
   gridContainer: {
     marginVertical: 5,
-    justifyContent: "space-evenly",
+    justifyContent: 'space-evenly',
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
   container: {
-    justifyContent: "space-around",
+    justifyContent: 'space-around',
     height: 300,
     marginHorizontal: 25,
   },
   text: {
     fontSize: 18,
-    textAlign: "center",
+    textAlign: 'center',
     lineHeight: 26,
-    letterSpacing: 0
+    letterSpacing: 0,
   },
   button: {
     paddingHorizontal: 4,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   shadow: {
     elevation: 4,
     shadowColor: '#171717',
-    shadowOffset: {width: -2, height: 2},
+    shadowOffset: { width: -2, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
-  }
+  },
 });
