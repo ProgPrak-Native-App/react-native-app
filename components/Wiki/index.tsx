@@ -7,4 +7,3 @@ import Wiki from './components/Wiki';
 import EntryTitle from './components/EntryTitle';
 import Accordion from './components/Accordion';
 
-export { Wiki, WikiEntry, WikiHeader, EntryTitle, Accordion };

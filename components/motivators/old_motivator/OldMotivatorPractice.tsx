@@ -10,16 +10,13 @@ export default function OldMotivatorPractice(props: MotivatorProps) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   return (
     <>
-      <Title Icon={() => props.icon} color={props.color} text={props.name} />
+      <Title color={props.color} Icon={() => props.icon} text={props.name}/>
       <View style={styles.container}>
-        {props.exercises?.map((exercise) => (
-          <Pressable
-            key={exercise.title}
-            onPress={() => navigation.navigate(exercise.screen)}
-            style={[styles.taskButton, styles.shadow]}>
+        {props.exercises?.map(exercise =>
+          <Pressable key={exercise.title} style={[styles.taskButton, styles.shadow]} onPress={() => navigation.navigate(exercise.screen)}>
             <Text style={styles.taskButtonText}>{exercise.title}</Text>
           </Pressable>
-        ))}
+        )}
       </View>
     </>
   );
@@ -40,7 +37,7 @@ const styles = StyleSheet.create({
   taskButtonText: {
     fontSize: 16,
     margin: 16,
-    textAlign: 'left',
+    textAlign: "left",
   },
   shadow: {
     elevation: 5,
@@ -48,5 +45,5 @@ const styles = StyleSheet.create({
     shadowOffset: { width: -2, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
-  },
+  }
 });

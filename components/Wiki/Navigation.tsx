@@ -10,7 +10,8 @@ export type WikiStackParamList = {
   WikiStart: undefined;
 };
 
-export type WikiStackScreenProps<T extends keyof WikiStackParamList> = NativeStackScreenProps<WikiStackParamList, T>;
+export type WikiStackScreenProps<T extends keyof WikiStackParamList> =
+  NativeStackScreenProps<WikiStackParamList, T>;
 
 const WikiStack = createNativeStackNavigator();
 
@@ -24,5 +25,6 @@ export default function Navigation() {
       <WikiStack.Screen component={EntryList} name="WikiStart" />
       <WikiStack.Screen component={EntryView} name="WikiEntry" />
     </WikiStack.Navigator>
-  );
-}
+    )
+  }
+

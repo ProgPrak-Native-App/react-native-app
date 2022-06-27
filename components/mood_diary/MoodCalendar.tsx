@@ -11,49 +11,64 @@ import Title from '../Title';
 import { MoodDiaryRoutes } from './MoodDiary';
 import MoodDiaryClient, { Mood } from '../../api/MoodDiaryClient';
 
-LocaleConfig.locales.de = {
+LocaleConfig.locales["de"] = {
   monthNames: [
-    'Januar',
-    'Februar',
-    'März',
-    'April',
-    'Mai',
-    'Juni',
-    'Juli',
-    'August',
-    'September',
-    'Oktober',
-    'November',
-    'Dezember',
+    "Januar",
+    "Februar",
+    "März",
+    "April",
+    "Mai",
+    "Juni",
+    "Juli",
+    "August",
+    "September",
+    "Oktober",
+    "November",
+    "Dezember",
   ],
-  monthNamesShort: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-  dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-  dayNamesShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+  monthNamesShort: [
+    "Jan",
+    "Feb",
+    "Mär",
+    "Apr",
+    "Mai",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Okt",
+    "Nov",
+    "Dez",
+  ],
+  dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+  dayNamesShort: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
 };
-LocaleConfig.defaultLocale = 'de';
+LocaleConfig.defaultLocale = "de";
 
 function DayWithMood({ mood }: { mood: Mood }) {
-  if (mood.type === 'positive') {
-    return <Image source={require('../../assets/emoji_happy.png')} style={styles.icon} />;
-  } else if (mood.type === 'neutral') {
-    return <Image source={require('../../assets/emoji_neutral.png')} style={styles.icon} />;
+  if (mood.type === "positive") {
+    return <Image source={require("../../assets/emoji_happy.png")} style={styles.icon} />;
+  } else if (mood.type === "neutral") {
+    return <Image source={require("../../assets/emoji_neutral.png")} style={styles.icon} />;
   } else {
-    return <Image source={require('../../assets/emoji_sad.png')} style={styles.icon} />;
+    return <Image source={require("../../assets/emoji_sad.png")} style={styles.icon} />;
   }
 }
 
 function AddMoodButton() {
   const navigation = useNavigation<NavigationProp<MoodDiaryRoutes>>();
   return (
-    <Pressable onPress={() => navigation.navigate('MoodEntry')}>
-      <Image source={require('../../assets/icon_plus.png')} style={styles.icon} />
+    <Pressable onPress={() => navigation.navigate("MoodEntry")}>
+      <Image source={require("../../assets/icon_plus.png")} style={styles.icon} />
     </Pressable>
   );
 }
 
 const Day = (moods: Mood[]) => (props: { date?: DateData }) => {
   const date = LocalDate.parse(props.date!.dateString);
-  const moodAtDate = moods.find((mood) => LocalDateTime.parse(mood.timestamp).toLocalDate().equals(date));
+  const moodAtDate = moods.find((mood) =>
+    LocalDateTime.parse(mood.timestamp).toLocalDate().equals(date)
+  );
   if (moodAtDate) {
     // User has previously entered a mood for this day, so we show it
     return <DayWithMood mood={moodAtDate} />;
@@ -76,9 +91,9 @@ export default function MoodCalendar() {
     <>
       <Title text="Stimmungstagebuch" />
       <Calendar
+        theme={{ calendarBackground: undefined }}
         dayComponent={Day(moods ?? [])}
         displayLoadingIndicator={moods === null}
-        theme={{ calendarBackground: undefined }}
       />
     </>
   );

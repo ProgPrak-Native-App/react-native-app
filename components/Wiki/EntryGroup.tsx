@@ -24,21 +24,21 @@ const EntryGroup = ({ letter, entries }: Props) => {
 };
 
 const styles = StyleSheet.create({
-  capital: {
-    fontWeight: 'bold',
-    fontSize: 25,
-    paddingHorizontal: 5,
-  },
-  text: {
-    fontSize: 18,
-    paddingVertical: 15,
-  },
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 25,
-  },
-});
+    capital: {
+        fontWeight: 'bold',
+        fontSize: 25,
+        paddingHorizontal: 5
+    },
+    text: {
+        fontSize: 18,
+        paddingVertical: 15
+    },
+    container: {
+        flexDirection: 'row',
+        justifyContent: "space-between",
+        alignItems: 'center',
+        paddingHorizontal: 25
+    },
+})
 
 export default EntryGroup;

@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <>
-      <Title color={PRIMARY} text="Herzlich Willkommen!" />
+      <Title text="Herzlich Willkommen!" color={PRIMARY}/>
       <View style={styles.container}>
         <View style={styles.textContainer}>
           <Text style={styles.text}>Schön, dass du da bist.</Text>
@@ -20,7 +20,7 @@ export default function Home() {
         <KopfsachenButton onPress={() => navigation.navigate('MoodDiary')} style={styles.button}>
           Ab zum Stimmungstagebuch.
         </KopfsachenButton>
-        <KopfsachenButton onPress={() => navigation.navigate('Motivators')} style={styles.button}>
+        <KopfsachenButton onPress={() => navigation.navigate("Motivators")} style={styles.button}>
           Ich möchte an meinen offenen Aufgaben weiterarbeiten.
         </KopfsachenButton>
       </View>
