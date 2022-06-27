@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput, View, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { BACKGROUND, DARK_GREY } from '../../../styles';
 
 /* --------- Wiki Header: basically just styles and serach   ----------------- */
 const WikiHeader = ({ onSearch }: { onSearch: (text: string) => void }) => {
@@ -31,9 +32,9 @@ const styles = StyleSheet.create({
   searchBar: {
     width: '100%',
     borderRadius: 24,
-    borderColor: '#808080',
+    borderColor: DARK_GREY,
     borderWidth: 2,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: BACKGROUND,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
@@ -51,7 +52,3 @@ const styles = StyleSheet.create({
 });
 
 export default WikiHeader;
-
-function value(value: any): ((text: string) => void) | undefined {
-  throw new Error('Function not implemented.');
-}
