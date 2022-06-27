@@ -1,13 +1,6 @@
-import {
-  GestureResponderEvent,
-  Pressable,
-  StyleProp,
-  StyleSheet,
-  Text,
-  ViewStyle,
-} from "react-native";
-import { ReactNode } from "react";
-import { TERTIARY } from "../styles";
+import { GestureResponderEvent, Pressable, StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
+import { ReactNode } from 'react';
+import { TERTIARY } from '../styles';
 
 export type Props = {
   onPress?: (event: GestureResponderEvent) => void;
@@ -26,15 +19,15 @@ export default function KopfsachenButton(props: Props) {
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: TERTIARY,
     borderWidth: 1,
-    borderRadius: 20
+    borderRadius: 20,
   },
   buttonText: {
     fontSize: 16,
-    textAlign: "center",
-    margin: 10
+    textAlign: 'center',
+    margin: 10,
   },
-})
+});

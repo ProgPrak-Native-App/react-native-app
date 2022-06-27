@@ -5,7 +5,7 @@ module.exports = {
   env: {
     node: true,
     jest: true,
-    'react-native/react-native': true
+    'react-native/react-native': true,
   },
 
   parserOptions: {
@@ -16,9 +16,13 @@ module.exports = {
 
     sourceType: 'module',
     ecmaVersion: 2020,
-    'ecmaFeatures': {
-      'jsx': true
-    }
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+
+  globals: {
+    JSX: 'readonly',
   },
 
   plugins: [
@@ -30,7 +34,7 @@ module.exports = {
     // add it as an extension for your IDE
     'prettier',
     'react',
-    'react-native'
+    'react-native',
   ],
 
   extends: [
@@ -69,34 +73,28 @@ module.exports = {
     'arrow-parens': 'off',
     'one-var': 'off',
     'no-extra-semi': 'error',
-    'import/first': 'off',
-    'import/named': 'error',
-    'import/namespace': 'error',
-    'import/default': 'error',
-    'import/export': 'error',
-    'import/extensions': 'off',
-    'import/no-unresolved': 'off',
-    'import/no-extraneous-dependencies': 'off',
-    '@typescript-eslint/no-empty-interface': "off",
+    '@typescript-eslint/no-empty-interface': 'off',
+
     'react-native/no-unused-styles': 2,
     'react-native/split-platform-components': 2,
-    'react-native/no-color-literals': 2,
-    'react-native/no-raw-text': 2,
+    'react-native/no-color-literals': 'warn',
+    // KopfsachenButton wraps its children in a Text element but eslint-plugin-react-native doesn't notice
+    'react-native/no-raw-text': ['error', { skip: ['KopfsachenButton'] }],
     'react-native/no-single-element-style-arrays': 2,
+
     'prefer-promise-reject-errors': 'off',
     semi: ['error', 'always'],
     '@typescript-eslint/semi': ['error', 'always'],
-    'space-before-function-paren': 'off',
     'no-void': 'off',
     '@typescript-eslint/no-inferrable-types': 0,
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['warn'],
 
-    "no-undefined": ['error'],
-    "no-eq-null": ['error'],
-
+    'no-eq-null': 'error',
 
     'no-useless-constructor': 'off',
+    'no-useless-escape': 'warn',
+    'spaced-comment': 'warn',
     'new-cap': 'off',
 
     'space-before-function-paren': [
@@ -146,24 +144,21 @@ module.exports = {
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/require-await': 'off',
+    '@typescript-eslint/no-empty-function': 'warn',
 
     // react parser bug: https://stackoverflow.com/questions/63818415/react-was-used-before-it-was-defined/64024916#64024916
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": "off",
-
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
 
     // allow debugger during development only
     'no-debugger': process.env.NODE_ENV === `production` ? `error` : `off`,
 
-
     'react/jsx-sort-props': `warn`,
     'react-hooks/exhaustive-deps': `off`,
+    'react-hooks/rules-of-hooks': 'warn',
   },
 
-  "settings": {
-    "import/ignore": [
-        "node_modules/react-native/index\\.js$"
-    ]
-  }
-
+  settings: {
+    'import/ignore': ['node_modules/react-native/index\\.js$'],
+  },
 };
