@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, StyleSheet, View, Pressable } from 'react-native';
 import { TERTIARY } from '../../styles';
 import { AntDesign } from '@expo/vector-icons';
-import MotivatorOverview from './MotivatorOverview';
+import MotivatorOverview from './new_motivator/NewMotivatorOverview';
 import Title from '../Title';
 
 export default function MotivatorCreator() {

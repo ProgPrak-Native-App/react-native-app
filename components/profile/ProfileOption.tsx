@@ -1,5 +1,5 @@
-import React, { version } from 'react';
-import { View, Pressable, Image, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Pressable, Text, StyleSheet } from 'react-native';
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 
 type Props = {

@@ -4,6 +4,7 @@ import Title from '../../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { MotivatorRoutes } from '../Motivator';
 import { MotivatorProps } from '../MotivatorProps';
+import { MOTIVATOR, SHADOW } from '../../../styles';
 
 export default function OldMotivatorPractice(props: MotivatorProps) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   taskButton: {
-    backgroundColor: '#EAFAFE',
+    backgroundColor: MOTIVATOR.SECURITYNET,
     borderWidth: 1,
     borderRadius: 20,
     marginBottom: 20,
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
   },
   shadow: {
     elevation: 5,
-    shadowColor: '#171717',
+    shadowColor: SHADOW,
     shadowOffset: { width: -2, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
