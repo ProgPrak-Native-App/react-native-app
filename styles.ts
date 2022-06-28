@@ -21,6 +21,17 @@ export const LIGHT_YELLOW = '#FCF7CB';
 export const DARK_YELLOW = '#FECB87';
 export const NAVY = '#A28FFF';
 
+/* ---- Shadows ---- */
+export const SHADOW_COLOR = 'grey';
+
+/* ---- Layout Colors --- */
+export const LAYOUT_COLOR_SAFEAREA_BACKGROUND = '#f2f2f2';
+
+/* ---- States Colors --- */
+export const STATE_COLOR_INACTIVE_BACKGROUND = '#fff';
+export const STATE_COLOR_INACTIVE_TINT = 'black';
+export const STATE_COLOR_ACTIVE_TINT = 'black';
+
 /* ----- sytles ---- */
 export const SIZES = {
   font: 18,
