@@ -14,7 +14,7 @@ const WikiEntry = ({ route, navigation }: WikiStackScreenProps<'WikiEntry'>) => 
         <ScrollView style={styles.container}>
           <Text style={styles.title}>{Data.title}</Text>
           <Text style={styles.textContainer}>
-            {Data.contents.map((item, idx) => 
+            {Data.contents.map((item, idx) =>
               item.type === 'url' ? (
                 <Text key={idx} style={[styles.content, { textDecorationLine: 'underline' }]}>
                   {item.content + ' '}

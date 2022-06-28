@@ -16,7 +16,9 @@ export type SocialSupportStackParamList = {
   Feedback: { name: string };
 };
 
-export type SocialSupportStackScreenProps<T extends keyof SocialSupportStackParamList> = NativeStackScreenProps<SocialSupportStackParamList, T>;
+export type SocialSupportStackScreenProps<T extends keyof SocialSupportStackParamList> = NativeStackScreenProps<
+    SocialSupportStackParamList,
+    T>;
 
 const SocialSupportStack = createNativeStackNavigator();
 
@@ -26,14 +28,13 @@ export default function SocialSupportNavigation() {
       initialRouteName="IntroScreen"
       screenOptions={{
         headerShown: false,
-      }}
-    >
-      <SocialSupportStack.Screen component={IntroScreen} name="IntroScreen"/>
-      <SocialSupportStack.Screen component={IntroVideoScreen} name="IntroVideoScreen"/>
-      <SocialSupportStack.Screen component={IntroThirdLevel} name="IntroThirdLevel"/>
-      <SocialSupportStack.Screen component={ThirdLevelCountDown} name="ThirdLevelCountDown"/>
-      <SocialSupportStack.Screen component={SupportExercise} name="SupportExercise"/>
-      <SocialSupportStack.Screen component={Feedback} name="Feedback"/>
+      }}>
+      <SocialSupportStack.Screen component={IntroScreen} name="IntroScreen" />
+      <SocialSupportStack.Screen component={IntroVideoScreen} name="IntroVideoScreen" />
+      <SocialSupportStack.Screen component={IntroThirdLevel} name="IntroThirdLevel" />
+      <SocialSupportStack.Screen component={ThirdLevelCountDown} name="ThirdLevelCountDown" />
+      <SocialSupportStack.Screen component={SupportExercise} name="SupportExercise" />
+      <SocialSupportStack.Screen component={Feedback} name="Feedback" />
     </SocialSupportStack.Navigator>
   );
 }

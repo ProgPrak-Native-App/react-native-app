@@ -10,19 +10,20 @@ export default function SocialStart() {
   return (
     <>
       <Title back color={ORANGE} text="Soziale Unterstützung"/>
-      <ScrollView >
+      <ScrollView>
         <View style={styles.container}>
           <Text style={styles.text}>
-              Anderen Personen tragen eine Menge dazu bei, wie es uns geht und können helfen zurechtzukommen.
-          </Text> 
-          <Text style={[styles.text, {marginTop: SIZES.default_pSpace}]}>
-              Gerade auch wir allein vielleicht einmal an unsere Grenzen stoßen – frei nach dem Motto gemeinsam sind wir stark!
+            Anderen Personen tragen eine Menge dazu bei, wie es uns geht und können helfen zurechtzukommen.
+          </Text>
+          <Text style={[styles.text, { marginTop: SIZES.default_pSpace }]}>
+            Gerade auch wir allein vielleicht einmal an unsere Grenzen stoßen – 
+            frei nach dem Motto gemeinsam sind wir stark!
           </Text>
           <Pressable 
             accessibilityHint="Mehr zur Übung"
             onPress={() => navigate('IntroVideoScreen')}
             style={styles.button}>
-              <Text style={styles.text}>Let's Go</Text>
+            <Text style={styles.text}>Let's Go</Text>
           </Pressable>
         </View>
       </ScrollView>

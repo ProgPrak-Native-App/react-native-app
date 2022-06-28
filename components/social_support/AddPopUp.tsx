@@ -4,16 +4,17 @@ import { AntDesign } from '@expo/vector-icons';
 import { BACKGROUND, BLACK, PRIMARY, SIZES, WHITE } from '../../styles';
 
 export default function PopUp({
-  person, 
-  addPerson, 
-  toggle, 
+  person,
+  addPerson,
+  toggle,
   level,
-} : {
-  person: { name: string; resource: string; };
-  addPerson: (val: { name: string; resource: string; }) => void;
+}: {
+  person: { name: string; resource: string };
+  addPerson: (val: { name: string; resource: string }) => void;
   toggle: () => void;
   level: number;
 }) {
+  
   const [tmp, setTmp] = useState(person);
   const handleInput = (v: string, val: string) => {
     setTmp((prevTmp) => {
@@ -36,22 +37,23 @@ export default function PopUp({
               placeholderTextColor="#4F4F4F"
               style={styles.searchInput}
               value={tmp.name}
-              /> 
-            { level === 2 && (
-            <>
-              <Text style={styles.label}>Ressource:</Text>
-              <TextInput
-                accessibilityLabel="Ressource eintragen"
-                onChangeText={(r) => handleInput('resource', r)}
-                placeholder="Ressource eintragen"
-                placeholderTextColor="#4F4F4F"
-                style={styles.searchInput}
-                value={tmp.resource}
-              />
-            </>
+            /> 
+            {level === 2 && (
+              <>
+                <Text style={styles.label}>Ressource:</Text>
+                <TextInput
+                  accessibilityLabel="Ressource eintragen"
+                  onChangeText={(r) => handleInput('resource', r)}
+                  placeholder="Ressource eintragen"
+                  placeholderTextColor="#4F4F4F"
+                  style={styles.searchInput}
+                  value={tmp.resource}
+                />
+              </>
             )} 
             <Pressable
-              accessibilityHint="Drücke hier um die Person hinzuzufügen" onPress={() => addPerson(tmp)}
+              accessibilityHint="Drücke hier um die Person hinzuzufügen"
+              onPress={() => addPerson(tmp)}
               style={styles.safe}>
               <Text style={styles.btnTxt}>Speichern</Text>
             </Pressable>
@@ -59,7 +61,7 @@ export default function PopUp({
           <Pressable
             accessibilityHint="Fenster schließen"
             onPress={toggle}
-            style={styles.close}>
+            style={styles.close} >
             <AntDesign name="close" size={30} style={{ alignSelf: 'center' }}/>
           </Pressable>
         </View>

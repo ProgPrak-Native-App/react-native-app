@@ -6,8 +6,8 @@ export type textProps = {
   id: number;
   title: string;
   subtitle: string;
-  goBack: ( id: number ) => void;
-  goAhead: ( id: number ) => void;
+  goBack: (id: number) => void;
+  goAhead: (id: number) => void;
 };
 
 function TextHeader(props: textProps) {
@@ -18,15 +18,15 @@ function TextHeader(props: textProps) {
           accessibilityLabel="Weiter"
           onPress={() => props.goBack(props.id)}
           style={[styles.button, styles.goBack]}>
-            <AntDesign color="black" name="left" size={30}/>
-        </Pressable>   
-        <Text style={styles.headerTxt}>{props.title}</Text>  
-        <Pressable 
+          <AntDesign color="black" name="left" size={30}/>
+        </Pressable>
+        <Text style={styles.headerTxt}>{props.title}</Text>
+        <Pressable
           accessibilityLabel="Zurück"
           onPress={() => props.goAhead(props.id)}
-          style={[styles.button,styles.goAhead]}>
-            <AntDesign name="right" size={30} color="black"  />
-        </Pressable> 
+          style={[styles.button, styles.goAhead]}>
+          <AntDesign color="black" name="right" size={30} />
+        </Pressable>
       </View>
       <View>
         <Text style={styles.text}>{props.subtitle}</Text>
@@ -37,25 +37,25 @@ function TextHeader(props: textProps) {
 const styles = StyleSheet.create({
   header: {
     width: '100%',
-    position: 'relative', 
-    flexDirection: 'row', 
+    position: 'relative',
+    flexDirection: 'row',
     justifyContent: 'space-between',
   },
   headerTxt: {
     marginTop: 20,
-    fontSize: 25, 
-    fontWeight: 'bold', 
+    fontSize: 25,
+    fontWeight: 'bold',
     textAlign: 'center',
-  }, 
+  },
   text: {
-    fontSize: 18, 
+    fontSize: 18,
     textAlign: 'center',
-    marginTop: 10, 
-    marginHorizontal: 10, 
-    lineHeight: 18 *1.5,
+    marginTop: 10,
+    marginHorizontal: 10,
+    lineHeight: 18 * 1.5,
   },
   button: {
-    flexDirection : 'row',
+    flexDirection: 'row',
     alignItems: 'center',
     zIndex: 10,
     marginTop: 20,

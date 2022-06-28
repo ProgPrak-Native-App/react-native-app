@@ -61,7 +61,7 @@ export default function App() {
               }}
             />
             <Tab.Screen
-              component={SocialSupportNavigation}
+              component={Motivator}
               name="Motivators"
               options={{
                 title: 'Übungen',

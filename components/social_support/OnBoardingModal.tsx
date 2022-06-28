@@ -1,11 +1,11 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import {Text, Modal, View, StyleSheet, Pressable } from 'react-native';
+import { Text, Modal, View, StyleSheet, Pressable } from 'react-native';
 import { ARROW_GRAY, ORANGE, PRIMARY, PURPLE, SIZES, WHITE } from '../../styles';
 import { SocialSupportStackParamList } from './SocialNavigation';
 
 const textLvl1 = [
-  { 
+  {
     heading: '',
     text: 'Für diese Übung trägst Du Menschen aus Deinem Umfeld in folgendes Schema ein. Du selbst bist der Mittelpunkt.'
   },
@@ -65,12 +65,12 @@ export default function OnBoardingModal({ toggle, level }: { toggle: () => void;
       setOuterColor('#c8feed');
     }
     setCount((prev) => prev - 1);
-  }
+  };
 
   const expanding = () => {
     if (count === 0) {
-      setInnerColor(ORANGE);    
-    }else if (count === 1 ) {
+      setInnerColor(ORANGE);
+    }else if (count === 1) {
       setInnerColor('#f9bf9e');
       setMiddleColor(PURPLE);
     } else if (count === 2) {
@@ -80,26 +80,28 @@ export default function OnBoardingModal({ toggle, level }: { toggle: () => void;
       toggle();
     }
     setCount((prev) => prev + 1);
-  }
+  };
   return (
     <Modal transparent={true}>
       <View style={styles.overlay}>
         <View style={styles.background}>
-          { level === 1 && (
+          {level === 1 && (
             <>
               <View style={[styles.container, { flex: 0 }]}>
-                <View style={[styles.outerCircle, { backgroundColor: outerColor }]}/>
-                <View style={[styles.middleCircle, { backgroundColor: middleColor }]}/>
-                <View style={[styles.innerCircle, { backgroundColor: innerColor }]}/>
-                <View style={ styles.meCircle }><Text style={{ fontSize: 18 }}>ICH</Text></View>
-              </View> 
+                <View style={[ styles.outerCircle, { backgroundColor: outerColor }]}/>
+                <View style={[ styles.middleCircle, { backgroundColor: middleColor }]}/>
+                <View style={[ styles.innerCircle, { backgroundColor: innerColor }]}/>
+                <View style={styles.meCircle}>
+                  <Text style={{ fontSize: 18 }}>ICH</Text>
+                </View>
+              </View>
               <View style={{ flex: 0, minHeight: 150 }}>
                 <Text style={styles.heading}>{textLvl1[count].heading}</Text>
                 <Text style={styles.text}>{textLvl1[count].text}</Text>
               </View>
             </>
           )}
-          { level === 2 && (
+          {level === 2 && (
             <>
               <View style={styles.container}>
                 <View style={{ flex: 0 }}>
@@ -113,17 +115,15 @@ export default function OnBoardingModal({ toggle, level }: { toggle: () => void;
             </>
           )}
           <View style={styles.btnContainer}>
-            <Pressable
-              onPress={shrinking}
+            <Pressable onPress={shrinking}
               style={[styles.button, styles.back]}>
-              <Text style={{fontSize: SIZES.font}}>ZURÜCK</Text>
-            </Pressable>   
-            <Pressable
-              onPress={expanding}
+              <Text style={{ fontSize: SIZES.font }}>ZURÜCK</Text>
+            </Pressable>
+            <Pressable onPress={expanding}
               style={[styles.button, styles.next]}>
-                <Text style={[styles.buttonTxt, { fontSize: SIZES.font, textAlign: 'center' }]}>
-                  {count < 3 ? "WEITER" : "ÜBUNG BEGINNEN"}</Text>
-            </Pressable> 
+              <Text style={[styles.buttonTxt, { fontSize: SIZES.font, textAlign: 'center' }]}>
+                {count < 3 ? 'WEITER' : 'ÜBUNG BEGINNEN'}</Text>
+            </Pressable>
           </View>
         </View>
       </View>
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     fontSize: SIZES.font,
     textAlign: 'center',
-    lineHeight: SIZES.default_line_height, 
+    lineHeight: SIZES.default_line_height,
   },
   container: {
     marginTop: 10,
@@ -171,11 +171,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   meCircle: {
-    height:80,
-    width: 80, 
+    height: 80,
+    width: 80,
     borderColor: ORANGE,
-    borderWidth: 2, 
-    borderRadius: 50, 
+    borderWidth: 2,
+    borderRadius: 50,
     backgroundColor: WHITE,
     justifyContent: 'center',
     alignItems: 'center',
@@ -184,28 +184,23 @@ const styles = StyleSheet.create({
   innerCircle: {
     height: 130,
     width: 130,
-    borderRadius: 100, 
+    borderRadius: 100,
     position: 'absolute',
   },
   middleCircle: {
-    height: 190, 
+    height: 190,
     width: 190,
-    borderRadius: 150, 
+    borderRadius: 150,
     position: 'absolute',
   },
   outerCircle: {
-    height: 250, 
+    height: 250,
     width: 250,
     borderColor: PRIMARY,
-    borderRadius: 200, 
+    borderRadius: 200,
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  modalView: {
-    top: '50%',
-    textAlign: 'center',
-    backgroundColor: WHITE,
   },
   btnContainer: {
     minHeight: 50,
@@ -213,7 +208,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '90%', 
+    width: '90%',
     alignSelf: 'center',
   },
   buttonTxt: {
@@ -225,7 +220,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     textAlign: 'center',
     justifyContent: 'center',
-    flexDirection : 'row',
+    flexDirection: 'row',
     alignItems: 'center',
     marginTop: 20,
     minWidth: '40%',
