@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
-import Title from "../../Title";
-import  WikiHeader  from "./WikiHeader";
-import  EntryTitle  from "./EntryTitle";
-import { EntryProps, wikiEntry, BASE_URL } from "../constant/constants";
-import { TERTIARY, SIZES } from "../../../styles";
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, ScrollView, View } from 'react-native';
+import Title from '../../Title';
+import  WikiHeader  from './WikiHeader';
+import  EntryTitle  from './EntryTitle';
+import { BASE_URL,EntryProps, wikiEntry, } from '../constant/constants';
+import { TERTIARY, SIZES } from '../../../styles';
 
 const alphaBet: Set<string> = new Set();
 
@@ -48,7 +48,7 @@ const Wiki = () => {
     setFilteredEntries(filteredData);
   };
 
-  /** * populate dataBase in the scheme of {A => {[....], title: "A ..."}, B=>{...}, ...} the first time */
+  /*** populate dataBase in the scheme of {A => {[....], title: "A ..."}, B=>{...}, ...} the first time */
   const populateData = (entries: wikiEntry[]) => {
     const helperArray: EntryProps[] = [];
     entries.forEach((element) => {
@@ -84,7 +84,7 @@ const Wiki = () => {
 
   return (
     <>
-      <Title color={TERTIARY} text="Wiki" />
+      <Title color={TERTIARY} text='Wiki' />
       <WikiHeader onSearch={handleSearch} />
       <ScrollView>
         <View style={styles.container}>

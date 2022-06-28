@@ -12,9 +12,9 @@ const EntryTitle = ({letter, entry}: EntryProps) => {
             <Text style={styles.capital}>{letter}</Text>
              {entry.map( (item, i) => (
                 <Pressable
-                    style={styles.container} 
+                    key={i}
                     onPress={()=> {navigate('WikiEntry', item)}} 
-                    key={i}>
+                    style={styles.container} >
                     <Text style={styles.text}>{item.title}</Text>
                 </Pressable>))}
         </View>

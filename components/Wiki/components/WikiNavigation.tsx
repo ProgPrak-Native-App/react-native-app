@@ -16,7 +16,7 @@ const WikiStack = createNativeStackNavigator();
 export default function WikiNavigation() {
   return (
     <WikiStack.Navigator
-      initialRouteName="WikiStart"
+      initialRouteName='WikiStart'
       screenOptions={{
         headerShown: false,
       }}>
