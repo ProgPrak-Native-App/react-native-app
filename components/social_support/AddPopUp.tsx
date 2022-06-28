@@ -14,7 +14,6 @@ export default function PopUp({
   toggle: () => void;
   level: number;
 }) {
-  
   const [tmp, setTmp] = useState(person);
   const handleInput = (v: string, val: string) => {
     setTmp((prevTmp) => {
@@ -37,7 +36,7 @@ export default function PopUp({
               placeholderTextColor="#4F4F4F"
               style={styles.searchInput}
               value={tmp.name}
-            /> 
+            />
             {level === 2 && (
               <>
                 <Text style={styles.label}>Ressource:</Text>
@@ -50,7 +49,7 @@ export default function PopUp({
                   value={tmp.resource}
                 />
               </>
-            )} 
+            )}
             <Pressable
               accessibilityHint="Drücke hier um die Person hinzuzufügen"
               onPress={() => addPerson(tmp)}
@@ -58,15 +57,12 @@ export default function PopUp({
               <Text style={styles.btnTxt}>Speichern</Text>
             </Pressable>
           </View>
-          <Pressable
-            accessibilityHint="Fenster schließen"
-            onPress={toggle}
-            style={styles.close} >
-            <AntDesign name="close" size={30} style={{ alignSelf: 'center' }}/>
+          <Pressable accessibilityHint="Fenster schließen" onPress={toggle} style={styles.close} >
+            <AntDesign name="close" size={30} style={{ alignSelf: 'center' }} />
           </Pressable>
         </View>
       </View>
-    </Modal>  
+    </Modal>
   );
 }
 

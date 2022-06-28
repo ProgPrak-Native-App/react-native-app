@@ -9,17 +9,17 @@ export default function SocialStart() {
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
   return (
     <>
-      <Title back color={ORANGE} text="Soziale Unterstützung"/>
+      <Title back color={ORANGE} text="Soziale Unterstützung" />
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.text}>
             Anderen Personen tragen eine Menge dazu bei, wie es uns geht und können helfen zurechtzukommen.
           </Text>
           <Text style={[styles.text, { marginTop: SIZES.default_pSpace }]}>
-            Gerade auch wir allein vielleicht einmal an unsere Grenzen stoßen – 
-            frei nach dem Motto gemeinsam sind wir stark!
+            Gerade auch wir allein vielleicht einmal an unsere Grenzen stoßen – frei nach dem Motto gemeinsam sind wir
+            stark!
           </Text>
-          <Pressable 
+          <Pressable
             accessibilityHint="Mehr zur Übung"
             onPress={() => navigate('IntroVideoScreen')}
             style={styles.button}>

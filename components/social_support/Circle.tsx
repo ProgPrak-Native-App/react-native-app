@@ -26,16 +26,15 @@ export default function Circle(props: circleProps) {
           props.toggleUpdate(elem.id);
         }}
         style={[
-            styles.backDrop,
-            { 
-              left: Math.round(width / 2 + radius * Math.cos(angle) - width / 2) + 115,
-              top: Math.round(height / 2 + radius * Math.sin(angle) - height / 2) + 115,
-              position:'absolute',
-            },
-        ]}
-      >
-          <Text style={{ paddingHorizontal: 5, paddingVertical: 5 }}>{elem.name}</Text>
-            {props.level === 2 && <Text style={{ paddingHorizontal: 7, paddingVertical: 5 }}>{elem.resource}</Text>}
+          styles.backDrop,
+          {
+            left: Math.round(width / 2 + radius * Math.cos(angle) - width / 2) + 115,
+            top: Math.round(height / 2 + radius * Math.sin(angle) - height / 2) + 115,
+            position:'absolute',
+          },
+        ]}>
+        <Text style={{ paddingHorizontal: 5, paddingVertical: 5 }}>{elem.name}</Text>
+        {props.level === 2 && <Text style={{ paddingHorizontal: 7, paddingVertical: 5 }}>{elem.resource}</Text>}
       </Pressable>
     );
   };
@@ -47,14 +46,14 @@ export default function Circle(props: circleProps) {
   const height = 300;
 
   let angle = 0;
-  const step = (2 * Math.PI ) / props.people.length;  
+  const step = (2 * Math.PI) / props.people.length;
   if (props.people.length > 0 && props.people[0].name !== '') {
     for (let i = 0; i < props.people.length; i++) {
       circleElems.push(calc(props.people[i], angle));
       angle += step;
     }
   }
-  return <View style={styles.container}>{circleElems}</View>
+  return <View style={styles.container}>{circleElems}</View>;
 }
 const styles = StyleSheet.create({
   container: {

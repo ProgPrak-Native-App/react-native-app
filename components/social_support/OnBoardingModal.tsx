@@ -7,9 +7,9 @@ import { SocialSupportStackParamList } from './SocialNavigation';
 const textLvl1 = [
   {
     heading: '',
-    text: 'Für diese Übung trägst Du Menschen aus Deinem Umfeld in folgendes Schema ein. Du selbst bist der Mittelpunkt.'
+    text: 'Für diese Übung trägst Du Menschen aus Deinem Umfeld in folgendes Schema ein. Du selbst bist der Mittelpunkt.',
   },
-  { 
+  {
     heading: 'Innerer Kreis:',
     text: 'Trage hier die wichtigsten Menschen in deinem Leben ein.',
   },
@@ -17,30 +17,30 @@ const textLvl1 = [
     heading: 'Mittlerere Kreis:',
     text: 'Trage hier Personen ein, die dir noch nahe stehen und/oder mit denen du regelmäßig Zeit verbringst.',
   },
-  { 
-    heading : 'Äußerer Kreis:',
-    text:'Trage hier Bekannte und eher entferntere Personen ein, mit denen du aber auch ab und zu zu tun hast.',
+  {
+    heading: 'Äußerer Kreis:',
+    text: 'Trage hier Bekannte und eher entferntere Personen ein, mit denen du aber auch ab und zu zu tun hast.',
   },
 ];
 const textLvl2 = [
-  { 
-    icon: '❤️📚 💪', 
-    heading: '', 
+  {
+    icon: '❤️📚 💪',
+    heading: '',
     text: 'Schaue dir noch einmal dein soziales Netz an. Überlege, welche Personen dich vielleicht schon wie unterstützt haben oder an wen du dich in Bezug auf bestimmten Themen beziehungsweise Bedürfnissen am ehsten wenden würdest und versehe die Personen in deinem sozialen Netz mit den entsprechenden, folgenden Symbolen. (Jede Person kann 0-3 Symbole zugeordnet bekommen.)',
   },
-  {   
+  {
     icon: '❤️',
-    heading: 'Emotionale Unterstützung:', 
+    heading: 'Emotionale Unterstützung:',
     text: 'Manchmal tut es einfach nur gut, über die eigenen Gefühle sprechen zu können und sich verstanden und akzeptiert zu fühlen beziehungsweise braucht man vielleicht auch nur eine mitfühlende Umarmung, Aufmunterung oder das überhaupt jemand da ist.',
   },
-  { 
-    icon: '📚 ', 
-    heading: 'Informationale Unterstützung:', 
+  {
+    icon: '📚 ',
+    heading: 'Informationale Unterstützung:',
     text: 'Zwei Köpfe sind nicht selten besser als einer und Wissen, Ratschläge und Meinungen anderer können hilfreich sein, wenn wir uns mit Dingen nicht so sicher fühlen – immerhin, vielleicht hat eine andere Person schon Erfahrungen mit einem bestimmten Problem gemacht oder kennt sich mit dem Thema aus, was uns Sorgen bereitet.',
   },
   {
     icon: '💪',
-    heading : 'Instrumentale Unterstützung:', 
+    heading: 'Instrumentale Unterstützung:', 
     text: 'Bei so manchem Problem, was uns Kopfzerbrechen bereitet, kann praktische Hilfe Anderer und sei sie in Form von Taten oder materiellen Dingen einiges dazu beitragen, die Situation zu lösen oder zumindest besser zu machen.',
   },
 ];
@@ -88,9 +88,9 @@ export default function OnBoardingModal({ toggle, level }: { toggle: () => void;
           {level === 1 && (
             <>
               <View style={[styles.container, { flex: 0 }]}>
-                <View style={[ styles.outerCircle, { backgroundColor: outerColor }]}/>
-                <View style={[ styles.middleCircle, { backgroundColor: middleColor }]}/>
-                <View style={[ styles.innerCircle, { backgroundColor: innerColor }]}/>
+                <View style={[styles.outerCircle, { backgroundColor: outerColor }]} />
+                <View style={[styles.middleCircle, { backgroundColor: middleColor }]} />
+                <View style={[styles.innerCircle, { backgroundColor: innerColor }]} />
                 <View style={styles.meCircle}>
                   <Text style={{ fontSize: 18 }}>ICH</Text>
                 </View>
@@ -115,14 +115,13 @@ export default function OnBoardingModal({ toggle, level }: { toggle: () => void;
             </>
           )}
           <View style={styles.btnContainer}>
-            <Pressable onPress={shrinking}
-              style={[styles.button, styles.back]}>
+            <Pressable onPress={shrinking} style={[styles.button, styles.back]}>
               <Text style={{ fontSize: SIZES.font }}>ZURÜCK</Text>
             </Pressable>
-            <Pressable onPress={expanding}
-              style={[styles.button, styles.next]}>
+            <Pressable onPress={expanding} style={[styles.button, styles.next]}>
               <Text style={[styles.buttonTxt, { fontSize: SIZES.font, textAlign: 'center' }]}>
-                {count < 3 ? 'WEITER' : 'ÜBUNG BEGINNEN'}</Text>
+                {count < 3 ? 'WEITER' : 'ÜBUNG BEGINNEN'}
+              </Text>
             </Pressable>
           </View>
         </View>

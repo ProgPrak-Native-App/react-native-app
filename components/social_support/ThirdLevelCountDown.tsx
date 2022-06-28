@@ -11,114 +11,118 @@ import { differenceInSeconds } from 'date-fns';
 
 /** source for storage code https://aloukissas.medium.com/how-to-build-a-background-timer-in-expo-react-native-without-ejecting-ea7d67478408 */
 export default function ThirdLevelCountDown() {
-    const {navigate} = useNavigation<NavigationProp<SocialSupportStackParamList>>();
+  const {navigate} = useNavigation<NavigationProp<SocialSupportStackParamList>>();
 
-    const timeLimit = 1//14 * 24 * 60 * 60
-    const [toggle, setToggle] = useState<Boolean>()
+  const timeLimit = 1; 
+  // 14 * 24 * 60 * 60
+  const [toggle, setToggle] = useState<Boolean>();
 
-    const [toggleFwd, setToggleFwd] = useState(false)
-    const [secondsLeft, setSecondsLeft] = useState<number>()
+  const [toggleFwd, setToggleFwd] = useState(false);
+  const [secondsLeft, setSecondsLeft] = useState<number>();
 
     /** store the timestamp when the start btn was clicked */
-    async function recordStartTime (){
-        try {
-            const now = new Date();
-            await AsyncStorage.setItem("@start_time", now.toISOString());
-        } catch (err) {
-            console.warn(err);
-        }
-    };
+  async function recordStartTime (){
+    try {
+      const now = new Date();
+      await AsyncStorage.setItem('@start_time', now.toISOString());
+      } catch (err) {
+        console.warn(err);
+      }
+  };
     /** if sthg stored in async as start time challeng is running => hide start btn */
-    async function setToggeling(): Promise<Boolean> {
-        if( await AsyncStorage.getItem("@start_time") !== null){
-            return true
-        }else{
-            return false
-        }
+  async function setToggeling(): Promise<Boolean> {
+    if (await AsyncStorage.getItem('@start_time') !== null) {
+      return true;
+    } else {
+      return false;
     }
+  };
 
-    /** when smth was in async storage then update the timer */
-    const setCountDown = async ()  => {
-        const startTime =  await AsyncStorage.getItem("@start_time")
-        const now = new Date();
-        if(startTime){
-            const timeLeft =  timeLimit - differenceInSeconds(now, Date.parse(startTime))
-            if(timeLeft > 0) {
-                return timeLeft
-            }else {
-                AsyncStorage.clear()
-                console.log(await AsyncStorage.getItem("@start_time"))
-                return 0
-            }
-        }
-        return timeLimit
-     }
+  /** when smth was in async storage then update the timer */
+  const setCountDown = async ()  => {
+    const startTime =  await AsyncStorage.getItem('@start_time');
+    const now = new Date();
+    if (startTime) {
+      const timeLeft =  timeLimit - differenceInSeconds(now, Date.parse(startTime));
+      if (timeLeft > 0) {
+        return timeLeft;
+      } else {
+        AsyncStorage.clear();
+        return 0;
+      }
+    }
+    return timeLimit;
+  };
     
-     /** when start btn clicked hide & set timestamp */
-    const onClick = () => {
-        recordStartTime()
-        setCountDown().then(time => setSecondsLeft(time))
-        setToggle(prev => !prev)
-    }
+  /** when start btn clicked hide & set timestamp */
+  const onClick = () => {
+    recordStartTime();
+    setCountDown().then((time) => setSecondsLeft(time));
+    setToggle((prev) => !prev);
+  }
     
-    const onRestart = () => {
-        recordStartTime()
-        setSecondsLeft(timeLimit)
-        setToggleFwd(prev => !prev)
-        setToggle(prev => !prev)
-    }
+  const onRestart = () => {
+    recordStartTime();
+    setSecondsLeft(timeLimit);
+    setToggleFwd((prev) => !prev);
+    setToggle((prev) => !prev);
+  };
 
-    const onComplete = () => {
-        setToggleFwd(prev => !prev)
-        setSecondsLeft(timeLimit)
-    }
+  const onComplete = () => {
+    setToggleFwd((prev) => !prev);
+    setSecondsLeft(timeLimit);
+  };
 
-    useEffect(() => {
-        setToggeling().then(bool => setToggle(bool)).then()
-        setCountDown().then(time => setSecondsLeft(time))
-    }, []) 
+  useEffect(() => {
+    setToggeling().then((bool) => setToggle(bool)).then();
+    setCountDown().then((time) => setSecondsLeft(time));
+  }, []);
 
   return (
     <>
-      <Title text="Soziale Unterstützung" color={ORANGE} back />
+      <Title back color={ORANGE} text="Soziale Unterstützung" />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.body}>
           Challenge dich selbst – markiere in jedem der 3 Kreise eine Person und schaue in den nächsten 
-          2 Wochen, ob du sie vielleicht auf die eine oder andere Weise unterstützen kannst und wie es dir dabei 
+          2 Wochen, ob du
+          sie vielleicht auf die eine oder andere Weise unterstützen kannst und wie es dir dabei 
           geht.
         </Text>
-        {(secondsLeft !== undefined && toggle) && (
+        {secondsLeft !== undefined && toggle && (
           <CountDown
             digitStyle={{ backgroundColor: PRIMARY }}
             digitTxtStyle={{ color: BLACK }}
             onFinish={onComplete}
             size={30}
             style={{ marginVertical:35 }}
+            timeLabels={{ d: 'Tage', h: 'Stunden', m: 'Minuten', s: 'Sekunden' }}
             timeLabelStyle={{ color: BLACK, fontSize: 14 }}
-            timeToShow={['D', 'H','M', 'S']}
-            timeLabels={{d: 'Tage', h: 'Stunden', m: 'Minuten', s: 'Sekunden'}}
+            timeToShow={['D', 'H', 'M', 'S']}
             until={secondsLeft}
           />
         )}
         {!toggle && (
-          <Pressable accessibilityHint="Starte einen 2 wöchigen Countdown" onPress={onClick}
-            style={styles.button}>
+          <Pressable accessibilityHint="Starte einen 2 wöchigen Countdown" onPress={onClick} style={styles.button}>
             <Text style={[styles.body, { fontWeight: 'bold' }]}>Start challenge!</Text>
-          </Pressable>  
+          </Pressable>
         )}
         {toggleFwd && (
           <View style={styles.btnContainer}>
-            <Pressable accessibilityHint="Möchtest Du die Challenge neu starten?" onPress={onRestart}
+            <Pressable
+              accessibilityHint="Möchtest Du die Challenge neu starten?"
+              onPress={onRestart}
               style={styles.buttons}>
               <Text style={[styles.body, { fontWeight: 'bold' }]}>Re-start challenge?</Text>
-            </Pressable> 
-            <Pressable accessibilityHint="Zum Feedback und Übung beenden" onPress={() => navigate('Feedback', {name: 'MoodEntry'})}
+            </Pressable>
+            <Pressable
+              accessibilityHint="Zum Feedback und Übung beenden" 
+              onPress={() => navigate('Feedback', {name: 'MoodEntry'})}
               style={styles.buttons}>
               <Text style={[styles.body, { fontWeight: 'bold' }]}>Weiter</Text>
-            </Pressable> 
+            </Pressable>
           </View>
         )}
-        </ScrollView>
+      </ScrollView>
     </>
   );
 }
@@ -141,7 +145,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 48,
-    minWidth: "70%",
+    minWidth: '70%',
     backgroundColor: TERTIARY,
     marginVertical: 40,
     borderColor: DARK_GREY,
@@ -163,5 +167,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-evenly',
-  }
+  },
 });

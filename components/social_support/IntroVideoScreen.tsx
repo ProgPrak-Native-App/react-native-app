@@ -3,13 +3,11 @@ import React, { useState } from 'react';
 import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { SocialSupportStackParamList } from './SocialNavigation';
-import { BACKGROUND, BLACK, ORANGE, SIZES, TERTIARY } from '../../styles';
+import { BACKGROUND, ORANGE, SIZES, TERTIARY } from '../../styles';
 import { Video } from 'expo-av';
 
 export default function SocialIntroduction() {
-  
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
-
   const video = React.useRef(null);
   const [status, setStatus] = useState({});
   return (
@@ -30,16 +28,13 @@ export default function SocialIntroduction() {
           />
         </View>
         <View style={[styles.buttons, { flex: 0 }]}>
-          <Pressable onPress={() => navigate('SupportExercise', { level: 1 })}
-            style={styles.buttonLvl} >
+          <Pressable onPress={() => navigate('SupportExercise', { level: 1 })} style={styles.buttonLvl}>
             <Text style={styles.text}>Level 1</Text>
           </Pressable>
-          <Pressable onPress={() => navigate('SupportExercise', { level: 2 })}
-            style={styles.buttonLvl}>
+          <Pressable onPress={() => navigate('SupportExercise', { level: 2 })} style={styles.buttonLvl}>
             <Text style={styles.text}>Level 2</Text>
           </Pressable>
-          <Pressable onPress={() => navigate('SupportExercise', { level: 3 })}
-            style={styles.buttonLvl}>
+          <Pressable onPress={() => navigate('SupportExercise', { level: 3 })} style={styles.buttonLvl}>
             <Text style={styles.text}>Level 3</Text>
           </Pressable>
         </View>

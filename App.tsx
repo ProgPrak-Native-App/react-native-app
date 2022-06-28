@@ -10,7 +10,6 @@ import MoodDiary from './components/mood_diary/MoodDiary';
 import WikiNavigation from './components/Wiki/components/WikiNavigation';
 import Motivator from './components/motivators/Motivator';
 import Profile from './components/profile/Profile';
-import SocialSupportNavigation from './components/social_support/SocialNavigation';
 
 export type TabRoutes = {
   Home: undefined;

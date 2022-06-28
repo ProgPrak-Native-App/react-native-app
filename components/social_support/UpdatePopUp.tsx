@@ -10,29 +10,28 @@ const UpdatePopUp = ({
   person,
   toggle,
   level,
-  }: {
+}: {
   updatePerson: (elem: personProp) => void;
   deletePerson: (elem: personProp) => void;
   person: personProp;
   toggle: () => void;
   level: number;
-  }) => {
-
+}) => {
   const [update, setUpdate] = useState(person);
   const handleInput = (v: string, val: string) => {
     setUpdate((prevUpdate) => {
       return {
-        ...prevUpdate, 
+        ...prevUpdate,
         [v]: val,
-      }
+      };
     });
   };
-    
+
   return (
     <Modal transparent={true}>
       <View style={styles.overlay}>
         <View style={styles.popUp}>
-            <View style={styles.container}>
+          <View style={styles.container}>
             <Text style={styles.heading}>Änderungen ? </Text>
             <Text style={styles.label}>Name:</Text>
             <TextInput
@@ -40,50 +39,48 @@ const UpdatePopUp = ({
               accessibilityLabel="Name"
               onChangeText={(val) => handleInput('name', val)}
               placeholder="Name"
-              placeholderTextColor='#4F4F4F'
+              placeholderTextColor="#4F4F4F"
               style={styles.input}
-              value={update.name} 
-            /> 
+              value={update.name}
+            />
             {level === 2 && (
               <>
                 <Text style={styles.label}>Ressource:</Text>
                 <TextInput
                   accessibilityHint="Trage hier die Ressource der Person ein"
                   accessibilityLabel="Ressource"
-                  onChangeText={(val) => handleInput("resource",val)}
+                  onChangeText={(val) => handleInput('resource',val)}
                   placeholder="Ressource"
-                  placeholderTextColor='#4F4F4F'
+                  placeholderTextColor="#4F4F4F"
                   style={styles.input}
                   value={update.resource}
-                /> 
+                />
               </>
             )}
             <View style={styles.buttons}>
-              <Pressable 
-                  accessibilityHint="Drück hier um Person aus dem Kreis zu löschen."
-                  onPress={() => deletePerson(person)}
-                  style={[styles.button, { backgroundColor: RED}]}>
-                    <Text style={styles.btnTxt}> Person Löschen</Text>
+              <Pressable
+                accessibilityHint="Drück hier um Person aus dem Kreis zu löschen."
+                onPress={() => deletePerson(person)}
+                style={[styles.button, { backgroundColor: RED}]}>
+                <Text style={styles.btnTxt}> Person Löschen</Text>
               </Pressable>
-              <Pressable 
-                  accessibilityHint="Drück hier um die Änderungen zu speichern."
-                  onPress={ () => updatePerson(update)}
-                  style={[styles.button, { backgroundColor: PRIMARY}]} >
-                    <Text style={styles.btnTxt}>Änderungen Speichern</Text>
+              <Pressable
+                accessibilityHint="Drück hier um die Änderungen zu speichern."
+                onPress={ () => updatePerson(update)}
+                style={[styles.button, { backgroundColor: PRIMARY}]} >
+                <Text style={styles.btnTxt}>Änderungen Speichern</Text>
               </Pressable>
             </View>
-            <Pressable 
-              accessibilityLabel="Fenster schließen"
-              onPress={toggle} 
+            <Pressable accessibilityLabel="Fenster schließen" onPress={toggle} 
               style={styles.close}>
-              <AntDesign name="close" size={30} style={{ alignSelf: 'center' }}/>
+              <AntDesign name="close" size={30} style={{ alignSelf: 'center' }} />
             </Pressable>
           </View>
         </View>
       </View>
     </Modal>
-  ); 
-}
+  );
+};
 const styles = StyleSheet.create({
   overlay: {
     backgroundColor: 'rgba(0.5,0.5,0.5,0.5)',
@@ -93,11 +90,11 @@ const styles = StyleSheet.create({
   },
   popUp: {
     display: 'flex',
-    position: 'absolute', 
-    zIndex: 100, 
+    position: 'absolute',
+    zIndex: 100,
     alignSelf: 'center',
     top: '30%',
-    width: 300, 
+    width: 300,
     minHeight: 250,
     backgroundColor: BACKGROUND,
     borderRadius: 5,
@@ -129,12 +126,12 @@ const styles = StyleSheet.create({
     backgroundColor: BACKGROUND,
     width: '100%',
     marginVertical: 10,
-    paddingVertical: 10, 
+    paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 20,
   },
   close: {
-    position: 'absolute',   
+    position: 'absolute',
     backgroundColor: WHITE,
     borderColor: BLACK,
     borderWidth: 1,
@@ -142,13 +139,13 @@ const styles = StyleSheet.create({
     height: 48,
     width: 48,
     justifyContent: 'center',
-    top: -35, 
+    top: -35,
     right: -30,
   },
   buttons: {
     display: 'flex',
     flex: 1,
-    marginTop: 10, 
+    marginTop: 10,
     justifyContent: 'space-between',
   },
   button: {

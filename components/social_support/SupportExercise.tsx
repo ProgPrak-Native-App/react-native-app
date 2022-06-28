@@ -63,15 +63,15 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
 
   useEffect(() => {
     data.sort((a, b) => {
-        return a.id - b.id;
+      return a.id - b.id;
     });
     setting(2);
   }, []);
 
-    /** i hope i can delete this soon...
-    * currently sets currscreen data to be displayed & 
-    * sets currentn people array to corresp. screen
-    */
+  /** i hope i can delete this soon...
+   * currently sets currscreen data to be displayed & 
+   * sets currentn people array to corresp. screen
+   */
   const setting = (id: number) => {
     data.map((item) =>
       item.id === id
@@ -90,7 +90,7 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
 
   /** deletes a person */
   const deletePerson = (props: personProp) => {
-    setPeople(prevPeople => prevPeople.filter((elem) => elem.name !== props.name && elem.id !== props.id));
+    setPeople((prevPeople) => prevPeople.filter((elem) => elem.name !== props.name && elem.id !== props.id));
     toggle();
   };
 
@@ -182,15 +182,15 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
               goAhead={goAhead}
               goBack={goBack}
               id={currScreen.id}
-              subtitle={ level === 1 ? currScreen.subtitle : subtitleLvl2 } 
+              subtitle={level === 1 ? currScreen.subtitle : subtitleLvl2}
               title={currScreen.title}
             />
-        </View>
-        <View style={[styles.container, { backgroundColor: PRIMARY }]}>
-          <View style={styles.outer_circle}/>
+          </View>
+          <View style={[styles.container, { backgroundColor: PRIMARY }]}>
+            <View style={styles.outer_circle} />
             <Animated.View
               style={[
-                styles.middle_circle, 
+                styles.middle_circle,
                 {
                   height: middleSize,
                   width: middleSize,
@@ -199,41 +199,48 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
             />
             <Animated.View
               style={[
-                styles.inner_circle, 
+                styles.inner_circle,
                 {
                   height: innerSize,
                   width: innerSize,
                 },
               ]}
             />
-              <View style={styles.me}>
-                <Text style={{ fontSize: 18 }}>Ich</Text>
-              </View>   
+            <View style={styles.me}>
+              <Text style={{ fontSize: 18 }}>Ich</Text>
             </View>
+          </View>
           <View style={styles.container}>
             <Pressable
               accessibilityLabel="Person hinzufügen"
               onPress={() => setAddVisible((prev) => !prev)}
               style={styles.plus}>
-                <FontAwesome5 name="plus" resizeMode="contain" size={24} style={{ alignSelf: 'center' }}/>
-            </Pressable> 
+              <FontAwesome5 name="plus" resizeMode="contain" size={24} style={{ alignSelf: 'center' }}/>
+            </Pressable>
             <Circle
               deletePerson={deletePerson}
               level={level}
               people={people}
               toggleUpdate={fillUpdate}
-              updatePerson={updatePerson}/>
+              updatePerson={updatePerson} 
+            />
           </View>
         </View>
       </ScrollView>
-      { updateVisible && (
-        <UpdatePopUp deletePerson={deletePerson} level={level} person={transferPerson[0]} toggle={toggle} updatePerson={updatePerson}/>
+      {updateVisible && (
+        <UpdatePopUp
+          deletePerson={deletePerson}
+          level={level}
+          person={transferPerson[0]} 
+          toggle={toggle}
+          updatePerson={updatePerson} 
+        />
       )}
-      { addVisible && (
-        <PopUp addPerson={addPerson} level={level} person= { { name: '', resource: '' }} toggle={toggleAdd}/>
+      {addVisible && (
+        <PopUp addPerson={addPerson} level={level} person={{ name: '', resource: '' }} toggle={toggleAdd}/>
       )}
     </>
-  ); 
+  );
 };
 const styles = StyleSheet.create({
   container: {
@@ -256,7 +263,7 @@ const styles = StyleSheet.create({
     height: 48,
     width: 48,
     borderWidth: 2,
-    borderRadius: 48 / 2, 
+    borderRadius: 48 / 2,
     position: 'absolute',
   },
   outer_circle: {
