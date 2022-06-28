@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, LayoutAnimation } from 'react-native';
+import { View, Text, StyleSheet, Pressable, LayoutAnimation } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { ERROR } from '../../../styles';
 
 const Accordion = ({ title, descr }: { title: string; descr: any }) => {
   const [collapsed, setCollapsed] = useState(true);
@@ -11,11 +10,11 @@ const Accordion = ({ title, descr }: { title: string; descr: any }) => {
     setCollapsed(!collapsed);
   };
   return (
-    <View style={{ borderBottomWidth: 2, borderBottomColor: ERROR }}>
-      <TouchableOpacity onPress={toggle} style={styles.container}>
+    <View style={{ borderBottomWidth: 2,}}>
+      <Pressable onPress={toggle} style={styles.container}>
         <Text style={{ textTransform: 'capitalize' }}>{title}</Text>
         <FontAwesome5 name={collapsed ? 'caret-down' : 'caret-up'} size={24} />
-      </TouchableOpacity>
+      </Pressable>
       <View>
         {!collapsed && (
           <Text style={styles.container}>

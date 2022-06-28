@@ -6,8 +6,8 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from './Title';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import MoodEntry from './mood_diary/MoodEntry';
-import CompassionNavigation from './compassion/CompassionNavigation';
-import MotivatorCompleted from './MotivatorCompleted';
+//import CompassionNavigation from './compassion/CompassionNavigation';
+//import MotivatorCompleted from './MotivatorCompleted';
 
 export type FeedbackRoutes = {
     Feedback: {name: keyof FeedbackRoutes},
@@ -20,14 +20,14 @@ export type FeedbackScreenProps<T extends keyof FeedbackRoutes> =
 NativeStackScreenProps<FeedbackRoutes, T>;
 
 const Stack = createNativeStackNavigator<FeedbackRoutes>();
-
+/* <Stack.Screen name="CompassionNavigation" component={CompassionNavigation} />
+          <Stack.Screen name="MotivatorCompleted" component={MotivatorCompleted} />*/
 export function FeedbackNavigation() {
     return (
       <>
         <Stack.Navigator screenOptions={{ headerShown: false, animation: "none" }}>
           <Stack.Screen name="MoodEntry" component={MoodEntry} />
-          <Stack.Screen name="CompassionNavigation" component={CompassionNavigation} />
-          <Stack.Screen name="MotivatorCompleted" component={MotivatorCompleted} />
+          
         </Stack.Navigator>
       </>
     );
@@ -172,7 +172,6 @@ const styles = StyleSheet.create({
         borderColor: '#808080',
         borderRadius: 20,
         borderWidth: 1,
-
         padding: 10,
   
     },
