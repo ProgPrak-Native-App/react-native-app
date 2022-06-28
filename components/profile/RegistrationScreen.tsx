@@ -1,8 +1,10 @@
 import React from 'react';
-import { Keyboard, Pressable, ScrollView, StyleSheet, Text } from 'react-native';
+import { Keyboard, Pressable, StyleSheet, ScrollView, Text } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import Title from '../Title';
 import Input from './Input';
+
+import { useNavigation } from '@react-navigation/native';
 import { TERTIARY } from '../../styles';
 
 const styles = StyleSheet.create({
@@ -37,8 +39,10 @@ export default function RegistrationScreen() {
 
   const validate = () => {
     Keyboard.dismiss();
+    let valid = true;
     if (!inputs.email) {
       handleError('Bitte Mailadresse eingeben', 'email');
+      valid = false;
     } else if (
       !inputs.email.match(
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -54,7 +58,7 @@ export default function RegistrationScreen() {
     }
     if (!inputs.repeatPassword) {
       handleError('Bitte Passwort erneut eingeben', 'repeatPassword');
-    } else if (inputs.repeatPassword !== inputs.password) {
+    } else if (inputs.repeatPassword != inputs.password) {
       handleError('Passwörter müssen übereinstimmen', 'repeatPassword');
     }
 
@@ -64,6 +68,8 @@ export default function RegistrationScreen() {
       handleError('Das Alter muss eine Zahl sein', 'age');
     }
   };
+
+  const register = () => {};
 
   const handleOnChange = (text: string, input: string) => {
     setInputs((prevState) => ({ ...prevState, [input]: text }));
@@ -85,8 +91,7 @@ export default function RegistrationScreen() {
             onFocus={() => {
               handleError('', 'email');
             }}
-            password={false}
-          />
+            password={false}></Input>
           <Input
             error={errors.password}
             iconName={'lock-outline'}
@@ -95,8 +100,7 @@ export default function RegistrationScreen() {
             onFocus={() => {
               handleError('', 'password');
             }}
-            password={true}
-          />
+            password={true}></Input>
           <Input
             error={errors.repeatPassword}
             iconName={'lock-outline'}
@@ -105,8 +109,7 @@ export default function RegistrationScreen() {
             onFocus={() => {
               handleError('', 'repeatPassword');
             }}
-            password={true}
-          />
+            password={true}></Input>
           <Input
             error={errors.age}
             iconName={'ghost'}
@@ -115,8 +118,7 @@ export default function RegistrationScreen() {
             onFocus={() => {
               handleError('', 'age');
             }}
-            password={false}
-          />
+            password={false}></Input>
           <Pressable onPress={() => validate()} style={styles.button}>
             <Text style={styles.buttonText}>Registrieren</Text>
           </Pressable>

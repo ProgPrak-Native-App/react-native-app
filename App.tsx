@@ -5,18 +5,25 @@ import React from 'react';
 import Home from './components/Home';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { BACKGROUND, PRIMARY, SHADOW } from './styles';
 import MoodDiary from './components/mood_diary/MoodDiary';
-import Wiki from './components/Wiki';
+import { Wiki } from './components/Wiki';
 import Motivator from './components/motivators/Motivator';
 import Profile from './components/profile/Profile';
+import {
+  LAYOUT_COLOR_SAFEAREA_BACKGROUND,
+  PRIMARY,
+  SHADOW_COLOR,
+  STATE_COLOR_ACTIVE_TINT,
+  STATE_COLOR_INACTIVE_BACKGROUND,
+  STATE_COLOR_INACTIVE_TINT,
+} from './styles';
 
 export type TabRoutes = {
   Home: undefined;
   MoodDiary: undefined;
   Wiki: undefined;
   Motivators: undefined;
-  EmergencyNumbers: undefined;
+  EmergencyNumber: undefined;
   Profil: undefined;
 };
 
@@ -25,7 +32,7 @@ const Tab = createBottomTabNavigator<TabRoutes>();
 export default function App() {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1, backgroundColor: BACKGROUND }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: LAYOUT_COLOR_SAFEAREA_BACKGROUND }}>
         <NavigationContainer>
           <Tab.Navigator
             screenOptions={{
@@ -33,9 +40,10 @@ export default function App() {
               tabBarLabelStyle: styles.label,
               tabBarItemStyle: styles.items,
               tabBarStyle: styles.bar,
+              tabBarInactiveBackgroundColor: STATE_COLOR_INACTIVE_BACKGROUND,
               tabBarActiveBackgroundColor: PRIMARY,
-              tabBarInactiveTintColor: 'black',
-              tabBarActiveTintColor: 'black',
+              tabBarInactiveTintColor: STATE_COLOR_INACTIVE_TINT,
+              tabBarActiveTintColor: STATE_COLOR_ACTIVE_TINT,
             }}>
             <Tab.Screen
               component={Home}
@@ -91,7 +99,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderTopLeftRadius: 15,
     flex: 0.1,
-    shadowColor: SHADOW,
+    shadowColor: SHADOW_COLOR,
     shadowOffset: {
       width: 0,
       height: -2,

@@ -33,7 +33,7 @@ export default function Title({ text, color, Icon, back, style }: Props) {
       )}
       <Pressable
         onPress={() => {
-          mainNav.navigate('EmergencyNumbers');
+          mainNav.navigate('EmergencyNumber');
         }}
         style={styles.firstAidBtn}>
         <FontAwesome5 name="first-aid" size={30} />
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   },
   container: {
     height: '30%',
+    maxHeight: 200,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomLeftRadius: 25,

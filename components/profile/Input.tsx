@@ -12,6 +12,7 @@ interface InputData {
   onChangeText: (text: string) => void;
 }
 
+// TODO: Use magic numbers (consts) for color codes
 const styles = StyleSheet.create({
   label: {
     marginHorizontal: 20,

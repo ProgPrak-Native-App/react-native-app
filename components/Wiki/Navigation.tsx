@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/named
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import EntryList from './EntryList';
 import { WikiEntry } from '../../api/WikiClient';
