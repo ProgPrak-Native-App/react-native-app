@@ -1,7 +1,7 @@
 import { View, Text, Pressable, StyleSheet, TextInput, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { DARK_GREY, ORANGE, PRIMARY, RED, SIZES, TERTIARY } from '../styles';
+import { BLACK, DARK_GREY, ORANGE, PRIMARY, RED, SIZES, TERTIARY, WHITE } from '../styles';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from './Title';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -32,39 +32,39 @@ export function FeedbackNavigation() {
   );
 }
 
-export default function Feedback({ route } : FeedbackScreenProps<'Feedback'>) {
-  const { name }  = route.params;
+export default function Feedback({ route } : FeedbackScreenProps<'Feedback'>){
+  const { name } = route.params;
   const navigation = useNavigation<NavigationProp<FeedbackRoutes>>();
   // navigation.navigate('MoodDiary', { screen: 'MoodEntry' });
   const [comment, setComment] = useState('');
   const [greenBtn, setGreenBtn] = useState(false);
   const [redBtn, setRedBtn] = useState(false);
-  const pressedGreenStyle = {borderColor: 'black', borderWidth: 2, backgroundColor: 'lightgreen' };
-  const pressedRedStyle = {borderColor: 'black', borderWidth: 2, backgroundColor: 'red' };
+  const pressedGreenStyle = { borderColor: 'black', borderWidth: 2, backgroundColor: 'lightgreen' };
+  const pressedRedStyle = { borderColor: 'black', borderWidth: 2, backgroundColor: 'red' };
 
   return (
     <>
       <Title back color={ORANGE} text="Soziale Unterstützung" />
       <ScrollView style={styles.container}>
-        <Text style={styles.heading}>Wie hat Dir die Übung gefallen?</Text> 
+        <Text style={styles.heading}>Wie hat Dir die Übung gefallen?</Text>
         <View style={styles.buttons}>
           <Pressable
             accessibilityHint="Drücke hier falls Dir die Uebung gefallen hat"
-            onPress = {() => setGreenBtn(prev => !prev)}
-            style={[{backgroundColor:PRIMARY}, styles.feedback, greenBtn ?  pressedGreenStyle : {} ]}>
+            onPress ={() => setGreenBtn((prev) => !prev)}
+            style={[{ backgroundColor: PRIMARY }, styles.feedback, greenBtn ? pressedGreenStyle : {} ]}>
             <FontAwesome5 color="black" name="smile-beam" size={30} style={styles.icons} />
-            <Text style={styles.text}>Gut</Text>    
+            <Text style={styles.text}>Gut</Text>
           </Pressable>
-          <Pressable 
+          <Pressable
             accessibilityHint="Drücke hier falls Dir die Uebung nicht gefallen hat"
-            onPress = {() => setRedBtn(prev => !prev)}
-            style={[{backgroundColor: RED}, styles.feedback, redBtn ? pressedRedStyle : {} ]}>
+            onPress ={() => setRedBtn((prev) => !prev)}
+            style={[{ backgroundColor: RED }, styles.feedback, redBtn ? pressedRedStyle : {} ]}>
             <FontAwesome5 color="black" name="frown" size={30} style={styles.icons} />
             <Text style={styles.text}>Schlecht</Text>
           </Pressable>
         </View>
         <Text style={styles.label}>Kommentar (optional):</Text>
-        <TextInput 
+        <TextInput
           accessibilityHint="Optional: Hinterlasse hier dein Feedback"
           accessibilityLabel="Dein Feedback"
           onChangeText={(n) => setComment(n)}
@@ -74,20 +74,20 @@ export default function Feedback({ route } : FeedbackScreenProps<'Feedback'>) {
           value={comment}
         />
         <View style={styles.buttons}>
-          <Pressable 
+          <Pressable
             accessibilityHint="Zurück zum Intro Screen"
-            onPress={()=> navigation.navigate('MoodEntry')} 
+            onPress={() => navigation.navigate('MoodEntry')}
             style={({ pressed }) => [
-              { backgroundColor: pressed? PRIMARY: TERTIARY},
-              styles.button, 
-              {marginRight: 20}
-              ]}>
+              { backgroundColor: pressed ? PRIMARY: TERTIARY},
+              styles.button,
+              {marginRight: 20 },
+            ]}>
             <Text style={styles.text}>Andere Startegie ausprobieren</Text>
           </Pressable>
           <Pressable
             accessibilityHint="Übung beenden"
-            onPress={()=> navigation.navigate(name)}
-            style={({ pressed }) => [{backgroundColor: pressed? PRIMARY: TERTIARY}, styles.button]}>
+            onPress={() => navigation.navigate(name)}
+            style={({ pressed }) => [{backgroundColor: pressed ? PRIMARY: TERTIARY }, styles.button]}>
             <Text style={styles.text}>Done</Text>
           </Pressable>
         </View>
@@ -111,8 +111,8 @@ const styles = StyleSheet.create({
   input: {
     fontSize: SIZES.font,
     alignSelf: 'center',
-    backgroundColor: '#fff',
-    borderColor: 'black',
+    backgroundColor: WHITE,
+    borderColor: BLACK,
     borderWidth: 1,
     minWidth: 48,
     width: '100%',
