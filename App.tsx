@@ -35,44 +35,43 @@ export default function App() {
               tabBarStyle: styles.bar,
               tabBarActiveBackgroundColor: PRIMARY,
               tabBarInactiveTintColor: 'black',
-              tabBarActiveTintColor: "black",
-            }}
-          >
+              tabBarActiveTintColor: 'black',
+            }}>
             <Tab.Screen
               component={Home}
-              name="Home"
+              name='Home'
               options={{
-                tabBarIcon: () => <FontAwesome5 name="home" size={24} />,
+                tabBarIcon: () => <FontAwesome5 name='home' size={24} />,
               }}
             />
             <Tab.Screen
               component={MoodDiary}
-              name="MoodDiary"
+              name='MoodDiary'
               options={{
-                title: "Kalender",
-                tabBarIcon: () => <FontAwesome5 name="calendar-alt" size={24} />,
+                title: 'Kalender',
+                tabBarIcon: () => <FontAwesome5 name='calendar-alt' size={24} />,
               }}
             />
             <Tab.Screen
-              name="Wiki"
+              name='Wiki'
               component={WikiNavigation}
               options={{
-                tabBarIcon: () => <FontAwesome5 name="book" size={24} />,
+                tabBarIcon: () => <FontAwesome5 name='book' size={24} />,
               }}
             />
             <Tab.Screen
               component={Motivator}
-              name="Motivators"
+              name='Motivators'
               options={{
-                title: "Übungen",
-                tabBarIcon: () => <MaterialCommunityIcons name="arm-flex" size={24} />,
+                title: 'Übungen',
+                tabBarIcon: () => <MaterialCommunityIcons name='arm-flex' size={24} />,
               }}
             />
             <Tab.Screen
               component={Profile}
-              name="Profil"
+              name='Profil'
               options={{
-                tabBarIcon: () => <Ionicons name="person-circle-outline" size={24} />,
+                tabBarIcon: () => <Ionicons name='person-circle-outline' size={24} />,
               }}
             />
           </Tab.Navigator>
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     paddingHorizontal: 4,
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   bar:{
     borderTopRightRadius: 15,
@@ -105,7 +104,7 @@ const styles = StyleSheet.create({
   }, 
   items: {
     borderRadius: 15,
-    marginHorizontal: 4, 
+    marginHorizontal: 4,
     marginVertical: 4,
   }
 });
