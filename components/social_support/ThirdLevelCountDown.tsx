@@ -1,4 +1,4 @@
-import {Text, StyleSheet, ScrollView, Pressable, View} from 'react-native';
+import { Text, StyleSheet, ScrollView, Pressable, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Title from '../Title';
 import { BLACK, DARK_GREY, ORANGE, PRIMARY, SIZES, TERTIARY } from '../../styles';
@@ -11,39 +11,39 @@ import { differenceInSeconds } from 'date-fns';
 
 /** source for storage code https://aloukissas.medium.com/how-to-build-a-background-timer-in-expo-react-native-without-ejecting-ea7d67478408 */
 export default function ThirdLevelCountDown() {
-  const {navigate} = useNavigation<NavigationProp<SocialSupportStackParamList>>();
+  const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
 
-  const timeLimit = 1; 
+  const timeLimit = 1;
   // 14 * 24 * 60 * 60
-  const [toggle, setToggle] = useState<Boolean>();
+  const [toggle, setToggle] = useState<boolean>();
 
   const [toggleFwd, setToggleFwd] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState<number>();
 
-    /** store the timestamp when the start btn was clicked */
-  async function recordStartTime (){
+  /** store the timestamp when the start btn was clicked */
+  async function recordStartTime() {
     try {
       const now = new Date();
       await AsyncStorage.setItem('@start_time', now.toISOString());
-      } catch (err) {
-        console.warn(err);
-      }
-  };
-    /** if sthg stored in async as start time challeng is running => hide start btn */
-  async function setToggeling(): Promise<Boolean> {
-    if (await AsyncStorage.getItem('@start_time') !== null) {
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+  /** if sthg stored in async as start time challeng is running => hide start btn */
+  async function setToggeling(): Promise<boolean> {
+    if ((await AsyncStorage.getItem('@start_time')) !== null) {
       return true;
     } else {
       return false;
     }
-  };
+  }
 
   /** when smth was in async storage then update the timer */
-  const setCountDown = async ()  => {
-    const startTime =  await AsyncStorage.getItem('@start_time');
+  const setCountDown = async () => {
+    const startTime = await AsyncStorage.getItem('@start_time');
     const now = new Date();
     if (startTime) {
-      const timeLeft =  timeLimit - differenceInSeconds(now, Date.parse(startTime));
+      const timeLeft = timeLimit - differenceInSeconds(now, Date.parse(startTime));
       if (timeLeft > 0) {
         return timeLeft;
       } else {
@@ -53,14 +53,14 @@ export default function ThirdLevelCountDown() {
     }
     return timeLimit;
   };
-    
+
   /** when start btn clicked hide & set timestamp */
   const onClick = () => {
     recordStartTime();
     setCountDown().then((time) => setSecondsLeft(time));
     setToggle((prev) => !prev);
-  }
-    
+  };
+
   const onRestart = () => {
     recordStartTime();
     setSecondsLeft(timeLimit);
@@ -74,7 +74,7 @@ export default function ThirdLevelCountDown() {
   };
 
   useEffect(() => {
-    setToggeling().then((bool) => setToggle(bool)).then();
+    setToggeling().then((bool) => setToggle(bool));
     setCountDown().then((time) => setSecondsLeft(time));
   }, []);
 
@@ -83,10 +83,8 @@ export default function ThirdLevelCountDown() {
       <Title back color={ORANGE} text="Soziale Unterstützung" />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.body}>
-          Challenge dich selbst – markiere in jedem der 3 Kreise eine Person und schaue in den nächsten 
-          2 Wochen, ob du
-          sie vielleicht auf die eine oder andere Weise unterstützen kannst und wie es dir dabei 
-          geht.
+          Challenge dich selbst – markiere in jedem der 3 Kreise eine Person und schaue in den nächsten 2 Wochen, ob du
+          sie vielleicht auf die eine oder andere Weise unterstützen kannst und wie es dir dabei geht.
         </Text>
         {secondsLeft !== undefined && toggle && (
           <CountDown
@@ -94,7 +92,7 @@ export default function ThirdLevelCountDown() {
             digitTxtStyle={{ color: BLACK }}
             onFinish={onComplete}
             size={30}
-            style={{ marginVertical:35 }}
+            style={{ marginVertical: 35 }}
             timeLabels={{ d: 'Tage', h: 'Stunden', m: 'Minuten', s: 'Sekunden' }}
             timeLabelStyle={{ color: BLACK, fontSize: 14 }}
             timeToShow={['D', 'H', 'M', 'S']}
@@ -115,8 +113,8 @@ export default function ThirdLevelCountDown() {
               <Text style={[styles.body, { fontWeight: 'bold' }]}>Re-start challenge?</Text>
             </Pressable>
             <Pressable
-              accessibilityHint="Zum Feedback und Übung beenden" 
-              onPress={() => navigate('Feedback', {name: 'MoodEntry'})}
+              accessibilityHint="Zum Feedback und Übung beenden"
+              onPress={() => navigate('Feedback', { name: 'MoodEntry' })}
               style={styles.buttons}>
               <Text style={[styles.body, { fontWeight: 'bold' }]}>Weiter</Text>
             </Pressable>

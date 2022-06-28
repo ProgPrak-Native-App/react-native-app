@@ -40,7 +40,7 @@ const textLvl2 = [
   },
   {
     icon: '💪',
-    heading: 'Instrumentale Unterstützung:', 
+    heading: 'Instrumentale Unterstützung:',
     text: 'Bei so manchem Problem, was uns Kopfzerbrechen bereitet, kann praktische Hilfe Anderer und sei sie in Form von Taten oder materiellen Dingen einiges dazu beitragen, die Situation zu lösen oder zumindest besser zu machen.',
   },
 ];
@@ -70,7 +70,7 @@ export default function OnBoardingModal({ toggle, level }: { toggle: () => void;
   const expanding = () => {
     if (count === 0) {
       setInnerColor(ORANGE);
-    }else if (count === 1) {
+    } else if (count === 1) {
       setInnerColor('#f9bf9e');
       setMiddleColor(PURPLE);
     } else if (count === 2) {

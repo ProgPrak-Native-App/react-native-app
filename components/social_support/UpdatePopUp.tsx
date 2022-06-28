@@ -49,7 +49,7 @@ const UpdatePopUp = ({
                 <TextInput
                   accessibilityHint="Trage hier die Ressource der Person ein"
                   accessibilityLabel="Ressource"
-                  onChangeText={(val) => handleInput('resource',val)}
+                  onChangeText={(val) => handleInput('resource', val)}
                   placeholder="Ressource"
                   placeholderTextColor="#4F4F4F"
                   style={styles.input}
@@ -61,18 +61,17 @@ const UpdatePopUp = ({
               <Pressable
                 accessibilityHint="Drück hier um Person aus dem Kreis zu löschen."
                 onPress={() => deletePerson(person)}
-                style={[styles.button, { backgroundColor: RED}]}>
+                style={[styles.button, { backgroundColor: RED }]}>
                 <Text style={styles.btnTxt}> Person Löschen</Text>
               </Pressable>
               <Pressable
                 accessibilityHint="Drück hier um die Änderungen zu speichern."
-                onPress={ () => updatePerson(update)}
-                style={[styles.button, { backgroundColor: PRIMARY}]} >
+                onPress={() => updatePerson(update)}
+                style={[styles.button, { backgroundColor: PRIMARY }]} >
                 <Text style={styles.btnTxt}>Änderungen Speichern</Text>
               </Pressable>
             </View>
-            <Pressable accessibilityLabel="Fenster schließen" onPress={toggle} 
-              style={styles.close}>
+            <Pressable accessibilityLabel="Fenster schließen" onPress={toggle} style={styles.close}>
               <AntDesign name="close" size={30} style={{ alignSelf: 'center' }} />
             </Pressable>
           </View>

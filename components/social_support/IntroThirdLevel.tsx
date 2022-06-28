@@ -10,19 +10,18 @@ export default function IntroThirdLevel() {
 
   return (
     <>
-      <Title back color={ORANGE} text="Soziale Unterstützung"/>
+      <Title back color={ORANGE} text="Soziale Unterstützung" />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.header}>Anderen zu helfen, hilft uns nicht selten auch selbst!</Text>
         <Text style={styles.body}>
-          So wie andere dich unterstützen, kannst du natürlich auch umgekehrt andere unterstützen oder tust 
-          es vielleicht bereits! Immerhin und noch einmal ganz davon abgesehen, dass Unterstützung häufig auch 
+          So wie andere dich unterstützen, kannst du natürlich auch umgekehrt andere unterstützen oder tust es 
+          vielleicht bereits! Immerhin und noch einmal ganz davon abgesehen, dass Unterstützung häufig auch 
           auf Gegenseitigkeit beruht – nicht selten können wir auch ein starkes Gefühl von Sinnhaftigkeit und Stolz 
           daraus ziehen, für andere da zu sein und etwas in der Welt zu bewegen! Also auf geht’s – 
           vielleicht kannst du ja auch ein Stück weit Stärke darin finden, Anderen Unterstützung zu sein, wenn sie 
           welche brauchen.
         </Text>
-        <Pressable onPress={() => navigate('ThirdLevelCountDown')}
-          style={styles.button}>
+        <Pressable onPress={() => navigate('ThirdLevelCountDown')} style={styles.button}>
           <Text style={[styles.body, { fontWeight: 'bold' }]}>Weiter</Text>
         </Pressable>
       </ScrollView>

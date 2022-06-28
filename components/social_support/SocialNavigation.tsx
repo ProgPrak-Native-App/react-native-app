@@ -19,7 +19,7 @@ export type SocialSupportStackParamList = {
 export type SocialSupportStackScreenProps<T extends keyof SocialSupportStackParamList> = NativeStackScreenProps<
   SocialSupportStackParamList,
   T
-  >;
+>;
 
 const SocialSupportStack = createNativeStackNavigator();
 

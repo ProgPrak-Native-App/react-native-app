@@ -30,7 +30,7 @@ export default function Circle(props: circleProps) {
           {
             left: Math.round(width / 2 + radius * Math.cos(angle) - width / 2) + 115,
             top: Math.round(height / 2 + radius * Math.sin(angle) - height / 2) + 115,
-            position:'absolute',
+            position: 'absolute',
           },
         ]}>
         <Text style={{ paddingHorizontal: 5, paddingVertical: 5 }}>{elem.name}</Text>

@@ -57,7 +57,7 @@ export default function PopUp({
               <Text style={styles.btnTxt}>Speichern</Text>
             </Pressable>
           </View>
-          <Pressable accessibilityHint="Fenster schließen" onPress={toggle} style={styles.close} >
+          <Pressable accessibilityHint="Fenster schließen" onPress={toggle} style={styles.close}>
             <AntDesign name="close" size={30} style={{ alignSelf: 'center' }} />
           </Pressable>
         </View>

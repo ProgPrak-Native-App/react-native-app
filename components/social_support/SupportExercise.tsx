@@ -19,19 +19,14 @@ import { nanoid } from 'nanoid';
 // const helper = 'Klicke einfach auf das plus-Symbol, um Personen dem jeweiligen Kreis hinzuzufügen.';
 // outer 300 300 middle 280 160 inner 240 120
 const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>) => {
-  const level = route.params.level;
-  if (level === 3) {
-    return <IntroThirdLevel />;
-  }
+
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
   const [addVisible, setAddVisible] = useState(false);
   const [updateVisible, setUpdateVisible] = useState(false);
   const [onBoardingVisible, setOnBoardingVisible] = useState(true);
-
   const [data, setData] = useState(socialSupportData);
   // ....
   const [people, setPeople] = useState(data[0].people);
-
   const [transferPerson, setTransferPerson] = useState<personProp[]>([]);
   const [currScreen, setCurrScreen] = useState({
     id: 0,
@@ -42,6 +37,11 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
   /** value states for animation of view size */
   const [innerSize, setInnerSize] = useState(new Animated.Value(260));
   const [middleSize, setMiddleSize] = useState(new Animated.Value(280));
+
+  const level = route.params.level;
+  if (level === 3) {
+    return <IntroThirdLevel />;
+  }
 
   /** toggles the onboarding screens & popups */
   const toggleOnBoard = () => {
@@ -69,14 +69,13 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
   }, []);
 
   /** i hope i can delete this soon...
-   * currently sets currscreen data to be displayed & 
-   * sets currentn people array to corresp. screen
-   */
+  * currently sets currscreen data to be displayed & 
+  * sets currentn people array to corresp. screen
+  */
   const setting = (id: number) => {
     data.map((item) =>
       item.id === id
-        ? setCurrScreen(() => 
-          {
+        ? setCurrScreen(() => {
             return {
               id: item.id,
               title: item.title,
@@ -106,7 +105,7 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
             }
           : people;
       });
-    });        
+    });
     toggle();
   };
 
@@ -135,7 +134,7 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
 
   /** navigation between circles  */
   const goAhead = (id: number) => {
-    setData((prevData) => prevData.map((item) => (item.id === id ? {...item, people: people }: item)));
+    setData((prevData) => prevData.map((item) => (item.id === id ? {...item, people: people } : item)));
     if (id === 0) {
       navigate('Feedback', { name: 'MoodEntry' });
     } else if (id === 1) {
@@ -215,14 +214,14 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
               accessibilityLabel="Person hinzufügen"
               onPress={() => setAddVisible((prev) => !prev)}
               style={styles.plus}>
-              <FontAwesome5 name="plus" resizeMode="contain" size={24} style={{ alignSelf: 'center' }}/>
+              <FontAwesome5 name="plus" resizeMode="contain" size={24} style={{ alignSelf: 'center' }} />
             </Pressable>
             <Circle
               deletePerson={deletePerson}
               level={level}
               people={people}
               toggleUpdate={fillUpdate}
-              updatePerson={updatePerson} 
+              updatePerson={updatePerson}
             />
           </View>
         </View>
@@ -231,13 +230,13 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
         <UpdatePopUp
           deletePerson={deletePerson}
           level={level}
-          person={transferPerson[0]} 
+          person={transferPerson[0]}
           toggle={toggle}
-          updatePerson={updatePerson} 
+          updatePerson={updatePerson}
         />
       )}
       {addVisible && (
-        <PopUp addPerson={addPerson} level={level} person={{ name: '', resource: '' }} toggle={toggleAdd}/>
+        <PopUp addPerson={addPerson} level={level} person={{ name: '', resource: '' }} toggle={toggleAdd} />
       )}
     </>
   );
