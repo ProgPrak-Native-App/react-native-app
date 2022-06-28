@@ -36,11 +36,10 @@ export type EntryProps = {
 };
 
 export type wikiEntry = {
-    id: string,
-    title : string,
-    contents : 
-        {
-        type: "text" | "url",
-        content: string
-        }[],
-}
+  id: string;
+  title : string;
+  contents : {
+    type: 'text' | 'url';
+    content: string;
+  }[];
+};

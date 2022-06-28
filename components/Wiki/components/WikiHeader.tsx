@@ -12,10 +12,10 @@ const WikiHeader = ({ onSearch }: { onSearch: (text: string) => void }) => {
           <View style={styles.searchBarTxt}>
             <FontAwesome5 name='search' resizeMode='contain' size={24} style={{ marginRight: 8 }} />
             <TextInput
-              accessibilityLabel='Suche im Wiki'
+              accessibilityLabel="Suche im Wiki"
               onChangeText={onSearch}
-              placeholder='Suche im Wiki'
-              placeholderTextColor='#4F4F4F'
+              placeholder="Suche im Wiki"
+              placeholderTextColor="#4F4F4F"
               style={styles.text}
             />
           </View>

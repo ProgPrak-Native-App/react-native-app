@@ -1,8 +1,7 @@
-import { Pressable, ScrollView, StyleSheet, Text} from 'react-native'
-import React from 'react'
-import Title from '../../Title'
-import { AntDesign  } from "@expo/vector-icons";
-import { TERTIARY, SIZES} from '../../../styles';
+import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
+import React from 'react';
+import Title from '../../Title';
+import { SIZES, TERTIARY } from '../../../styles';
 import { WikiStackScreenProps } from './WikiNavigation';
 
 const WikiEntry = ({ route, navigation }: WikiStackScreenProps<'WikiEntry'>) => {
@@ -11,29 +10,19 @@ const WikiEntry = ({ route, navigation }: WikiStackScreenProps<'WikiEntry'>) => 
   if (Data) {
     return (
       <>
-        <Pressable
-          onPress={() => {
-            navigation.goBack();
-          }}
-          style={styles.goBack}>
-          <AntDesign color="black" name="left" size={30} />
-          <Text style={{ left: -5, fontSize: 12 }}>Zurück</Text>
-        </Pressable>
-        <Title color={TERTIARY} text={Data.title} />
-
+        <Title back color={TERTIARY} text={Data.title} />
         <ScrollView style={styles.container}>
           <Text style={styles.title}>{Data.title}</Text>
           <Text style={styles.textContainer}>
-            {Data.contents.map((item, idx) =>
-              item.type === 'url' ? (
-                <Text key={idx} style={[styles.content, { textDecorationLine: 'underline' }]}>
-                  {item.content + ' '}
-                </Text>
-              ) : (
-                <Text key={idx} style={{ fontSize: 18 }}>
-                  {item.content + ' '}
-                </Text>
-              )
+            {Data.contents.map((item, idx) => item.type === 'url' ? (
+              <Text key={idx} style={[styles.content, { textDecorationLine: 'underline' }]}>
+                {item.content + ' '}
+              </Text>
+            ) : (
+              <Text key={idx} style={{ fontSize: 18 }}>
+                {item.content + ' '}
+              </Text>
+            )
             )}
           </Text>
         </ScrollView>

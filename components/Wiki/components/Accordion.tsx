@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable, LayoutAnimation } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+import WikiEntry from './WikiEntry';
 
-const Accordion = ({ title, descr }: { title: string; descr: any }) => {
+const Accordion = ({ title, descr }: { title: string; descr: {type: "text" | "url",content: string}[], }) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggle = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setCollapsed(!collapsed);
-  };
+  }
   return (
     <View style={{ borderBottomWidth: 2,}}>
       <Pressable onPress={toggle} style={styles.container}>
@@ -18,7 +19,7 @@ const Accordion = ({ title, descr }: { title: string; descr: any }) => {
       <View>
         {!collapsed && (
           <Text style={styles.container}>
-            {descr.map((item: any, index: number) =>
+            {descr.map((item, index: number) =>
               item.type.match('url') ? (
                 <Text key={index} style={{ textDecorationLine: 'underline' }}>
                   {item.content + ' '}

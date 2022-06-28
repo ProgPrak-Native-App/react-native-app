@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, ScrollView, View } from 'react-native';
 import Title from '../../Title';
-import  WikiHeader  from './WikiHeader';
-import  EntryTitle  from './EntryTitle';
-import { BASE_URL,EntryProps, wikiEntry, } from '../constant/constants';
+import WikiHeader from './WikiHeader';
+import EntryTitle from './EntryTitle';
+import { BASE_URL,EntryProps, wikiEntry } from '../constant/constants';
 import { TERTIARY, SIZES } from '../../../styles';
 
 const alphaBet: Set<string> = new Set();
@@ -84,7 +84,7 @@ const Wiki = () => {
 
   return (
     <>
-      <Title color={TERTIARY} text='Wiki' />
+      <Title color={TERTIARY} text="Wiki" />
       <WikiHeader onSearch={handleSearch} />
       <ScrollView>
         <View style={styles.container}>
