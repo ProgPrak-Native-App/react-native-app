@@ -1,15 +1,50 @@
 import { View, Text, Pressable, StyleSheet, TextInput, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { FontAwesome5} from "@expo/vector-icons";
-import { ORANGE, PRIMARY, RED, SIZES, TERTIARY } from '../../styles';
+import { ORANGE, PRIMARY, RED, SIZES, TERTIARY } from '../styles';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { SocialSupportStackParamList, SocialSupportStackScreenProps } from './SocialNavigation';
-import Title from '../Title';
+import Title from './Title';
+import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
+import MoodEntry from './mood_diary/MoodEntry';
+import CompassionNavigation from './compassion/CompassionNavigation';
+import MotivatorCompleted from './MotivatorCompleted';
 
-export default function Feedback ({route}: SocialSupportStackScreenProps<'SupportExercise'>){
-    const level = route.params.level
-    const {navigate} = useNavigation<NavigationProp<SocialSupportStackParamList>>();
+export type FeedbackRoutes = {
+    Feedback: {name: keyof FeedbackRoutes},
+    MoodEntry: undefined,
+    CompassionNavigation: undefined,
+    MotivatorCompleted: undefined,
+};
+  
+export type FeedbackScreenProps<T extends keyof FeedbackRoutes> =
+NativeStackScreenProps<FeedbackRoutes, T>;
+
+const Stack = createNativeStackNavigator<FeedbackRoutes>();
+
+export function FeedbackNavigation() {
+    return (
+      <>
+        <Stack.Navigator screenOptions={{ headerShown: false, animation: "none" }}>
+          <Stack.Screen name="MoodEntry" component={MoodEntry} />
+          <Stack.Screen name="CompassionNavigation" component={CompassionNavigation} />
+          <Stack.Screen name="MotivatorCompleted" component={MotivatorCompleted} />
+        </Stack.Navigator>
+      </>
+    );
+  }
+
+export default function Feedback ({route}: FeedbackScreenProps<'Feedback'>){
+    const {name}  = route.params
+    const navigation = useNavigation<NavigationProp<FeedbackRoutes>>();
+   
+    //navigation.navigate('MoodDiary', { screen: 'MoodEntry' });
+
     const [comment, setComment] = useState("")
+    const [greenBtn, setGreenBtn] = useState(0)
+    const [redBtn, setRedBtn] = useState(0)
+
+    const  pressedGreenStyle = {borderColor: 'black', borderWidth: 2, backgroundColor: 'lightgreen'}
+    const  pressedRedStyle = {borderColor: 'black', borderWidth: 2, backgroundColor: 'red'}
 
     return (
         <>
@@ -18,15 +53,19 @@ export default function Feedback ({route}: SocialSupportStackScreenProps<'Suppor
                 <Text style={styles.heading}>Wie hat Dir die Übung gefallen?</Text> 
                 <View style={styles.buttons}>
                 <Pressable 
+                    onPress = {() => {setGreenBtn(prev => prev + 1)}}
                     accessibilityHint="Drücke hier falls Dir die Uebung gefallen hat"
-                    style={[styles.feedback, {backgroundColor: PRIMARY}]}>
+                    style={[{backgroundColor:PRIMARY}, styles.feedback, 
+                        greenBtn % 2 === 0 ? {} : pressedGreenStyle]}>
                     <FontAwesome5 style={styles.icons} name="smile-beam" size={30} color="black" />
                     <Text style={styles.text}>Gut</Text>
                     
                 </Pressable>
                 <Pressable 
+                    onPress = {() => {setRedBtn(prev => prev + 1)}}
                     accessibilityHint="Drücke hier falls Dir die Uebung nicht gefallen hat"
-                    style={[styles.feedback, {backgroundColor: RED}]}>
+                    style={[{backgroundColor: RED}, styles.feedback, 
+                        redBtn % 2 === 0 ? {} : pressedRedStyle]}>
                     <FontAwesome5 style={styles.icons} name="frown" size={30} color="black" />
                     <Text style={styles.text}>Schlecht</Text>
                 </Pressable>
@@ -45,12 +84,14 @@ export default function Feedback ({route}: SocialSupportStackScreenProps<'Suppor
             <View style={styles.buttons}>
             <Pressable 
                 accessibilityHint="Zurück zum Intro Screen"
-                style={[styles.button, {marginRight: 20}]} onPress={()=> {navigate("IntroScreen")}}>
+                style={({ pressed }) => [{backgroundColor: pressed? PRIMARY: TERTIARY}, styles.button, {marginRight: 20}]} 
+                onPress={()=> navigation.navigate("MoodEntry")} >
                 <Text style={[styles.text]}>Andere Startegie ausprobieren</Text>
             </Pressable>
             <Pressable 
                 accessibilityHint="Übung beenden"
-                style={styles.button} onPress={() =>{console.log("Done")}}>
+                style={({ pressed }) => [{backgroundColor: pressed? PRIMARY: TERTIARY}, styles.button]} 
+                onPress={()=> navigation.navigate(name)}>
                 <Text style={styles.text}>Done</Text>
             </Pressable>
             </View>
@@ -115,16 +156,9 @@ const styles = StyleSheet.create({
         minHeight: 48,
 
         borderColor: '#808080',
-        borderWidth: 1,
+        borderWidth: 2,
         padding: 8,
-        shadowColor: 'grey',
-        shadowOffset: {
-          width: 0,
-          height: 1,
-        },
-        shadowOpacity: 100,
-        shadowRadius: 1,
-        elevation: 5
+    
       },
     button:{
         flexGrow: 0,
@@ -140,12 +174,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
 
         padding: 10,
-        shadowColor: 'grey',
-        shadowOffset: {
-          width: 0,
-          height: 1,
-        },
-        shadowOpacity: 100,
-        shadowRadius: 1,
+  
     },
 })
