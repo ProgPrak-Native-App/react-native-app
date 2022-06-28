@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import React from 'react';
 import Title from '../../Title';
 import { SIZES, TERTIARY } from '../../../styles';

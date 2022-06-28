@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable, LayoutAnimation } from 'react-native
 import { FontAwesome5 } from '@expo/vector-icons';
 import WikiEntry from './WikiEntry';
 
-const Accordion = ({ title, descr }: { title: string; descr: {type: 'text' | 'url', content: string}[]; }) => {
+const Accordion = ({ title, descr }: { title: string, descr: {type: 'text' | 'url'; content: string;}[]}) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggle = () => {
@@ -11,7 +11,7 @@ const Accordion = ({ title, descr }: { title: string; descr: {type: 'text' | 'ur
     setCollapsed(!collapsed);
   };
   return (
-    <View style={{ borderBottomWidth: 2}}>
+    <View style={{ borderBottomWidth: 2}} >
       <Pressable onPress={toggle} style={styles.container}>
         <Text style={{ textTransform: 'capitalize' }}>{title}</Text>
         <FontAwesome5 name={collapsed ? 'caret-down' : 'caret-up'} size={24} />

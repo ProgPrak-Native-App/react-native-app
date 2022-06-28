@@ -1,10 +1,10 @@
-import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
-import Title from "../Title";
-import { MoodDiaryRoutes } from "./MoodDiary";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { NEGATIVE, NEUTRAL, POSITIVE } from "../../styles";
+import React from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
+import Title from '../Title';
+import { MoodDiaryRoutes } from './MoodDiary';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { NEGATIVE, NEUTRAL, POSITIVE } from '../../styles';
 
 function MoodButton(props: { color: string; iconName: string; linkTo: keyof MoodDiaryRoutes; descriptions: string[] }) {
   const navigation = useNavigation<NavigationProp<MoodDiaryRoutes>>();
