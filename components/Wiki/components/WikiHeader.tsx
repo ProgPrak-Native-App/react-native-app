@@ -10,7 +10,7 @@ const WikiHeader = ({ onSearch }: { onSearch: (text: string) => void }) => {
       <View style={{ marginTop: 8 }}>
         <View style={styles.searchBar}>
           <View style={styles.searchBarTxt}>
-            <FontAwesome5 name='search' resizeMode='contain' size={24} style={{ marginRight: 8 }} />
+            <FontAwesome5 name="search" resizeMode="contain" size={24} style={{ marginRight: 8 }} />
             <TextInput
               accessibilityLabel="Suche im Wiki"
               onChangeText={onSearch}

@@ -50,7 +50,7 @@ export default function Feedback({ route } : FeedbackScreenProps<'Feedback'>) {
                 <View style={styles.buttons}>
                     <Pressable 
                         accessibilityHint="Drücke hier falls Dir die Uebung gefallen hat"
-                        onPress = {() => {setGreenBtn(prev => !prev)}}
+                        onPress = {() => setGreenBtn(prev => !prev)}
                         style={[{backgroundColor:PRIMARY}, styles.feedback, greenBtn ?  pressedGreenStyle : {} ]}>
                         <FontAwesome5 color="black" name="smile-beam" size={30} style={styles.icons} />
                         <Text style={styles.text}>Gut</Text>    
@@ -69,7 +69,7 @@ export default function Feedback({ route } : FeedbackScreenProps<'Feedback'>) {
                     accessibilityLabel="Dein Feedback"
                     onChangeText={(n) => setComment(n)}
                     placeholder="Dein Feedback..."
-                    placeholderTextColor='#4F4F4F'
+                    placeholderTextColor="#4F4F4F"
                     style={styles.input}
                     value={comment}
                 /> 
@@ -91,7 +91,7 @@ export default function Feedback({ route } : FeedbackScreenProps<'Feedback'>) {
           </ScrollView>
       </>
     )
-  }
+  };
   
 const styles = StyleSheet.create({
     container: {

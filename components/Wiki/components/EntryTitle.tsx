@@ -6,7 +6,7 @@ import { WikiStackParamList } from './WikiNavigation';
 
 const EntryTitle = ({ letter, entry }: EntryProps) => {
   const { navigate } = useNavigation<NavigationProp<WikiStackParamList>>();
-  return(
+  return (
     <View>
       <Text style={styles.capital}>{letter}</Text>
       {entry.map( (item, i) => (

@@ -54,13 +54,5 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     fontSize: SIZES.font,
   },
-  goBack: {
-    position: 'absolute',
-    flexDirection: 'row',
-    alignItems: 'center',
-    zIndex: 1,
-    marginVertical: 15,
-    marginHorizontal: 15,
-  },
 });
 export default WikiEntry;

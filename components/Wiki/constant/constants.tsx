@@ -37,8 +37,8 @@ export type EntryProps = {
 
 export type wikiEntry = {
   id: string;
-  title : string;
-  contents : {
+  title: string;
+  contents: {
     type: 'text' | 'url';
     content: string;
   }[];
