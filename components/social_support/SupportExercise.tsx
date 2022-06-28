@@ -16,6 +16,7 @@ import IntroThirdLevel from './IntroThirdLevel'
 import 'react-native-get-random-values'
 import { nanoid } from 'nanoid'
 
+
 const helper = "Klicke einfach auf das plus-Symbol, um Personen dem jeweiligen Kreis hinzuzufügen."
 // outer 300 300 middle 280 160 inner 240 120
 const SocialStart = ({route}: SocialSupportStackScreenProps<'SupportExercise'>) => {
@@ -136,7 +137,7 @@ const SocialStart = ({route}: SocialSupportStackScreenProps<'SupportExercise'>) 
         setData(prevData => prevData.map( item => item.id === id ? {...item, people: people}: item)) 
 
         if(id === 0){
-            navigate("Feedback", {level:level})
+            navigate("Feedback", {name: "MoodEntry"})
         }else if (id == 1){
             setting(--id)
             changeSize(middleSize, 90)

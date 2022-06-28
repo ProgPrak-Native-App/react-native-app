@@ -2,7 +2,7 @@ import React from "react";
 import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
 import IntroScreen from "./IntroScreen";
 import SupportExercise from "./SupportExercise"
-import Feedback from "./Feedback";
+import Feedback from "../Feedback";
 import IntroVideoScreen from "./IntroVideoScreen";
 import IntroThirdLevel from "./IntroThirdLevel";
 import ThirdLevelCountDown from "./ThirdLevelCountDown";
@@ -13,7 +13,7 @@ export type SocialSupportStackParamList = {
   IntroThirdLevel: undefined,
   ThirdLevelCountDown: undefined,
   SupportExercise: { level :number}, 
-  Feedback: { level :number}
+  Feedback: {name: string}
 };
 
 export type SocialSupportStackScreenProps<T extends keyof SocialSupportStackParamList> =

@@ -15,10 +15,9 @@ export default function ThirdLevelCountDown() {
 
     const timeLimit = 1//14 * 24 * 60 * 60
     const [toggle, setToggle] = useState<Boolean>()
+
     const [toggleFwd, setToggleFwd] = useState(false)
     const [secondsLeft, setSecondsLeft] = useState<number>()
-
-    const [forceUpdadte, setForceUpdate] = useState(0)
 
     /** store the timestamp when the start btn was clicked */
     async function recordStartTime (){
@@ -31,7 +30,7 @@ export default function ThirdLevelCountDown() {
     };
     /** if sthg stored in async as start time challeng is running => hide start btn */
     async function setToggeling(): Promise<Boolean> {
-        if( await AsyncStorage.getItem("@start_time")){
+        if( await AsyncStorage.getItem("@start_time") !== null){
             return true
         }else{
             return false
@@ -48,6 +47,7 @@ export default function ThirdLevelCountDown() {
                 return timeLeft
             }else {
                 AsyncStorage.clear()
+                console.log(await AsyncStorage.getItem("@start_time"))
                 return 0
             }
         }
@@ -60,16 +60,19 @@ export default function ThirdLevelCountDown() {
         setCountDown().then(time => setSecondsLeft(time))
         setToggle(prev => !prev)
     }
+    
     const onRestart = () => {
         recordStartTime()
         setSecondsLeft(timeLimit)
         setToggleFwd(prev => !prev)
         setToggle(prev => !prev)
     }
+
     const onComplete = () => {
         setToggleFwd(prev => !prev)
         setSecondsLeft(timeLimit)
     }
+
     useEffect(() => {
         setToggeling().then(bool => setToggle(bool)).then()
         setCountDown().then(time => setSecondsLeft(time))
@@ -116,7 +119,7 @@ export default function ThirdLevelCountDown() {
             </Pressable> 
                 <Pressable 
                     accessibilityHint="Zum Feedback und Übung beenden"
-                    onPress={() => {navigate("Feedback", {level:3} )}}
+                    onPress={() => {navigate("Feedback", {name: "MoodEntry"} )}}
                     style={styles.buttons}>
                     <Text style={[styles.body, {fontWeight: 'bold'}]}>Weiter</Text>
                 </Pressable> 

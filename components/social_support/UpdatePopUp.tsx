@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native'
+import { View, Text, TextInput, Pressable, StyleSheet, Modal } from 'react-native'
 import React, { useState } from 'react'
 import { personProp } from './Circle'
 import { PRIMARY, RED, SIZES } from '../../styles'
@@ -21,6 +21,7 @@ const UpdatePopUp = ( {updatePerson, deletePerson, person, toggle, level} : {
     }
     
     return (
+      <Modal transparent={true}>
       <View style={styles.overlay}>
         <View style={styles.popUp}>
             <View style={styles.container}>
@@ -72,6 +73,7 @@ const UpdatePopUp = ( {updatePerson, deletePerson, person, toggle, level} : {
           </View>
         </View>
       </View>
+      </Modal>
     ) 
 }
 const styles = StyleSheet.create({
