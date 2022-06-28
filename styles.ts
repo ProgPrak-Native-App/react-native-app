@@ -10,9 +10,11 @@ export const BACKGROUND = '#f2f2f2';
 export const SHADOW = '#171717';
 export const ERROR = '#ff0000';
 
-
+export const ARROW_GRAY = '#00A873';
 export const WHITE = '#fff';
 export const BLACK = '#000';
+export const INNER_CIRCLE = '#f9bf9e';
+
 export const MOTIVATOR = {
   DEFAULT: '#f2c7d0',
   SITUATIONCONTROLL: '#f2c7d0',

@@ -18,7 +18,8 @@ export default function NewMotivatorCreator() {
             <AntDesign name="left" size={48} />
           </View>
           <NewMotivatorOverview
-            description="Beim Reframing geht es darum, deine eigene Einschätzung der Situation zu überprüfen und ggf. zu einer anderen Interpretation zu kommen."
+            description="Beim Reframing geht es darum, deine eigene Einschätzung der Situation zu 
+            überprüfen und ggf. zu einer anderen Interpretation zu kommen."
             icon={require('../../../assets/reframeicon.png')}
             title="Reframing"
           />

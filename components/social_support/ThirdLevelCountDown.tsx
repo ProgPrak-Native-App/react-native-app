@@ -1,5 +1,5 @@
-import {Text, StyleSheet, ScrollView, Pressable, View} from 'react-native'
-import React, { useEffect, useState } from 'react'
+import {Text, StyleSheet, ScrollView, Pressable, View} from 'react-native';
+import React, { useEffect, useState } from 'react';
 import Title from '../Title';
 import { ORANGE, PRIMARY, SIZES, TERTIARY } from '../../styles';
 import { NavigationProp, useNavigation } from '@react-navigation/native';

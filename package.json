@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@types/react": "^18.0.14",
+    "@types/react": "~17.0.21",
     "@types/react-native": "^0.69.0",
     "@types/react-native-background-timer": "^2.0.0",
     "@types/react-native-countdown-component": "^2.7.0",

@@ -34,7 +34,7 @@ const UpdatePopUp = ( {updatePerson, deletePerson, person, toggle, level} : {
                 placeholderTextColor='#4F4F4F'
                 style={styles.input}
                 value={update.name}
-                onChangeText={(val) => handleInput("name", val)}
+                onChangeText={(val) => handleInput('name', val)}
                 /> 
             { level === 2 && (
             <>

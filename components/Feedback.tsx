@@ -32,7 +32,7 @@ export function FeedbackNavigation() {
   );
 }
 
-export default function Feedback({ route } : FeedbackScreenProps<'Feedback'>){
+export default function Feedback({ route }: FeedbackScreenProps<'Feedback'>){
   const { name } = route.params;
   const navigation = useNavigation<NavigationProp<FeedbackRoutes>>();
   // navigation.navigate('MoodDiary', { screen: 'MoodEntry' });
@@ -50,14 +50,14 @@ export default function Feedback({ route } : FeedbackScreenProps<'Feedback'>){
         <View style={styles.buttons}>
           <Pressable
             accessibilityHint="Drücke hier falls Dir die Uebung gefallen hat"
-            onPress ={() => setGreenBtn((prev) => !prev)}
-            style={[{ backgroundColor: PRIMARY }, styles.feedback, greenBtn ? pressedGreenStyle : {} ]}>
+            onPress={() => setGreenBtn((prev) => !prev)}
+            style={[{ backgroundColor: PRIMARY }, styles.feedback, greenBtn ? pressedGreenStyle : {}]}>
             <FontAwesome5 color="black" name="smile-beam" size={30} style={styles.icons} />
             <Text style={styles.text}>Gut</Text>
           </Pressable>
           <Pressable
             accessibilityHint="Drücke hier falls Dir die Uebung nicht gefallen hat"
-            onPress ={() => setRedBtn((prev) => !prev)}
+            onPress={() => setRedBtn((prev) => !prev)}
             style={[{ backgroundColor: RED }, styles.feedback, redBtn ? pressedRedStyle : {} ]}>
             <FontAwesome5 color="black" name="frown" size={30} style={styles.icons} />
             <Text style={styles.text}>Schlecht</Text>
@@ -78,16 +78,16 @@ export default function Feedback({ route } : FeedbackScreenProps<'Feedback'>){
             accessibilityHint="Zurück zum Intro Screen"
             onPress={() => navigation.navigate('MoodEntry')}
             style={({ pressed }) => [
-              { backgroundColor: pressed ? PRIMARY: TERTIARY},
+              { backgroundColor: pressed ? PRIMARY: TERTIARY },
               styles.button,
-              {marginRight: 20 },
+              { marginRight: 20 },
             ]}>
             <Text style={styles.text}>Andere Startegie ausprobieren</Text>
           </Pressable>
           <Pressable
             accessibilityHint="Übung beenden"
             onPress={() => navigation.navigate(name)}
-            style={({ pressed }) => [{backgroundColor: pressed ? PRIMARY: TERTIARY }, styles.button]}>
+            style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY: TERTIARY }, styles.button]}>
             <Text style={styles.text}>Done</Text>
           </Pressable>
         </View>
