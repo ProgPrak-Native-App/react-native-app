@@ -3,7 +3,7 @@ import Title from "../../Title";
 import KopfsachenButton from "../../KopfsachenButton";
 import {parseMotivator } from "../MotivatorProps";
 import { SafetyNetDType } from "./SecurityNet";
-import { currentComponent } from "./SecurityNetComponent";
+import { currentComponent } from "./SecurityNetItem";
 import { View, Text, StyleSheet, Image, Pressable, TextInput } from "react-native";
 import { FontAwesome, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
@@ -11,7 +11,7 @@ import { MotivatorRoutes } from "../Motivator";
 
 export var completeComponent = currentComponent
 
-async function finishSecurityNetComponent(navigation: NavigationProp<MotivatorRoutes>, newComponent: SafetyNetDType) {
+async function finishSecurityNetItem(navigation: NavigationProp<MotivatorRoutes>, newComponent: SafetyNetDType) {
   // TODO: send SafetyNetItem to DB with POST
   navigation.navigate("SecurityNet")
 }
@@ -28,7 +28,7 @@ export default function SecurityNetAssistance() {
         <TextInput style={styles.textinput} placeholder="..." onChangeText={(input) => completeComponent.strategies[1] = input}></TextInput>
         <TextInput style={styles.textinput} placeholder="..." onChangeText={(input) => completeComponent.strategies[2] = input}></TextInput>
       </View>
-      <KopfsachenButton style={[styles.button, styles.shadow]} onPress={() => finishSecurityNetComponent(navigation, completeComponent)}>Weiter!</KopfsachenButton>
+      <KopfsachenButton style={[styles.button, styles.shadow]} onPress={() => finishSecurityNetItem(navigation, completeComponent)}>Weiter!</KopfsachenButton>
     </>
   )
 }
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "space-around",
     alignItems: "center",
-    height: 450,
+    height: 350,
     marginHorizontal: 25,
   },
   text: {

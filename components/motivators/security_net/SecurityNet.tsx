@@ -13,22 +13,28 @@ export type SafetyNetDType = {
   strategies: [string, string, string];
 };
 
+const iconMapSize = 32;
 export const iconMap = new Map<string, JSX.Element>([
-  ['personality', <Ionicons name="person"></Ionicons>],
-  ['friends', <FontAwesome5 name="user-friends"></FontAwesome5>],
-  ['sport', <FontAwesome name="soccer-ball-o"></FontAwesome>],
-  ['music', <FontAwesome name="music"></FontAwesome>],
-  ['other', <FontAwesome5 name="tv"></FontAwesome5>],
-  ['pet', <FontAwesome name="paw"></FontAwesome>],
+  ['personality', <Ionicons name="person" size={iconMapSize}></Ionicons>],
+  ['friends', <FontAwesome5 name="user-friends" size={iconMapSize}></FontAwesome5>],
+  ['sport', <FontAwesome name="soccer-ball-o" size={iconMapSize}></FontAwesome>],
+  ['music', <FontAwesome name="music" size={iconMapSize}></FontAwesome>],
+  ['other', <FontAwesome5 name="tv" size={iconMapSize}></FontAwesome5>],
+  ['pet', <FontAwesome name="paw" size={iconMapSize}></FontAwesome>],
 ]);
+
+export const empty: SafetyNetDType = {
+  type: "NONE",
+  icon: undefined,
+  title: "...",
+  strategies: ["...", "...", "..."],
+}
 
 export default function SecurityNet() {
   const iconSize = 40;
   const props = parseMotivator('relaxation');
 
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
-
-  // TODO: create new component that displays all the safetyNetItems of category in a grid view
 
   return (
     <>
@@ -38,12 +44,12 @@ export default function SecurityNet() {
           Welche Personen oder Aktivitäten bereiten dir im Alltag Freude und geben dir Antrieb?
         </Text>
         <Image source={require('../../../assets/securitynetIcon.png')} style={{ height: 180, width: 180 }} />
-        <Pressable onPress={() => navigation.navigate('SecurityNetComponent')}>
+        <Pressable onPress={() => navigation.navigate('SecurityNetItem', {component: empty})}>
           <Image source={require('../../../assets/icon_plus.png')} style={{ height: 64, width: 64 }} />
         </Pressable>
       </View>
       <View style={styles.iconcontainer}>
-        <Pressable onPress={() => navigation.navigate('SecurityNetItemView')}>
+        <Pressable onPress={() => navigation.navigate('SecurityNetItemView', {type: "personality"})}>
           <Ionicons name="person" size={iconSize} style={styles.icon}></Ionicons>
         </Pressable>
         <Pressable>

@@ -4,8 +4,8 @@ import SituationControl from "./old_motivator/SituationControl";
 import MotivatorSelection from "./MotivatorSelection";
 import NotImplemented from "../NotImplemented";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import SecurityNet from "./security_net/SecurityNet";
-import SecurityNetComponent from "./security_net/SecurityNetComponent";
+import SecurityNet, { SafetyNetDType } from "./security_net/SecurityNet";
+import SecurityNetItem from "./security_net/SecurityNetItem";
 import SecurityNetAssistance from "./security_net/SecurityNetAssistance";
 import SecurityNetItemView from "./security_net/SecurityNetItemView";
 
@@ -13,9 +13,9 @@ export type MotivatorRoutes = {
   MotivatorCreator: undefined;
   SituationControl: undefined;
   SecurityNet: undefined,
-  SecurityNetComponent: undefined,
+  SecurityNetItem: {component: SafetyNetDType},
   SecurityNetAssistance: undefined,
-  SecurityNetItemView: undefined,
+  SecurityNetItemView: {type: string},
   MotivatorSelection: undefined;
   NotImplemented: undefined;
 };
@@ -28,7 +28,7 @@ export default function Motivator() {
       <StackNavigator.Screen name="MotivatorSelection" component={MotivatorSelection} />
       <StackNavigator.Screen name="MotivatorCreator" component={NewMotivatorCreator} />
       <StackNavigator.Screen name="SecurityNet" component={SecurityNet} />
-      <StackNavigator.Screen name="SecurityNetComponent" component={SecurityNetComponent} />
+      <StackNavigator.Screen name="SecurityNetItem" component={SecurityNetItem} />
       <StackNavigator.Screen name="SecurityNetAssistance" component={SecurityNetAssistance} />
       <StackNavigator.Screen name="SecurityNetItemView" component={SecurityNetItemView} />
       <StackNavigator.Screen name="SituationControl" component={SituationControl} />

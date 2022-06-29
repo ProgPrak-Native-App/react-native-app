@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { MotivatorRoutes } from '../Motivator';
 import { iconMap, SafetyNetDType } from './SecurityNet';
 import Title from '../../Title';
-import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, Pressable } from 'react-native';
+import { NavigationProp, RouteProp, useNavigation } from '@react-navigation/native';
 
 async function getSafetyNet() {
   return await fetch('http://localhost:4010/safetyNet/285')
@@ -23,34 +24,36 @@ async function getSafetyNet() {
     });
 }
 
-function securityNetItemGridView(safetyNetItems: SafetyNetDType[]) {
-  let items: SafetyNetDType[];
-  getSafetyNet().then((response) => {
-    items = response;
-  });
+function securityNetItemGridView(safetyNetItems: SafetyNetDType[], type: string) {
+  const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
+
   return (
     <>
-      {safetyNetItems.map((data, index) => (
-        <Text key={index} style={styles.text}>
-          {data.type}
-        </Text>
+    {safetyNetItems.filter((data) => data.type == type).map((data, index) => (
+        <Pressable onPress={() => {navigation.navigate("SecurityNetItem", {component: data})}} style={[styles.gridItem, styles.shadow]} key={index}>
+          <Text style={styles.text}>{data.title}</Text>
+          {data.icon}
+        </Pressable>
       ))}
     </>
   );
 }
 
-export default function SecurityNetItemView() {
+export default function SecurityNetItemView({ _, route} : any) {
   const initialState: SafetyNetDType[] = [];
   const [safetyNetItems, setSafetyNetItems] = useState(initialState);
 
   useEffect(() => {
     getSafetyNet().then(setSafetyNetItems);
   }, []);
+
+  var type = route.params.type
+
   return (
     <>
       <Title text="Mein Sicherheitsnetz" />
       <ScrollView>
-        <View style={styles.gridContainer}>{securityNetItemGridView(safetyNetItems)}</View>
+        <View style={styles.gridContainer}>{securityNetItemGridView(safetyNetItems, type)}</View>
       </ScrollView>
     </>
   );
