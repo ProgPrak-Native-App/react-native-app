@@ -19,6 +19,8 @@ export const MOTIVATOR = {
   DEFAULT: '#f2c7d0',
   SITUATIONCONTROLL: '#f2c7d0',
   SECURITYNET: '#EAFAFE',
+  OPTIMISM: '#FDE802',
+  REFRAMING: '#F2C7D0',
 };
 
 export const ORANGE = '#F3803E';

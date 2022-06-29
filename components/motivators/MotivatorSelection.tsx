@@ -17,15 +17,16 @@ async function getMotivators() {
 
 function OldMotivatorGridView(motivators: MotivatorProps[]) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
+
   return (
     <>
-      {motivators.map((data, index) => (
+      {motivators.map((props, index) => (
         <Pressable
           key={index}
-          onPress={() => navigation.navigate(data.screen)}
-          style={[styles.gridItem, { backgroundColor: data.color }, styles.shadow]}>
-          <Text style={styles.text}>{data.name}</Text>
-          {data.icon}
+          onPress={() => navigation.navigate('OldMotivator', { props: props.type })}
+          style={[styles.gridItem, { backgroundColor: props.color }, styles.shadow]}>
+          <Text style={styles.text}>{props.name}</Text>
+          {props.icon}
         </Pressable>
       ))}
     </>
@@ -59,7 +60,7 @@ export default function MotivatorSelection() {
           </Text>
 
           <KopfsachenButton
-            onPress={() => navigation.navigate('MotivatorCreator')}
+            onPress={() => navigation.navigate('NewMotivatorCreator')}
             style={[styles.button, styles.shadow]}>
             Neue Starkmacher entdecken!
           </KopfsachenButton>
