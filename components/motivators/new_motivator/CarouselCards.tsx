@@ -15,10 +15,6 @@ function getMotivatorParams(name: keyof MotivatorTypes) {
   return motivator.screen === 'OldMotivator' ? motivator.type : undefined;
 }
 
-function getMotivatorRoute(name: keyof MotivatorTypes) {
-  return parseMotivator(name).screen;
-}
-
 export default function CarouselCards(lol: testProps) {
   const isCarousel = React.useRef(null);
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
@@ -30,10 +26,11 @@ export default function CarouselCards(lol: testProps) {
       ref={isCarousel}
       renderItem={function (props: { item: unknown }) {
         const motivator = props.item as keyof MotivatorTypes;
-
         return (
           <Pressable
-            onPress={() => navigation.navigate(getMotivatorRoute(motivator), { props: getMotivatorParams(motivator) })}>
+            onPress={() =>
+              navigation.navigate(parseMotivator(motivator).screen, { props: getMotivatorParams(motivator) })
+            }>
             <CarouselCardItem item={props.item as keyof MotivatorTypes} />
           </Pressable>
         );

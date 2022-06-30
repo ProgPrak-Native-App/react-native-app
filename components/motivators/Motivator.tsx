@@ -4,7 +4,7 @@ import MotivatorSelection from './MotivatorSelection';
 import NotImplemented from '../NotImplemented';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import OldMotivator from './old_motivator/OldMotivator';
-import Optimism from './new_motivator/Optimism';
+import Optimism from './optimism/Optimism';
 
 export type MotivatorRoutes = {
   NewMotivatorCreator: undefined;
