@@ -34,10 +34,6 @@ const KsButton = (link: KsButtonProp) => {
   return (
     <View style={styles.container}>
       <FontAwesome5.Button
-<<<<<<< HEAD
-=======
-        // TODO: Fix me - Type GLYPH is not accessable
->>>>>>> ed251b48549afb33b7be3c0e2fecefd403ad744e
         backgroundColor={backgroundColor}
         color="#C4C4C4"
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
