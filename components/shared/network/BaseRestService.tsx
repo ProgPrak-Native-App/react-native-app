@@ -1,7 +1,5 @@
 import { environment } from '../../../environments/environment';
 
-// TODO: Create search call with query object, size -> Communication with backend Team needed
-// TODO: Add error handling -> connection retries & open default error dialog,
 export async function get<T>(path: string, options?: RequestInit): Promise<T> {
   const response = await fetch(environment.API_URL + path);
 
