@@ -24,7 +24,6 @@ export type TabRoutes = {
   MoodDiary: undefined;
   Wiki: undefined;
   Motivators: undefined;
-  EmergencyNumber: undefined;
   Profil: undefined;
 };
 
