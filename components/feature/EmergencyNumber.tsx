@@ -57,17 +57,6 @@ export default function EmergencyNumber() {
                 );
               })}
             </View>
-            {/* Tags */}
-            <View>
-              <Text>Themen</Text>
-              {emergency.tags.map((tag: string, tagIndex) => {
-                return (
-                  <View key={tagIndex}>
-                    <Text>{tag}</Text>
-                  </View>
-                );
-              })}
-            </View>
           </Card>
         );
       })}
