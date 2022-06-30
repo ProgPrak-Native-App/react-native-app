@@ -11,6 +11,8 @@ import { TabRoutes } from '../../App';
 
 export default function NegativeIntro() {
   const navigation = useNavigation<NavigationProp<TabRoutes>>();
+  const emergencyNav = useNavigation<NavigationProp<{ EmergencyNumber: undefined }>>();
+
 
   return (
     <>
@@ -28,7 +30,7 @@ export default function NegativeIntro() {
         <KopfsachenButton onPress={() => navigation.navigate('Motivators')} style={styles.button}>
           Neue Strategie
         </KopfsachenButton>
-        <KopfsachenButton onPress={() => navigation.navigate('EmergencyNumber')} style={styles.button}>
+        <KopfsachenButton onPress={() => emergencyNav.navigate('EmergencyNumber')} style={styles.button}>
           Beratungs-&#13;stellen
         </KopfsachenButton>
       </View>

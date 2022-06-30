@@ -2,8 +2,8 @@ import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-n
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import { PRIMARY } from '../styles';
 import React from 'react';
+// eslint-disable-next-line import/named
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { TabRoutes } from '../App';
 
 type Props = {
   text: string;
@@ -15,7 +15,7 @@ type Props = {
 
 export default function Title({ text, color, Icon, back, style }: Props) {
   const navigation = useNavigation<NavigationProp<never>>();
-  const mainNav = useNavigation<NavigationProp<TabRoutes>>();
+  const emergencyNav = useNavigation<NavigationProp<{ EmergencyNumber: undefined }>>();
 
   return (
     <View style={[styles.container, { backgroundColor: color ?? PRIMARY }, style]}>
@@ -33,7 +33,7 @@ export default function Title({ text, color, Icon, back, style }: Props) {
       )}
       <Pressable
         onPress={() => {
-          mainNav.navigate('EmergencyNumber');
+          emergencyNav.navigate('EmergencyNumber');
         }}
         style={styles.firstAidBtn}>
         <FontAwesome5 name="first-aid" size={30} />
