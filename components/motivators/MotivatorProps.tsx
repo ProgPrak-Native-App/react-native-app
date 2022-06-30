@@ -41,7 +41,7 @@ const relaxation: MotivatorProps = {
   name: "Sicherheitsnetz",
   color: MOTIVATOR.SECURITYNET,
   exercises: mockExercises,
-  icon: <Image style={{height: 54, width: 54 }} source={require("../../assets/securitynetIcon.png")} />,
+  icon: <Image style={{height: 76, width: 76 }} source={require("../../assets/securitynetIcon.png")} />,
   screen: "SecurityNet"
 }
 

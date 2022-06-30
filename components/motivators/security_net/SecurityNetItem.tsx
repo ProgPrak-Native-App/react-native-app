@@ -24,23 +24,20 @@ export default function SecurityNetItem({ navigation, route }: any) {
       <Title color={props.color} Icon={() => props.icon} text={props.name}/>
       <View style={styles.container}>
         <Text style={styles.text}>Das bereitet mir Freude:</Text>
-        <TextInput style={styles.textinput} placeholder="..." onChangeText={(input) => currentComponent.title=input}/>
+        <TextInput style={styles.textinput} placeholder={currentComponent.title} onChangeText={(input) => currentComponent.title=input}/>
         <Text style={styles.text}>Zu welcher Kategorie gehört diese Ressource?</Text>
         <View style={styles.iconcontainer}>
-          <Pressable onPress={() => setTypeAndIcon(currentComponent, "personality")}>
+          <Pressable onPress={() => setTypeAndIcon(currentComponent, "personalStrengths")}>
             <Ionicons name="person" size={iconSize} style={styles.icon}></Ionicons>
           </Pressable>
-          <Pressable onPress={() => setTypeAndIcon(currentComponent, "friends")}>
+          <Pressable onPress={() => setTypeAndIcon(currentComponent, "people")}>
             <FontAwesome5 name="user-friends" size={iconSize} style={styles.icon}></FontAwesome5>
           </Pressable>
-          <Pressable onPress={() => setTypeAndIcon(currentComponent, "pet")}>
+          <Pressable onPress={() => setTypeAndIcon(currentComponent, "pets")}>
             <FontAwesome name="paw" size={iconSize} style={styles.icon}></FontAwesome>
           </Pressable>
-          <Pressable onPress={() => setTypeAndIcon(currentComponent, "sport")}>
+          <Pressable onPress={() => setTypeAndIcon(currentComponent, "activities")}>
             <FontAwesome name="soccer-ball-o" size={iconSize} style={styles.icon}></FontAwesome>
-          </Pressable>
-          <Pressable onPress={() => setTypeAndIcon(currentComponent, "music")}>
-            <FontAwesome name="music" size={iconSize} style={styles.icon}></FontAwesome>
           </Pressable>
           <Pressable onPress={() => setTypeAndIcon(currentComponent, "other")}>
             <FontAwesome5 name="tv" size={iconSize} style={styles.icon}></FontAwesome5>

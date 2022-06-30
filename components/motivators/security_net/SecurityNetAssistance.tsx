@@ -18,15 +18,16 @@ async function finishSecurityNetItem(navigation: NavigationProp<MotivatorRoutes>
 
 export default function SecurityNetAssistance() {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
+  const props = parseMotivator('relaxation');
 
   return (
     <>
-      <Title text="Mein Sicherheitsnetz"></Title>
+      <Title text={props.name} color={props.color} Icon={() => props.icon}></Title>
       <View style={styles.container}>
         <Text style={styles.text}>Trage 3 Wege ein, auf denen dir diese Person oder Aktivität helfen kann.</Text>
-        <TextInput style={styles.textinput} placeholder="..." onChangeText={(input) => completeComponent.strategies[0] = input}></TextInput>
-        <TextInput style={styles.textinput} placeholder="..." onChangeText={(input) => completeComponent.strategies[1] = input}></TextInput>
-        <TextInput style={styles.textinput} placeholder="..." onChangeText={(input) => completeComponent.strategies[2] = input}></TextInput>
+        <TextInput style={styles.textinput} placeholder={currentComponent.strategies[0]} onChangeText={(input) => completeComponent.strategies[0] = input}></TextInput>
+        <TextInput style={styles.textinput} placeholder={currentComponent.strategies[1]} onChangeText={(input) => completeComponent.strategies[1] = input}></TextInput>
+        <TextInput style={styles.textinput} placeholder={currentComponent.strategies[2]} onChangeText={(input) => completeComponent.strategies[2] = input}></TextInput>
       </View>
       <KopfsachenButton style={[styles.button, styles.shadow]} onPress={() => finishSecurityNetItem(navigation, completeComponent)}>Weiter!</KopfsachenButton>
     </>
