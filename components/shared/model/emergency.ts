@@ -9,5 +9,4 @@ export type Emergency = {
     title: string;
   };
   buttons: KsButtonProp[];
-  tags: string[];
 };
