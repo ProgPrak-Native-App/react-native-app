@@ -27,7 +27,6 @@ export const ALPHABET = [
   'Y',
   'Z',
 ];
-export const BASE_URL = 'http://127.0.0.1:4010';
 
 /* ----- types for data handeling ---- */
 export type EntryProps = {

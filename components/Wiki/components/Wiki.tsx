@@ -3,14 +3,14 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import Title from '../../Title';
 import WikiHeader from './WikiHeader';
 import EntryTitle from './EntryTitle';
-import { BASE_URL, EntryProps, SIZES, wikiEntry } from '../constant/constants';
+import { EntryProps, SIZES, wikiEntry } from '../constant/constants';
 import { TERTIARY } from '../../../styles';
 
 const alphaBet: Set<string> = new Set();
 
 /** fetch wiki data and slice first 6 just for easier debbuging from API */
 async function getEntries(): Promise<wikiEntry[]> {
-  return (await fetch(BASE_URL + '/wiki/5')
+  return (await fetch(process.env.BASE_URL + '/wiki/5')
     .then((response) => response.json())
     .then((data) => data.slice(0, 6))) as wikiEntry[];
 }
