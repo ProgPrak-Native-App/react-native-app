@@ -5,42 +5,53 @@ import { BLACK, DARK_GREY, ORANGE, PRIMARY, RED, SIZES, TERTIARY, WHITE } from '
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from './Title';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
-import MoodEntry from './mood_diary/MoodEntry';
-// import CompassionNavigation from './compassion/CompassionNavigation';
-// import MotivatorCompleted from './MotivatorCompleted';
+import MoodDiary from './mood_diary/MoodDiary';
+import CompassionNavigation from './compassion/CompassionNavigation';
+import MotivatorCompleted from './MotivatorCompleted';
 
 export type FeedbackRoutes = {
   Feedback: { name: keyof FeedbackRoutes };
-  MoodEntry: undefined;
-  CompassionNavigation: undefined;
+  MoodDiary: { screen: string };
+  CompassionNavigation:{ screen: string };
   MotivatorCompleted: undefined;
 };
 export type FeedbackScreenProps<T extends keyof FeedbackRoutes> = NativeStackScreenProps<FeedbackRoutes, T>;
 
 const Stack = createNativeStackNavigator<FeedbackRoutes>();
 
-/* <Stack.Screen name="CompassionNavigation" component={CompassionNavigation} />
-          <Stack.Screen name="MotivatorCompleted" component={MotivatorCompleted} /> */
-
-export function FeedbackNavigation() {
+export function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {
   return (
     <>
-      <Stack.Navigator screenOptions={{ headerShown: false, animation: 'none' }}>
-        <Stack.Screen component={MoodEntry} name="MoodEntry" />
+      <Stack.Navigator 
+        initialRouteName="Feedback"
+        screenOptions={{ headerShown: false, animation: 'none'}}>
+        <Stack.Screen component={Feedback} name="Feedback" initialParams={{name: route.params.name}} />
+        <Stack.Screen component={MoodDiary} name="MoodDiary" />
+        <Stack.Screen component={CompassionNavigation} name="CompassionNavigation" />
+        <Stack.Screen component={MotivatorCompleted} name="MotivatorCompleted" />
       </Stack.Navigator>
     </>
   );
 }
 
-export default function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
+function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
   const { name } = route.params;
+
   const navigation = useNavigation<NavigationProp<FeedbackRoutes>>();
-  // navigation.navigate('MoodDiary', { screen: 'MoodEntry' });
+
   const [comment, setComment] = useState('');
   const [greenBtn, setGreenBtn] = useState(false);
   const [redBtn, setRedBtn] = useState(false);
   const pressedGreenStyle = { borderColor: 'black', borderWidth: 2, backgroundColor: 'lightgreen' };
   const pressedRedStyle = { borderColor: 'black', borderWidth: 2, backgroundColor: 'red' };
+
+  const handleNavigation = () => {
+    if ( name.toString() === 'MoodEntry'){
+      navigation.navigate('MoodDiary', { screen:'MoodEntry'});
+    } else if (name.toString() === 'IntroScreen') {
+      navigation.navigate('CompassionNavigation', {screen: name.toString()});
+    }
+  }
 
   return (
     <>
@@ -67,7 +78,7 @@ export default function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
         <TextInput
           accessibilityHint="Optional: Hinterlasse hier dein Feedback"
           accessibilityLabel="Dein Feedback"
-          onChangeText={(n) => setComment(n)}
+          onChangeText={setComment}
           placeholder="Dein Feedback..."
           placeholderTextColor="#4F4F4F"
           style={styles.input}
@@ -76,17 +87,17 @@ export default function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
         <View style={styles.buttons}>
           <Pressable
             accessibilityHint="Zurück zum Intro Screen"
-            onPress={() => navigation.navigate('MoodEntry')}
+            onPress={handleNavigation}
             style={({ pressed }) => [
               { backgroundColor: pressed ? PRIMARY : TERTIARY },
               styles.button,
               { marginRight: 20 },
             ]}>
-            <Text style={styles.text}>Andere Startegie ausprobieren</Text>
+            <Text style={styles.text}>Andere Strategie ausprobieren</Text>
           </Pressable>
           <Pressable
             accessibilityHint="Übung beenden"
-            onPress={() => navigation.navigate(name)}
+            onPress={handleNavigation}
             style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.button]}>
             <Text style={styles.text}>Done</Text>
           </Pressable>

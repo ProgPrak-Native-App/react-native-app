@@ -15,8 +15,10 @@ export type circleProps = {
   level: number;
 };
 export default function Circle(props: circleProps) {
-  /**  https://stackoverflow.com/questions/10152390/dynamically-arrange-some-elements-around-a-circle */
-  /** fix magic numbers 120 */
+
+  /**  source code for calulation
+   * of spacing of names on the circle
+   * https://stackoverflow.com/questions/10152390/dynamically-arrange-some-elements-around-a-circle */
   const calc = (elem: personProp, angle: number) => {
     return (
       <Pressable
@@ -40,7 +42,6 @@ export default function Circle(props: circleProps) {
   };
 
   const circleElems = [];
-  /** fix magic numbers ? */
   const radius = 85;
   const width = 300;
   const height = 300;

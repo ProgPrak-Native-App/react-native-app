@@ -1,5 +1,5 @@
 import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Title from '../Title';
 import PopUp from './AddPopUp';
 import TextHeader from './TextHeader';
@@ -16,8 +16,7 @@ import IntroThirdLevel from './IntroThirdLevel';
 import 'react-native-get-random-values';
 import { nanoid } from 'nanoid';
 
-// const helper = 'Klicke einfach auf das plus-Symbol, um Personen dem jeweiligen Kreis hinzuzufügen.';
-// outer 300 300 middle 280 160 inner 240 120
+// const helper = 'Klicke einfach auf das plus-Symbol, um Personen dem jeweiligen Kreis hinzuzufügen.';s
 const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>) => {
 
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
@@ -35,9 +34,8 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
   });
 
   /** value states for animation of view size */
-  const [innerSize, setInnerSize] = useState(new Animated.Value(260));
-  const [middleSize, setMiddleSize] = useState(new Animated.Value(280));
-
+  const innerSize = useRef(new Animated.Value(260)).current;
+  const middleSize = useRef(new Animated.Value(280)).current;
   const level = route.params.level;
   if (level === 3) {
     return <IntroThirdLevel />;
@@ -68,7 +66,7 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
     setting(2);
   }, []);
 
-  /** i hope i can delete this soon...
+  /** 
   * currently sets currscreen data to be displayed & 
   * sets currentn people array to corresp. screen
   */
@@ -136,7 +134,7 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
   const goAhead = (id: number) => {
     setData((prevData) => prevData.map((item) => (item.id === id ? {...item, people: people } : item)));
     if (id === 0) {
-      navigate('Feedback', { name: 'MoodEntry' });
+      navigate('FeedbackNavigation', { name: 'MoodEntry' });
     } else if (id === 1) {
       setting(--id);
       changeSize(middleSize, 90);

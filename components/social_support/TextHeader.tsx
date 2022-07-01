@@ -18,7 +18,7 @@ function TextHeader(props: textProps) {
           accessibilityLabel="Weiter"
           onPress={() => props.goBack(props.id)}
           style={[styles.button, styles.goBack]}>
-          <AntDesign color="black" name="left" size={30}/>
+          <AntDesign color="black" name="left" size={30} />
         </Pressable>
         <Text style={styles.headerTxt}>{props.title}</Text>
         <Pressable

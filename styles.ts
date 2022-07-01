@@ -10,7 +10,7 @@ export const BACKGROUND = '#f2f2f2';
 export const SHADOW = '#171717';
 export const ERROR = '#ff0000';
 
-export const ARROW_GRAY = '#00A873';
+export const DARK_GREEN = '#00A873';
 export const WHITE = '#fff';
 export const BLACK = '#000';
 export const INNER_CIRCLE = '#f9bf9e';
@@ -25,6 +25,7 @@ export const ORANGE = '#F3803E';
 export const PURPLE = '#BB9AF3';
 export const PINK = '#F2C7D0';
 export const BLUE = '#4682b4';
+export const LIGHT_BLUE = '#EAFAFE';
 export const RED = '#ED6E6F';
 export const LIGHT_YELLOW = '#FCF7CB';
 export const DARK_YELLOW = '#FECB87';

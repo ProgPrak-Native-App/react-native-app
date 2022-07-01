@@ -1,4 +1,4 @@
-import { Text, StyleSheet, ScrollView, Pressable, View } from 'react-native';
+import { Text, StyleSheet, ScrollView, Pressable, View, EventEmitter, AppState } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Title from '../Title';
 import { BLACK, DARK_GREY, ORANGE, PRIMARY, SIZES, TERTIARY } from '../../styles';
@@ -7,14 +7,15 @@ import { SocialSupportStackParamList } from './SocialNavigation';
 import CountDown from 'react-native-countdown-component';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { differenceInSeconds } from 'date-fns';
+import { Duration, Instant } from '@js-joda/core';
 
 
 /** source for storage code https://aloukissas.medium.com/how-to-build-a-background-timer-in-expo-react-native-without-ejecting-ea7d67478408 */
 export default function ThirdLevelCountDown() {
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
 
-  const timeLimit = 1;
-  // 14 * 24 * 60 * 60
+  const timeLimit = 10;
+  // 14 Tage =  14 * 24 * 60 * 60
   const [toggle, setToggle] = useState<boolean>();
 
   const [toggleFwd, setToggleFwd] = useState(false);
@@ -23,31 +24,27 @@ export default function ThirdLevelCountDown() {
   /** store the timestamp when the start btn was clicked */
   async function recordStartTime() {
     try {
-      const now = new Date();
-      await AsyncStorage.setItem('@start_time', now.toISOString());
+      const now = Instant.now();
+      await AsyncStorage.setItem('@start_time', now.toJSON());
     } catch (err) {
       console.warn(err);
     }
   }
-  /** if sthg stored in async as start time challeng is running => hide start btn */
+  /** if smth stored in async as start time challeng is running => hide start btn */
   async function setToggeling(): Promise<boolean> {
-    if ((await AsyncStorage.getItem('@start_time')) !== null) {
-      return true;
-    } else {
-      return false;
-    }
+    return (await AsyncStorage.getItem('@start_time')) !== null;
   }
 
   /** when smth was in async storage then update the timer */
   const setCountDown = async () => {
     const startTime = await AsyncStorage.getItem('@start_time');
-    const now = new Date();
+    const now = Instant.now();
     if (startTime) {
-      const timeLeft = timeLimit - differenceInSeconds(now, Date.parse(startTime));
+      const timeLeft = timeLimit - Duration.between( Instant.parse(startTime), now).seconds();
       if (timeLeft > 0) {
         return timeLeft;
       } else {
-        AsyncStorage.clear();
+        await AsyncStorage.removeItem('@start_time');
         return 0;
       }
     }
@@ -70,7 +67,6 @@ export default function ThirdLevelCountDown() {
 
   const onComplete = () => {
     setToggleFwd((prev) => !prev);
-    setSecondsLeft(timeLimit);
   };
 
   useEffect(() => {
@@ -114,7 +110,7 @@ export default function ThirdLevelCountDown() {
             </Pressable>
             <Pressable
               accessibilityHint="Zum Feedback und Übung beenden"
-              onPress={() => navigate('Feedback', { name: 'MoodEntry' })}
+              onPress={() => navigate('FeedbackNavigation', { name: 'MoodEntry' })}
               style={styles.buttons}>
               <Text style={[styles.body, { fontWeight: 'bold' }]}>Weiter</Text>
             </Pressable>

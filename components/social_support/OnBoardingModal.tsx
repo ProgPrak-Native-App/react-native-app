@@ -1,7 +1,7 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { Text, Modal, View, StyleSheet, Pressable } from 'react-native';
-import { ARROW_GRAY, ORANGE, PRIMARY, PURPLE, SIZES, WHITE } from '../../styles';
+import { DARK_GREEN, ORANGE, PRIMARY, PURPLE, SIZES, WHITE } from '../../styles';
 import { SocialSupportStackParamList } from './SocialNavigation';
 
 const textLvl1 = [
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     minWidth: '40%',
   },
   back: {
-    borderColor: ARROW_GRAY,
+    borderColor: DARK_GREEN,
     marginRight: 8,
   },
   next: {

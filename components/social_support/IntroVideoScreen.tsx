@@ -1,15 +1,14 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { SocialSupportStackParamList } from './SocialNavigation';
 import { BACKGROUND, ORANGE, SIZES, TERTIARY } from '../../styles';
 import { Video } from 'expo-av';
 
-export default function SocialIntroduction() {
+export default function IntroVideoScreen() {
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
-  const video = React.useRef(null);
-  const [status, setStatus] = useState({});
+
   return (
     <>
       <Title back color={ORANGE} text="Soziale Unterstützung" />
@@ -19,10 +18,8 @@ export default function SocialIntroduction() {
         </View>
         <View style={{ flex: 0 }}>
           <Video
-            onPlaybackStatusUpdate={(status) => setStatus(() => status)}
-            ref={video}
             resizeMode="contain"
-            source={require('../../assets/')}
+            source={require('../../assets/Optimism_Infovideo_WIP.mov')}
             style={{ aspectRatio: 16 / 9 }}
             useNativeControls
           />
