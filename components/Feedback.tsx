@@ -12,7 +12,7 @@ import MotivatorCompleted from './MotivatorCompleted';
 export type FeedbackRoutes = {
   Feedback: { name: keyof FeedbackRoutes };
   MoodDiary: { screen: string };
-  CompassionNavigation:{ screen: string };
+  CompassionNavigation: { screen: string };
   MotivatorCompleted: undefined;
 };
 export type FeedbackScreenProps<T extends keyof FeedbackRoutes> = NativeStackScreenProps<FeedbackRoutes, T>;
@@ -22,10 +22,8 @@ const Stack = createNativeStackNavigator<FeedbackRoutes>();
 export function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {
   return (
     <>
-      <Stack.Navigator 
-        initialRouteName="Feedback"
-        screenOptions={{ headerShown: false, animation: 'none'}}>
-        <Stack.Screen component={Feedback} name="Feedback" initialParams={{name: route.params.name}} />
+      <Stack.Navigator initialRouteName="Feedback" screenOptions={{ headerShown: false, animation: 'none' }}>
+        <Stack.Screen component={Feedback} name="Feedback" initialParams={{ name: route.params.name }} />
         <Stack.Screen component={MoodDiary} name="MoodDiary" />
         <Stack.Screen component={CompassionNavigation} name="CompassionNavigation" />
         <Stack.Screen component={MotivatorCompleted} name="MotivatorCompleted" />
@@ -46,12 +44,12 @@ function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
   const pressedRedStyle = { borderColor: 'black', borderWidth: 2, backgroundColor: 'red' };
 
   const handleNavigation = () => {
-    if ( name.toString() === 'MoodEntry'){
-      navigation.navigate('MoodDiary', { screen:'MoodEntry'});
+    if (name.toString() === 'MoodEntry') {
+      navigation.navigate('MoodDiary', { screen: 'MoodEntry' });
     } else if (name.toString() === 'IntroScreen') {
-      navigation.navigate('CompassionNavigation', {screen: name.toString()});
+      navigation.navigate('CompassionNavigation', { screen: name.toString() });
     }
-  }
+  };
 
   return (
     <>

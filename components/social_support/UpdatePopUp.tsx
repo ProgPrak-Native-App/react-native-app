@@ -67,7 +67,7 @@ const UpdatePopUp = ({
               <Pressable
                 accessibilityHint="Drück hier um die Änderungen zu speichern."
                 onPress={() => updatePerson(update)}
-                style={[styles.button, { backgroundColor: PRIMARY }]} >
+                style={[styles.button, { backgroundColor: PRIMARY }]}>
                 <Text style={styles.btnTxt}>Änderungen Speichern</Text>
               </Pressable>
             </View>

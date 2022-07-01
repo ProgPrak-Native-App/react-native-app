@@ -15,7 +15,6 @@ export type circleProps = {
   level: number;
 };
 export default function Circle(props: circleProps) {
-
   /**  source code for calulation
    * of spacing of names on the circle
    * https://stackoverflow.com/questions/10152390/dynamically-arrange-some-elements-around-a-circle */

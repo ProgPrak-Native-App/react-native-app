@@ -9,7 +9,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { differenceInSeconds } from 'date-fns';
 import { Duration, Instant } from '@js-joda/core';
 
-
 /** source for storage code https://aloukissas.medium.com/how-to-build-a-background-timer-in-expo-react-native-without-ejecting-ea7d67478408 */
 export default function ThirdLevelCountDown() {
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
@@ -40,7 +39,7 @@ export default function ThirdLevelCountDown() {
     const startTime = await AsyncStorage.getItem('@start_time');
     const now = Instant.now();
     if (startTime) {
-      const timeLeft = timeLimit - Duration.between( Instant.parse(startTime), now).seconds();
+      const timeLeft = timeLimit - Duration.between(Instant.parse(startTime), now).seconds();
       if (timeLeft > 0) {
         return timeLeft;
       } else {

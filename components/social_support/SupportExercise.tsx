@@ -18,7 +18,6 @@ import { nanoid } from 'nanoid';
 
 // const helper = 'Klicke einfach auf das plus-Symbol, um Personen dem jeweiligen Kreis hinzuzufügen.';s
 const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>) => {
-
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
   const [addVisible, setAddVisible] = useState(false);
   const [updateVisible, setUpdateVisible] = useState(false);
@@ -66,10 +65,10 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
     setting(2);
   }, []);
 
-  /** 
-  * currently sets currscreen data to be displayed & 
-  * sets currentn people array to corresp. screen
-  */
+  /**
+   * currently sets currscreen data to be displayed &
+   * sets currentn people array to corresp. screen
+   */
   const setting = (id: number) => {
     data.map((item) =>
       item.id === id
@@ -132,7 +131,7 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
 
   /** navigation between circles  */
   const goAhead = (id: number) => {
-    setData((prevData) => prevData.map((item) => (item.id === id ? {...item, people: people } : item)));
+    setData((prevData) => prevData.map((item) => (item.id === id ? { ...item, people: people } : item)));
     if (id === 0) {
       navigate('FeedbackNavigation', { name: 'MoodEntry' });
     } else if (id === 1) {
@@ -145,7 +144,7 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
   };
 
   const goBack = (id: number) => {
-    setData((prevData) => prevData.map((item) => (item.id === id ? {...item, people: people }: item)));
+    setData((prevData) => prevData.map((item) => (item.id === id ? { ...item, people: people } : item)));
     if (id === 0) {
       setting(++id);
       changeSize(middleSize, 280);
@@ -166,7 +165,8 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
     }).start();
   };
 
-  const subtitleLvl2 = '❤️ = Emotionale Unterstützung \n 📚 = Informationale Unterstützung \n 💪 = Instrumentale Unterstützung';
+  const subtitleLvl2 =
+    '❤️ = Emotionale Unterstützung \n 📚 = Informationale Unterstützung \n 💪 = Instrumentale Unterstützung';
 
   return (
     <>
