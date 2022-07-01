@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { Alert, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Modal, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import Title from '../../Title';
 import { parseMotivator } from '../MotivatorProps';
-import { SHADOW, SIZES } from '../../../styles';
+import { BACKGROUND, SHADOW, SIZES } from '../../../styles';
 import KopfsachenButton from '../../KopfsachenButton';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { MotivatorRoutes } from '../Motivator';
-import { OptimsimRoutes } from './Optimism';
 
-export default function OptimismHome() {
-  const navigation = useNavigation<NavigationProp<OptimsimRoutes>>();
+export default function OptimismHome({ navigation }: any) {
   const props = parseMotivator('optimism');
   const [modalVisible, setModalVisible] = useState(false);
   return (
@@ -28,25 +24,27 @@ export default function OptimismHome() {
             setModalVisible(!modalVisible);
           }}
           style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>
-              Wenn du Optimismus üben möchtest, kann dir die folgende Aufgabe helfen: Stell dir einen Timer für 10
-              Minuten ein. Denke während dieser Zeit an dein bestmögliches zukünftiges Selbst und schreibe es auf einem
-              Zettel auf. Lege dir mehrere Zettel für diese Übung bereit. Stell dir dein Leben so vor, wie du es dir
-              immer ausgemalt hast. Stell dir vor, du hättest dein Bestes gegeben und all die Dinge erreicht, die du im
-              Leben immer erreichen wolltest. Mache dir beim Schreiben keine Gedanken über Grammatik oder
-              Rechtschreibung. Konzentriere dich nur darauf, all deine Gedanken und Emotionen in einer lebhaften Weise
-              auszudrücken.
-            </Text>
-            <KopfsachenButton
-              onPress={() => {
-                setModalVisible(!modalVisible);
-                navigation.navigate('OptimismExercise');
-              }}
-              style={styles.button}>
-              Let's go!
-            </KopfsachenButton>
-          </View>
+          <TouchableWithoutFeedback>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>
+                Wenn du Optimismus üben möchtest, kann dir die folgende Aufgabe helfen: Stell dir einen Timer für 10
+                Minuten ein. Denke während dieser Zeit an dein bestmögliches zukünftiges Selbst und schreibe es auf
+                einem Zettel auf. Lege dir mehrere Zettel für diese Übung bereit. Stell dir dein Leben so vor, wie du es
+                dir immer ausgemalt hast. Stell dir vor, du hättest dein Bestes gegeben und all die Dinge erreicht, die
+                du im Leben immer erreichen wolltest. Mache dir beim Schreiben keine Gedanken über Grammatik oder
+                Rechtschreibung. Konzentriere dich nur darauf, all deine Gedanken und Emotionen in einer lebhaften Weise
+                auszudrücken.
+              </Text>
+              <KopfsachenButton
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                  navigation.navigate('OptimismExercise');
+                }}
+                style={styles.button}>
+                Let's go!
+              </KopfsachenButton>
+            </View>
+          </TouchableWithoutFeedback>
         </TouchableOpacity>
       </Modal>
 
@@ -105,11 +103,12 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: BACKGROUND,
     borderRadius: 20,
-    padding: 35,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
     alignItems: 'center',
-    shadowColor: '#000',
+    shadowColor: SHADOW,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -118,19 +117,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
   modalText: {
     lineHeight: SIZES.default_line_height,
     paddingBottom: 10,
     textAlign: 'center',
-    color: '#222',
     fontSize: SIZES.font,
   },
 });

@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react';
-import { Alert, Button, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import Title from '../../Title';
 import { parseMotivator } from '../MotivatorProps';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Countdown, Timer } from 'react-native-element-timer';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
-import { MOTIVATOR, SHADOW } from '../../../styles';
+import { MOTIVATOR, SHADOW, SIZES } from '../../../styles';
+import KopfsachenButton from '../../KopfsachenButton';
 
 export default function OptimismExercise() {
   const props = parseMotivator('optimism');
@@ -14,22 +13,24 @@ export default function OptimismExercise() {
     <>
       <Title Icon={() => props.icon} color={props.color} text={props.name} />
       <View style={styles.container}>
-        <CountdownCircleTimer
-          colors={['#004777', '#F7B801', '#A30000', '#A30000']}
-          colorsTime={[7, 5, 2, 0]}
-          duration={100}
-          isPlaying>
-          {({ remainingTime }) => <Text>{remainingTime}</Text>}
-        </CountdownCircleTimer>
-        <Pressable style={styles.taskButton}>
-          <Text>...</Text>
-        </Pressable>
-        <Pressable style={styles.taskButton}>
-          <Text>...</Text>
-        </Pressable>
-        <Pressable style={styles.taskButton}>
-          <Text>...</Text>
-        </Pressable>
+        <View style={styles.countdown}>
+          <CountdownCircleTimer
+            colors={['#004777', '#F7B801', '#A30000', '#A30000']}
+            colorsTime={[75, 50, 25, 0]}
+            duration={100}
+            isPlaying>
+            {({ remainingTime }) => <Text>{remainingTime}</Text>}
+          </CountdownCircleTimer>
+        </View>
+      </View>
+      <View style={styles.countdownButtons}>
+        <KopfsachenButton style={styles.taskButton}>Start</KopfsachenButton>
+        <KopfsachenButton style={styles.taskButton}>Stop</KopfsachenButton>
+      </View>
+      <View style={styles.container}>
+        <TextInput placeholder="..." style={styles.input} />
+        <TextInput placeholder="..." style={styles.input} />
+        <TextInput placeholder="..." style={styles.input} />
       </View>
     </>
   );
@@ -39,16 +40,36 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
   },
-  taskButton: {
-    backgroundColor: MOTIVATOR.SECURITYNET,
-    borderWidth: 1,
-    borderRadius: 20,
-    marginBottom: 20,
+  countdown: {
+    marginTop: 15,
+  },
+  input: {
+    height: 40,
+    fontSize: SIZES.font,
     width: '80%',
-    elevation: 5,
+    borderWidth: 1,
+    paddingLeft: 15,
+    marginBottom: 15,
+    backgroundColor: MOTIVATOR.SECURITYNET,
+    borderRadius: 20,
+  },
+  countdownButtons: {
+    margin: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  taskButton: {
+    width: '40%',
+    fontSize: SIZES.font,
+    lineHeight: SIZES.default_line_height,
+    textAlign: 'center',
     shadowColor: SHADOW,
-    shadowOffset: { width: -2, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
   },
 });

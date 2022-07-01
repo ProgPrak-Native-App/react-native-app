@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import OldMotivatorPractice from './OldMotivatorPractice';
 import { MotivatorTypes, parseMotivator } from '../MotivatorProps';
 
-export default function OldMotivator({ navigation, route }: any) {
+export default function OldMotivator({ route }: any) {
   const props = parseMotivator(route.params.props as keyof MotivatorTypes);
   return (
     <>
@@ -19,5 +18,3 @@ export default function OldMotivator({ navigation, route }: any) {
     </>
   );
 }
-
-const styles = StyleSheet.create({});

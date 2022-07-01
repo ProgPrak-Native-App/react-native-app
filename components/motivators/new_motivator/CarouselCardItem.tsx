@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
   header: {
     paddingVertical: 10,
     textAlign: 'center',
-    color: '#222',
     fontSize: 28,
     fontWeight: 'bold',
   },
@@ -44,7 +43,6 @@ const styles = StyleSheet.create({
     lineHeight: SIZES.default_line_height,
     paddingBottom: 10,
     textAlign: 'center',
-    color: '#222',
     fontSize: SIZES.font,
   },
 });
