@@ -4,6 +4,7 @@ import { PRIMARY } from '../styles';
 import React from 'react';
 // eslint-disable-next-line import/named
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { TabRoutes } from '../App';
 
 type Props = {
   text: string;
@@ -15,7 +16,7 @@ type Props = {
 
 export default function Title({ text, color, Icon, back, style }: Props) {
   const navigation = useNavigation<NavigationProp<never>>();
-  const emergencyNav = useNavigation<NavigationProp<{ EmergencyNumber: undefined }>>();
+  const mainNav = useNavigation<NavigationProp<TabRoutes>>();
 
   return (
     <View style={[styles.container, { backgroundColor: color ?? PRIMARY }, style]}>
@@ -33,7 +34,7 @@ export default function Title({ text, color, Icon, back, style }: Props) {
       )}
       <Pressable
         onPress={() => {
-          emergencyNav.navigate('EmergencyNumber');
+          mainNav.navigate('EmergencyNumber');
         }}
         style={styles.firstAidBtn}>
         <FontAwesome5 name="first-aid" size={30} />
