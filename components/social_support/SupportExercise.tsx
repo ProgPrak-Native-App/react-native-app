@@ -32,6 +32,13 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
     subtitle: '',
   });
 
+  useEffect(() => {
+    data.sort((a, b) => {
+      return a.id - b.id;
+    });
+    setting(2);
+  }, []);
+
   /** value states for animation of view size */
   const innerSize = useRef(new Animated.Value(260)).current;
   const middleSize = useRef(new Animated.Value(280)).current;
@@ -57,13 +64,6 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
     setTransferPerson(tmp);
     toggle();
   };
-
-  useEffect(() => {
-    data.sort((a, b) => {
-      return a.id - b.id;
-    });
-    setting(2);
-  }, []);
 
   /**
    * currently sets currscreen data to be displayed &

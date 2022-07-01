@@ -23,7 +23,7 @@ export function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {
   return (
     <>
       <Stack.Navigator initialRouteName="Feedback" screenOptions={{ headerShown: false, animation: 'none' }}>
-        <Stack.Screen component={Feedback} name="Feedback" initialParams={{ name: route.params.name }} />
+        <Stack.Screen component={Feedback} initialParams={{ name: route.params.name }} name="Feedback" />
         <Stack.Screen component={MoodDiary} name="MoodDiary" />
         <Stack.Screen component={CompassionNavigation} name="CompassionNavigation" />
         <Stack.Screen component={MotivatorCompleted} name="MotivatorCompleted" />

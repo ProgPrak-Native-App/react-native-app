@@ -1,4 +1,4 @@
-import { Text, StyleSheet, ScrollView, Pressable, View, EventEmitter, AppState } from 'react-native';
+import { Text, StyleSheet, ScrollView, Pressable, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Title from '../Title';
 import { BLACK, DARK_GREY, ORANGE, PRIMARY, SIZES, TERTIARY } from '../../styles';
@@ -6,7 +6,6 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { SocialSupportStackParamList } from './SocialNavigation';
 import CountDown from 'react-native-countdown-component';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { differenceInSeconds } from 'date-fns';
 import { Duration, Instant } from '@js-joda/core';
 
 /** source for storage code https://aloukissas.medium.com/how-to-build-a-background-timer-in-expo-react-native-without-ejecting-ea7d67478408 */
