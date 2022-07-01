@@ -43,13 +43,3 @@ export type wikiEntry = {
     content: string;
   }[];
 };
-
-/* ----- sytles ---- */
-export const SIZES = {
-  font: 18,
-  default_line_height: 1.5 * 18,
-  default_pSpace: 1.5 * 1.5 * 18,
-  min_margin: 8,
-  max_margin: 32,
-  target_size: 48,
-};

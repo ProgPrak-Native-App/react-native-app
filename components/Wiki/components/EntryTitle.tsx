@@ -1,24 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { EntryProps } from '../constant/constants';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { WikiStackParamList } from './WikiNavigation';
 
 const EntryTitle = ({ letter, entry }: EntryProps) => {
   const { navigate } = useNavigation<NavigationProp<WikiStackParamList>>();
-
   return (
     <View>
       <Text style={styles.capital}>{letter}</Text>
       {entry.map((item, i) => (
-        <TouchableOpacity
-          key={i}
-          onPress={() => {
-            navigate('WikiEntry', item);
-          }}
-          style={styles.container}>
+        <Pressable key={i} onPress={() => navigate('WikiEntry', item)} style={styles.container}>
           <Text style={styles.text}>{item.title}</Text>
-        </TouchableOpacity>
+        </Pressable>
       ))}
     </View>
   );
