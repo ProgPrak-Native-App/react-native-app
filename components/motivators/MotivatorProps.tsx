@@ -10,6 +10,7 @@ export type MotivatorTypes = {
   relaxation: undefined;
   optimism: undefined;
   reframing: undefined;
+  socialSupport: undefined;
   noMotivator: undefined;
 };
 
@@ -54,6 +55,7 @@ const relaxation: MotivatorProps = {
   type: 'relaxation',
 };
 
+// Optimismus
 const optimism: MotivatorProps = {
   name: 'Optimismus',
   description: 'Optimismus heißt, das Gute im Leben zu sehen. Auch, wenn es mal nicht so einfach ist.',
@@ -64,6 +66,7 @@ const optimism: MotivatorProps = {
   type: 'optimism',
 };
 
+// Reframing
 const reframing: MotivatorProps = {
   name: 'Reframing',
   description:
@@ -73,6 +76,18 @@ const reframing: MotivatorProps = {
   icon: <Image source={require('../../assets/reframingIcon.png')} style={{ height: 80, width: 80 }} />,
   screen: 'OldMotivator',
   type: 'reframing',
+};
+
+// Soziale Unterstützung
+const socialSupport: MotivatorProps = {
+  name: 'Soziale Unterstützung',
+  description: 'Optimismus heißt, das Gute im Leben zu sehen. Auch, wenn es mal nicht so einfach ist.',
+  color: MOTIVATOR.SOCIALSUPPORT,
+  exercises: mockExercises,
+  // TODO add social support icon
+  icon: <Image source={require('../../assets/reframingIcon.png')} style={{ height: 80, width: 80 }} />,
+  screen: 'SocialSupport',
+  type: 'socialSupport',
 };
 
 // export parsing of motivator type
@@ -86,6 +101,8 @@ export function parseMotivator(name: keyof MotivatorTypes) {
       return optimism;
     case 'reframing':
       return reframing;
+    case 'socialSupport':
+      return socialSupport;
     case 'noMotivator':
     default:
       return { name: 'Not a Motivator', screen: 'NotImplemented', color: 'white' } as MotivatorProps;

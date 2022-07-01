@@ -7,7 +7,7 @@ import { MotivatorTypes } from '../MotivatorProps';
 
 const motivators: (keyof MotivatorTypes)[] = ['relaxation', 'situationControl', 'optimism', 'reframing'];
 
-export default function NewMotivatorCreator() {
+export default function NewMotivator() {
   return (
     <>
       <Title text="Neue Starkmacher" />

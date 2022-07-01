@@ -21,6 +21,7 @@ export const MOTIVATOR = {
   SECURITYNET: '#EAFAFE',
   OPTIMISM: '#FDE802',
   REFRAMING: '#F2C7D0',
+  SOCIALSUPPORT: '#F3803E',
 };
 
 export const ORANGE = '#F3803E';
