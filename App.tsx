@@ -17,6 +17,7 @@ import {
   STATE_COLOR_INACTIVE_BACKGROUND,
   STATE_COLOR_INACTIVE_TINT,
 } from './styles';
+import EmergencyNumber from './components/feature/EmergencyNumber';
 
 export type TabRoutes = {
   Home: undefined;
@@ -24,6 +25,7 @@ export type TabRoutes = {
   Wiki: undefined;
   Motivators: undefined;
   Profil: undefined;
+  EmergencyNumber: undefined;
 };
 
 const Tab = createBottomTabNavigator<TabRoutes>();
@@ -79,6 +81,13 @@ export default function App() {
               name="Profil"
               options={{
                 tabBarIcon: () => <Ionicons name="person-circle-outline" size={24} />,
+              }}
+            />
+            <Tab.Screen
+              component={EmergencyNumber}
+              name="EmergencyNumber"
+              options={{
+                tabBarButton: () => null,
               }}
             />
           </Tab.Navigator>
