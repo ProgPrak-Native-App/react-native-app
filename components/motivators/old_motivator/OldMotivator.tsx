@@ -1,9 +1,9 @@
 import React from 'react';
 import OldMotivatorPractice from './OldMotivatorPractice';
-import { MotivatorTypes, parseMotivator } from '../MotivatorProps';
+import { MotivatorTypes, getMotivatorByType } from '../MotivatorProps';
 
 export default function OldMotivator({ route }: any) {
-  const props = parseMotivator(route.params.props as keyof MotivatorTypes);
+  const props = getMotivatorByType(route.params.props as keyof MotivatorTypes);
   return (
     <>
       <OldMotivatorPractice

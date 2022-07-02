@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import { Alert, Image, Modal, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
+import { Image, Modal, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import Title from '../../Title';
-import { parseMotivator } from '../MotivatorProps';
+import { getMotivatorByType } from '../MotivatorProps';
 import { BACKGROUND, SHADOW, SIZES } from '../../../styles';
 import KopfsachenButton from '../../KopfsachenButton';
 
 export default function OptimismHome({ navigation }: any) {
-  const props = parseMotivator('optimism');
+  const props = getMotivatorByType('optimism');
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
       <Modal
         animationType="slide"
         onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
         }}
         transparent={true}

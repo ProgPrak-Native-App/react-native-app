@@ -1,13 +1,13 @@
 import React from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
-import { MotivatorTypes, parseMotivator } from '../MotivatorProps';
+import { MotivatorTypes, getMotivatorByType } from '../MotivatorProps';
 import { MOTIVATOR, SHADOW, SIZES } from '../../../styles';
 
 export const SLIDER_WIDTH = Dimensions.get('window').width + 80;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 
 export default function CarouselCardItem(props: { item: keyof MotivatorTypes }) {
-  const motivator = parseMotivator(props.item);
+  const motivator = getMotivatorByType(props.item);
   return (
     <View style={styles.container}>
       {motivator.icon}

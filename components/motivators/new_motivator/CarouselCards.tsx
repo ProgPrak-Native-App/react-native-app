@@ -4,14 +4,14 @@ import { MotivatorRoutes } from '../Motivator';
 import Carousel from 'react-native-snap-carousel';
 import { Pressable } from 'react-native';
 import CarouselCardItem, { ITEM_WIDTH, SLIDER_WIDTH } from './CarouselCardItem';
-import { MotivatorTypes, parseMotivator } from '../MotivatorProps';
+import { MotivatorTypes, getMotivatorByType } from '../MotivatorProps';
 
 type testProps = {
   data: (keyof MotivatorTypes)[];
 };
 
 function getMotivatorParams(name: keyof MotivatorTypes) {
-  const motivator = parseMotivator(name);
+  const motivator = getMotivatorByType(name);
   return motivator.screen === 'OldMotivator' ? motivator.type : undefined;
 }
 
@@ -29,7 +29,7 @@ export default function CarouselCards(lol: testProps) {
         return (
           <Pressable
             onPress={() =>
-              navigation.navigate(parseMotivator(motivator).screen, { props: getMotivatorParams(motivator) })
+              navigation.navigate(getMotivatorByType(motivator).screen, { props: getMotivatorParams(motivator) })
             }>
             <CarouselCardItem item={props.item as keyof MotivatorTypes} />
           </Pressable>

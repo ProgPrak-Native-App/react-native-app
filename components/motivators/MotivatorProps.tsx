@@ -91,7 +91,7 @@ const socialSupport: MotivatorProps = {
 };
 
 // export parsing of motivator type
-export function parseMotivator(name: keyof MotivatorTypes) {
+export function getMotivatorByType(name: keyof MotivatorTypes) {
   switch (name) {
     case 'situationControl':
       return situationControl;

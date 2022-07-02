@@ -4,15 +4,15 @@ import { MotivatorRoutes } from './Motivator';
 import KopfsachenButton from '../KopfsachenButton';
 import Title from '../Title';
 import React, { useEffect, useState } from 'react';
-import { MotivatorProps, MotivatorTypes, parseMotivator } from './MotivatorProps';
+import { MotivatorProps, MotivatorTypes, getMotivatorByType } from './MotivatorProps';
 import { GREY, MOTIVATOR, SHADOW } from '../../styles';
 
 async function getMotivators() {
   // change to BASE_URL once merged -> feature/7/wiki
   return await fetch('http://localhost:4010/motivator')
     .then((response) => response.json())
-    .then((data: { type: keyof MotivatorTypes }[]) => data.map((value) => parseMotivator(value.type)))
-    .catch(() => [parseMotivator('noMotivator')]);
+    .then((data: { type: keyof MotivatorTypes }[]) => data.map((value) => getMotivatorByType(value.type)))
+    .catch(() => [getMotivatorByType('noMotivator')]);
 }
 
 function OldMotivatorGridView(motivators: MotivatorProps[]) {
