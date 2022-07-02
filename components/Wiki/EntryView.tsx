@@ -2,20 +2,37 @@ import { ScrollView, StyleSheet, Text } from 'react-native';
 import React, { ComponentType } from 'react';
 import Title from '../Title';
 import { SIZES, TERTIARY } from '../../styles';
-import OriginalMarkdownComponent, { MarkdownProps } from '@jonasmerlin/react-native-markdown-display';
+import OriginalMarkdownComponent, {
+  MarkdownIt,
+  MarkdownProps,
+  RenderRules,
+  renderRules,
+} from '@jonasmerlin/react-native-markdown-display';
 import { WikiStackScreenProps } from './Navigation';
+import { mdAccordionPlugin, mdAccordionRenderRule } from './markdownAccordion';
 
+// the library documents the wrong type, not including the "children" prop :(
 const Markdown = OriginalMarkdownComponent as ComponentType<MarkdownProps & { children: string }>;
 
-export default function EntryView({ route, navigation }: WikiStackScreenProps<'WikiEntry'>) {
+const markdownIt = MarkdownIt().use(mdAccordionPlugin);
+
+const markdownRenderRules: RenderRules = {
+  ...renderRules,
+  accordion: mdAccordionRenderRule,
+  inline: renderRules.text,
+};
+
+export default function EntryView({ route }: WikiStackScreenProps<'WikiEntry'>) {
   const wikiEntry = route.params;
 
   return (
     <>
       <Title back color={TERTIARY} text={wikiEntry.title} />
-      <ScrollView style={styles.container}>
+      <ScrollView>
         <Text style={styles.title}>{wikiEntry.title}</Text>
-        <Markdown style={markdownStyles}>{wikiEntry.content}</Markdown>
+        <Markdown markdownit={markdownIt} rules={markdownRenderRules} style={markdownStyles}>
+          {wikiEntry.content}
+        </Markdown>
       </ScrollView>
     </>
   );
@@ -28,6 +45,9 @@ const markdownStyles = StyleSheet.create({
     fontSize: SIZES.font,
     lineHeight: SIZES.default_line_height,
   },
+  paragraph: {
+    paddingHorizontal: 30,
+  },
 });
 /* eslint-enable react-native/no-unused-styles */
 
@@ -38,9 +58,5 @@ const styles = StyleSheet.create({
     fontSize: 30,
     paddingVertical: 30,
     paddingHorizontal: 10,
-  },
-  container: {
-    paddingHorizontal: 40,
-    fontSize: SIZES.font,
   },
 });
