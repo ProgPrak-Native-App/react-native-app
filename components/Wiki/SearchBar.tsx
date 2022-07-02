@@ -1,10 +1,10 @@
 import React from 'react';
-import { TextInput, View, StyleSheet } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { BACKGROUND, DARK_GREY } from '../../../styles';
+import { BACKGROUND, DARK_GREY } from '../../styles';
 
-/* --------- Wiki Header: basically just styles and serach   ----------------- */
-const WikiHeader = ({ onSearch }: { onSearch: (text: string) => void }) => {
+/* --------- Wiki Header: basically just styles and search   ----------------- */
+const SearchBar = ({ onSearch }: { onSearch: (text: string) => void }) => {
   return (
     <View style={styles.container}>
       <View style={{ marginTop: 8 }}>
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WikiHeader;
+export default SearchBar;
