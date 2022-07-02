@@ -1,4 +1,5 @@
 import BaseClient from './BaseClient';
+import longExampleEntry from './wiki-long-example.json';
 
 export type WikiEntry = {
   id: string;
@@ -13,6 +14,6 @@ export type WikiListResponse = {
 
 export default class WikiClient extends BaseClient {
   public async getEntries(): Promise<WikiEntry[]> {
-    return (await this.get<WikiListResponse>('/wiki')).entries;
+    return [...(await this.get<WikiListResponse>('/wiki')).entries, longExampleEntry];
   }
 }
