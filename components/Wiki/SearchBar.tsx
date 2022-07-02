@@ -1,10 +1,22 @@
 import React from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { BACKGROUND, DARK_GREY } from '../../styles';
 
-/* --------- Wiki Header: basically just styles and search   ----------------- */
-const SearchBar = ({ onSearch }: { onSearch: (text: string) => void }) => {
+type Props = {
+  value: string;
+  onSearch: (text: string) => void;
+};
+
+function ClearButton({ onPress }: { onPress: () => void }) {
+  return (
+    <Pressable accessibilityLabel="Suche leeren" accessibilityRole="button" hitSlop={20} onPress={onPress}>
+      <FontAwesome5 name="times" resizeMode="contain" size={24} />
+    </Pressable>
+  );
+}
+
+export default function SearchBar({ value, onSearch }: Props) {
   return (
     <View style={styles.container}>
       <View style={{ marginTop: 8 }}>
@@ -13,17 +25,20 @@ const SearchBar = ({ onSearch }: { onSearch: (text: string) => void }) => {
             <FontAwesome5 name="search" resizeMode="contain" size={24} style={{ marginRight: 8 }} />
             <TextInput
               accessibilityLabel="Suche im Wiki"
+              accessibilityRole="search"
               onChangeText={onSearch}
               placeholder="Suche im Wiki"
               placeholderTextColor="#4F4F4F"
               style={styles.text}
+              value={value}
             />
+            {value ? <ClearButton onPress={() => onSearch('')} /> : null}
           </View>
         </View>
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -48,7 +63,6 @@ const styles = StyleSheet.create({
   text: {
     padding: 4,
     fontSize: 18,
+    flexGrow: 1,
   },
 });
-
-export default SearchBar;

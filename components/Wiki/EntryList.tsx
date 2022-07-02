@@ -32,7 +32,7 @@ export default function EntryList() {
   return (
     <>
       <Title color={TERTIARY} text="Wiki" />
-      <SearchBar onSearch={setSearchTerm} />
+      <SearchBar onSearch={setSearchTerm} value={searchTerm} />
       <ScrollView>
         <View style={styles.container}>
           {Object.entries(filteredEntries).map(([letter, entries]) => (
