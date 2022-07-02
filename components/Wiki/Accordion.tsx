@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Pressable, LayoutAnimation } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { LayoutAnimation, Pressable, StyleSheet, Text, View } from 'react-native';
 
-const Accordion = ({ title, descr }: { title: string; descr: {type: 'text' | 'url'; content: string }[] }) => {
+const Accordion = ({ title, descr }: { title: string; descr: { type: 'text' | 'url'; content: string }[] }) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggle = () => {
@@ -13,7 +13,7 @@ const Accordion = ({ title, descr }: { title: string; descr: {type: 'text' | 'ur
     <View style={{ borderBottomWidth: 2 }}>
       <Pressable onPress={toggle} style={styles.container}>
         <Text style={{ textTransform: 'capitalize' }}>{title}</Text>
-        <FontAwesome5 name={collapsed ? 'caret-down' : 'caret-up'} size={24}/>
+        <FontAwesome5 name={collapsed ? 'caret-down' : 'caret-up'} size={24} />
       </Pressable>
       <View>
         {!collapsed && (

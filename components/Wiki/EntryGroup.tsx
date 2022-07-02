@@ -1,15 +1,20 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { EntryProps } from '../constant/constants';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { WikiStackParamList } from './WikiNavigation';
+import { WikiStackParamList } from './Navigation';
+import { WikiEntry } from '../../api/WikiClient';
 
-const EntryTitle = ({ letter, entry }: EntryProps) => {
+type Props = {
+  letter: string;
+  entries: WikiEntry[];
+};
+
+const EntryGroup = ({ letter, entries }: Props) => {
   const { navigate } = useNavigation<NavigationProp<WikiStackParamList>>();
   return (
     <View>
       <Text style={styles.capital}>{letter}</Text>
-      {entry.map((item, i) => (
+      {entries.map((item, i) => (
         <Pressable key={i} onPress={() => navigate('WikiEntry', item)} style={styles.container}>
           <Text style={styles.text}>{item.title}</Text>
         </Pressable>
@@ -36,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EntryTitle;
+export default EntryGroup;

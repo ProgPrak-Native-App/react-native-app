@@ -7,7 +7,7 @@ import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { BACKGROUND, PRIMARY, SHADOW } from './styles';
 import MoodDiary from './components/mood_diary/MoodDiary';
-import WikiNavigation from './components/Wiki/components/WikiNavigation';
+import Wiki from './components/Wiki';
 import Motivator from './components/motivators/Motivator';
 import Profile from './components/profile/Profile';
 
@@ -53,7 +53,7 @@ export default function App() {
               }}
             />
             <Tab.Screen
-              component={WikiNavigation}
+              component={Wiki}
               name="Wiki"
               options={{
                 tabBarIcon: () => <FontAwesome5 name="book" size={24} />,
