@@ -8,7 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Audio, AVPlaybackStatus } from 'expo-av';
 import Slider from '@react-native-community/slider';
 import Bold from '../Bold';
-import '../../assets/Compassion-Meditation-Example.mp3';
+import track from '../../assets/Compassion-Meditation-Example.mp3';
 
 /** source code for audio player:
  * https://github.com/expo/playlist-example/blob/master/App.js
@@ -17,7 +17,7 @@ import '../../assets/Compassion-Meditation-Example.mp3';
 export default function CompassionMeditation() {
   async function setUpSound() {
     const { sound, status } = await Audio.Sound.createAsync(
-      require('../../assets/Compassion-Meditation-Example.mp3'),
+      track,
       initalStatus,
       onPlaybackStatusUpdate
     );
