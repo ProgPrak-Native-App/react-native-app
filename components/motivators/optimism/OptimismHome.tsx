@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Image, Modal, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import Title from '../../Title';
 import { getMotivatorByType } from '../MotivatorProps';
@@ -8,6 +8,7 @@ import KopfsachenButton from '../../KopfsachenButton';
 export default function OptimismHome({ navigation }: any) {
   const props = getMotivatorByType('optimism');
   const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <>
       <Modal
@@ -26,13 +27,13 @@ export default function OptimismHome({ navigation }: any) {
           <TouchableWithoutFeedback>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
-                Wenn du Optimismus üben möchtest, kann dir die folgende Aufgabe helfen: Stell dir einen Timer für 10
-                Minuten ein. Denke während dieser Zeit an dein bestmögliches zukünftiges Selbst und schreibe es auf
-                einem Zettel auf. Lege dir mehrere Zettel für diese Übung bereit. Stell dir dein Leben so vor, wie du es
-                dir immer ausgemalt hast. Stell dir vor, du hättest dein Bestes gegeben und all die Dinge erreicht, die
-                du im Leben immer erreichen wolltest. Mache dir beim Schreiben keine Gedanken über Grammatik oder
-                Rechtschreibung. Konzentriere dich nur darauf, all deine Gedanken und Emotionen in einer lebhaften Weise
-                auszudrücken.
+                Wenn du Optimismus üben möchtest, kann dir die folgende Aufgabe helfen: {'\n\n'}
+                Stell dir einen Timer für 10 Minuten ein. Denke während dieser Zeit an dein bestmögliches zukünftiges
+                Selbst und schreibe es hier oder auf einem Zettel auf. Lege dir mehrere Zettel für diese Übung bereit.
+                Stell dir dein Leben so vor, wie du es dir immer ausgemalt hast. Stell dir vor, du hättest dein Bestes
+                gegeben und all die Dinge erreicht, die du im Leben immer erreichen wolltest. Mache dir beim Schreiben
+                keine Gedanken über Grammatik oder Rechtschreibung. Konzentriere dich nur darauf, all deine Gedanken und
+                Emotionen in einer lebhaften Weise auszudrücken.
               </Text>
               <KopfsachenButton
                 onPress={() => {
@@ -104,8 +105,7 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: BACKGROUND,
     borderRadius: 20,
-    paddingVertical: 15,
-    paddingHorizontal: 20,
+    padding: 20,
     alignItems: 'center',
     shadowColor: SHADOW,
     shadowOffset: {
