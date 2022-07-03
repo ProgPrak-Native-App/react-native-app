@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
 import React from 'react';
-import { BLACK, GREY, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
+import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from '../Title';
@@ -20,12 +20,12 @@ export default function IntroScreen() {
             Probier’ doch eine Übung zum Selbstmitgefühl in schwierigen Situationen aus!
           </Text>
           <View style={styles.btnContainer}>
-            <Pressable 
-              style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.button]}
-              onPress={() => navigate('Home')}>
+            <Pressable
+              onPress={() => navigate('Home')}
+              style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.button]}>
               <Text style={styles.text}>Heute nicht</Text>
             </Pressable>
-            <Pressable 
+            <Pressable
               onPress={() => navigate('IntroVideoScreen')}
               style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.button]}>
               <Text style={styles.text}>Okay</Text>

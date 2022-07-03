@@ -2,7 +2,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import React, { useState } from 'react';
 import Checkbox from 'expo-checkbox';
 import { TaskProp } from './GroupALP';
-import { PRIMARY, SIZES, WHITE } from '../../styles';
+import { BLACK, PRIMARY, SIZES, WHITE } from '../../styles';
 
 export default function Checks({ item, handleChecked }: { item: TaskProp; handleChecked: (item: TaskProp) => void }) {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
@@ -14,7 +14,7 @@ export default function Checks({ item, handleChecked }: { item: TaskProp; handle
   return (
     <View key={item.id} style={styles.tile}>
       <Text style={styles.tiletxt}>{item.descr}</Text>
-      <Checkbox style={styles.checkBox} disabled={false} value={toggleCheckBox} onValueChange={handleToggle} />
+      <Checkbox disabled={false} onValueChange={handleToggle} style={styles.checkBox} value={toggleCheckBox} />
     </View>
   );
 }
@@ -23,14 +23,14 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE,
     position: 'absolute',
     right: 10,
-    minHeight: 48,
-    minWidth: 48,
+    minHeight: SIZES.target_size,
+    minWidth: SIZES.target_size,
     justifyContent: 'center',
   },
   tile: {
     marginHorizontal: 10,
     marginVertical: 10,
-    borderColor: 'black',
+    borderColor: BLACK,
     borderWidth: 1,
     borderRadius: 15,
     justifyContent: 'center',

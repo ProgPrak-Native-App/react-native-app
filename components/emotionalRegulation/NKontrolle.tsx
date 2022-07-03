@@ -73,7 +73,7 @@ export default function NKontrolle() {
 
         <View style={styles.sortContainer}>
           {tasks.map((item, idx) => (
-            <Checks key={idx} item={item} handleChecked={handleChecked} />
+            <Checks handleChecked={handleChecked} item={item} key={idx} />
           ))}
         </View>
         <View style={styles.btnContainer}>
@@ -101,21 +101,6 @@ const styles = StyleSheet.create({
     minHeight: '10%',
     marginVertical: 30,
     width: '90%',
-  },
-  tile: {
-    marginHorizontal: 10,
-    marginVertical: 10,
-    borderColor: BLACK,
-    borderWidth: 1,
-    borderRadius: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: 58,
-    backgroundColor: PRIMARY,
-  },
-  tiletxt: {
-    fontSize: SIZES.font,
-    fontWeight: 'bold',
   },
   txt: {
     textAlign: 'center',

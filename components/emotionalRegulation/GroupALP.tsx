@@ -1,7 +1,7 @@
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Title from '../Title';
-import { PRIMARY, PURPLE, SIZES, BLACK, WHITE, DARK_GREEN, TERTIARY } from '../../styles';
+import { PRIMARY, PURPLE, SIZES, BLACK, WHITE, TERTIARY } from '../../styles';
 import A from './A';
 import L from './L';
 import P from './P';
@@ -41,12 +41,12 @@ export default function ALP() {
     setPuffer(() => ({ days: '0', hours: '0', mins: '0' }));
     setTmpTask(() => ({ desc: '', deadline: '' }));
   };
-  /** needs to be asnyc to ensure we can only go to next step until at least one thing has been 
+  /** needs to be asnyc to ensure we can only go to next step until at least one thing has been
    * added to tasks
    */
   const addTask = async () => {
     if (tmpTask.desc !== '') {
-      if (tasks.filter((elem) => elem.descr == tmpTask.desc).length === 0) {
+      if (tasks.filter((elem) => elem.descr === tmpTask.desc).length === 0) {
         setTasks((prev) => [
           ...prev,
           {
@@ -59,7 +59,7 @@ export default function ALP() {
       }
     } else {
       if (tasks.length === 0) {
-        Alert.alert('Da hast Du was vergessen','Du musst eine Aufgabe in das erste Feld eintragen');
+        Alert.alert('Da hast Du was vergessen', 'Du musst eine Aufgabe in das erste Feld eintragen');
         return false;
       }
     }
@@ -159,61 +159,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     alignItems: 'center',
-  },
-  label: {
-    width: '90%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  input: {
-    backgroundColor: WHITE,
-    height: SIZES.target_size,
-    width: SIZES.target_size,
-    textAlign: 'center',
-    fontSize: SIZES.font,
-    borderColor: BLACK,
-    borderWidth: 1,
-    borderRadius: 10,
-  },
-  txtContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    width: '90%',
-  },
-  text: {
-    fontSize: 14,
-  },
-  textInput: {
-    backgroundColor: WHITE,
-    minHeight: SIZES.target_size,
-    paddingHorizontal: 10,
-    width: '90%',
-    fontSize: SIZES.font,
-    borderColor: BLACK,
-    borderWidth: 1,
-    borderRadius: 10,
-  },
-  heading: {
-    backgroundColor: PRIMARY,
-    alignSelf: 'flex-start',
-    marginHorizontal: 10,
-    fontSize: SIZES.font,
-    marginTop: SIZES.default_line_height,
-  },
-  accent: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#006646',
-  },
-  description: {
-    alignSelf: 'flex-start',
-    marginHorizontal: 20,
-    marginVertical: SIZES.default_line_height,
-    fontSize: SIZES.font,
-  },
-  puffer: {
-    fontSize: SIZES.font,
   },
   btn: {
     borderColor: BLACK,

@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
@@ -9,7 +9,7 @@ import { CompassionRoutes } from './CompassionNavigation';
 export default function IntroVideoScreen() {
   const { navigate } = useNavigation<NavigationProp<CompassionRoutes>>();
   const video = React.useRef(null);
- 
+
   return (
     <>
       <Title back color={PURPLE} text="Selbstbezogenes Mitgefühl" />
@@ -27,13 +27,13 @@ export default function IntroVideoScreen() {
           />
         </View>
         <View style={styles.buttons}>
-        <Pressable 
-          onPress={() => navigate('Home')} 
-          style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.buttonLvl]}>
-          <Text style={styles.text}>Andere Stargeie auswählen</Text>
-        </Pressable>
-        <Pressable 
-            onPress={() => navigate('CompassionMeditation')} 
+          <Pressable
+            onPress={() => navigate('Home')}
+            style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.buttonLvl]}>
+            <Text style={styles.text}>Andere Stargeie auswählen</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => navigate('CompassionMeditation')}
             style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.buttonLvl]}>
             <Text style={styles.text}>Das will ich üben</Text>
           </Pressable>

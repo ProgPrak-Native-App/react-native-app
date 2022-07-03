@@ -9,7 +9,7 @@ export default function IntroScreen() {
   const { navigate } = useNavigation<NavigationProp<EmoRoutes>>();
   return (
     <>
-      <Title text="Emotionsregulation" color={PURPLE} />
+      <Title color={PURPLE} text="Emotionsregulation" />
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.text}>Wenn du Situationskontrolle üben möchtest, kann dir die ALPEN-Methode helfen.</Text>
@@ -34,15 +34,13 @@ export default function IntroScreen() {
           </View>
           <Pressable
             accessibilityHint="Starte Übung"
+            onPress={() => navigate('GroupALP')}
             style={({ pressed }) => [
               {
                 backgroundColor: pressed ? PRIMARY : TERTIARY,
               },
               styles.button,
-            ]}
-            onPress={() => {
-              navigate('GroupALP');
-            }}>
+            ]}>
             <Text style={styles.text}>Let's Go</Text>
           </Pressable>
         </View>

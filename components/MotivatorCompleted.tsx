@@ -6,15 +6,9 @@ import { PINK, SIZES } from '../styles';
 export default function MotivatorCompleted() {
   return (
     <>
-      <Title
-        color={PINK}
-        Icon={() => <Image source={require('../assets/motivator.png')} />}
-        text="Meine Starkmacher"
-      />
+      <Title color={PINK} Icon={() => <Image source={require('../assets/motivator.png')} />} text="Meine Starkmacher" />
       <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.text}>
-      Die ... ist nun Teil deiner Starkmacher!
-      </Text>
+        <Text style={styles.text}>Die ... ist nun Teil deiner Starkmacher!</Text>
       </ScrollView>
     </>
   );
@@ -32,6 +26,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     textAlign: 'center',
     fontSize: SIZES.font * 1.5,
-    lineHeight: SIZES.default_line_height
+    lineHeight: SIZES.default_line_height,
   },
 });

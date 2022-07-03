@@ -9,17 +9,17 @@ export default function Nice() {
   const { navigate } = useNavigation<NavigationProp<EmoRoutes>>();
   return (
     <>
-      <Title text="Situationskontrolle" color={PURPLE} back />
+      <Title back color={PURPLE} text="Situationskontrolle" />
       <ScrollView contentContainerStyle={styles.container}>
         <View>
           <Text style={styles.heading}>Super gemacht!</Text>
           <Text style={styles.description}>Du bist heute ein ganzes Stück weitergekommen mit deinen Aufgaben.</Text>
         </View>
-        <Image style={styles.img} source={require('../../assets/images/achievement-gf08e1d499_1920.png')} />
+        <Image source={require('../../assets/images/achievement-gf08e1d499_1920.png')} style={styles.img} />
         <Pressable
           accessibilityHint="Beende die Übung"
           onPress={() => {
-            navigate('FeedbackNavigation', { name: 'MoodEntry', title:'Situationskontrolle' , color: PURPLE });
+            navigate('FeedbackNavigation', { name: 'MoodEntry', title: 'Situationskontrolle', color: PURPLE });
           }}
           style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.btn]}>
           <Text style={styles.txt}>Fertig</Text>

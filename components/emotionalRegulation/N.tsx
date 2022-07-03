@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-import { ACCENT, LIGHT_BLUE, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
+import { ACCENT, BLACK, LIGHT_BLUE, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import Title from '../Title';
 import TimeModal from './TimeModal';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
@@ -18,7 +18,7 @@ export default function N() {
   return (
     <>
       {visible && <TimeModal toggle={onToggle} />}
-      <Title text="Situationskontrolle" color={PURPLE} back />
+      <Title back color={PURPLE} text="Situationskontrolle" />
       <ScrollView contentContainerStyle={styles.container}>
         <View>
           <Text style={styles.para}>
@@ -110,9 +110,8 @@ const styles = StyleSheet.create({
     width: '40%',
     textAlign: 'center',
     justifyContent: 'center',
-
     marginVertical: 30,
-    borderColor: 'black',
+    borderColor: BLACK,
     borderWidth: 1,
     borderRadius: 15,
   },

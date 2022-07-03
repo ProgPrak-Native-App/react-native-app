@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import React from 'react';
-import { SIZES, TERTIARY } from '../../styles';
+import { ACCENT, BLACK, SIZES, TERTIARY, WHITE } from '../../styles';
 import { props } from './L';
 
 export default function P({ puffer }: { puffer: props }) {
@@ -46,21 +46,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
   },
-  label: {
-    width: '90%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  input: {
-    backgroundColor: 'white',
-    height: 48,
-    width: 48,
-    textAlign: 'center',
-    fontSize: SIZES.font,
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 10,
-  },
   txtContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -71,12 +56,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   textInput: {
-    backgroundColor: 'white',
+    backgroundColor: WHITE,
     minHeight: 48,
     paddingHorizontal: 10,
     minWidth: '88%',
     fontSize: SIZES.font,
-    borderColor: 'black',
+    borderColor: BLACK,
     borderWidth: 1,
     borderRadius: 10,
   },
@@ -88,7 +73,7 @@ const styles = StyleSheet.create({
   accent: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#006646',
+    color: ACCENT,
   },
   description: {
     alignSelf: 'flex-start',
@@ -98,15 +83,5 @@ const styles = StyleSheet.create({
   },
   puffer: {
     fontSize: SIZES.font,
-  },
-  btn: {
-    backgroundColor: TERTIARY,
-    minHeight: 48,
-    textAlign: 'center',
-    justifyContent: 'center',
-    marginVertical: 30,
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 10,
   },
 });

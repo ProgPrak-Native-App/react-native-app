@@ -13,7 +13,7 @@ export type SocialSupportStackParamList = {
   IntroThirdLevel: undefined;
   ThirdLevelCountDown: undefined;
   SupportExercise: { level: number };
-  FeedbackNavigation: { name: string, title: string, color: string };
+  FeedbackNavigation: { name: string; title: string; color: string };
 };
 
 export type SocialSupportStackScreenProps<T extends keyof SocialSupportStackParamList> = NativeStackScreenProps<
