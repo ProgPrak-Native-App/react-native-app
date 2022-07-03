@@ -9,7 +9,6 @@ import { CompassionRoutes } from './CompassionNavigation';
 export default function IntroVideoScreen() {
   const { navigate } = useNavigation<NavigationProp<CompassionRoutes>>();
   const video = React.useRef(null);
-
   return (
     <>
       <Title back color={PURPLE} text="Selbstbezogenes Mitgefühl" />

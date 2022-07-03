@@ -57,7 +57,6 @@ function E({ route, navigation }: StackScreenProps<'E'>) {
       console.warn(err);
     }
   }
-
   const OGTasks = route.params.tasks;
   const [data, setData] = useState<string[]>(route.params.tasks.map((item) => item.descr));
   const [newOrder, setNewOrder] = useState<TaskProp[]>(OGTasks);
