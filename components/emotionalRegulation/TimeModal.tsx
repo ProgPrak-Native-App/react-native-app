@@ -117,8 +117,8 @@ export default function TimeModal({ toggle }: { toggle: () => void }) {
           <View>
             <Pressable
               accessibilityHint="Tageszeit auswählen "
-              style={[{ backgroundColor: mode === 'time' ? PRIMARY : WHITE }, styles.btn]}
-              onPress={showTimepicker}>
+              onPress={showTimepicker}
+              style={[{ backgroundColor: mode === 'time' ? PRIMARY : WHITE }, styles.btn]}>
               <Text style={styles.btnTxt}>Uhrzeit auswählen </Text>
             </Pressable>
           </View>

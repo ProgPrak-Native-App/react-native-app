@@ -1,7 +1,7 @@
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Title from '../Title';
-import { PRIMARY, PURPLE, SIZES, BLACK, WHITE, TERTIARY } from '../../styles';
+import { PRIMARY, PURPLE, SIZES, BLACK, TERTIARY } from '../../styles';
 import A from './A';
 import L from './L';
 import P from './P';

@@ -18,8 +18,8 @@ export default function IntroVideoScreen() {
         </View>
         <View style={{ flex: 0 }}>
           <Video
-            resizeMode={ResizeMode.CONTAIN}
             ref={video}
+            resizeMode={ResizeMode.CONTAIN}
             source={require('../../assets/Optimism_Infovideo_WIP.mov')}
             style={{ aspectRatio: 16 / 9 }}
             useNativeControls

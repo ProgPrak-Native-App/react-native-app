@@ -84,7 +84,7 @@ function E({ route, navigation }: StackScreenProps<'E'>) {
 
   return (
     <>
-      <Title text="Situationskontrolle" color={PURPLE} back />
+      <Title back color={PURPLE} text="Situationskontrolle" />
       <ScrollView contentContainerStyle={styles.container}>
         <View>
           <Text style={styles.para}>
