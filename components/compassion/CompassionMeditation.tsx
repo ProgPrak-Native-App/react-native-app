@@ -8,6 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Audio, AVPlaybackStatus } from 'expo-av';
 import Slider from '@react-native-community/slider';
 import Bold from '../Bold';
+import '../../assets/Compassion-Meditation-Example.mp3';
 
 /** source code for audio player:
  * https://github.com/expo/playlist-example/blob/master/App.js
@@ -15,8 +16,11 @@ import Bold from '../Bold';
 
 export default function CompassionMeditation() {
   async function setUpSound() {
-    const track = require('../../assets/Compassion-Meditation-Example.mp3');
-    const { sound, status } = await Audio.Sound.createAsync(track, initalStatus, onPlaybackStatusUpdate);
+    const { sound, status } = await Audio.Sound.createAsync(
+      require('../../assets/Compassion-Meditation-Example.mp3'),
+      initalStatus,
+      onPlaybackStatusUpdate
+    );
     setStatus(status);
     return sound;
   }
@@ -161,7 +165,7 @@ export default function CompassionMeditation() {
             Begib dich an einen <Bold>ungestörten Ort, </Bold>
             suche dir eine <Bold>bequeme Position</Bold> im Sitzen und starte die Meditation.
           </Text>
-          <Image style={styles.img} source={require('../../assets/Compassion_Meditation_Cover.png')} />
+          <Image source={require('../../assets/Compassion_Meditation_Cover.png')} style={styles.img} />
           <Text style={styles.title}>Mitgefühl Meditation</Text>
           <Slider
             disabled={status.isLoading}

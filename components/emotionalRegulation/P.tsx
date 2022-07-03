@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import React from 'react';
-import { ACCENT, BLACK, SIZES, TERTIARY, WHITE } from '../../styles';
+import { ACCENT, BLACK, SIZES, WHITE } from '../../styles';
 import { props } from './L';
 
 export default function P({ puffer }: { puffer: props }) {
@@ -54,16 +54,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-  },
-  textInput: {
-    backgroundColor: WHITE,
-    minHeight: 48,
-    paddingHorizontal: 10,
-    minWidth: '88%',
-    fontSize: SIZES.font,
-    borderColor: BLACK,
-    borderWidth: 1,
-    borderRadius: 10,
   },
   heading: {
     alignSelf: 'flex-start',
