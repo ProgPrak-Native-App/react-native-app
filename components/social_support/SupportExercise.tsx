@@ -133,7 +133,7 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
   const goAhead = (id: number) => {
     setData((prevData) => prevData.map((item) => (item.id === id ? { ...item, people } : item)));
     if (id === 0) {
-      navigate('FeedbackNavigation', { name: 'MoodEntry' });
+      navigate('FeedbackNavigation', { name: 'MoodEntry', title: 'Soziale Unterstützung', color: ORANGE });
     } else if (id === 1) {
       setting(--id);
       changeSize(middleSize, 90);
