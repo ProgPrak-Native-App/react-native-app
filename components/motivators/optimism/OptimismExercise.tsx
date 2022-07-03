@@ -6,6 +6,8 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { BACKGROUND, GREY, MOTIVATOR, SHADOW, SIZES } from '../../../styles';
 import KopfsachenButton from '../../KopfsachenButton';
 import * as Clipboard from 'expo-clipboard';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { MotivatorRoutes } from '../Motivator';
 
 function formatTime(seconds: number) {
   return (
@@ -18,6 +20,8 @@ function formatTime(seconds: number) {
 }
 
 export default function OptimismExercise() {
+  const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
+
   const props = getMotivatorByType('optimism');
   const [isPlaying, setIsPlaying] = useState(false);
   const [key, setKey] = useState(0);
@@ -64,6 +68,7 @@ export default function OptimismExercise() {
                 <KopfsachenButton
                   onPress={() => {
                     setModalVisible(!modalVisible);
+                    navigation.navigate('NewMotivator');
                   }}
                   style={styles.button}>
                   Fertig
