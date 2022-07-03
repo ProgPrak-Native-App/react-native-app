@@ -19,7 +19,7 @@ export type EmoRoutes = {
   Home: undefined;
   NKontrolle: undefined;
   Nice: undefined;
-  FeedbackNavigation: { name: string, title: string, color: string };
+  FeedbackNavigation: { name: string; title: string; color: string };
 };
 
 export type StackScreenProps<T extends keyof EmoRoutes> = NativeStackScreenProps<EmoRoutes, T>;
@@ -29,18 +29,18 @@ const Stack = createNativeStackNavigator();
 export default function Navigation() {
   return (
     <Stack.Navigator
+      initialRouteName="IntroScreen"
       screenOptions={{
         headerShown: false,
-      }}
-      initialRouteName="IntroScreen">
-      <Stack.Screen component={IntroScreen} name="IntroScreen"  />
+      }}>
+      <Stack.Screen component={IntroScreen} name="IntroScreen" />
       <Stack.Screen component={GroupALP} name="GroupALP" />
       <Stack.Screen component={E} name="E" />
       <Stack.Screen component={N} name="N" />
       <Stack.Screen component={InterScreen} name="InterScreen" />
       <Stack.Screen component={Home} name="Home" />
       <Stack.Screen component={NKontrolle} name="NKontrolle" />
-      <Stack.Screen component={Nice}  name="Nice" />
+      <Stack.Screen component={Nice} name="Nice" />
       <Stack.Screen component={FeedbackNavigation} name="FeedbackNavigation" />
     </Stack.Navigator>
   );

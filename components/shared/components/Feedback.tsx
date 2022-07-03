@@ -1,7 +1,7 @@
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { BLACK, DARK_GREY, ORANGE, PRIMARY, RED, SIZES, TERTIARY, WHITE } from '../styles';
+import { BLACK, DARK_GREY, PRIMARY, RED, SIZES, TERTIARY, WHITE } from '../styles';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from './Title';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -33,7 +33,7 @@ export function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {
   );
 }
 
-function Feedback( {route}: FeedbackScreenProps<'Feedback'>) {
+function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
   const { name, title, color } = route.params;
 
   const navigation = useNavigation<NavigationProp<FeedbackRoutes>>();

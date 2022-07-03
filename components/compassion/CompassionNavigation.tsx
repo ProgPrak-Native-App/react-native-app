@@ -11,7 +11,7 @@ export type CompassionRoutes = {
   IntroScreen: undefined;
   IntroVideoScreen: undefined;
   CompassionMeditation: undefined;
-  FeedbackNavigation: { name: string, title: string, color: string };
+  FeedbackNavigation: { name: string; title: string; color: string };
 };
 
 const Stack = createNativeStackNavigator<CompassionRoutes>();

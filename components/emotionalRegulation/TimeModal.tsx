@@ -39,7 +39,6 @@ async function registerForPushNotificationsAsync() {
   }
   if (finalStatus !== 'granted') {
     alert('Failed to get push token for push notification!');
-    return;
   }
 }
 
@@ -72,7 +71,7 @@ export default function TimeModal({ toggle }: { toggle: () => void }) {
     }
   };
 
-  const showMode = (currentMode: any | undefined) => {
+  const showMode = (currentMode: string) => {
     setMode(currentMode);
   };
 
@@ -96,7 +95,8 @@ export default function TimeModal({ toggle }: { toggle: () => void }) {
       {
         text: 'OK',
         onPress: () => {
-          triggerNotifications(date), registerForPushNotificationsAsync();
+          triggerNotifications(date);
+          registerForPushNotificationsAsync();
         },
       },
     ]);

@@ -1,6 +1,6 @@
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import React, { useEffect, useRef, useState } from 'react';
-import { BLACK, DARK_GREEN, GREY, PINK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
+import React, { useEffect, useState } from 'react';
+import { BLACK, DARK_GREEN, GREY, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { CompassionRoutes } from './CompassionNavigation';
@@ -9,16 +9,14 @@ import { Audio, AVPlaybackStatus } from 'expo-av';
 import Slider from '@react-native-community/slider';
 import Bold from '../Bold';
 
-/** source code for audio player: 
+/** source code for audio player:
  * https://github.com/expo/playlist-example/blob/master/App.js
  */
+
 export default function CompassionMeditation() {
   async function setUpSound() {
-    const { sound, status } = await Audio.Sound.createAsync(
-      require('../../assets/Compassion-Meditation-Example.mp3'),
-      initalStatus,
-      onPlaybackStatusUpdate
-    );
+    const track = require('../../assets/Compassion-Meditation-Example.mp3');
+    const { sound, status } = await Audio.Sound.createAsync(track, initalStatus, onPlaybackStatusUpdate);
     setStatus(status);
     return sound;
   }
@@ -39,7 +37,6 @@ export default function CompassionMeditation() {
     isPlaying: false,
     isBuffering: false,
     isLoading: true,
-    fontLoaded: false,
     shouldCorrectPitch: true,
     volume: 1.0,
     rate: 1.0,
@@ -59,7 +56,6 @@ export default function CompassionMeditation() {
         }
       : undefined;
   }, []);
-
 
   const initalStatus = {
     shouldPlay: isPlaying,
@@ -114,7 +110,7 @@ export default function CompassionMeditation() {
     if (sound !== undefined) {
       setIsSeeking(false);
       const seekPosition = value * duration;
-       if (!Number.isNaN(seekPosition)) {
+      if (!Number.isNaN(seekPosition)) {
         if (shouldPlayAtEndOfSeek) {
           sound.playFromPositionAsync(seekPosition);
         } else {
@@ -124,25 +120,21 @@ export default function CompassionMeditation() {
     }
   };
 
- /** source code for millisToMinutesAndSeconds func: 
-  * https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript */
-  const millisToMinutesAndSeconds = (milliSeconds: number) =>{
+  /** source code for millisToMinutesAndSeconds func:
+   * https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript */
+  const millisToMinutesAndSeconds = (milliSeconds: number) => {
     const minutes = Math.floor(milliSeconds / 60000);
     const seconds = parseFloat(((milliSeconds % 60000) / 1000).toFixed(0));
-    return (
-      seconds === 60 ?
-      (minutes+1) + ":00" :
-      minutes + ":" + (seconds < 10 ? "0" : "") + seconds
-    );
-  }
+    return seconds === 60 ? minutes + 1 + ':00' : minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  };
 
   /** set duration after status has figured out how long it is */
   useEffect(() => {
-    if(status.durationMillis !== undefined){
-      setDurationString(millisToMinutesAndSeconds(status.durationMillis))
-      setDuration(status.durationMillis)
+    if (status.durationMillis !== undefined) {
+      setDurationString(millisToMinutesAndSeconds(status.durationMillis));
+      setDuration(status.durationMillis);
     }
-  }, [status])
+  }, [status]);
 
   /** advance slider according to how long we have already listen */
   const getSeekSliderPosition = () => {
@@ -154,7 +146,7 @@ export default function CompassionMeditation() {
 
   /** function to catch undefined before getting mill seconds to m:ss string  */
   const getMilliSecondsPassed = () => {
-    if (status.playbackInstancePosition !== undefined ) {
+    if (status.playbackInstancePosition !== undefined) {
       return millisToMinutesAndSeconds(status.playbackInstancePosition);
     }
     return '0:00';
@@ -165,13 +157,11 @@ export default function CompassionMeditation() {
       <Title back color={PURPLE} text="Selbstbezogenes Mitgefühl" />
       <ScrollView>
         <View style={styles.container}>
-          <Text style={styles.heading}>Begib dich an einen <Bold>ungestörten Ort, </Bold>
+          <Text style={styles.heading}>
+            Begib dich an einen <Bold>ungestörten Ort, </Bold>
             suche dir eine <Bold>bequeme Position</Bold> im Sitzen und starte die Meditation.
           </Text>
-          <Image 
-            style={styles.img}
-            source={require('../../assets/Compassion_Meditation_Cover.png')}
-          />
+          <Image style={styles.img} source={require('../../assets/Compassion_Meditation_Cover.png')} />
           <Text style={styles.title}>Mitgefühl Meditation</Text>
           <Slider
             disabled={status.isLoading}
@@ -182,15 +172,23 @@ export default function CompassionMeditation() {
             thumbTintColor={DARK_GREEN}
             value={getSeekSliderPosition()}
           />
-          <View style={{ marginHorizontal: 5, alignItems: 'flex-start', flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Text style={styles.minutes}>{getMilliSecondsPassed()}</Text>
-          <Pressable onPress={onPlayPausePressed} style={{alignItems: 'center'}}>
-            <AntDesign color="black" name={isPlaying ? 'pausecircleo' : 'playcircleo'} size={50} />
-          </Pressable>
-          <Text style={styles.minutes}>{durationString}</Text>
+          <View
+            style={{
+              marginHorizontal: 5,
+              alignItems: 'flex-start',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}>
+            <Text style={styles.minutes}>{getMilliSecondsPassed()}</Text>
+            <Pressable onPress={onPlayPausePressed} style={{ alignItems: 'center' }}>
+              <AntDesign color="black" name={isPlaying ? 'pausecircleo' : 'playcircleo'} size={50} />
+            </Pressable>
+            <Text style={styles.minutes}>{durationString}</Text>
           </View>
           <Pressable
-            onPress={() => navigate('FeedbackNavigation', { name: 'MoodEntry', title: 'Selbstbezogenes Mitgefühl', color: PURPLE })}
+            onPress={() =>
+              navigate('FeedbackNavigation', { name: 'MoodEntry', title: 'Selbstbezogenes Mitgefühl', color: PURPLE })
+            }
             style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.button]}>
             <Text style={styles.text}>Geschafft!</Text>
           </Pressable>
@@ -215,21 +213,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     maxWidth: '100%',
     aspectRatio: 16 / 9,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   title: {
     marginTop: 25,
     marginBottom: 10,
     alignSelf: 'center',
     justifyContent: 'center',
-    fontSize: SIZES.font, 
+    fontSize: SIZES.font,
     fontWeight: 'bold',
-  },
-  playerContainer: {
-    marginHorizontal: 5,
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   text: {
     textAlign: 'center',
@@ -240,11 +232,6 @@ const styles = StyleSheet.create({
   },
   minutes: {
     fontSize: SIZES.font,
-  },
-  btnContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
   },
   button: {
     marginTop: 30,

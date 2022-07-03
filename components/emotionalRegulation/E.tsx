@@ -1,4 +1,4 @@
-import { View, Text, Pressable, ScrollView, StyleSheet, Animated, Easing, Platform } from 'react-native';
+import { View, Text, Pressable, ScrollView, StyleSheet, Animated, Easing } from 'react-native';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StackScreenProps } from './Navigation';
 import Title from '../Title';
@@ -11,7 +11,7 @@ import { AntDesign } from '@expo/vector-icons';
 /** for moving / sortable tasks:
  * source: https://github.com/gitim/react-native-sortable-list/blob/master/examples/Basic/App.js
  * */
-function Row(props: { data: string; active: Boolean; deleteTask: (v: string) => void }) {
+function Row(props: { data: string; active: boolean; deleteTask: (v: string) => void }) {
   const { active, data, deleteTask } = props;
 
   const activeAnim = useRef(new Animated.Value(0));
@@ -49,7 +49,6 @@ function Row(props: { data: string; active: Boolean; deleteTask: (v: string) => 
 }
 
 function E({ route, navigation }: StackScreenProps<'E'>) {
-
   /** save tasks to async Storage to retrive later */
   async function saveTaskList() {
     try {
@@ -58,13 +57,13 @@ function E({ route, navigation }: StackScreenProps<'E'>) {
       console.warn(err);
     }
   }
-  
+
   const OGTasks = route.params.tasks;
   const [data, setData] = useState<string[]>(route.params.tasks.map((item) => item.descr));
   const [newOrder, setNewOrder] = useState<TaskProp[]>(OGTasks);
 
   const renderRow = useCallback(({ data, active }) => {
-    return <Row data={data} active={active} deleteTask={deleteTask} />;
+    return <Row active={active} data={data} deleteTask={deleteTask} />;
   }, []);
 
   /** delete a task & save neworder */
@@ -77,6 +76,10 @@ function E({ route, navigation }: StackScreenProps<'E'>) {
   /** save newOrder of task for later */
   const onReleaseRow = (key: string, currentOrder: string[]) => {
     setNewOrder(currentOrder.map((item) => OGTasks.filter((entry) => parseInt(item) === entry.id)).flat());
+  };
+  const handleGoOn = () => {
+    saveTaskList();
+    navigation.navigate('N');
   };
 
   return (
@@ -100,7 +103,7 @@ function E({ route, navigation }: StackScreenProps<'E'>) {
         <SortableList data={data} onReleaseRow={onReleaseRow} renderRow={renderRow} style={styles.sortContainer} />
         <Pressable
           accessibilityHint="Zum nächsten Schritt "
-          onPress={() => (saveTaskList(), navigation.navigate('N'))}
+          onPress={handleGoOn}
           style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.btn]}>
           <Text style={{ fontSize: SIZES.font, padding: 12 }}>Fertig sortiert</Text>
         </Pressable>

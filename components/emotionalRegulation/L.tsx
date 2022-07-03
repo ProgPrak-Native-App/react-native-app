@@ -80,11 +80,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
   },
-  label: {
-    width: '90%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   input: {
     backgroundColor: WHITE,
     height: SIZES.target_size,

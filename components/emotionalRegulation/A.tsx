@@ -1,6 +1,6 @@
-import { View, Text, ScrollView, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 import React from 'react';
-import { BLACK, PRIMARY, SIZES, WHITE } from '../../styles';
+import { ACCENT, BLACK, PRIMARY, SIZES, WHITE } from '../../styles';
 import Slider from '@react-native-community/slider';
 
 export default function A({ desc, handleInput }: { desc: string; handleInput: (v: string, val: string) => void }) {
@@ -13,21 +13,21 @@ export default function A({ desc, handleInput }: { desc: string; handleInput: (v
       <Text style={styles.description}> a) Was ist meine Aufgabe?</Text>
       <TextInput
         accessibilityLabel="Trage hier eine deiner Aufgaben ein"
-        placeholder="Trage hier eine deiner Aufgaben ein"
         multiline
         onChangeText={(v) => handleInput('desc', v)}
+        placeholder="Trage hier eine deiner Aufgaben ein"
         placeholderTextColor="#4F4F4F"
         style={styles.textInput}
         value={desc}
       />
       <Text style={styles.description}>b) Wie wichtig ist die Aufgabe?</Text>
       <Slider
-        maximumValue={5}
-        minimumValue={0}
         maximumTrackTintColor={BLACK}
+        maximumValue={5}
         minimumTrackTintColor={PRIMARY}
-        style={{ width: '90%', height: 40 }}
+        minimumValue={0}
         step={1}
+        style={{ width: '90%', height: 40 }}
       />
       <View style={styles.label}>
         <Text>Wenig</Text>
@@ -50,9 +50,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  text: {
-    fontSize: 14,
-  },
   textInput: {
     backgroundColor: WHITE,
     minHeight: SIZES.target_size,
@@ -71,7 +68,7 @@ const styles = StyleSheet.create({
   accent: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#006646',
+    color: ACCENT,
   },
   description: {
     alignSelf: 'flex-start',

@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Pressable, StyleSheet, Image } from 'react-native';
+import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
 import React from 'react';
 import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import Title from '../Title';
@@ -9,7 +9,7 @@ export default function InterScreen() {
   const { navigate } = useNavigation<NavigationProp<EmoRoutes>>();
   return (
     <>
-      <Title text="Situationskontrolle" color={PURPLE} back />
+      <Title back color={PURPLE} text="Situationskontrolle" />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={[{ marginBottom: 30 }, styles.txt]}>Es ist Zeit deinen Tagesplan zu kontrollieren!</Text>
         <View style={{ width: '100%' }}>
@@ -43,19 +43,6 @@ const styles = StyleSheet.create({
     width: '88%',
     alignSelf: 'center',
     alignItems: 'center',
-  },
-  heading: {
-    alignSelf: 'center',
-    paddingBottom: 5,
-    fontSize: SIZES.font * 2,
-    fontWeight: 'bold',
-  },
-  description: {
-    textAlign: 'center',
-    marginVertical: 10,
-    marginHorizontal: 10,
-    lineHeight: SIZES.default_line_height,
-    fontSize: SIZES.font,
   },
   btn: {
     marginBottom: 50,
