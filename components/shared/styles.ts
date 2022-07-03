@@ -16,6 +16,7 @@ export const DARK_GREEN = '#00A873';
 export const WHITE = '#fff';
 export const BLACK = '#000';
 export const INNER_CIRCLE = '#f9bf9e';
+export const ACCENT = '#006646';
 
 export const MOTIVATOR = {
   DEFAULT: '#f2c7d0',

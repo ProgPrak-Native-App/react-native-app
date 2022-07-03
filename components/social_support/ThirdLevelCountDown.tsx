@@ -108,7 +108,7 @@ export default function ThirdLevelCountDown() {
             </Pressable>
             <Pressable
               accessibilityHint="Zum Feedback und Übung beenden"
-              onPress={() => navigate('FeedbackNavigation', { name: 'MoodEntry' })}
+              onPress={() => navigate('FeedbackNavigation', { name: 'MoodEntry' , title: 'Soziale Unterstützung' ,color: ORANGE})}
               style={styles.buttons}>
               <Text style={[styles.body, { fontWeight: 'bold' }]}>Weiter</Text>
             </Pressable>

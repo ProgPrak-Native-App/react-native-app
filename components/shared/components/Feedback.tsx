@@ -7,8 +7,13 @@ import Title from './Title';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import MoodDiary from '../../mood_diary/MoodDiary';
 
+export type Props = {
+  name: keyof FeedbackRoutes;
+  title: string;
+  color: string;
+};
 export type FeedbackRoutes = {
-  Feedback: { name: keyof FeedbackRoutes };
+  Feedback: Props;
   MoodDiary: { screen: string };
   CompassionNavigation: { screen: string };
   MotivatorCompleted: undefined;
@@ -21,15 +26,15 @@ export function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {
   return (
     <>
       <Stack.Navigator initialRouteName="Feedback" screenOptions={{ headerShown: false, animation: 'none' }}>
-        <Stack.Screen component={Feedback} initialParams={{ name: route.params.name }} name="Feedback" />
+        <Stack.Screen component={Feedback} initialParams={route.params} name="Feedback" />
         <Stack.Screen component={MoodDiary} name="MoodDiary" />
       </Stack.Navigator>
     </>
   );
 }
 
-function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
-  const { name } = route.params;
+function Feedback( {route}: FeedbackScreenProps<'Feedback'>) {
+  const { name, title, color } = route.params;
 
   const navigation = useNavigation<NavigationProp<FeedbackRoutes>>();
 
@@ -43,13 +48,15 @@ function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
     if (name.toString() === 'MoodEntry') {
       navigation.navigate('MoodDiary', { screen: 'MoodEntry' });
     } else if (name.toString() === 'IntroScreen') {
-      navigation.navigate('CompassionNavigation', { screen: name.toString() });
+      navigation.navigate('CompassionNavigation', { screen: 'IntroScreen' });
+    } else if (name.toString() === '') {
+      navigation.navigate('MotivatorCompleted');
     }
   };
 
   return (
     <>
-      <Title back color={ORANGE} text="Soziale Unterstützung" />
+      <Title back color={color} text={title} />
       <ScrollView style={styles.container}>
         <Text style={styles.heading}>Wie hat Dir die Übung gefallen?</Text>
         <View style={styles.buttons}>
@@ -165,9 +172,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 10,
     width: '60%',
-    backgroundColor: TERTIARY,
-    minHeight: 48,
-    borderColor: DARK_GREY,
+    minHeight: SIZES.target_size,
+    borderColor: BLACK,
     borderRadius: 20,
     borderWidth: 1,
     padding: 10,
