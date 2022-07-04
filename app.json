@@ -3,7 +3,6 @@
     "owner": "progprak_kopfsachen",
     "name": "Kopfsachen-Native-App",
     "slug": "kopfsachen",
-    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
