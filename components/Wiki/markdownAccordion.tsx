@@ -1,6 +1,6 @@
 import MarkdownIt from 'markdown-it';
 import Token from 'markdown-it/lib/token';
-import { RenderFunction } from '@jonasmerlin/react-native-markdown-display';
+import { RenderFunction } from 'react-native-markdown-display';
 import Accordion from './Accordion';
 import React from 'react';
 
