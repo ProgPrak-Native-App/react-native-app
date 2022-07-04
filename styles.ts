@@ -55,6 +55,17 @@ export const STATE_COLOR_INACTIVE_BACKGROUND = '#fff';
 export const STATE_COLOR_INACTIVE_TINT = 'black';
 export const STATE_COLOR_ACTIVE_TINT = 'black';
 
+/* ---- Shadows ---- */
+export const SHADOW_COLOR = 'grey';
+
+/* ---- Layout Colors --- */
+export const LAYOUT_COLOR_SAFEAREA_BACKGROUND = '#f2f2f2';
+
+/* ---- States Colors --- */
+export const STATE_COLOR_INACTIVE_BACKGROUND = '#fff';
+export const STATE_COLOR_INACTIVE_TINT = 'black';
+export const STATE_COLOR_ACTIVE_TINT = 'black';
+
 /* ----- sytles ---- */
 export const SIZES = {
   font: 18,

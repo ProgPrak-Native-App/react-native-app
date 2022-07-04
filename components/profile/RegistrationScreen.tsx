@@ -71,13 +71,11 @@ export default function RegistrationScreen(){
         }else if(inputs.repeatPassword != inputs.password){
             handleError('Passwörter müssen übereinstimmen', 'repeatPassword')
         }
-
         if(!inputs.age) {
             handleError('Bitte Alter eingeben', 'age')
         }else if(!inputs.age.match("^[0-9]*$")){
             handleError('Das Alter muss eine Zahl sein', 'age')
         }
-
    };
 
    const register = () => {
