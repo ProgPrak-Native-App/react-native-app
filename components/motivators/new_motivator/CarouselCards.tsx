@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { MotivatorRoutes } from '../Motivator';
-import Carousel from 'react-native-snap-carousel';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { Pressable } from 'react-native';
 import CarouselCardItem, { ITEM_WIDTH, SLIDER_WIDTH } from './CarouselCardItem';
 import { getMotivatorByType, MotivatorTypes } from '../MotivatorProps';
+import { backgroundColor } from 'react-native-calendars/src/style';
+import { AntDesign } from '@expo/vector-icons';
 
 function getMotivatorParams(name: keyof MotivatorTypes) {
   const motivator = getMotivatorByType(name);
@@ -13,6 +15,7 @@ function getMotivatorParams(name: keyof MotivatorTypes) {
 
 export default function CarouselCards(props: { data: (keyof MotivatorTypes)[] }) {
   const isCarousel = React.useRef(null);
+  const [index, setIndex] = useState(0);
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
 
   function getRenderItem() {
@@ -30,14 +33,17 @@ export default function CarouselCards(props: { data: (keyof MotivatorTypes)[] })
   }
 
   return (
-    <Carousel
-      data={props.data}
-      itemWidth={ITEM_WIDTH}
-      layout="default"
-      ref={isCarousel}
-      renderItem={getRenderItem()}
-      sliderWidth={SLIDER_WIDTH}
-      vertical={false}
-    />
+    <>
+      <Carousel
+        data={props.data}
+        itemWidth={ITEM_WIDTH}
+        layout="default"
+        onSnapToItem={(newIndex) => setIndex(newIndex)}
+        ref={isCarousel}
+        renderItem={getRenderItem()}
+        sliderWidth={SLIDER_WIDTH}
+        vertical={false}
+      />
+    </>
   );
 }

@@ -22,6 +22,7 @@ function OldMotivatorGridView(motivators: MotivatorProps[]) {
     <>
       {motivators.map((props, index) => (
         <Pressable
+          accessibilityHint={'Übungen von ' + props.name + ' öffnen'}
           key={index}
           onPress={() => navigation.navigate('OldMotivator', { props: props.type })}
           style={[styles.gridItem, { backgroundColor: props.color }, styles.shadow]}>
@@ -59,7 +60,10 @@ export default function MotivatorSelection() {
             entdecken” eine Auswahl von neuen Übungen.
           </Text>
 
-          <KopfsachenButton onPress={() => navigation.navigate('NewMotivator')} style={[styles.button, styles.shadow]}>
+          <KopfsachenButton
+            accessibilityHint={'Neue Starkmacher entdecken'}
+            onPress={() => navigation.navigate('NewMotivator')}
+            style={[styles.button, styles.shadow]}>
             Neue Starkmacher entdecken!
           </KopfsachenButton>
         </View>

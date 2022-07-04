@@ -10,7 +10,7 @@ export default function OldMotivatorPractice(props: MotivatorProps) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   return (
     <>
-      <Title Icon={() => props.icon} color={props.color} text={props.name} />
+      <Title Icon={() => props.icon} back={true} color={props.color} text={props.name} />
       <View style={styles.container}>
         {props.exercises?.map((exercise) => (
           <Pressable

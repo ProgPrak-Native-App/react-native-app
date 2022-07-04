@@ -10,7 +10,7 @@ const motivators: (keyof MotivatorTypes)[] = ['relaxation', 'situationControl', 
 export default function NewMotivator() {
   return (
     <>
-      <Title text="Neue Starkmacher" />
+      <Title back={true} text="Neue Starkmacher" />
       <View style={styles.container}>
         <Text style={styles.text}>Welche neuen Starkmacher möchtest du heute ausprobieren?</Text>
         <CarouselCards data={motivators} />

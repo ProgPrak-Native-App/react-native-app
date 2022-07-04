@@ -4,6 +4,7 @@ import Title from '../../Title';
 import { getMotivatorByType } from '../MotivatorProps';
 import { BACKGROUND, SHADOW, SIZES } from '../../../styles';
 import KopfsachenButton from '../../KopfsachenButton';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function OptimismHome({ navigation }: any) {
   const props = getMotivatorByType('optimism');
@@ -26,6 +27,15 @@ export default function OptimismHome({ navigation }: any) {
           style={styles.centeredView}>
           <TouchableWithoutFeedback>
             <View style={styles.modalView}>
+              <AntDesign
+                accessibilityHint={'Übung beginnen'}
+                color="black"
+                name="close"
+                onPress={() => setModalVisible(!modalVisible)}
+                size={35}
+                style={{ position: 'absolute', right: 12, top: 12, zIndex: 1 }}
+              />
+
               <Text style={styles.modalText}>
                 Wenn du Optimismus üben möchtest, kann dir die folgende Aufgabe helfen: {'\n\n'}
                 Stell dir einen Timer für 10 Minuten ein. Denke während dieser Zeit an dein bestmögliches zukünftiges
@@ -48,17 +58,20 @@ export default function OptimismHome({ navigation }: any) {
         </TouchableOpacity>
       </Modal>
 
-      <Title Icon={() => props.icon} color={props.color} text={props.name} />
+      <Title Icon={() => props.icon} back={true} color={props.color} text={props.name} />
       <View style={styles.container}>
         <Text style={styles.header}>Finde heraus,{'\n'} was dahinter steckt!</Text>
         <Image source={require('../../../assets/optimism-info-video.png')} />
       </View>
 
       <View style={styles.containerButtons}>
-        <KopfsachenButton onPress={() => navigation.goBack()} style={styles.button}>
+        <KopfsachenButton accessibilityHint={'Zurück'} onPress={() => navigation.goBack()} style={styles.button}>
           Andere Strategie auswählen
         </KopfsachenButton>
-        <KopfsachenButton onPress={() => setModalVisible(true)} style={styles.button}>
+        <KopfsachenButton
+          accessibilityHint={'Das will ich üben'}
+          onPress={() => setModalVisible(true)}
+          style={styles.button}>
           Das will ich üben
         </KopfsachenButton>
       </View>
@@ -119,6 +132,7 @@ const styles = StyleSheet.create({
   modalText: {
     lineHeight: SIZES.default_line_height,
     paddingBottom: 10,
+    paddingTop: 25,
     textAlign: 'center',
     fontSize: SIZES.font,
   },
