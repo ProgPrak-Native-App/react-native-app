@@ -1,6 +1,7 @@
 import React from 'react';
 import Title from './Title';
 import { StyleSheet, Text, View } from 'react-native';
+// eslint-disable-next-line import/named
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import KopfsachenButton from './KopfsachenButton';
 import { TabRoutes } from '../App';

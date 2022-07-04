@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 import React, { useEffect, useState } from 'react';
 import { Image, Pressable, StyleSheet } from 'react-native';
 import { Calendar } from 'react-native-calendars/src';
