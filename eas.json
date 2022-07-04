@@ -5,9 +5,17 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "releaseChannel": "development",
+      "distribution": "internal",
+      "env": {
+        "NODE_ENV": "development"
+      }
     },
     "preview": {
+      "releaseChannel": "staging",
+      "env": {
+        "NODE_ENV": "staging"
+      },
       "ios": {
         "simulator": true
       },
