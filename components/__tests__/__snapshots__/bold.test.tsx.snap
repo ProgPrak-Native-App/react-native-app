@@ -1,20 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Bold /> Adding additional property works 1`] = `
-<Text
-  style={
-    Array [
-      undefined,
-      Object {
-        "fontWeight": "bold",
-      },
-    ]
-  }
->
-  Boldtext
-</Text>
-`;
-
 exports[`<Bold /> Matches Snapshot 1`] = `
 <Text
   style={
