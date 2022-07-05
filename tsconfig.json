@@ -1,8 +1,14 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "target": "ES2017",
+    "types": ["node", "jest"],
+    "skipLibCheck": true,
     "strict": true,
     "jsx": "react",
     "esModuleInterop": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
   }
 }

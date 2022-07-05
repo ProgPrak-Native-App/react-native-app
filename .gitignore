@@ -78,3 +78,9 @@ web-build/
 dist/
 
 # @end expo-cli
+
+# Jest
+.cache
+coverage/*
+
+
