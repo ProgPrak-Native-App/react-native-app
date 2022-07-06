@@ -136,8 +136,9 @@ export default function OptimismExercise() {
   return (
     <>
       {getModal()}
+
       <Title Icon={() => props.icon} back={true} color={props.color} text={props.name} />
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'height'} style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <ScrollView>
             {getCountdown()}
