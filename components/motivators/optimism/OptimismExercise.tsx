@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import * as Haptics from 'expo-haptics';
 import Title from '../../Title';
 import { getMotivatorByType } from '../MotivatorProps';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
@@ -99,6 +100,7 @@ export default function OptimismExercise() {
                   accessibilityHint={'Ergebnisse in Zwischenablage kopieren'}
                   onPress={() => {
                     copyToClipboard();
+                    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
                   }}
                   style={styles.button}>
                   Kopieren in die Zwischenablage
