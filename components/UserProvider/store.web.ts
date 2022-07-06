@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
 // fetch / generate Key and pass it to function
 
 const storeKey = 'currentUser';
