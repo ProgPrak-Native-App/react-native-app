@@ -10,7 +10,7 @@ import { PRIMARY, SECONDARY } from "../styles";
 import MoodDiary from "./mood_diary/MoodDiary";
 import RegistrationScreen from "./profile/RegistrationScreen";
 import Motivator from "./motivators/Motivator";
-import { Wiki } from "./Wiki";
+import Wiki from "./Wiki";
 
 export type TabRoutes = {
     Home: undefined;
