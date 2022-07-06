@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SIZES } from '../../../styles';
 import Title from '../../Title';
 import CarouselCards from './CarouselCards';
@@ -11,10 +11,12 @@ export default function NewMotivator() {
   return (
     <>
       <Title back={true} text="Neue Starkmacher" />
-      <View style={styles.container}>
-        <Text style={styles.text}>Welche neuen Starkmacher möchtest du heute ausprobieren?</Text>
-        <CarouselCards data={motivators} />
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.text}>Welche neuen Starkmacher möchtest du heute ausprobieren?</Text>
+          <CarouselCards data={motivators} />
+        </View>
+      </ScrollView>
     </>
   );
 }
@@ -22,11 +24,11 @@ export default function NewMotivator() {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    height: '100%',
   },
   text: {
     lineHeight: SIZES.default_line_height,
-    padding: 30,
+    paddingTop: 25,
+    paddingHorizontal: 30,
     textAlign: 'center',
     fontSize: SIZES.font,
   },

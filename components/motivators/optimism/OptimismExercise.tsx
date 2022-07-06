@@ -99,8 +99,7 @@ export default function OptimismExercise() {
                 <KopfsachenButton
                   accessibilityHint={'Ergebnisse in Zwischenablage kopieren'}
                   onPress={() => {
-                    copyToClipboard();
-                    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+                    copyToClipboard().then(() => Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success));
                   }}
                   style={styles.button}>
                   Kopieren in die Zwischenablage
@@ -140,7 +139,10 @@ export default function OptimismExercise() {
       {getModal()}
 
       <Title Icon={() => props.icon} back={true} color={props.color} text={props.name} />
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'height'} style={{ flex: 1 }}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'position' : 'height'}
+        keyboardVerticalOffset={20}
+        style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <ScrollView>
             {getCountdown()}
@@ -241,7 +243,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   input: {
-    height: SIZES.target_size,
+    minHeight: SIZES.target_size,
     fontSize: SIZES.font,
     width: '80%',
     borderWidth: 1,
