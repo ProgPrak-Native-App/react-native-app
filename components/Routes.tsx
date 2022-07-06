@@ -6,11 +6,11 @@ import { FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-ico
 import NotImplemented from './NotImplemented';
 
 import Home from './Home';
-import { PRIMARY, SECONDARY } from '../styles';
+import { PRIMARY, SHADOW } from '../styles';
 import MoodDiary from './mood_diary/MoodDiary';
-import RegistrationScreen from './profile/RegistrationScreen';
 import Motivator from './motivators/Motivator';
 import Wiki from './Wiki';
+import Profile from './profile/Profile';
 
 export type TabRoutes = {
   Home: undefined;
@@ -23,11 +23,7 @@ export type TabRoutes = {
 
 const Tab = createBottomTabNavigator<TabRoutes>();
 
-const styles = StyleSheet.create({
-  label: {
-    fontSize: 11,
-  },
-});
+
 
 export default function Routes() {
   return (
@@ -35,8 +31,9 @@ export default function Routes() {
       screenOptions={{
         headerShown: false,
         tabBarLabelStyle: styles.label,
-        tabBarInactiveBackgroundColor: PRIMARY,
-        tabBarActiveBackgroundColor: SECONDARY,
+        tabBarItemStyle: styles.items,
+        tabBarStyle: styles.bar,
+        tabBarActiveBackgroundColor: PRIMARY,
         tabBarInactiveTintColor: 'black',
         tabBarActiveTintColor: 'black',
       }}>
@@ -51,7 +48,7 @@ export default function Routes() {
         name="MoodDiary"
         component={MoodDiary}
         options={{
-          title: 'Stimmungs\u00adtagebuch',
+          title: 'Kalender',
           tabBarIcon: () => <FontAwesome5 name="calendar-alt" size={24} />,
         }}
       />
@@ -66,21 +63,13 @@ export default function Routes() {
         name="Motivators"
         component={Motivator}
         options={{
-          title: 'Starkmacher',
+          title: 'Übungen',
           tabBarIcon: () => <MaterialCommunityIcons name="arm-flex" size={24} />,
         }}
       />
       <Tab.Screen
-        name="EmergencyNumbers"
-        component={NotImplemented}
-        options={{
-          title: 'Notfall\u00adnummern',
-          tabBarIcon: () => <FontAwesome5 name="first-aid" size={24} />,
-        }}
-      />
-      <Tab.Screen
         name="Profil"
-        component={RegistrationScreen}
+        component={Profile}
         options={{
           tabBarIcon: () => <Ionicons name="person-circle-outline" size={24} />,
         }}
@@ -88,3 +77,29 @@ export default function Routes() {
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  label: {
+    fontSize: 14,
+    paddingHorizontal: 4,
+    paddingBottom: 5,
+  },
+  bar: {
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    flex: 0.1,
+    shadowColor: SHADOW,
+    shadowOffset: {
+      width: 0,
+      height: -2,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: -34,
+  },
+  items: {
+    borderRadius: 15,
+    marginHorizontal: 4,
+    marginVertical: 4,
+  },
+});
