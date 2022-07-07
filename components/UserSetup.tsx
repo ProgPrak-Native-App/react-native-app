@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { TERTIARY } from '../styles';
+import { LIGHT_BLUE, TERTIARY } from '../styles';
 import { useUserContext } from './UserProvider';
 
 const styles = StyleSheet.create({
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    backgroundColor: '#e0ffff',
+    backgroundColor: LIGHT_BLUE,
   },
 
   headerContainer: {
@@ -61,7 +61,7 @@ export default function UserSetup() {
         </Text>
       </View>
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.button} onPress={() => addUser({ id: 'token1' })}>
+        <Pressable onPress={() => addUser({ id: 'token1' })} style={styles.button}>
           <Text style={styles.text}>Done</Text>
         </Pressable>
       </View>

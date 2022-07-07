@@ -8,7 +8,7 @@ import { BACKGROUND } from './styles';
 export default function App() {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1, backgroundColor: BACKGROUND}}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: BACKGROUND }}>
         <UserProvider>
           <AppWrapper />
         </UserProvider>

@@ -1,15 +1,16 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { TERTIARY } from '../styles';
+import { LIGHT_BLUE, TERTIARY } from '../styles';
+import { IntroductionProp } from './Introduction';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    backgroundColor: '#e0ffff',
+    backgroundColor: LIGHT_BLUE,
   },
 
   headerContainer: {
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
 });
 
 export default function WelcomePage() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<IntroductionProp>>();
 
   return (
     <View style={styles.container}>
@@ -66,7 +67,7 @@ export default function WelcomePage() {
         </Text>
       </View>
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('UserSetup')}>
+        <Pressable onPress={() => navigation.navigate('UserSetup')} style={styles.button}>
           <Text style={styles.text}>Los geht's</Text>
         </Pressable>
       </View>

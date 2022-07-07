@@ -1,10 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import NotImplemented from './NotImplemented';
-
 import Home from './Home';
 import { PRIMARY, SHADOW } from '../styles';
 import MoodDiary from './mood_diary/MoodDiary';
@@ -23,8 +20,6 @@ export type TabRoutes = {
 
 const Tab = createBottomTabNavigator<TabRoutes>();
 
-
-
 export default function Routes() {
   return (
     <Tab.Navigator
@@ -38,38 +33,38 @@ export default function Routes() {
         tabBarActiveTintColor: 'black',
       }}>
       <Tab.Screen
-        name="Home"
         component={Home}
+        name="Home"
         options={{
           tabBarIcon: () => <FontAwesome5 name="home" size={24} />,
         }}
       />
       <Tab.Screen
-        name="MoodDiary"
         component={MoodDiary}
+        name="MoodDiary"
         options={{
           title: 'Kalender',
           tabBarIcon: () => <FontAwesome5 name="calendar-alt" size={24} />,
         }}
       />
       <Tab.Screen
-        name="Wiki"
         component={Wiki}
+        name="Wiki"
         options={{
           tabBarIcon: () => <FontAwesome5 name="book" size={24} />,
         }}
       />
       <Tab.Screen
-        name="Motivators"
         component={Motivator}
+        name="Motivators"
         options={{
           title: 'Übungen',
           tabBarIcon: () => <MaterialCommunityIcons name="arm-flex" size={24} />,
         }}
       />
       <Tab.Screen
-        name="Profil"
         component={Profile}
+        name="Profil"
         options={{
           tabBarIcon: () => <Ionicons name="person-circle-outline" size={24} />,
         }}
