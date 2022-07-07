@@ -131,7 +131,7 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
 
   /** navigation between circles  */
   const goAhead = (id: number) => {
-    setData((prevData) => prevData.map((item) => (item.id === id ? { ...item, people: people } : item)));
+    setData((prevData) => prevData.map((item) => (item.id === id ? { ...item, people } : item)));
     if (id === 0) {
       navigate('FeedbackNavigation', { name: 'MoodEntry' });
     } else if (id === 1) {
@@ -144,7 +144,7 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
   };
 
   const goBack = (id: number) => {
-    setData((prevData) => prevData.map((item) => (item.id === id ? { ...item, people: people } : item)));
+    setData((prevData) => prevData.map((item) => (item.id === id ? { ...item, people } : item)));
     if (id === 0) {
       setting(++id);
       changeSize(middleSize, 280);

@@ -1,77 +1,24 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
-import { MOTIVATOR, TERTIARY } from '../styles';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    backgroundColor: MOTIVATOR.SECURITYNET,
-  },
+import WelcomePage from './WelcomePage';
+import UserSetup from './UserSetup';
 
-  headerContainer: {
-    flex: 1,
-  },
+export type IntroductionProp = {
+  WelcomePage: undefined;
+  UserSetup: undefined;
+};
 
-  header: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 10,
-  },
-
-  textContainer: {
-    flex: 8,
-    margin: 20,
-    justifyContent: 'center',
-  },
-
-  text: {
-    fontSize: 20,
-    textAlign: 'center',
-  },
-
-  buttonContainer: {
-    flex: 1,
-  },
-  button: {
-    marginHorizontal: '25%',
-    borderWidth: 1,
-    borderRadius: 20,
-    backgroundColor: TERTIARY,
-    justifyContent: 'center',
-    height: 40,
-  },
-});
+const Stack = createNativeStackNavigator<IntroductionProp>();
 
 export default function Introduction() {
-  const navigation = useNavigation<any>();
-
   return (
     <>
-      <View style={styles.container}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.header}>Herzlich Willkommen!</Text>
-        </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>
-            In dieser App geht es darum deine mentale Gesundheitskompetenz auszubauen: Wir werden an deinen persönlichen
-            Starkmachern arbeiten. Du wirst jeden Tag nach deiner Stimmung gefragt. Je nachdem, wie deine Stimmung ist,
-            werden dir verschiedene Übungen vorgeschlagen. Diese Übungen werden dann zu deinem Starkmacherprofil
-            hinzugefügt. Außerdem findest du im Wiki Erklärungen zu psychologischen Begriffen. Falls du externe Hilfe
-            benötigst, findest du unter Notfallnummern verschiedene Beratungsstellen. Als erstes werden wir dein
-            persönliches Profil anlegen.
-          </Text>
-        </View>
-        <View style={styles.buttonContainer}>
-          <Pressable onPress={() => navigation.navigate('CreateProfile')} style={styles.button}>
-            <Text style={styles.text}>Los geht's</Text>
-          </Pressable>
-        </View>
-      </View>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen component={WelcomePage} name="WelcomePage" />
+        <Stack.Screen component={UserSetup} name="UserSetup" />
+      </Stack.Navigator>
     </>
   );
 }

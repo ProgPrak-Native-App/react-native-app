@@ -3,7 +3,7 @@ import Title from './Title';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import KopfsachenButton from './KopfsachenButton';
-import { TabRoutes } from '../App';
+import { TabRoutes } from './Routes';
 import { BACKGROUND, PRIMARY } from '../styles';
 
 export default function Home() {

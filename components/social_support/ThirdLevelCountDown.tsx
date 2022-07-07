@@ -87,8 +87,8 @@ export default function ThirdLevelCountDown() {
             onFinish={onComplete}
             size={30}
             style={{ marginVertical: 35 }}
-            timeLabels={{ d: 'Tage', h: 'Stunden', m: 'Minuten', s: 'Sekunden' }}
             timeLabelStyle={{ color: BLACK, fontSize: 14 }}
+            timeLabels={{ d: 'Tage', h: 'Stunden', m: 'Minuten', s: 'Sekunden' }}
             timeToShow={['D', 'H', 'M', 'S']}
             until={secondsLeft}
           />

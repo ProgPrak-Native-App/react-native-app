@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { BLUE, ERROR, GREY } from '../../styles';
+import { BACKGROUND, BLUE, ERROR } from '../../styles';
 
 interface InputData {
   label: string;
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   label: {
     marginHorizontal: 20,
     fontSize: 12,
-    color: GREY,
+    color: BACKGROUND,
   },
   icon: {
     fontSize: 22,
@@ -25,8 +25,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     height: 55,
-    backgroundColor: GREY,
-    marginVertical: 10,
+    backgroundColor: BACKGROUND,
     marginHorizontal: 20,
     paddingHorizontal: 15,
     flexDirection: 'row',
