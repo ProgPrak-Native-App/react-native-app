@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SecurityNetRoutes } from './SecurityNet';
-import { parseMotivator } from '../MotivatorProps';
+import { getMotivatorByType } from '../MotivatorProps';
 import { iconMap, SafetyNetDType } from './SecurityNetHome';
 import Title from '../../Title';
 import { Text, View, StyleSheet, ScrollView, Pressable } from 'react-native';
@@ -8,9 +8,9 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 async function getSafetyNet() {
   return await fetch('http://localhost:4010/safetyNet', {
-    headers: new Headers({
-      Authorization: 'Bearer nativeApp',
-    }),
+    headers: {
+      Authorization: 'Bearer react-native-app',
+    },
   })
     .then((response) => response.json())
     .then((data) => {
@@ -52,7 +52,7 @@ function SecurityNetItemGridView(safetyNetItems: SafetyNetDType[], type: string)
 }
 
 export default function SecurityNetItemView({ _, route }: any) {
-  const props = parseMotivator('relaxation');
+  const props = getMotivatorByType('relaxation');
   const initialState: SafetyNetDType[] = [];
   const [safetyNetItems, setSafetyNetItems] = useState(initialState);
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Title from '../../Title';
 import KopfsachenButton from '../../KopfsachenButton';
-import { parseMotivator } from '../MotivatorProps';
+import { getMotivatorByType } from '../MotivatorProps';
 import { iconMap, SafetyNetDType } from './SecurityNetHome';
 import { View, Text, StyleSheet, Pressable, TextInput } from 'react-native';
 import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
@@ -22,7 +22,7 @@ export default function SecurityNetItem({
   navigation,
   route,
 }: NativeStackScreenProps<SecurityNetRoutes, 'SecurityNetItem'>) {
-  const props = parseMotivator('relaxation');
+  const props = getMotivatorByType('relaxation');
   const iconSize = 40;
   const [resource, setResource] = useState('');
 

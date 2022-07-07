@@ -6,10 +6,15 @@ import Title from '../Title';
 import React, { useEffect, useState } from 'react';
 import { MotivatorProps, MotivatorTypes, getMotivatorByType } from './MotivatorProps';
 import { GREY, MOTIVATOR, SHADOW } from '../../styles';
+import OldMotivator from './old_motivator/OldMotivator';
 
 async function getMotivators() {
   // change to BASE_URL once merged -> feature/7/wiki
-  return await fetch('http://localhost:4010/motivator')
+  return await fetch('http://localhost:4010/motivator', {
+    headers: {
+      Authorization: 'Bearer react-native-app',
+    },
+  })
     .then((response) => response.json())
     .then((data: { type: keyof MotivatorTypes }[]) => data.map((value) => getMotivatorByType(value.type)))
     .catch(() => [getMotivatorByType('noMotivator')]);
@@ -24,7 +29,7 @@ function OldMotivatorGridView(motivators: MotivatorProps[]) {
         <Pressable
           accessibilityHint={'Übungen von ' + props.name + ' öffnen'}
           key={index}
-          onPress={() => navigation.navigate('OldMotivator', { props: props.type })}
+          onPress={() => navigation.navigate(props.screen, { props: props.type })}
           style={[styles.gridItem, { backgroundColor: props.color }, styles.shadow]}>
           <Text style={styles.text}>{props.name}</Text>
           {props.icon}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Title from '../../Title';
 import KopfsachenButton from '../../KopfsachenButton';
-import { parseMotivator } from '../MotivatorProps';
+import { getMotivatorByType } from '../MotivatorProps';
 import { SafetyNetDType } from './SecurityNetHome';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
@@ -23,7 +23,7 @@ export default function SecurityNetAssistance({
   navigation,
   route,
 }: NativeStackScreenProps<SecurityNetRoutes, 'SecurityNetAssistance'>) {
-  const props = parseMotivator('relaxation');
+  const props = getMotivatorByType('relaxation');
   const currentComponent = route.params.component;
 
   return (

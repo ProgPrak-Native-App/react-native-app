@@ -1,6 +1,6 @@
 import React from 'react';
-import { parseMotivator } from '../MotivatorProps';
-import { SecurityNetRoutes } from './SecurityNetNavigation';
+import { getMotivatorByType } from '../MotivatorProps';
+import { SecurityNetRoutes } from './SecurityNet';
 import Title from '../../Title';
 import { View, Text, StyleSheet, Image, Pressable, ImageBackground } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
@@ -31,7 +31,7 @@ export const empty: SafetyNetDType = {
 
 export default function SecurityNetHome() {
   const iconSize = 40;
-  const props = parseMotivator('relaxation');
+  const props = getMotivatorByType('relaxation');
 
   const navigation = useNavigation<NavigationProp<SecurityNetRoutes>>();
 
