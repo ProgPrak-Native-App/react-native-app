@@ -168,8 +168,8 @@ export default function TimeModal({ toggle }: { toggle: () => void }) {
           <Pressable
             accessibilityHint="Notification setzen"
             onPress={handleSetNotification}
-            style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : WHITE }, styles.btn]}>
-            <Text style={styles.btnTxt}>Fertig</Text>
+            style={({ pressed }) => [{ backgroundColor: pressed ? WHITE : PRIMARY }, styles.btn]}>
+            <Text style={styles.btnTxt}>Speichere Benachrichtung</Text>
           </Pressable>
           <Pressable
             accessibilityHint="Fenster schließen"

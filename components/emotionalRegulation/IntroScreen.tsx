@@ -9,7 +9,7 @@ export default function IntroScreen() {
   const { navigate } = useNavigation<NavigationProp<EmoRoutes>>();
   return (
     <>
-      <Title color={PURPLE} text="Emotionsregulation" />
+      <Title back color={PURPLE} text="Emotionsregulation" />
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.text}>Wenn du Situationskontrolle üben möchtest, kann dir die ALPEN-Methode helfen.</Text>
