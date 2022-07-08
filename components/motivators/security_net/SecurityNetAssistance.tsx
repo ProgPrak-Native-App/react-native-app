@@ -33,17 +33,29 @@ export default function SecurityNetAssistance({
         <Text style={styles.text}>Trage 3 Wege ein, auf denen dir diese Person oder Aktivität helfen kann.</Text>
         <TextInput
           onChangeText={(input: string) => (currentComponent.strategies[0] = input)}
-          placeholder={''}
+          placeholder={
+            currentComponent.strategies[0] !== ''
+              ? currentComponent.strategies[0]
+              : 'Trage hier ein wie dieses Thema dir hilft!'
+          }
           style={styles.textinput}
         />
         <TextInput
           onChangeText={(input: string) => (currentComponent.strategies[1] = input)}
-          placeholder={''}
+          placeholder={
+            currentComponent.strategies[1] !== ''
+              ? currentComponent.strategies[1]
+              : 'Trage hier ein wie dieses Thema dir hilft!'
+          }
           style={styles.textinput}
         />
         <TextInput
           onChangeText={(input: string) => (currentComponent.strategies[2] = input)}
-          placeholder={''}
+          placeholder={
+            currentComponent.strategies[2] !== ''
+              ? currentComponent.strategies[2]
+              : 'Trage hier ein wie dieses Thema dir hilft!'
+          }
           style={styles.textinput}
         />
       </View>
@@ -75,7 +87,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 9,
     height: 50,
-    width: 250,
+    width: '90%',
   },
   button: {
     paddingHorizontal: 4,

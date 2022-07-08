@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 9,
     minHeight: 50,
-    width: '85%',
+    width: '90%',
     marginVertical: 30,
   },
   button: {
