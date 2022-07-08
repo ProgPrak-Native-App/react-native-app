@@ -26,7 +26,7 @@ export type StackScreenProps<T extends keyof EmoRoutes> = NativeStackScreenProps
 
 const Stack = createNativeStackNavigator();
 
-export default function Navigation() {
+export default function EmoNavigation() {
   return (
     <Stack.Navigator
       initialRouteName="IntroScreen"

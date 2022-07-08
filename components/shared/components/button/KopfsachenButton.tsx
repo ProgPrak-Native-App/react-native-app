@@ -1,6 +1,6 @@
 import { GestureResponderEvent, Pressable, StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
 import React, { ReactNode } from 'react';
-import { TERTIARY } from '../../styles';
+import { SIZES, TERTIARY } from '../../styles';
 
 export type Props = {
   onPress?: (event: GestureResponderEvent) => void;
@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: TERTIARY,
     borderWidth: 1,
-    borderRadius: 20,
+    borderRadius: 15,
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: SIZES.font,
     textAlign: 'center',
     margin: 10,
   },

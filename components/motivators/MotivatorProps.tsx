@@ -41,7 +41,7 @@ const situationControl: MotivatorProps = {
   color: MOTIVATOR.SITUATIONCONTROLL,
   exercises: mockExercises,
   icon: <Image source={require('../../assets/situationControlIcon.png')} style={{ height: 80, width: 80 }} />,
-  screen: 'OldMotivator',
+  screen: 'EmoNavigation',
   type: 'situationControl',
 };
 
