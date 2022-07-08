@@ -5,6 +5,7 @@ import { iconMap, SafetyNetDType } from './SecurityNetHome';
 import Title from '../../Title';
 import { Text, View, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 async function getSafetyNet() {
   return await fetch('http://localhost:4010/safetyNet', {
@@ -51,7 +52,9 @@ function SecurityNetItemGridView(safetyNetItems: SafetyNetDType[], type: string)
   );
 }
 
-export default function SecurityNetItemView({ _, route }: any) {
+export default function SecurityNetItemView({
+  route,
+}: NativeStackScreenProps<SecurityNetRoutes, 'SecurityNetItemView'>) {
   const props = getMotivatorByType('relaxation');
   const initialState: SafetyNetDType[] = [];
   const [safetyNetItems, setSafetyNetItems] = useState(initialState);

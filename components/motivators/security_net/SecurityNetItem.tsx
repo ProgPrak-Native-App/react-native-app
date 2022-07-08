@@ -105,6 +105,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginHorizontal: 8,
+    padding: 5,
+    borderRadius: 4,
   },
   iconcontainer: {
     flexDirection: 'row',
