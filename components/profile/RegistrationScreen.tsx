@@ -1,6 +1,5 @@
 import React from 'react';
 import { Keyboard, Pressable, StyleSheet, ScrollView, Text, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import Title from '../Title';
 import Input from './Input';
 
@@ -76,62 +75,60 @@ export default function RegistrationScreen() {
   };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1, height: 1000 }}>
-        <Title text="Mein Profil" />
-        <ScrollView>
-          <View style={{ paddingVertical: 10 }}>
-            <Input
-              error={errors.email}
-              iconName="email-outline"
-              label="Mailadresse"
-              onChangeText={(text: string) => handleOnChange(text, 'email')}
-              onFocus={() => {
-                handleError('', 'email');
-              }}
-              password={false}
-            />
-            <Input
-              error={errors.password}
-              iconName={'lock-outline'}
-              label={'Passwort'}
-              onChangeText={(text: string) => handleOnChange(text, 'password')}
-              onFocus={() => {
-                handleError('', 'password');
-              }}
-              password={true}
-            />
-            <Input
-              error={errors.repeatPassword}
-              iconName={'lock-outline'}
-              label={'Passwort wiederholen'}
-              onChangeText={(text: string) => handleOnChange(text, 'repeatPassword')}
-              onFocus={() => {
-                handleError('', 'repeatPassword');
-              }}
-              password={true}
-            />
-            <Input
-              error={errors.age}
-              iconName={'ghost'}
-              label={'Alter'}
-              onChangeText={(text: string) => handleOnChange(text, 'age')}
-              onFocus={() => {
-                handleError('', 'age');
-              }}
-              password={false}
-            />
-            <Pressable onPress={() => validate()} style={styles.button}>
-              <Text style={styles.buttonText}>Registrieren</Text>
-            </Pressable>
-            <Text
-              onPress={() => console.log('navigate to Login')}
-              style={{ textAlign: 'center', fontSize: 16, fontWeight: 'bold', marginTop: 20 }}>
-              Ich habe bereits einen Account. Zum Login
-            </Text>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <>
+      <Title text="Mein Profil" />
+      <ScrollView>
+        <View style={{ paddingVertical: 10 }}>
+          <Input
+            error={errors.email}
+            iconName="email-outline"
+            label="Mailadresse"
+            onChangeText={(text: string) => handleOnChange(text, 'email')}
+            onFocus={() => {
+              handleError('', 'email');
+            }}
+            password={false}
+          />
+          <Input
+            error={errors.password}
+            iconName={'lock-outline'}
+            label={'Passwort'}
+            onChangeText={(text: string) => handleOnChange(text, 'password')}
+            onFocus={() => {
+              handleError('', 'password');
+            }}
+            password={true}
+          />
+          <Input
+            error={errors.repeatPassword}
+            iconName={'lock-outline'}
+            label={'Passwort wiederholen'}
+            onChangeText={(text: string) => handleOnChange(text, 'repeatPassword')}
+            onFocus={() => {
+              handleError('', 'repeatPassword');
+            }}
+            password={true}
+          />
+          <Input
+            error={errors.age}
+            iconName={'ghost'}
+            label={'Alter'}
+            onChangeText={(text: string) => handleOnChange(text, 'age')}
+            onFocus={() => {
+              handleError('', 'age');
+            }}
+            password={false}
+          />
+          <Pressable onPress={() => validate()} style={styles.button}>
+            <Text style={styles.buttonText}>Registrieren</Text>
+          </Pressable>
+          <Text
+            onPress={() => console.log('navigate to Login')}
+            style={{ textAlign: 'center', fontSize: 16, fontWeight: 'bold', marginTop: 20 }}>
+            Ich habe bereits einen Account. Zum Login
+          </Text>
+        </View>
+      </ScrollView>
+    </>
   );
 }

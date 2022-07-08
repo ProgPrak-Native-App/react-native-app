@@ -47,9 +47,8 @@ export default function MotivatorSelection() {
   return (
     <>
       <Title
-        Icon={() => <Image source={require('../../assets/motivator.png')} />}
+        Icon={() => <Image source={require('../../assets/motivator.png')} style={{ height: 80, width: 80 }} />}
         color={MOTIVATOR.DEFAULT}
-        style={styles.shadow}
         text="Meine Starkmacher"
       />
       <ScrollView>
@@ -94,8 +93,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   container: {
-    justifyContent: 'space-around',
-    height: 300,
+    marginTop: 15,
     marginHorizontal: 25,
   },
   text: {
@@ -105,6 +103,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
   },
   button: {
+    margin: 15,
     paddingHorizontal: 4,
     alignSelf: 'center',
   },
