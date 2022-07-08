@@ -24,9 +24,9 @@ export default function ALP() {
   const [canGoOn, setCanGoOn] = useState(false);
 
   const [time, setTime] = useState({
-    days: '0',
-    hours: '0',
-    mins: '0',
+    days: '',
+    hours: '',
+    mins: '',
   });
   const [puffer, setPuffer] = useState({
     days: '0',
@@ -37,7 +37,7 @@ export default function ALP() {
   /** after task has been added to tasks reset params */
   const reset = () => {
     addTask();
-    setTime(() => ({ days: '0', hours: '0', mins: '0' }));
+    setTime(() => ({ days: '', hours: '', mins: '' }));
     setPuffer(() => ({ days: '0', hours: '0', mins: '0' }));
     setTmpTask(() => ({ desc: '', deadline: '' }));
   };
@@ -76,9 +76,6 @@ export default function ALP() {
   };
   /** handles any 'time' inputs */
   const handleTimeInput = (key: string, val: string) => {
-    if (val === '') {
-      val = '0';
-    }
     setTime((prevTmp) => {
       return {
         ...prevTmp,
@@ -89,9 +86,10 @@ export default function ALP() {
 
   /** calculates automatically 1/3 to the estimated time */
   const calculatePuffer = () => {
-    let d = parseInt(time.days) * 24 * 60;
-    let h = parseInt(time.hours) * 60;
-    let m = parseInt(time.mins);
+    let d = Number.isNaN(parseInt(time.days)) ? 0 : parseInt(time.days) * 24 * 60;
+    let h = Number.isNaN(parseInt(time.hours)) ? 0 : parseInt(time.hours) * 60;
+    let m = Number.isNaN(parseInt(time.mins)) ? 0 : parseInt(time.mins);
+
     let s = (d + h + m) * (4 / 3);
 
     d = Math.trunc(s / (60 * 24));

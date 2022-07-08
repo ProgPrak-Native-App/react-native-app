@@ -49,10 +49,12 @@ function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
       navigation.navigate('MoodDiary', { screen: 'MoodEntry' });
     } else if (name.toString() === 'IntroScreen') {
       navigation.navigate('CompassionNavigation', { screen: 'IntroScreen' });
-    } else if (name.toString() === '') {
+    } else if (name.toString() === 'MotivatorCompleted') {
       navigation.navigate('MotivatorCompleted');
     }
   };
+
+  console.log();
 
   return (
     <>
@@ -127,7 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE,
     borderColor: BLACK,
     borderWidth: 1,
-    minWidth: 48,
+    minWidth: SIZES.target_size,
     width: '100%',
     paddingVertical: 10,
     paddingHorizontal: 15,

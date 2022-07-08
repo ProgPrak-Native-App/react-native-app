@@ -16,11 +16,7 @@ import track from '../../assets/Compassion-Meditation-Example.mp3';
 
 export default function CompassionMeditation() {
   async function setUpSound() {
-    const { sound, status } = await Audio.Sound.createAsync(
-      track,
-      initalStatus,
-      onPlaybackStatusUpdate
-    );
+    const { sound, status } = await Audio.Sound.createAsync(track, initalStatus, onPlaybackStatusUpdate);
     setStatus(status);
     return sound;
   }
@@ -183,7 +179,9 @@ export default function CompassionMeditation() {
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>
-            <Text style={styles.minutes}>{getMilliSecondsPassed()}</Text>
+            <View style={{ width: 42 }}>
+              <Text style={styles.minutes}>{getMilliSecondsPassed()}</Text>
+            </View>
             <Pressable onPress={onPlayPausePressed} style={{ alignItems: 'center' }}>
               <AntDesign color="black" name={isPlaying ? 'pausecircleo' : 'playcircleo'} size={50} />
             </Pressable>
