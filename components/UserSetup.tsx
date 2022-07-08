@@ -3,6 +3,7 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { LIGHT_BLUE, TERTIARY } from '../styles';
 import { useUserContext } from './UserProvider';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const styles = StyleSheet.create({
   container: {
@@ -49,9 +50,10 @@ const styles = StyleSheet.create({
 
 export default function UserSetup() {
   const { addUser } = useUserContext();
+  const STATUSBAR_INSET_HEIGHT = useSafeAreaInsets().top;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: STATUSBAR_INSET_HEIGHT }]}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Create User</Text>
       </View>
