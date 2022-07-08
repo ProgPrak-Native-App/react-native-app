@@ -5,10 +5,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import OldMotivator from './old_motivator/OldMotivator';
 import Optimism from './optimism/Optimism';
 import NewMotivator from './new_motivator/NewMotivator';
+import EmoNavigation from '../emotionalRegulation/Navigation';
 
 export type MotivatorRoutes = {
   NewMotivator: undefined;
   Optimism: undefined;
+  EmoNavigation: undefined;
   OldMotivator: { props: unknown };
   SocialSupport: undefined;
   MotivatorSelection: undefined;
@@ -24,6 +26,7 @@ export default function Motivator() {
       <StackNavigator.Screen component={NewMotivator} name="NewMotivator" />
       <StackNavigator.Screen component={OldMotivator} name="OldMotivator" />
       <StackNavigator.Screen component={Optimism} name="Optimism" />
+      <StackNavigator.Screen component={EmoNavigation} name="EmoNavigation" />
       <StackNavigator.Screen component={NotImplemented} name="NotImplemented" />
     </StackNavigator.Navigator>
   );
