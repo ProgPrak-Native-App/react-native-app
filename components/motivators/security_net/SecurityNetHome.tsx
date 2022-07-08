@@ -5,6 +5,7 @@ import Title from '../../Title';
 import { View, Text, StyleSheet, Image, Pressable, ImageBackground } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { FontAwesome5, FontAwesome, Ionicons } from '@expo/vector-icons';
+import { WHITE } from '../../../styles';
 
 export type SafetyNetDType = {
   type: string;
@@ -91,6 +92,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     alignSelf: 'center',
+    borderRadius: 40,
+    backgroundColor: WHITE,
   },
   iconrow: {
     flexDirection: 'row',

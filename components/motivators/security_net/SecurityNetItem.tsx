@@ -3,7 +3,7 @@ import Title from '../../Title';
 import KopfsachenButton from '../../KopfsachenButton';
 import { getMotivatorByType } from '../MotivatorProps';
 import { SafetyNetDType } from './SecurityNetHome';
-import { View, Text, StyleSheet, Pressable, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Pressable, TextInput, ScrollView, Alert } from 'react-native';
 import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { SecurityNetRoutes } from './SecurityNet';
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -15,6 +15,11 @@ function navigate(
 ) {
   if (currentComponent.title !== '' && currentComponent.icon !== '') {
     navigation.navigate('SecurityNetAssistance', { component: currentComponent });
+  } else {
+    Alert.alert(
+      'Da hast du wohl was vergessen',
+      'Bitte wähle sowohl einen Titel als auch eine Kategorie für diese Komponente!'
+    );
   }
 }
 
@@ -23,7 +28,7 @@ export default function SecurityNetItem({
   route,
 }: NativeStackScreenProps<SecurityNetRoutes, 'SecurityNetItem'>) {
   const props = getMotivatorByType('relaxation');
-  const iconSize = 40;
+  const iconSize = 48;
   const [resource, setResource] = useState('');
 
   function setTypeAndIcon(component: SafetyNetDType, type: string) {
@@ -37,11 +42,12 @@ export default function SecurityNetItem({
   return (
     <>
       <Title Icon={() => props.icon} back={true} color={props.color} text={props.name} />
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.text}>Das bereitet mir Freude:</Text>
         <TextInput
+          multiline
           onChangeText={(input: string) => (currentComponent.title = input)}
-          placeholder={'...'}
+          placeholder={currentComponent.title !== '' ? currentComponent.title : 'Trage hier ein was dir Freude macht!'}
           style={styles.textinput}
         />
         <Text style={styles.text}>Zu welcher Kategorie gehört diese Ressource?</Text>
@@ -85,17 +91,17 @@ export default function SecurityNetItem({
         <KopfsachenButton onPress={() => navigate(navigation, currentComponent)} style={[styles.button, styles.shadow]}>
           Ressource hinzufügen!
         </KopfsachenButton>
-      </View>
+      </ScrollView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'space-around',
     alignItems: 'center',
     height: 450,
     marginHorizontal: 25,
+    paddingTop: 20,
   },
   text: {
     fontSize: 18,
@@ -105,19 +111,21 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginHorizontal: 8,
-    padding: 5,
+    padding: 2,
     borderRadius: 4,
   },
   iconcontainer: {
     flexDirection: 'row',
+    marginVertical: 30,
   },
   textinput: {
     textAlign: 'center',
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 9,
-    height: 50,
-    width: 250,
+    minHeight: 50,
+    width: '85%',
+    marginVertical: 30,
   },
   button: {
     paddingHorizontal: 4,
