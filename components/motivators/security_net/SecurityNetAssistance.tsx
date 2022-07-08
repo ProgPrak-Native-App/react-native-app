@@ -33,17 +33,17 @@ export default function SecurityNetAssistance({
         <Text style={styles.text}>Trage 3 Wege ein, auf denen dir diese Person oder Aktivität helfen kann.</Text>
         <TextInput
           onChangeText={(input: string) => (currentComponent.strategies[0] = input)}
-          placeholder={currentComponent.strategies[0]}
+          placeholder={''}
           style={styles.textinput}
         />
         <TextInput
           onChangeText={(input: string) => (currentComponent.strategies[1] = input)}
-          placeholder={currentComponent.strategies[1]}
+          placeholder={''}
           style={styles.textinput}
         />
         <TextInput
           onChangeText={(input: string) => (currentComponent.strategies[2] = input)}
-          placeholder={currentComponent.strategies[2]}
+          placeholder={''}
           style={styles.textinput}
         />
       </View>

@@ -8,7 +8,7 @@ import { FontAwesome5, FontAwesome, Ionicons } from '@expo/vector-icons';
 
 export type SafetyNetDType = {
   type: string;
-  icon: JSX.Element | undefined;
+  icon: string;
   title: string;
   strategies: [string, string, string];
 };
@@ -23,10 +23,10 @@ export const iconMap = new Map<string, JSX.Element>([
 ]);
 
 export const empty: SafetyNetDType = {
-  type: 'NONE',
-  icon: undefined,
-  title: '...',
-  strategies: ['...', '...', '...'],
+  type: '',
+  icon: '',
+  title: '',
+  strategies: ['', '', ''],
 };
 
 export default function SecurityNetHome() {

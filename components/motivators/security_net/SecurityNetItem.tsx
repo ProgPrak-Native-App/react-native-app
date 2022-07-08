@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Title from '../../Title';
 import KopfsachenButton from '../../KopfsachenButton';
 import { getMotivatorByType } from '../MotivatorProps';
-import { iconMap, SafetyNetDType } from './SecurityNetHome';
+import { SafetyNetDType } from './SecurityNetHome';
 import { View, Text, StyleSheet, Pressable, TextInput } from 'react-native';
 import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { SecurityNetRoutes } from './SecurityNet';
@@ -13,7 +13,7 @@ function navigate(
   navigation: NativeStackNavigationProp<SecurityNetRoutes, 'SecurityNetItem'>,
   currentComponent: SafetyNetDType
 ) {
-  if (currentComponent.title !== '...' && currentComponent.icon !== <Text></Text>) {
+  if (currentComponent.title !== '' && currentComponent.icon !== '') {
     navigation.navigate('SecurityNetAssistance', { component: currentComponent });
   }
 }
@@ -28,7 +28,7 @@ export default function SecurityNetItem({
 
   function setTypeAndIcon(component: SafetyNetDType, type: string) {
     component.type = type;
-    component.icon = iconMap.get(type);
+    component.icon = type;
     setResource(type);
   }
 
@@ -41,7 +41,7 @@ export default function SecurityNetItem({
         <Text style={styles.text}>Das bereitet mir Freude:</Text>
         <TextInput
           onChangeText={(input: string) => (currentComponent.title = input)}
-          placeholder={currentComponent.title}
+          placeholder={'...'}
           style={styles.textinput}
         />
         <Text style={styles.text}>Zu welcher Kategorie gehört diese Ressource?</Text>
