@@ -1,8 +1,8 @@
-import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { GestureResponderEvent, Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import { PRIMARY, SHADOW } from '../styles';
 import React from 'react';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { NavigationProp, NavigationState, useNavigation } from '@react-navigation/native';
 import { TabRoutes } from '../App';
 
 type Props = {
@@ -12,6 +12,10 @@ type Props = {
   back?: true;
   style?: StyleProp<ViewStyle>;
 };
+
+function navToEmergencyView(pressed: GestureResponderEvent, mainNav: NavigationProp<TabRoutes>): void {
+  mainNav.navigate('EmergencyNumber') as unknown;
+}
 
 export default function Title({ text, color, Icon, back, style }: Props) {
   const navigation = useNavigation<NavigationProp<never>>();
@@ -32,8 +36,8 @@ export default function Title({ text, color, Icon, back, style }: Props) {
         </View>
       )}
       <Pressable
-        onPress={() => {
-          mainNav.navigate('EmergencyNumbers');
+        onPress={(pressed) => {
+          navToEmergencyView(pressed, mainNav);
         }}
         style={styles.firstAidBtn}>
         <FontAwesome5 name="first-aid" size={30} />

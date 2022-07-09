@@ -8,13 +8,14 @@ import MoodDiary from './mood_diary/MoodDiary';
 import Motivator from './motivators/Motivator';
 import Wiki from './Wiki';
 import Profile from './profile/Profile';
+import EmergencyNumber from './feature/emergencyNumber/EmergencyNumber';
 
 export type TabRoutes = {
   Home: undefined;
   MoodDiary: undefined;
   Wiki: undefined;
   Motivators: undefined;
-  EmergencyNumbers: undefined;
+  EmergencyNumber: undefined;
   Profil: undefined;
 };
 
@@ -67,6 +68,13 @@ export default function Routes() {
         name="Profil"
         options={{
           tabBarIcon: () => <Ionicons name="person-circle-outline" size={24} />,
+        }}
+      />
+      <Tab.Screen
+        component={EmergencyNumber}
+        name="EmergencyNumber"
+        options={{
+          tabBarButton: () => null,
         }}
       />
     </Tab.Navigator>
