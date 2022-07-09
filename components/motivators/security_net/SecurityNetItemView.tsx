@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { SecurityNetRoutes } from './SecurityNet';
 import { getMotivatorByType } from '../MotivatorProps';
-import { iconMap, SafetyNetDType } from './SecurityNetHome';
+import { empty, iconMap, SafetyNetDType } from './SecurityNetHome';
 import Title from '../../Title';
-import { Text, View, StyleSheet, ScrollView, Pressable } from 'react-native';
+import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BLACK, SHADOW } from '../../../styles';
 
 async function getSafetyNet() {
   return await fetch('http://localhost:4010/safetyNet', {
@@ -27,6 +28,10 @@ async function getSafetyNet() {
         items.push(newItem);
       }
       return items;
+    })
+    .catch(() => {
+      Alert.alert('Keine Verbindung', 'Leider besteht zur zeit keine Verbindung zu unserem Server :(');
+      return [empty, empty, empty];
     });
 }
 
@@ -85,7 +90,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
     borderWidth: 0.5,
-    borderColor: '#D3D3D3',
+    borderColor: SHADOW,
   },
   gridContainer: {
     marginVertical: 5,
@@ -102,7 +107,7 @@ const styles = StyleSheet.create({
   },
   shadow: {
     elevation: 4,
-    shadowColor: '#171717',
+    shadowColor: BLACK,
     shadowOffset: { width: -2, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 2,

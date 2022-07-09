@@ -5,7 +5,7 @@ import Title from '../../Title';
 import { View, Text, StyleSheet, Image, Pressable, ImageBackground } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { FontAwesome5, FontAwesome, Ionicons } from '@expo/vector-icons';
-import { WHITE } from '../../../styles';
+import { LIGHT_BLUE } from '../../../styles';
 
 export type SafetyNetDType = {
   type: string;
@@ -16,11 +16,11 @@ export type SafetyNetDType = {
 
 const iconMapSize = 32;
 export const iconMap = new Map<string, JSX.Element>([
-  ['personalStrengths', <Ionicons name="person" size={iconMapSize}></Ionicons>],
-  ['people', <FontAwesome5 name="user-friends" size={iconMapSize}></FontAwesome5>],
-  ['activities', <FontAwesome name="soccer-ball-o" size={iconMapSize}></FontAwesome>],
-  ['other', <FontAwesome5 name="tv" size={iconMapSize}></FontAwesome5>],
-  ['pets', <FontAwesome name="paw" size={iconMapSize}></FontAwesome>],
+  ['personalStrengths', <Ionicons name="person" size={iconMapSize} />],
+  ['people', <FontAwesome5 name="user-friends" size={iconMapSize} />],
+  ['activities', <FontAwesome name="soccer-ball-o" size={iconMapSize} />],
+  ['other', <FontAwesome5 name="tv" size={iconMapSize} />],
+  ['pets', <FontAwesome name="paw" size={iconMapSize} />],
 ]);
 
 export const empty: SafetyNetDType = {
@@ -45,11 +45,11 @@ export default function SecurityNetHome() {
         </Text>
         <ImageBackground
           source={require('../../../assets/securitynetIcon.png')}
-          style={{ height: 180, width: 180, justifyContent: 'space-between' }}>
+          style={{ height: 250, width: 250, justifyContent: 'space-evenly' }}>
           <Pressable onPress={() => navigation.navigate('SecurityNetItemView', { type: 'personalStrengths' })}>
             <Ionicons name="person" size={iconSize} style={styles.icon} />
           </Pressable>
-          <View style={[styles.iconrow, { marginBottom: 15 }]}>
+          <View style={[styles.iconrow, { marginBottom: 30 }]}>
             <Pressable onPress={() => navigation.navigate('SecurityNetItemView', { type: 'people' })}>
               <FontAwesome5 name="user-friends" size={iconSize} style={styles.icon} />
             </Pressable>
@@ -57,7 +57,7 @@ export default function SecurityNetHome() {
               <FontAwesome name="paw" size={iconSize} style={styles.icon} />
             </Pressable>
           </View>
-          <View style={[styles.iconrow, { marginTop: 5 }]}>
+          <View style={[styles.iconrow, { marginTop: 30 }]}>
             <Pressable onPress={() => navigation.navigate('SecurityNetItemView', { type: 'activities' })}>
               <FontAwesome name="soccer-ball-o" size={iconSize} style={styles.icon} />
             </Pressable>
@@ -68,7 +68,7 @@ export default function SecurityNetHome() {
           <Pressable onPress={() => navigation.navigate('SecurityNetItem', { component: empty })}>
             <Image
               source={require('../../../assets/icon_plus.png')}
-              style={{ height: 48, width: 48, alignSelf: 'center', marginTop: 10 }}
+              style={{ height: 48, width: 48, alignSelf: 'center', marginTop: 5 }}
             />
           </Pressable>
         </ImageBackground>
@@ -92,8 +92,10 @@ const styles = StyleSheet.create({
   },
   icon: {
     alignSelf: 'center',
-    borderRadius: 40,
-    backgroundColor: WHITE,
+    padding: 4,
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: LIGHT_BLUE,
   },
   iconrow: {
     flexDirection: 'row',

@@ -7,7 +7,7 @@ import { View, Text, StyleSheet, Pressable, TextInput, ScrollView, Alert } from 
 import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { SecurityNetRoutes } from './SecurityNet';
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
-import { GREY } from '../../../styles';
+import { BLACK, GREY, SHADOW } from '../../../styles';
 
 function navigate(
   navigation: NativeStackNavigationProp<SecurityNetRoutes, 'SecurityNetItem'>,
@@ -110,9 +110,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   icon: {
-    marginHorizontal: 8,
-    padding: 2,
-    borderRadius: 4,
+    padding: 8,
+    marginHorizontal: 2,
+    overflow: 'hidden',
+    borderRadius: 12,
   },
   iconcontainer: {
     flexDirection: 'row',
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
   },
   textinput: {
     textAlign: 'center',
-    borderColor: 'black',
+    borderColor: BLACK,
     borderWidth: 1,
     borderRadius: 9,
     minHeight: 50,
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
   },
   shadow: {
     elevation: 4,
-    shadowColor: '#171717',
+    shadowColor: SHADOW,
     shadowOffset: { width: -2, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
