@@ -27,7 +27,7 @@ export default function NegativeIntro() {
         <KopfsachenButton onPress={() => navigation.navigate('Motivators')} style={styles.button}>
           Neue Strategie
         </KopfsachenButton>
-        <KopfsachenButton onPress={() => navigation.navigate('EmergencyNumbers')} style={styles.button}>
+        <KopfsachenButton onPress={() => navigation.navigate('EmergencyNumber')} style={styles.button}>
           Beratungs-&#13;stellen
         </KopfsachenButton>
       </View>
