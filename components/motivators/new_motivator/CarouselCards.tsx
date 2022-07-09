@@ -36,7 +36,7 @@ export default function CarouselCards(props: { data: (keyof MotivatorTypes)[] })
     <>
       <View style={styles.indicatorArrows}>
         <AntDesign
-          accessibilityHint={'vorheriger Starkmacher'}
+          accessibilityLabel={'vorherigen Starkmacher anzeiegn'}
           color="black"
           name="left"
           onPress={() => carouselRef.current.snapToPrev()}
@@ -46,7 +46,7 @@ export default function CarouselCards(props: { data: (keyof MotivatorTypes)[] })
         <Pagination activeDotIndex={index} carouselRef={carouselRef} dotsLength={props.data.length} />
 
         <AntDesign
-          accessibilityHint={'nächster Starkmacher'}
+          accessibilityLabel={'nächsten Starkmacher anzeigen'}
           color="black"
           name="right"
           onPress={() => carouselRef.current.snapToNext()}
