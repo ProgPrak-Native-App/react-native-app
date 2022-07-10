@@ -17,10 +17,17 @@ jobs:
     secrets: inherit
 
   publish:
-    needs: lint
+    needs: [lint, unit-test]
     name: "Publish on expo.dev"
     uses: ./.github/workflows/publish.yml
     secrets: inherit
+
+  unit-test:
+    name: "Run Unit Tests"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Run Jest unit test"
+        run: npm test:ci
 
   build-android:
     if: github.event_name != 'pull_request'
@@ -69,7 +76,7 @@ jobs:
   release:
     name: "Release"
     if: github.ref == 'refs/heads/main'
-    needs: [ lint, publish, build-android, build-ios, check-release-version ]
+    needs: [ lint, unit-test ,publish, build-android, build-ios, check-release-version ]
     runs-on: ubuntu-latest
     # Prevent multiple release jobs running at once
     concurrency: release
