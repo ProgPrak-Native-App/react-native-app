@@ -1,9 +1,9 @@
-import { GestureResponderEvent, Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { Dimensions, Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import { PRIMARY, SHADOW } from '../styles';
 import React from 'react';
 import { NavigationProp, NavigationState, useNavigation } from '@react-navigation/native';
-import { TabRoutes } from '../App';
+import { TabRoutes } from './Routes';
 
 type Props = {
   text: string;
@@ -12,10 +12,6 @@ type Props = {
   back?: true;
   style?: StyleProp<ViewStyle>;
 };
-
-function navToEmergencyView(pressed: GestureResponderEvent, mainNav: NavigationProp<TabRoutes>): void {
-  mainNav.navigate('EmergencyNumber') as unknown;
-}
 
 export default function Title({ text, color, Icon, back, style }: Props) {
   const navigation = useNavigation<NavigationProp<never>>();
@@ -36,8 +32,8 @@ export default function Title({ text, color, Icon, back, style }: Props) {
         </View>
       )}
       <Pressable
-        onPress={(pressed) => {
-          navToEmergencyView(pressed, mainNav);
+        onPress={() => {
+          mainNav.navigate('EmergencyNumbers');
         }}
         style={styles.firstAidBtn}>
         <FontAwesome5 name="first-aid" size={30} />
@@ -67,7 +63,7 @@ const styles = StyleSheet.create({
   },
   container: {
     zIndex: 100,
-    height: '30%',
+    height: Dimensions.get('window').height * 0.3,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomLeftRadius: 25,
