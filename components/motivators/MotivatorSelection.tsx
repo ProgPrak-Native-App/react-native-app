@@ -8,8 +8,7 @@ import { MotivatorProps, MotivatorTypes, getMotivatorByType } from './MotivatorP
 import { GREY, MOTIVATOR, SHADOW } from '../../styles';
 
 async function getMotivators() {
-  // change to BASE_URL once merged -> feature/7/wiki
-  return await fetch('http://localhost:4010/motivator')
+  return await fetch(process.env.BASE_URL + '/motivator')
     .then((response) => response.json())
     .then((data: { type: keyof MotivatorTypes }[]) => data.map((value) => getMotivatorByType(value.type)))
     .catch(() => [getMotivatorByType('noMotivator')]);
