@@ -6,7 +6,7 @@ import { PINK, SIZES } from '../styles';
 export default function MotivatorCompleted() {
   return (
     <>
-      <Title color={PINK} Icon={() => <Image source={require('../assets/motivator.png')} />} text="Meine Starkmacher" />
+      <Title Icon={() => <Image source={require('../assets/motivator.png')} />} color={PINK} text="Meine Starkmacher" />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.text}>Die ... ist nun Teil deiner Starkmacher!</Text>
       </ScrollView>

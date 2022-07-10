@@ -2,13 +2,12 @@ import { View, Text, Pressable, StyleSheet, TextInput, ScrollView } from 'react-
 import React, { useState } from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { BLACK, DARK_GREY, PRIMARY, RED, SIZES, TERTIARY, WHITE } from '../styles';
-import { NavigationProp, NavigatorScreenParams, useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from './Title';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
-import MoodDiary, { MoodDiaryRoutes } from './mood_diary/MoodDiary';
-import CompassionNavigation, { CompassionRoutes } from './compassion/CompassionNavigation';
+import MoodDiary from './mood_diary/MoodDiary';
+import CompassionNavigation from './compassion/CompassionNavigation';
 import MotivatorCompleted from './MotivatorCompleted';
-import { TabRoutes } from './Routes';
 import { MotivatorRoutes } from './motivators/Motivator';
 import NewMotivator from './motivators/new_motivator/NewMotivator';
 
@@ -43,7 +42,6 @@ export function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {
     </>
   );
 }
-//FeedbackScreenProps<'Feedback'>
 
 export default function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
   const navigation = useNavigation<NavigationProp<FeedbackRoutes>>();
@@ -63,7 +61,7 @@ export default function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
     } else if (name.toString() === 'IntroScreen') {
       navigation.navigate('CompassionNavigation', { screen: 'IntroScreen' });
     } else if (name.toString() === 'MotivatorCompleted') {
-      //const navigation = useNavigation<NavigationProp<FeedbackRoutes>>();
+      // const navigation = useNavigation<NavigationProp<FeedbackRoutes>>();
       // navigation.navigate('MotivatorCompleted');
     }
   };

@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
 import React from 'react';
-import { ACCENT, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
+import { ACCENT, BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import { EmoRoutes } from './Navigation';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from '../Title';
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: BLACK,
     minHeight: SIZES.target_size,
     padding: 10,
   },

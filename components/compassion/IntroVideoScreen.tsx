@@ -11,7 +11,6 @@ export default function IntroVideoScreen() {
   const navigation = useNavigation<NavigationProp<CompassionRoutes>>();
   const video = React.useRef(null);
 
-  //navigation.getParent()?.getParent()?.getParent()?.navigate('NewMotivator')
   return (
     <>
       <Title back color={PURPLE} text="Selbstbezogenes Mitgefühl" />

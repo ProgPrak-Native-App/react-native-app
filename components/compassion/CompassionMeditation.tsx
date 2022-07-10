@@ -1,5 +1,5 @@
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BLACK, DARK_GREEN, GREY, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import Title from '../Title';
 import { NavigationProp, useFocusEffect, useNavigation } from '@react-navigation/native';
@@ -20,8 +20,8 @@ export default function CompassionMeditation() {
     setStatus(status);
     return sound;
   }
- const { navigate } = useNavigation<NavigationProp<CompassionRoutes>>();
 
+  const { navigate } = useNavigation<NavigationProp<CompassionRoutes>>();
 
   const [shouldPlayAtEndOfSeek, setShouldPlayAtEndOfSeek] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -67,7 +67,7 @@ export default function CompassionMeditation() {
   useEffect(() => {
     return sound
       ? () => {
-          //console.log('Unloading Sound');
+          // console.log('Unloading Sound');
           sound.unloadAsync();
         }
       : undefined;
