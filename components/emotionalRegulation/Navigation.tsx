@@ -8,12 +8,11 @@ import NKontrolle from './NKontrolle';
 import Nice from './Nice';
 import Feedback from '../Feedback';
 import InterScreen from './InterScreen';
-import App from '../../App';
 import IntroVideoScreen from './IntroVideoScreen';
 
 export type EmoRoutes = {
-  IntroScreen: undefined;
   IntroVideoScreen: undefined;
+  IntroScreen: undefined;
   GroupALP: undefined;
   E: { tasks: TaskProp[] };
   N: undefined;
@@ -34,6 +33,7 @@ export default function EmoNavigation() {
       screenOptions={{
         headerShown: false,
       }}>
+      <Stack.Screen component={IntroVideoScreen} name="IntroVideoScreen" />
       <Stack.Screen component={IntroScreen} name="IntroScreen" />
       <Stack.Screen component={IntroVideoScreen} name="IntroVideoScreen" />
       <Stack.Screen component={GroupALP} name="GroupALP" />

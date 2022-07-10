@@ -1,9 +1,8 @@
 import { View, Text, StyleSheet, Pressable, Modal, Alert, TouchableHighlight, Platform } from 'react-native';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BACKGROUND, DARK_GREEN, PRIMARY, SIZES, WHITE } from '../../styles';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import * as Notifications from 'expo-notifications';
-import * as Permission from 'expo-notifications';
 
 /** source code for notifications:
  * https://anilvermaspeaks.medium.com/how-local-notifications-works-in-react-native-expo-538d1cfc2240
@@ -40,7 +39,7 @@ async function registerForPushNotificationsAsync() {
     finalStatus = status;
   }
   if (finalStatus !== 'granted') {
-    Alert.alert('Fehler', `Um erinnert zu werden, musst Du uns erlauben Dir Benachrichtigungen zu senden`);
+    Alert.alert('Fehler', 'Um erinnert zu werden, musst Du uns erlauben Dir Benachrichtigungen zu senden');
   }
 }
 

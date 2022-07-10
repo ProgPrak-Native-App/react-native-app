@@ -1,5 +1,5 @@
-import { View, Text, Pressable, StyleSheet, Animated, Easing, ScrollView } from 'react-native';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { StackScreenProps } from './Navigation';
 import Title from '../Title';
 // import SortableList from 'react-native-sortable-list';
@@ -13,37 +13,12 @@ import { AntDesign } from '@expo/vector-icons';
  * */
 
 function Row(props: {
-  active: boolean;
   data: string;
   deleteTask: (v: string) => void;
   upTask: (v: string) => void;
   downTask: (v: string) => void;
 }) {
-  const { active, data, deleteTask, upTask, downTask } = props;
-
-  const activeAnim = useRef(new Animated.Value(0));
-  const style = useMemo(
-    () => ({
-      transform: [
-        {
-          scale: activeAnim.current.interpolate({
-            inputRange: [0, 1],
-            outputRange: [1, 1.01],
-          }),
-        },
-      ],
-    }),
-    []
-  );
-
-  useEffect(() => {
-    Animated.timing(activeAnim.current, {
-      duration: 300,
-      easing: Easing.bounce,
-      toValue: Number(active),
-      useNativeDriver: true,
-    }).start();
-  }, [active]);
+  const { data, deleteTask, upTask, downTask } = props;
 
   return (
     <View style={styles.tile}>
@@ -76,7 +51,6 @@ function E({ route, navigation }: StackScreenProps<'E'>) {
   const [newOrder, setNewOrder] = useState<TaskProp[]>(OGTasks);
   const [data, setData] = useState<TaskProp[]>(OGTasks);
   const [canGoOn, setCanGoOn] = useState(false);
-
 
   /** delete a task & save neworder */
   const deleteTask = (taskName: string) => {
@@ -139,7 +113,7 @@ function E({ route, navigation }: StackScreenProps<'E'>) {
     <>
       <Title back color={PURPLE} text="Situationskontrolle" />
 
-      <ScrollView nestedScrollEnabled={true} contentContainerStyle={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <View>
           <Text style={styles.para}>
             Jetzt geht es darum die Aufgaben nach der Wichtigkeit zu sortieren. Du kannst die Aufgaben einfach in die
@@ -156,14 +130,7 @@ function E({ route, navigation }: StackScreenProps<'E'>) {
 
         <View style={styles.sortContainer}>
           {data.map((item, idx) => (
-            <Row
-              key={idx}
-              active={true}
-              data={item.descr}
-              deleteTask={deleteTask}
-              upTask={upTask}
-              downTask={downTask}
-            />
+            <Row data={item.descr} deleteTask={deleteTask} downTask={downTask} key={idx} upTask={upTask} />
           ))}
         </View>
 
@@ -195,12 +162,6 @@ const styles = StyleSheet.create({
   },
   container: {
     minHeight: '100%',
-    marginVertical: 20,
-    width: '88%',
-    alignSelf: 'center',
-    alignItems: 'center',
-  },
-  containerList: {
     marginVertical: 20,
     width: '88%',
     alignSelf: 'center',
