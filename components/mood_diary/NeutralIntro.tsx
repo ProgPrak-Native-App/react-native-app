@@ -1,11 +1,12 @@
 import Title from '../Title';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { TabRoutes } from '../../App';
 import { NEUTRAL } from '../../styles';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import KopfsachenButton from '../KopfsachenButton';
+import { TabRoutes } from '../Routes';
+import { testId } from '../../util';
 
 export default function NeutralIntro() {
   const navigation = useNavigation<NavigationProp<TabRoutes>>();
@@ -13,7 +14,7 @@ export default function NeutralIntro() {
   return (
     <>
       <Title Icon={() => <FontAwesome5 name="meh" size={80} />} back color={NEUTRAL} text="Stimmungstagebuch" />
-      <Text style={styles.text}>
+      <Text style={styles.text} testID={testId('neutral-intro')}>
         Wenn du heute eher unmotiviert oder müde bist, kannst du entweder in deinem Sicherheitsnetz schauen, was dir
         sonst eine Freude bereitet oder du probierst eine neue Starkmacher-Übung aus!
       </Text>

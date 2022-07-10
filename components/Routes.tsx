@@ -9,6 +9,7 @@ import Motivator from './motivators/Motivator';
 import Wiki from './Wiki';
 import Profile from './profile/Profile';
 import EmergencyNumbers from './emergencyNumbers/EmergencyNumbers';
+import { testId } from '../util';
 
 export type TabRoutes = {
   Home: undefined;
@@ -38,6 +39,7 @@ export default function Routes() {
         name="Home"
         options={{
           tabBarIcon: () => <FontAwesome5 name="home" size={24} />,
+          tabBarTestID: testId('home-tab'),
         }}
       />
       <Tab.Screen
@@ -46,6 +48,7 @@ export default function Routes() {
         options={{
           title: 'Kalender',
           tabBarIcon: () => <FontAwesome5 name="calendar-alt" size={24} />,
+          tabBarTestID: testId('calendar-tab'),
         }}
       />
       <Tab.Screen
@@ -53,6 +56,7 @@ export default function Routes() {
         name="Wiki"
         options={{
           tabBarIcon: () => <FontAwesome5 name="book" size={24} />,
+          tabBarTestID: testId('wiki-tab'),
         }}
       />
       <Tab.Screen
@@ -61,6 +65,7 @@ export default function Routes() {
         options={{
           title: 'Übungen',
           tabBarIcon: () => <MaterialCommunityIcons name="arm-flex" size={24} />,
+          tabBarTestID: testId('motivator-tab'),
         }}
       />
       <Tab.Screen
@@ -68,6 +73,7 @@ export default function Routes() {
         name="Profil"
         options={{
           tabBarIcon: () => <Ionicons name="person-circle-outline" size={24} />,
+          tabBarTestID: testId('profile-tab'),
         }}
       />
       <Tab.Screen

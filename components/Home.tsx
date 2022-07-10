@@ -5,6 +5,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import KopfsachenButton from './KopfsachenButton';
 import { TabRoutes } from './Routes';
 import { BACKGROUND, PRIMARY } from '../styles';
+import { testId } from '../util';
 
 export default function Home() {
   const navigation = useNavigation<NavigationProp<TabRoutes>>();
@@ -12,7 +13,7 @@ export default function Home() {
   return (
     <>
       <Title color={PRIMARY} text="Herzlich Willkommen!" />
-      <View style={styles.container}>
+      <View style={styles.container} testID={testId('HomePage')}>
         <View style={styles.textContainer}>
           <Text style={styles.text}>Schön, dass du da bist.</Text>
         </View>

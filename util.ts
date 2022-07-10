@@ -9,6 +9,9 @@
  * @return An object containing one entry per distinct key returned by the key function. The value of each entry is a
  * new array of all the input elements which the key function mapped to that key.
  */
+import { Platform } from 'react-native';
+import * as Application from 'expo-application';
+
 export function partitionBy<T>(array: T[], keyFunction: (element: T) => string): Record<string, T[]> {
   const result: Record<string, T[]> = {};
   array.forEach((element) => {
@@ -20,4 +23,8 @@ export function partitionBy<T>(array: T[], keyFunction: (element: T) => string):
     }
   });
   return result;
+}
+
+export function testId(id: string): string {
+  return Platform.OS === 'android' ? `${Application.applicationId}:id/${id}` : id;
 }

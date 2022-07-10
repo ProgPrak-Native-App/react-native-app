@@ -9,6 +9,7 @@ import { LocalDate, LocalDateTime } from '@js-joda/core';
 import Title from '../Title';
 import { MoodDiaryRoutes } from './MoodDiary';
 import MoodDiaryClient, { Mood } from '../../api/MoodDiaryClient';
+import { testId } from '../../util';
 
 LocaleConfig.locales.de = {
   monthNames: [
@@ -33,11 +34,15 @@ LocaleConfig.defaultLocale = 'de';
 
 function DayWithMood({ mood }: { mood: Mood }) {
   if (mood.type === 'positive') {
-    return <Image source={require('../../assets/emoji_happy.png')} style={styles.icon} />;
+    return (
+      <Image source={require('../../assets/emoji_happy.png')} style={styles.icon} testID={testId('positive-day')} />
+    );
   } else if (mood.type === 'neutral') {
-    return <Image source={require('../../assets/emoji_neutral.png')} style={styles.icon} />;
+    return (
+      <Image source={require('../../assets/emoji_neutral.png')} style={styles.icon} testID={testId('neutral-day')} />
+    );
   } else {
-    return <Image source={require('../../assets/emoji_sad.png')} style={styles.icon} />;
+    return <Image source={require('../../assets/emoji_sad.png')} style={styles.icon} testID={testId('negative-day')} />;
   }
 }
 
@@ -45,7 +50,7 @@ function AddMoodButton() {
   const navigation = useNavigation<NavigationProp<MoodDiaryRoutes>>();
   return (
     <Pressable onPress={() => navigation.navigate('MoodEntry')}>
-      <Image source={require('../../assets/icon_plus.png')} style={styles.icon} />
+      <Image source={require('../../assets/icon_plus.png')} style={styles.icon} testID={testId('add-mood')} />
     </Pressable>
   );
 }
@@ -61,7 +66,7 @@ const Day = (moods: Mood[]) => (props: { date?: DateData }) => {
     return <AddMoodButton />;
   } else {
     // User has not entered a mood for this day, so we use react-native-calendars' default day component
-    return <BasicDay {...props} date={props.date?.dateString} state="inactive" />;
+    return <BasicDay {...props} date={props.date?.dateString} state="inactive" testID={testId('empty-day')} />;
   }
 };
 
@@ -77,6 +82,7 @@ export default function MoodCalendar() {
       <Calendar
         dayComponent={Day(moods ?? [])}
         displayLoadingIndicator={moods === null}
+        testID={testId('mood-calendar')}
         theme={{ calendarBackground: undefined }}
       />
     </>

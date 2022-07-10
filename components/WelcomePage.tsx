@@ -5,6 +5,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { LIGHT_BLUE, TERTIARY } from '../styles';
 import { IntroductionProp } from './Introduction';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { testId } from '../util';
 
 const styles = StyleSheet.create({
   container: {
@@ -54,9 +55,11 @@ export default function WelcomePage() {
   const STATUSBAR_INSET_HEIGHT = useSafeAreaInsets().top;
 
   return (
-    <View style={[styles.container, { paddingTop: STATUSBAR_INSET_HEIGHT }]}>
+    <View style={[styles.container, { paddingTop: STATUSBAR_INSET_HEIGHT }]} testID={testId('WelcomePage')}>
       <View style={styles.headerContainer}>
-        <Text style={styles.header}>Herzlich Willkommen!</Text>
+        <Text style={styles.header} testID={testId('title')}>
+          Herzlich Willkommen!
+        </Text>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text}>
@@ -70,7 +73,9 @@ export default function WelcomePage() {
       </View>
       <View style={styles.buttonContainer}>
         <Pressable onPress={() => navigation.navigate('UserSetup')} style={styles.button}>
-          <Text style={styles.text}>Los geht's</Text>
+          <Text style={styles.text} testID={testId('button')}>
+            Los geht's
+          </Text>
         </Pressable>
       </View>
     </View>

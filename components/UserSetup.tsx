@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { LIGHT_BLUE, TERTIARY } from '../styles';
 import { useUserContext } from './UserProvider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { testId } from '../util';
 
 const styles = StyleSheet.create({
   container: {
@@ -53,7 +54,7 @@ export default function UserSetup() {
   const STATUSBAR_INSET_HEIGHT = useSafeAreaInsets().top;
 
   return (
-    <View style={[styles.container, { paddingTop: STATUSBAR_INSET_HEIGHT }]}>
+    <View style={[styles.container, { paddingTop: STATUSBAR_INSET_HEIGHT }]} testID={testId('UserSetup')}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Create User</Text>
       </View>
@@ -64,7 +65,9 @@ export default function UserSetup() {
       </View>
       <View style={styles.buttonContainer}>
         <Pressable onPress={() => addUser({ id: 'token1' })} style={styles.button}>
-          <Text style={styles.text}>Done</Text>
+          <Text style={styles.text} testID={testId('button')}>
+            Done
+          </Text>
         </Pressable>
       </View>
     </View>

@@ -5,7 +5,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import KopfsachenButton from '../KopfsachenButton';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { TabRoutes } from '../../App';
+import { TabRoutes } from '../Routes';
+import { testId } from '../../util';
 
 export default function PositiveIntro() {
   const navigation = useNavigation<NavigationProp<TabRoutes>>();
@@ -13,7 +14,7 @@ export default function PositiveIntro() {
   return (
     <>
       <Title Icon={() => <FontAwesome5 name="smile-beam" size={80} />} back color={POSITIVE} text="Stimmungstagebuch" />
-      <Text style={styles.text}>
+      <Text style={styles.text} testID={testId('positive-intro')}>
         Wenn du dich gerade gut fühlst, ist das genau der richtige Moment, um an deinen Starkmachern zu arbeiten!
       </Text>
       <View style={styles.buttonList}>
