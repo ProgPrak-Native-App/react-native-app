@@ -7,7 +7,7 @@ import OriginalMarkdownComponent, {
   MarkdownProps,
   RenderRules,
   renderRules,
-} from '@jonasmerlin/react-native-markdown-display';
+} from 'react-native-markdown-display';
 import { WikiStackScreenProps } from './Navigation';
 import { mdAccordionPlugin, mdAccordionRenderRule } from './markdownAccordion';
 

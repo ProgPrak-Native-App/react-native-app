@@ -1,18 +1,22 @@
 import { GestureResponderEvent, Pressable, StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { TERTIARY } from '../styles';
 
 export type Props = {
   onPress?: (event: GestureResponderEvent) => void;
   children?: ReactNode;
   style?: StyleProp<ViewStyle>;
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
 };
 
 export default function KopfsachenButton(props: Props) {
-  const { onPress, children, style } = props;
+  const { onPress, children, style, accessibilityLabel, accessibilityHint } = props;
   return (
     <Pressable onPress={onPress} style={[styles.button, style]}>
-      <Text style={styles.buttonText}>{children}</Text>
+      <Text accessibilityHint={accessibilityHint} accessibilityLabel={accessibilityLabel} style={styles.buttonText}>
+        {children}
+      </Text>
     </Pressable>
   );
 }
