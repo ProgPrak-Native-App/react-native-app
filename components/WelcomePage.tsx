@@ -54,9 +54,11 @@ export default function WelcomePage() {
   const STATUSBAR_INSET_HEIGHT = useSafeAreaInsets().top;
 
   return (
-    <View style={[styles.container, { paddingTop: STATUSBAR_INSET_HEIGHT }]}>
+    <View style={[styles.container, { paddingTop: STATUSBAR_INSET_HEIGHT }]} testID="WelcomePage">
       <View style={styles.headerContainer}>
-        <Text style={styles.header}>Herzlich Willkommen!</Text>
+        <Text style={styles.header} testID="title">
+          Herzlich Willkommen!
+        </Text>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text}>
@@ -70,7 +72,9 @@ export default function WelcomePage() {
       </View>
       <View style={styles.buttonContainer}>
         <Pressable onPress={() => navigation.navigate('UserSetup')} style={styles.button}>
-          <Text style={styles.text}>Los geht's</Text>
+          <Text style={styles.text} testID="button">
+            Los geht's
+          </Text>
         </Pressable>
       </View>
     </View>

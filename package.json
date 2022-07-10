@@ -5,12 +5,14 @@
   "license": "MIT",
   "scripts": {
     "start": "expo start --dev-client",
+    "build:android": "eas build --local --profile preview --platform android --output build-android.apk",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint \"**/*.{ts,tsx}\"",
-    "reformat": "prettier -w \"**/*.{ts,tsx}\""
+    "reformat": "prettier -w \"**/*.{ts,tsx}\"",
+    "test:e2e": "jest -c jest.e2e.config.ts"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
@@ -35,6 +37,7 @@
     "expo-splash-screen": "^0.15.1",
     "expo-status-bar": "^1.3.0",
     "expo-updates": "~0.13.3",
+    "leaked-handles": "^5.2.0",
     "nanoid": "^4.0.0",
     "node-fetch": "^3.2.6",
     "react": "17.0.2",
@@ -53,15 +56,20 @@
     "webpack-dev-server": "~3.11.0"
   },
   "devDependencies": {
+    "@appium/types": "^0.2.5",
     "@babel/core": "^7.12.9",
+    "@types/jest": "^28.1.4",
     "@types/markdown-it": "^12.2.3",
     "@types/react": "~17.0.21",
     "@types/react-native": "^0.69.0",
     "@types/react-native-background-timer": "^2.0.0",
     "@types/react-native-countdown-component": "^2.7.0",
     "@types/react-native-sortable-list": "^0.0.10",
+    "@types/tcp-port-used": "^1.0.1",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
+    "appium": "^1.22.3",
+    "appium-doctor": "^1.16.0",
     "eslint": "^8.18.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-react-app": "7.0.1",
@@ -75,8 +83,13 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-native": "hsource/eslint-plugin-react-native#v4.0.0-wanderlog.2",
     "eslint-webpack-plugin": "^3.2.0",
+    "jest": "^28.1.2",
     "prettier": "^2.6.2",
-    "typescript": "^4.7.4"
+    "tcp-port-used": "^1.0.2",
+    "ts-jest": "^28.0.5",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4",
+    "webdriverio": "^7.20.5"
   },
   "overrides": {
     "shell-quote": "1.7.3"
