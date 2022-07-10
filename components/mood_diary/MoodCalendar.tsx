@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Image, Pressable, StyleSheet } from 'react-native';
-import { getMoods, Mood } from '../../api';
 import { Calendar } from 'react-native-calendars/src';
 import { DateData } from 'react-native-calendars/src/types';
 import BasicDay from 'react-native-calendars/src/calendar/day/basic';
@@ -9,6 +8,7 @@ import { LocaleConfig } from 'react-native-calendars';
 import { LocalDate, LocalDateTime } from '@js-joda/core';
 import Title from '../Title';
 import { MoodDiaryRoutes } from './MoodDiary';
+import MoodDiaryClient, { Mood } from '../../api/MoodDiaryClient';
 
 LocaleConfig.locales.de = {
   monthNames: [
@@ -68,7 +68,7 @@ const Day = (moods: Mood[]) => (props: { date?: DateData }) => {
 export default function MoodCalendar() {
   const [moods, setMoods] = useState<Mood[] | null>(null);
   useEffect(() => {
-    getMoods().then(setMoods);
+    new MoodDiaryClient().getMoods().then(setMoods);
   }, []);
 
   return (

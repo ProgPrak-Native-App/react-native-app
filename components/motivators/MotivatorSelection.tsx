@@ -4,27 +4,29 @@ import { MotivatorRoutes } from './Motivator';
 import KopfsachenButton from '../KopfsachenButton';
 import Title from '../Title';
 import React, { useEffect, useState } from 'react';
-import { MotivatorProps, MotivatorTypes, parseMotivator } from './MotivatorProps';
+import { MotivatorProps, MotivatorTypes, getMotivatorByType } from './MotivatorProps';
 import { GREY, MOTIVATOR, SHADOW } from '../../styles';
 
 async function getMotivators() {
   return await fetch(process.env.BASE_URL + '/motivator')
     .then((response) => response.json())
-    .then((data: { type: keyof MotivatorTypes }[]) => data.map((value) => parseMotivator(value.type)))
-    .catch(() => [parseMotivator('noMotivator')]);
+    .then((data: { type: keyof MotivatorTypes }[]) => data.map((value) => getMotivatorByType(value.type)))
+    .catch(() => [getMotivatorByType('noMotivator')]);
 }
 
 function OldMotivatorGridView(motivators: MotivatorProps[]) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
+
   return (
     <>
-      {motivators.map((data, index) => (
+      {motivators.map((props, index) => (
         <Pressable
+          accessibilityHint={'Übungen von ' + props.name + ' öffnen'}
           key={index}
-          onPress={() => navigation.navigate(data.screen)}
-          style={[styles.gridItem, { backgroundColor: data.color }, styles.shadow]}>
-          <Text style={styles.text}>{data.name}</Text>
-          {data.icon}
+          onPress={() => navigation.navigate('OldMotivator', { props: props.type })}
+          style={[styles.gridItem, { backgroundColor: props.color }, styles.shadow]}>
+          <Text style={styles.text}>{props.name}</Text>
+          {props.icon}
         </Pressable>
       ))}
     </>
@@ -58,7 +60,8 @@ export default function MotivatorSelection() {
           </Text>
 
           <KopfsachenButton
-            onPress={() => navigation.navigate('MotivatorCreator')}
+            accessibilityHint={'Neue Starkmacher entdecken'}
+            onPress={() => navigation.navigate('NewMotivator')}
             style={[styles.button, styles.shadow]}>
             Neue Starkmacher entdecken!
           </KopfsachenButton>

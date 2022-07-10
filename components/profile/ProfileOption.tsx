@@ -1,15 +1,16 @@
 import React from 'react';
-import { View, Pressable, Text, StyleSheet } from 'react-native';
+import { View, Pressable, Text, StyleSheet, GestureResponderEvent } from 'react-native';
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 
 type Props = {
   title: string;
   icon: string;
+  onPress?: (event: GestureResponderEvent) => void;
 };
 
-export default function ProfileOption({ title, icon }: Props) {
+export default function ProfileOption({ title, icon, onPress }: Props) {
   return (
-    <Pressable style={styles.profileItem}>
+    <Pressable onPress={onPress} style={styles.profileItem}>
       <View style={styles.itemContainer}>
         <FontAwesome5 name={icon} size={20} />
         <Text style={styles.text}>{title}</Text>

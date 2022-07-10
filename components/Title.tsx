@@ -1,6 +1,6 @@
 import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
-import { PRIMARY } from '../styles';
+import { PRIMARY, SHADOW } from '../styles';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { TabRoutes } from '../App';
@@ -62,9 +62,19 @@ const styles = StyleSheet.create({
     fontSize: 11,
   },
   container: {
+    zIndex: 100,
     height: '30%',
     justifyContent: 'center',
     alignItems: 'center',
+    borderBottomLeftRadius: 25,
+    borderBottomRightRadius: 25,
+    shadowColor: SHADOW,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
   },
   text: {
     fontSize: 30,
