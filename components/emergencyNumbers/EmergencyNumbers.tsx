@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
   },
 
   emergencyCardsContainer: {
-    marginTop: 8,
     backgroundColor: BACKGROUND_COLOR,
     flex: 1,
     flexDirection: 'column',
