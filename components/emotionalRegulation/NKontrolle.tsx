@@ -49,7 +49,7 @@ export default function NKontrolle() {
       navigate('Nice');
     } else {
       // navigate to checked off < 50%
-      navigate('FeedbackNavigation', { name: 'IntroScreen', title: 'Situationskontrolle', color: PURPLE });
+      navigate('Feedback', { name: 'IntroScreen', title: 'Situationskontrolle', color: PURPLE });
     }
   };
 

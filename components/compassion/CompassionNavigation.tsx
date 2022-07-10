@@ -1,31 +1,31 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { FeedbackNavigation } from '../Feedback';
-import Home from '../Home';
+import Feedback from '../Feedback';
 import CompassionMeditation from './CompassionMeditation';
 import IntroScreen from './IntroScreen';
 import IntroVideoScreen from './IntroVideoScreen';
+import NewMotivator from '../motivators/new_motivator/NewMotivator';
 
 export type CompassionRoutes = {
-  Home: undefined;
   IntroScreen: undefined;
   IntroVideoScreen: undefined;
+  NewMotivator: undefined;
   CompassionMeditation: undefined;
-  FeedbackNavigation: { name: string; title: string; color: string };
+  Feedback: { name: string; title: string; color: string };
 };
 
-const Stack = createNativeStackNavigator<CompassionRoutes>();
+export const CompassionStack = createNativeStackNavigator<CompassionRoutes>();
 
 export default function CompassionNavigation() {
   return (
     <>
-      <Stack.Navigator initialRouteName="IntroScreen" screenOptions={{ headerShown: false }}>
-        <Stack.Screen component={Home} name="Home" />
-        <Stack.Screen component={IntroScreen} name="IntroScreen" />
-        <Stack.Screen component={IntroVideoScreen} name="IntroVideoScreen" />
-        <Stack.Screen component={CompassionMeditation} name="CompassionMeditation" />
-        <Stack.Screen component={FeedbackNavigation} name="FeedbackNavigation" />
-      </Stack.Navigator>
+      <CompassionStack.Navigator initialRouteName="IntroVideoScreen" screenOptions={{ headerShown: false }}>
+        <CompassionStack.Screen component={IntroScreen} name="IntroScreen" />
+        <CompassionStack.Screen component={IntroVideoScreen} name="IntroVideoScreen" />
+        <CompassionStack.Screen component={CompassionMeditation} name="CompassionMeditation" />
+        <CompassionStack.Screen component={NewMotivator} name="NewMotivator" />
+        <CompassionStack.Screen component={Feedback} name="Feedback" />
+      </CompassionStack.Navigator>
     </>
   );
 }

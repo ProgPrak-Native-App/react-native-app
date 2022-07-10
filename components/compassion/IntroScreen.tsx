@@ -5,9 +5,11 @@ import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from '../Title';
 import { CompassionRoutes } from './CompassionNavigation';
+import { TabRoutes } from '../Routes';
 
 export default function IntroScreen() {
-  const { navigate } = useNavigation<NavigationProp<CompassionRoutes>>();
+  const navigation = useNavigation<NavigationProp<CompassionRoutes>>();
+  const { navigate } = useNavigation<NavigationProp<TabRoutes>>();
   return (
     <>
       <Title back color={PURPLE} text="Selbstbezogenes Mitgefühl" />
@@ -26,7 +28,7 @@ export default function IntroScreen() {
               <Text style={styles.text}>Heute nicht</Text>
             </Pressable>
             <Pressable
-              onPress={() => navigate('IntroVideoScreen')}
+              onPress={() => navigation.navigate('IntroVideoScreen')}
               style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.button]}>
               <Text style={styles.text}>Okay</Text>
             </Pressable>

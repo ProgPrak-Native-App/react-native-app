@@ -6,6 +6,7 @@ import OldMotivator from './old_motivator/OldMotivator';
 import Optimism from './optimism/Optimism';
 import NewMotivator from './new_motivator/NewMotivator';
 import EmoNavigation from '../emotionalRegulation/Navigation';
+import CompassionNavigation from '../compassion/CompassionNavigation';
 
 export type MotivatorRoutes = {
   NewMotivator: undefined;
@@ -14,6 +15,7 @@ export type MotivatorRoutes = {
   OldMotivator: { props: unknown };
   SocialSupport: undefined;
   MotivatorSelection: undefined;
+  CompassionNavigation: undefined;
   NotImplemented: undefined;
 };
 
@@ -27,6 +29,7 @@ export default function Motivator() {
       <StackNavigator.Screen component={OldMotivator} name="OldMotivator" />
       <StackNavigator.Screen component={Optimism} name="Optimism" />
       <StackNavigator.Screen component={EmoNavigation} name="EmoNavigation" />
+      <StackNavigator.Screen component={CompassionNavigation} name="CompassionNavigation" />
       <StackNavigator.Screen component={NotImplemented} name="NotImplemented" />
     </StackNavigator.Navigator>
   );

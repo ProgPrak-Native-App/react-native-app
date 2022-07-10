@@ -1,8 +1,8 @@
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { BLACK, DARK_GREEN, GREY, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import Title from '../Title';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { NavigationProp, useFocusEffect, useNavigation } from '@react-navigation/native';
 import { CompassionRoutes } from './CompassionNavigation';
 import { AntDesign } from '@expo/vector-icons';
 import { Audio, AVPlaybackStatus } from 'expo-av';
@@ -20,12 +20,13 @@ export default function CompassionMeditation() {
     setStatus(status);
     return sound;
   }
+ const { navigate } = useNavigation<NavigationProp<CompassionRoutes>>();
 
-  const { navigate } = useNavigation<NavigationProp<CompassionRoutes>>();
+
   const [shouldPlayAtEndOfSeek, setShouldPlayAtEndOfSeek] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isSeeking, setIsSeeking] = useState(false);
-  const [sound, setSound] = useState<Audio.Sound>();
+  const [sound, setSound] = useState(new Audio.Sound());
   const [durationString, setDurationString] = useState('');
   const [duration, setDuration] = useState(0);
 
@@ -46,22 +47,47 @@ export default function CompassionMeditation() {
     throughEarpiece: false,
   });
 
-  /** with clean up function for unmouted components :) */
-  useEffect(() => {
-    setUpSound().then((sound) => setSound(sound));
-    return sound
-      ? () => {
-          console.log('Unloading Sound');
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, []);
-
   const initalStatus = {
     shouldPlay: isPlaying,
     rate: 1.0,
     volume: 1.0,
   };
+
+  /** setting async sound */
+  useEffect(() => {
+    setUpSound().then(setSound);
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, []);
+
+  /** unload for goingBackwards, with clean up function for unmouted components :) */
+  useEffect(() => {
+    return sound
+      ? () => {
+          //console.log('Unloading Sound');
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
+  /** unload for going forward */
+  useFocusEffect(
+    React.useCallback(() => {
+      return () => {
+        sound.unloadAsync();
+      };
+    }, [sound])
+  );
+  /** set duration after status has figured out how long it is */
+  useEffect(() => {
+    if (status.durationMillis !== undefined) {
+      setDurationString(millisToMinutesAndSeconds(status.durationMillis));
+      setDuration(status.durationMillis);
+    }
+  }, [status]);
 
   /** if status changes of playback */
   const onPlaybackStatusUpdate = (status: AVPlaybackStatus) => {
@@ -84,7 +110,7 @@ export default function CompassionMeditation() {
     }
   };
 
-  /** hnadle press play / pause */
+  /** handle press play / pause */
   const onPlayPausePressed = () => {
     if (sound !== undefined) {
       if (isPlaying) {
@@ -127,14 +153,6 @@ export default function CompassionMeditation() {
     const seconds = parseFloat(((milliSeconds % 60000) / 1000).toFixed(0));
     return seconds === 60 ? minutes + 1 + ':00' : minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
   };
-
-  /** set duration after status has figured out how long it is */
-  useEffect(() => {
-    if (status.durationMillis !== undefined) {
-      setDurationString(millisToMinutesAndSeconds(status.durationMillis));
-      setDuration(status.durationMillis);
-    }
-  }, [status]);
 
   /** advance slider according to how long we have already listen */
   const getSeekSliderPosition = () => {
@@ -189,7 +207,7 @@ export default function CompassionMeditation() {
           </View>
           <Pressable
             onPress={() =>
-              navigate('FeedbackNavigation', { name: 'MoodEntry', title: 'Selbstbezogenes Mitgefühl', color: PURPLE })
+              navigate('Feedback', { name: 'MoodEntry', title: 'Selbstbezogenes Mitgefühl', color: PURPLE })
             }
             style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.button]}>
             <Text style={styles.text}>Geschafft!</Text>
@@ -210,9 +228,10 @@ const styles = StyleSheet.create({
     flex: 0,
   },
   img: {
-    borderRadius: 20,
     height: 200,
     alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
     maxWidth: '100%',
     aspectRatio: 16 / 9,
     resizeMode: 'contain',

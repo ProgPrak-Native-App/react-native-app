@@ -8,7 +8,10 @@ import { CompassionRoutes } from './CompassionNavigation';
 
 export default function IntroVideoScreen() {
   const { navigate } = useNavigation<NavigationProp<CompassionRoutes>>();
+  const navigation = useNavigation<NavigationProp<CompassionRoutes>>();
   const video = React.useRef(null);
+
+  //navigation.getParent()?.getParent()?.getParent()?.navigate('NewMotivator')
   return (
     <>
       <Title back color={PURPLE} text="Selbstbezogenes Mitgefühl" />
@@ -27,7 +30,7 @@ export default function IntroVideoScreen() {
         </View>
         <View style={styles.buttons}>
           <Pressable
-            onPress={() => navigate('Home')}
+            onPress={() => navigation.navigate('NewMotivator')}
             style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.buttonLvl]}>
             <Text style={styles.text}>Andere Stargeie auswählen</Text>
           </Pressable>
