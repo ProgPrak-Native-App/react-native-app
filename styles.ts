@@ -47,17 +47,17 @@ export const SIZES = {
 };
 
 /* ---- Shadows ---- */
-export const SHADOW_COLOR = 'grey';
+export const SHADOW_COLOR = GREY;
 
 /* ---- Layout Colors --- */
-export const LAYOUT_COLOR_SAFEAREA_BACKGROUND = '#f2f2f2';
+export const LAYOUT_COLOR_SAFEAREA_BACKGROUND = BACKGROUND;
 
 /* ---- Card Colors --- */
 export const CARD_BACKGROUND_COLOR = '#DCDCDE';
 /* ---- States Colors --- */
-export const STATE_COLOR_INACTIVE_BACKGROUND = '#fff';
-export const STATE_COLOR_INACTIVE_TINT = 'black';
-export const STATE_COLOR_ACTIVE_TINT = 'black';
+export const STATE_COLOR_INACTIVE_BACKGROUND = WHITE;
+export const STATE_COLOR_INACTIVE_TINT = BLACK;
+export const STATE_COLOR_ACTIVE_TINT = BLACK;
 
 /* ---- TouchableHighlight Colors --- */
 export const TOUCHABLE_COLOR_UNDERLAY = '#C7C7C7';

@@ -9,15 +9,15 @@ import {
   Linking,
   ImageSourcePropType,
 } from 'react-native';
-import Title from '../../Title';
-import KsButton, { KsButtonProp } from '../../shared/button/KsButton';
-import Card from '../../shared/layout/Card';
-import { emergencies } from '../../../assets/data/emergency';
-import { Emergency } from '../../shared/model/emergency';
+import KsButton, { KsButtonProp } from '../shared/button/KsButton';
+import Card from '../shared/layout/Card';
+import { emergencies } from '../../assets/data/emergency';
+import { Emergency } from '../shared/model/emergency';
+import Title from '../Title';
 
-export default function EmergencyNumber() {
+export default function EmergencyNumbers() {
   return (
-    <ScrollView contentContainerStyle={{ paddingBottom: 500 }} style={styles.emergencyCardsContainer}>
+    <ScrollView style={styles.emergencyCardsContainer}>
       {/* Cover Container */}
       <Title text="Externe Hilfe" />
       {/* Description Card */}
