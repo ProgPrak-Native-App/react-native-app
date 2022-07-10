@@ -6,7 +6,7 @@ export default class BaseClient {
       Object.assign(options, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
       });
     }
@@ -19,6 +19,7 @@ export default class BaseClient {
   protected async post(path: string, body: string | null, options?: RequestInit): Promise<Response> {
     if (options) {
       Object.assign(options, {
+        body: JSON.stringify(body),
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,7 +27,7 @@ export default class BaseClient {
       });
     }
 
-    return await fetch(new URL(path, this.baseUrl), { ...options, body: JSON.stringify(body) });
+    return await fetch(new URL(path, this.baseUrl), { ...options });
   }
 
   protected async remove(path: string, options?: RequestInit): Promise<Response> {
@@ -34,7 +35,7 @@ export default class BaseClient {
       Object.assign(options, {
         method: 'DELETE',
         headers: {
-          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
       });
     }

@@ -8,14 +8,14 @@ import MoodDiary from './mood_diary/MoodDiary';
 import Motivator from './motivators/Motivator';
 import Wiki from './Wiki';
 import Profile from './profile/Profile';
-import EmergencyNumber from './feature/emergencyNumber/EmergencyNumber';
+import EmergencyNumbers from './emergencyNumbers/EmergencyNumbers';
 
 export type TabRoutes = {
   Home: undefined;
   MoodDiary: undefined;
   Wiki: undefined;
   Motivators: undefined;
-  EmergencyNumber: undefined;
+  EmergencyNumbers: undefined;
   Profil: undefined;
 };
 
@@ -71,8 +71,8 @@ export default function Routes() {
         }}
       />
       <Tab.Screen
-        component={EmergencyNumber}
-        name="EmergencyNumber"
+        component={EmergencyNumbers}
+        name="EmergencyNumbers"
         options={{
           tabBarButton: () => null,
         }}
