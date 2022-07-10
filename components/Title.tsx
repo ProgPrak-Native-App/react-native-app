@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
   },
   container: {
     maxHeight: 240,
-    height: '33%',
     zIndex: 100,
     height: Dimensions.get('window').height * 0.3,
     justifyContent: 'space-between',
