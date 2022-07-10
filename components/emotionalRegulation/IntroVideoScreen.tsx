@@ -2,13 +2,14 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
 import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { BACKGROUND, BLACK, ORANGE, PURPLE, SIZES, TERTIARY } from '../../styles';
+import { BLACK, PURPLE, SIZES, TERTIARY } from '../../styles';
 import { ResizeMode, Video } from 'expo-av';
 import { EmoRoutes } from './Navigation';
 
 export default function IntroVideoScreen() {
   const navigation = useNavigation<NavigationProp<EmoRoutes>>();
   const video = React.useRef(null);
+
   return (
     <>
       <Title back color={PURPLE} text="Emotionsregulation" />

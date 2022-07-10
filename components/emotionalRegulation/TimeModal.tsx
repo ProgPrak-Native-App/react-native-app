@@ -1,8 +1,9 @@
 import { View, Text, StyleSheet, Pressable, Modal, Alert, TouchableHighlight, Platform } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BACKGROUND, DARK_GREEN, PRIMARY, SIZES, WHITE } from '../../styles';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import * as Notifications from 'expo-notifications';
+import * as Permission from 'expo-notifications';
 
 /** source code for notifications:
  * https://anilvermaspeaks.medium.com/how-local-notifications-works-in-react-native-expo-538d1cfc2240
@@ -25,7 +26,7 @@ const triggerNotifications = async (date: Date) => {
       title: 'KopfSACHEN',
       body: 'Zeit deinen Tagesplan zu kontrollieren',
     },
-    trigger: date,
+    trigger: date, // {seconds: 2}, //date,
   });
 };
 
@@ -33,12 +34,13 @@ const triggerNotifications = async (date: Date) => {
 async function registerForPushNotificationsAsync() {
   const { status: existingStatus } = await Notifications.getPermissionsAsync();
   let finalStatus = existingStatus;
+  console.log('hey', finalStatus, existingStatus);
   if (existingStatus !== 'granted') {
     const { status } = await Notifications.requestPermissionsAsync();
     finalStatus = status;
   }
   if (finalStatus !== 'granted') {
-    alert('Failed to get push token for push notification!');
+    Alert.alert('Fehler', `Um erinnert zu werden, musst Du uns erlauben Dir Benachrichtigungen zu senden`);
   }
 }
 
@@ -83,6 +85,9 @@ export default function TimeModal({ toggle }: { toggle: () => void }) {
     showMode('time');
   };
 
+  const handleOnPressOk = () => {
+    triggerNotifications(date);
+  };
   /** alert poping up to ask again if user certain they want to receive
    * a notification, to make it less frustrating
    */
@@ -94,13 +99,14 @@ export default function TimeModal({ toggle }: { toggle: () => void }) {
       },
       {
         text: 'OK',
-        onPress: () => {
-          triggerNotifications(date);
-          registerForPushNotificationsAsync();
-        },
+        onPress: handleOnPressOk,
       },
     ]);
   };
+
+  useEffect(() => {
+    registerForPushNotificationsAsync();
+  }, []);
 
   return (
     <Modal animationType="slide" transparent={true}>

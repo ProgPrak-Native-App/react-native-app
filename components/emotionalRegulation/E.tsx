@@ -1,18 +1,25 @@
-import { View, Text, Pressable, ScrollView, StyleSheet, Animated, Easing } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Animated, Easing, ScrollView } from 'react-native';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StackScreenProps } from './Navigation';
 import Title from '../Title';
-import SortableList from 'react-native-sortable-list';
+// import SortableList from 'react-native-sortable-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ACCENT, BLACK, PRIMARY, PURPLE, SIZES, TERTIARY, WHITE } from '../../styles';
+import { ACCENT, BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import { TaskProp } from './GroupALP';
 import { AntDesign } from '@expo/vector-icons';
 
 /** for moving / sortable tasks:
  * source: https://github.com/gitim/react-native-sortable-list/blob/master/examples/Basic/App.js
  * */
-function Row(props: { data: string; active: boolean; deleteTask: (v: string) => void }) {
-  const { active, data, deleteTask } = props;
+
+function Row(props: {
+  active: boolean;
+  data: string;
+  deleteTask: (v: string) => void;
+  upTask: (v: string) => void;
+  downTask: (v: string) => void;
+}) {
+  const { active, data, deleteTask, upTask, downTask } = props;
 
   const activeAnim = useRef(new Animated.Value(0));
   const style = useMemo(
@@ -39,12 +46,20 @@ function Row(props: { data: string; active: boolean; deleteTask: (v: string) => 
   }, [active]);
 
   return (
-    <Animated.View style={[style, styles.tile]}>
+    <View style={styles.tile}>
       <Text style={styles.tiletxt}>{data}</Text>
-      <Pressable onPress={() => deleteTask(data)} style={styles.delete}>
-        <AntDesign name="close" size={24} />
-      </Pressable>
-    </Animated.View>
+      <View style={{ width: '50%', flexDirection: 'row', justifyContent: 'flex-end' }}>
+        <Pressable onPress={() => upTask(data)} style={styles.delete}>
+          <AntDesign name="up" size={30} />
+        </Pressable>
+        <Pressable onPress={() => downTask(data)} style={styles.delete}>
+          <AntDesign name="down" size={30} />
+        </Pressable>
+        <Pressable onPress={() => deleteTask(data)} style={styles.delete}>
+          <AntDesign name="close" size={24} />
+        </Pressable>
+      </View>
+    </View>
   );
 }
 
@@ -58,40 +73,80 @@ function E({ route, navigation }: StackScreenProps<'E'>) {
     }
   }
   const OGTasks = route.params.tasks;
-  const [data, setData] = useState<string[]>(route.params.tasks.map((item) => item.descr));
   const [newOrder, setNewOrder] = useState<TaskProp[]>(OGTasks);
+  const [data, setData] = useState<TaskProp[]>(OGTasks);
+  const [canGoOn, setCanGoOn] = useState(false);
 
-  const renderRow = useCallback(({ data, active }) => {
-    return <Row active={active} data={data} deleteTask={deleteTask} />;
-  }, []);
 
   /** delete a task & save neworder */
   const deleteTask = (taskName: string) => {
-    const tmp = data.filter((elem) => elem !== taskName);
-    setData((prevData) => prevData.filter((elem) => elem !== taskName));
-    setNewOrder((prevOrder) => tmp.map((elem) => prevOrder.filter((p) => p.descr === elem)).flat());
+    const tmp = data.filter((elem) => elem.descr !== taskName);
+    setData((prevData) => prevData.filter((elem) => elem.descr !== taskName));
+    setNewOrder((prevOrder) => tmp.map((elem) => prevOrder.filter((p) => p.descr === elem.descr)).flat());
   };
 
-  /** save newOrder of task for later */
-  const onReleaseRow = (key: string, currentOrder: string[]) => {
-    setNewOrder(currentOrder.map((item) => OGTasks.filter((entry) => parseInt(item) === entry.id)).flat());
+  const upTask = (taskUp: string) => {
+    setData((prevData) =>
+      prevData.map((task) => {
+        return task.descr === taskUp
+          ? {
+              ...task,
+              id: task.id === 0 ? task.id : task.id - 1,
+            }
+          : { ...task, id: task.id + 1 };
+      })
+    );
+
+    setData((item) => item.sort((a, b) => a.id - b.id));
+    setNewOrder(data);
   };
+
+  const downTask = (taskUp: string) => {
+    setData((prevData) =>
+      prevData.map((task) => {
+        return task.descr !== taskUp
+          ? {
+              ...task,
+              id: task.id === 0 ? task.id : task.id - 1,
+            }
+          : { ...task, id: task.id + 1 };
+      })
+    );
+
+    setData((item) => item.sort((a, b) => a.id - b.id));
+    setNewOrder(data);
+  };
+
+  const safeAgain = async () => {
+    setNewOrder(data);
+    return true;
+  };
+
   const handleGoOn = () => {
-    saveTaskList();
-    navigation.navigate('N');
+    safeAgain().then((t) => setCanGoOn(t));
   };
+
+  /** if okay (task new order has been saved) go to next screen */
+  useEffect(() => {
+    if (canGoOn) {
+      saveTaskList();
+      navigation.navigate('N');
+      setCanGoOn(() => false);
+    }
+  }, [canGoOn]);
 
   return (
     <>
       <Title back color={PURPLE} text="Situationskontrolle" />
-      <ScrollView contentContainerStyle={styles.container}>
+
+      <ScrollView nestedScrollEnabled={true} contentContainerStyle={styles.container}>
         <View>
           <Text style={styles.para}>
             Jetzt geht es darum die Aufgaben nach der Wichtigkeit zu sortieren. Du kannst die Aufgaben einfach in die
             gewünscht Reihenfolge verschieben.
           </Text>
         </View>
-        <View>
+        <View style={{ alignSelf: 'center' }}>
           <Text style={styles.heading}>
             <Text style={styles.accent}>E</Text>ntscheidungen treffen:
           </Text>
@@ -99,7 +154,19 @@ function E({ route, navigation }: StackScreenProps<'E'>) {
           <Text style={styles.description}> b) Es ist okay, wenn du nicht alles schaffst!</Text>
         </View>
 
-        <SortableList data={data} onReleaseRow={onReleaseRow} renderRow={renderRow} style={styles.sortContainer} />
+        <View style={styles.sortContainer}>
+          {data.map((item, idx) => (
+            <Row
+              key={idx}
+              active={true}
+              data={item.descr}
+              deleteTask={deleteTask}
+              upTask={upTask}
+              downTask={downTask}
+            />
+          ))}
+        </View>
+
         <Pressable
           accessibilityHint="Zum nächsten Schritt "
           onPress={handleGoOn}
@@ -128,6 +195,12 @@ const styles = StyleSheet.create({
   },
   container: {
     minHeight: '100%',
+    marginVertical: 20,
+    width: '88%',
+    alignSelf: 'center',
+    alignItems: 'center',
+  },
+  containerList: {
     marginVertical: 20,
     width: '88%',
     alignSelf: 'center',
@@ -162,14 +235,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   tile: {
-    marginHorizontal: 10,
+    marginLeft: 10,
     marginVertical: 10,
     borderColor: BLACK,
     borderWidth: 1,
     borderRadius: 15,
-    paddingHorizontal: 30,
+    paddingLeft: 30,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
     minHeight: SIZES.target_size * 1.2,
     backgroundColor: PRIMARY,
@@ -179,12 +252,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   sortContainer: {
+    alignSelf: 'center',
     alignContent: 'center',
     justifyContent: 'center',
     minHeight: '12%',
-    flex: 0,
     marginVertical: 30,
-    backgroundColor: WHITE,
     width: '90%',
   },
 });

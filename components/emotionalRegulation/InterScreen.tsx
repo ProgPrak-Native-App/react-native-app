@@ -21,7 +21,7 @@ export default function InterScreen() {
           </Pressable>
           <Pressable
             accessibilityHint="Beende die Übung"
-            onPress={() => navigate('Home')}
+            onPress={() => navigate('Feedback', { name: 'MoodEntry', title: 'Situationskontrolle', color: PURPLE })}
             style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.btn]}>
             <Text style={[{ marginVertical: 10 }, styles.txt]}>Heute lieber nicht</Text>
           </Pressable>

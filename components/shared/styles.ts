@@ -49,6 +49,14 @@ export const SIZES = {
   target_size: 48,
 };
 
+
+
+/* ---- Shadows ---- */
+export const SHADOW_COLOR = GREY;
+
+/* ---- Layout Colors --- */
+export const LAYOUT_COLOR_SAFEAREA_BACKGROUND = BACKGROUND;
+
 /* ---- Card Colors --- */
 export const CARD_BACKGROUND_COLOR = '#DCDCDE';
 

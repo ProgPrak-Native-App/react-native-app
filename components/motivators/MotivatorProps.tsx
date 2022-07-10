@@ -1,7 +1,7 @@
 import { MotivatorRoutes } from './Motivator';
 import React from 'react';
 import { Image } from 'react-native';
-import { MOTIVATOR } from '../shared/styles';
+import { MOTIVATOR, PURPLE } from '../../styles';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export type Exercise = { title: string; screen: keyof MotivatorRoutes };
@@ -12,6 +12,7 @@ export type MotivatorTypes = {
   optimism: undefined;
   reframing: undefined;
   socialSupport: undefined;
+  compassion: undefined;
   noMotivator: undefined;
 };
 
@@ -91,6 +92,18 @@ const socialSupport: MotivatorProps = {
   type: 'socialSupport',
 };
 
+// Selbstbezogenes Mitgefühl
+const compassion: MotivatorProps = {
+  name: 'Selbstbezogenes Mitgefühl',
+  description: 'Sei nett zu Dir.',
+  color: PURPLE,
+  exercises: mockExercises,
+  // TODO add social support icon
+  icon: <Image source={require('../../assets/reframingIcon.png')} style={{ height: 80, width: 80 }} />,
+  screen: 'CompassionNavigation',
+  type: 'compassion',
+};
+
 // export parsing of motivator type
 export function getMotivatorByType(name: keyof MotivatorTypes) {
   switch (name) {
@@ -104,6 +117,8 @@ export function getMotivatorByType(name: keyof MotivatorTypes) {
       return reframing;
     case 'socialSupport':
       return socialSupport;
+    case 'compassion':
+      return compassion;
     case 'noMotivator':
     default:
       return {

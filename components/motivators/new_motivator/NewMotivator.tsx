@@ -5,7 +5,7 @@ import Title from '../../shared/components/Title';
 import CarouselCards from './CarouselCards';
 import { MotivatorTypes } from '../MotivatorProps';
 
-const motivators: (keyof MotivatorTypes)[] = ['relaxation', 'situationControl', 'optimism', 'reframing'];
+const motivators: (keyof MotivatorTypes)[] = ['relaxation', 'situationControl', 'optimism', 'reframing', 'compassion'];
 
 export default function NewMotivator() {
   return (

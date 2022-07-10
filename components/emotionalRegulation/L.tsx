@@ -51,6 +51,7 @@ export default function L({
         <View style={{ alignItems: 'center' }}>
           <TextInput
             accessibilityLabel="Trage hier geschätzen Anzahl an Minuten ein"
+            keyboardType="numeric"
             onChangeText={(v) => handleInput('mins', v)}
             placeholder="00"
             placeholderTextColor="#4F4F4F"
