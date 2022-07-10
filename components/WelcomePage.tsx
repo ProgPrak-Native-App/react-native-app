@@ -4,6 +4,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { LIGHT_BLUE, TERTIARY } from '../styles';
 import { IntroductionProp } from './Introduction';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const styles = StyleSheet.create({
   container: {
@@ -50,9 +51,10 @@ const styles = StyleSheet.create({
 
 export default function WelcomePage() {
   const navigation = useNavigation<NavigationProp<IntroductionProp>>();
+  const STATUSBAR_INSET_HEIGHT = useSafeAreaInsets().top;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: STATUSBAR_INSET_HEIGHT }]}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Herzlich Willkommen!</Text>
       </View>
