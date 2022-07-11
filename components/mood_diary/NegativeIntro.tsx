@@ -6,7 +6,7 @@ import KopfsachenButton from '../KopfsachenButton';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Bold from '../Bold';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { TabRoutes } from '../../App';
+import { TabRoutes } from '../Routes';
 
 export default function NegativeIntro() {
   const navigation = useNavigation<NavigationProp<TabRoutes>>();
@@ -27,7 +27,7 @@ export default function NegativeIntro() {
         <KopfsachenButton onPress={() => navigation.navigate('Motivators')} style={styles.button}>
           Neue Strategie
         </KopfsachenButton>
-        <KopfsachenButton onPress={() => navigation.navigate('EmergencyNumbers')} style={styles.button}>
+        <KopfsachenButton onPress={() => navigation.navigate('EmergencyNumber')} style={styles.button}>
           Beratungs-&#13;stellen
         </KopfsachenButton>
       </View>

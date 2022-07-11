@@ -1,6 +1,7 @@
 import { GestureResponderEvent, Pressable, StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
 import React, { ReactNode } from 'react';
-import { SIZES, TERTIARY } from '../styles';
+import { PRIMARY, SIZES, TERTIARY } from '../styles';
+
 
 export type Props = {
   onPress?: (event: GestureResponderEvent) => void;
@@ -8,12 +9,18 @@ export type Props = {
   style?: StyleProp<ViewStyle>;
   accessibilityLabel?: string;
   accessibilityHint?: string;
+  responsive?: boolean;
 };
 
 export default function KopfsachenButton(props: Props) {
-  const { onPress, children, style, accessibilityLabel, accessibilityHint } = props;
+  const { onPress, children, style, accessibilityLabel, accessibilityHint, responsive } = props;
+  function onPressBackground(pressed: boolean) {
+    return {
+      backgroundColor: pressed && (responsive ?? true) ? PRIMARY : TERTIARY,
+    };
+  }
   return (
-    <Pressable onPress={onPress} style={[styles.button, style]}>
+    <Pressable onPress={onPress} style={({ pressed }) => [onPressBackground(pressed), styles.button, style]}>
       <Text accessibilityHint={accessibilityHint} accessibilityLabel={accessibilityLabel} style={styles.buttonText}>
         {children}
       </Text>
@@ -25,7 +32,6 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: TERTIARY,
     borderWidth: 1,
     borderRadius: 15,
   },

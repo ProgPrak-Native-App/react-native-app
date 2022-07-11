@@ -15,6 +15,17 @@ async function getMotivators() {
     .catch(() => [getMotivatorByType('noMotivator')]);
 }
 
+function getMockMotivators() {
+  return new Promise<MotivatorProps[]>((resolve) => {
+    resolve([
+      getMotivatorByType('situationControl'),
+      getMotivatorByType('relaxation'),
+      getMotivatorByType('optimism'),
+      getMotivatorByType('reframing'),
+    ]);
+  });
+}
+
 function OldMotivatorGridView(motivators: MotivatorProps[]) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
 
@@ -41,15 +52,14 @@ export default function MotivatorSelection() {
 
   // update state with motivators
   useEffect(() => {
-    getMotivators().then(setOldMotivators);
+    getMockMotivators().then(setOldMotivators);
   }, []);
 
   return (
     <>
       <Title
-        Icon={() => <Image source={require('../../assets/motivator.png')} />}
+        Icon={() => <Image source={require('../../assets/motivator.png')} style={{ height: 80, width: 80 }} />}
         color={MOTIVATOR.DEFAULT}
-        style={styles.shadow}
         text="Meine Starkmacher"
       />
       <ScrollView>
@@ -68,7 +78,9 @@ export default function MotivatorSelection() {
           </KopfsachenButton>
         </View>
 
-        <View style={styles.gridContainer}>{OldMotivatorGridView(oldMotivators)}</View>
+        <View accessible={false} style={styles.gridContainer}>
+          {OldMotivatorGridView(oldMotivators)}
+        </View>
       </ScrollView>
     </>
   );
@@ -94,8 +106,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   container: {
-    justifyContent: 'space-around',
-    height: 300,
+    marginTop: 15,
     marginHorizontal: 25,
   },
   text: {
@@ -105,6 +116,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
   },
   button: {
+    margin: 15,
     paddingHorizontal: 4,
     alignSelf: 'center',
   },

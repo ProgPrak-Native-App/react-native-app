@@ -3,6 +3,7 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { LIGHT_BLUE, TERTIARY } from '../styles';
 import { useUserContext } from './UserProvider';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const styles = StyleSheet.create({
   container: {
@@ -49,15 +50,17 @@ const styles = StyleSheet.create({
 
 export default function UserSetup() {
   const { addUser } = useUserContext();
+  const STATUSBAR_INSET_HEIGHT = useSafeAreaInsets().top;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: STATUSBAR_INSET_HEIGHT }]}>
       <View style={styles.headerContainer}>
-        <Text style={styles.header}>Create User</Text>
+        <Text style={styles.header}>Benutzer Erstellen</Text>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text}>
-          This is a dummy page for later to see that a user is created once the button is pressed.
+          Hier wird später die Erstellung eines Benutzers möglich sein, sobald die Authentifizierung mit API
+          eingerichtet ist.
         </Text>
       </View>
       <View style={styles.buttonContainer}>
