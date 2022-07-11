@@ -2,14 +2,9 @@ import React from 'react';
 import Title from '../Title';
 // add user-circle as title icon
 import ProfileOption from './ProfileOption';
-import { View, StyleSheet, NativeModules } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { ProfileRoutes } from './Profile';
-import { removeLocalStoreData } from '../UserProvider/store';
-
-const killMe = () => {
-  removeLocalStoreData().then(NativeModules.DevSettings.reload());
-};
 
 export default function ProfileOverview() {
   const navigation = useNavigation<NavigationProp<ProfileRoutes>>();
@@ -23,7 +18,6 @@ export default function ProfileOverview() {
         <ProfileOption icon="bell" title="Benachrichtigungen" />
         <ProfileOption icon="shield-alt" title="Datenschutz" />
         <ProfileOption icon="sliders-h" title="Einstellungen" />
-        <ProfileOption icon="bomb" onPress={() => killMe()} title="Mr. Meeseeks!" />
       </View>
     </>
   );
