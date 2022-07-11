@@ -87,7 +87,7 @@ const socialSupport: MotivatorProps = {
   exercises: mockExercises,
   // TODO add social support icon
   icon: <Image source={require('../../assets/reframingIcon.png')} style={{ height: 80, width: 80 }} />,
-  screen: 'SocialSupport',
+  screen: 'SocialSupportNavigation',
   type: 'socialSupport',
 };
 

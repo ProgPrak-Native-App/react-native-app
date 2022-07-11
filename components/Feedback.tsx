@@ -6,8 +6,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from './Title';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import MoodDiary from './mood_diary/MoodDiary';
-import CompassionNavigation from './compassion/CompassionNavigation';
-import MotivatorCompleted from './MotivatorCompleted';
+import { MotivatorRoutes } from './motivators/Motivator';
 
 export type FeedbackRoutes = {
   Feedback: { name: keyof FeedbackRoutes };
@@ -25,8 +24,6 @@ export function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {
       <Stack.Navigator initialRouteName="Feedback" screenOptions={{ headerShown: false, animation: 'none' }}>
         <Stack.Screen component={Feedback} initialParams={{ name: route.params.name }} name="Feedback" />
         <Stack.Screen component={MoodDiary} name="MoodDiary" />
-        <Stack.Screen component={CompassionNavigation} name="CompassionNavigation" />
-        <Stack.Screen component={MotivatorCompleted} name="MotivatorCompleted" />
       </Stack.Navigator>
     </>
   );
@@ -50,6 +47,8 @@ function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
       navigation.navigate('CompassionNavigation', { screen: name.toString() });
     }
   };
+
+  const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();
 
   return (
     <>
@@ -85,7 +84,7 @@ function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
         <View style={styles.buttons}>
           <Pressable
             accessibilityHint="Zurück zum Intro Screen"
-            onPress={handleNavigation}
+            onPress={() => navigate('NewMotivator')}
             style={({ pressed }) => [
               { backgroundColor: pressed ? PRIMARY : TERTIARY },
               styles.button,

@@ -32,6 +32,21 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
     subtitle: '',
   });
 
+  const setting = (id: number) => {
+    data.map((item) =>
+      item.id === id
+        ? setCurrScreen(() => {
+            return {
+              id: item.id,
+              title: item.title,
+              subtitle: item.subtitle,
+            };
+          })
+        : null
+    );
+    setPeople(data[id].people);
+  };
+
   useEffect(() => {
     data.sort((a, b) => {
       return a.id - b.id;
@@ -69,20 +84,6 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
    * currently sets currscreen data to be displayed &
    * sets currentn people array to corresp. screen
    */
-  const setting = (id: number) => {
-    data.map((item) =>
-      item.id === id
-        ? setCurrScreen(() => {
-            return {
-              id: item.id,
-              title: item.title,
-              subtitle: item.subtitle,
-            };
-          })
-        : null
-    );
-    setPeople(data[id].people);
-  };
 
   /** deletes a person */
   const deletePerson = (props: personProp) => {
