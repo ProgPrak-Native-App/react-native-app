@@ -1,4 +1,4 @@
-import { Button, Dimensions, Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import { PRIMARY, SHADOW } from '../styles';
 import React from 'react';
@@ -23,7 +23,6 @@ export default function Title({ text, color, Icon, back, style }: Props) {
     <View style={[styles.container, { backgroundColor: color ?? PRIMARY }, style]}>
       <View style={[styles.buttonContainer, { paddingTop: STATUSBAR_INSET_HEIGHT }]}>
         <Pressable
-          accessibilityLabel={'Notfallnummern anzeigen'}
           onPress={() => {
             mainNav.navigate('EmergencyNumbers');
           }}
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
   },
   container: {
     maxHeight: 240,
-    minHeight: Dimensions.get('window').height * 0.3,
+    height: '33%',
     zIndex: 100,
     justifyContent: 'space-between',
     alignItems: 'center',
