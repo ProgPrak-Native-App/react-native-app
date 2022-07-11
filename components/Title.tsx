@@ -1,4 +1,4 @@
-import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { Dimensions, Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import { PRIMARY, SHADOW } from '../styles';
 import React from 'react';
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   container: {
     maxHeight: 240,
-    height: '33%',
+    minHeight: Dimensions.get('window').height * 0.3,
     zIndex: 100,
     justifyContent: 'space-between',
     alignItems: 'center',
