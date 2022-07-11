@@ -55,12 +55,11 @@ export default function UserSetup() {
   return (
     <View style={[styles.container, { paddingTop: STATUSBAR_INSET_HEIGHT }]}>
       <View style={styles.headerContainer}>
-        <Text style={styles.header}>Benutzer Erstellen</Text>
+        <Text style={styles.header}>Create User</Text>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text}>
-          Hier wird später die Erstellung eines Benutzers möglich sein, sobald die Authentifizierung mit API
-          eingerichtet ist.
+          This is a dummy page for later to see that a user is created once the button is pressed.
         </Text>
       </View>
       <View style={styles.buttonContainer}>
