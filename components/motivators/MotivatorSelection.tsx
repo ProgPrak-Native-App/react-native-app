@@ -15,6 +15,17 @@ async function getMotivators() {
     .catch(() => [getMotivatorByType('noMotivator')]);
 }
 
+function getMockMotivators() {
+  return new Promise<MotivatorProps[]>((resolve) => {
+    resolve([
+      getMotivatorByType('situationControl'),
+      getMotivatorByType('relaxation'),
+      getMotivatorByType('optimism'),
+      getMotivatorByType('reframing'),
+    ]);
+  });
+}
+
 function OldMotivatorGridView(motivators: MotivatorProps[]) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
 
@@ -41,7 +52,7 @@ export default function MotivatorSelection() {
 
   // update state with motivators
   useEffect(() => {
-    getMotivators().then(setOldMotivators);
+    getMockMotivators().then(setOldMotivators);
   }, []);
 
   return (
