@@ -6,7 +6,7 @@ import KopfsachenButton from '../KopfsachenButton';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Bold from '../Bold';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { TabRoutes } from '../../App';
+import { TabRoutes } from '../Routes';
 
 export default function NegativeIntro() {
   const navigation = useNavigation<NavigationProp<TabRoutes>>();
