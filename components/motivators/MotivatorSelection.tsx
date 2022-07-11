@@ -78,9 +78,7 @@ export default function MotivatorSelection() {
           </KopfsachenButton>
         </View>
 
-        <View accessible={false} style={styles.gridContainer}>
-          {OldMotivatorGridView(oldMotivators)}
-        </View>
+        <View style={styles.gridContainer}>{OldMotivatorGridView(oldMotivators)}</View>
       </ScrollView>
     </>
   );

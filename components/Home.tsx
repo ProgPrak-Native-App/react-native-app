@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <Title color={PRIMARY} text="Herzlich Willkommen!" />
-      <View accessible={true} style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.textContainer}>
           <Text style={styles.text}>Schön, dass du da bist.</Text>
         </View>
