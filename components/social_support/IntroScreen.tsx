@@ -4,12 +4,14 @@ import Title from '../shared/components/Title';
 import { DARK_GREY, ORANGE, SIZES, TERTIARY } from '../shared/styles';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { SocialSupportStackParamList } from './SocialNavigation';
+import { getMotivatorByType } from '../motivators/MotivatorProps';
 
-export default function SocialStart() {
+export default function IntroScreen() {
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
+  const props = getMotivatorByType('socialSupport');
   return (
     <>
-      <Title back color={ORANGE} text="Soziale Unterstützung" />
+      <Title Icon={() => props.icon} back color={ORANGE} text="Soziale Unterstützung" />
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.text}>

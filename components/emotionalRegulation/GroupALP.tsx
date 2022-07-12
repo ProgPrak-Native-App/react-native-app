@@ -7,6 +7,7 @@ import L from './L';
 import P from './P';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { EmoRoutes } from './Navigation';
+import { getMotivatorByType } from '../motivators/MotivatorProps';
 
 export type TaskProp = {
   descr: string;
@@ -16,7 +17,7 @@ export type TaskProp = {
 
 export default function ALP() {
   const { navigate } = useNavigation<NavigationProp<EmoRoutes>>();
-
+  const props = getMotivatorByType('situationControl');
   /** tasks holds all added tasks */
   const [tasks, setTasks] = useState<TaskProp[]>([]);
   const [idCount, setIdCount] = useState(0);
@@ -113,7 +114,7 @@ export default function ALP() {
   /** if okay (at least one task in tasks), go to next screen */
   useEffect(() => {
     if (canGoOn) {
-      navigate('E', { tasks: tasks });
+      navigate('E', { tasks });
       setCanGoOn(() => false);
     }
   }, [canGoOn]);
@@ -125,7 +126,7 @@ export default function ALP() {
 
   return (
     <>
-      <Title back color={PURPLE} text="Situationskontrolle" />
+      <Title Icon={() => props.icon} back color={PURPLE} text="Situationskontrolle" />
       <ScrollView contentContainerStyle={styles.container}>
         <A desc={tmpTask.desc} handleInput={handleTextInput} />
         <L deadline={tmpTask.deadline} handleInput={handleTimeInput} handleTextInput={handleTextInput} time={time} />

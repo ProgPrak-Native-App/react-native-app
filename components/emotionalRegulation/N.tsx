@@ -5,9 +5,11 @@ import Title from '../Title';
 import TimeModal from './TimeModal';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { EmoRoutes } from './Navigation';
+import { getMotivatorByType } from '../motivators/MotivatorProps';
 
 export default function N() {
   const { navigate } = useNavigation<NavigationProp<EmoRoutes>>();
+  const props = getMotivatorByType('situationControl');
   const [visible, setVisible] = useState(false);
 
   /** toggles time picker modal */
@@ -18,7 +20,7 @@ export default function N() {
   return (
     <>
       {visible && <TimeModal toggle={onToggle} />}
-      <Title back color={PURPLE} text="Situationskontrolle" />
+      <Title Icon={() => props.icon} back color={PURPLE} text="Situationskontrolle" />
       <ScrollView contentContainerStyle={styles.container}>
         <View>
           <Text style={styles.para}>

@@ -5,15 +5,16 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import { ResizeMode, Video } from 'expo-av';
 import { CompassionRoutes } from './CompassionNavigation';
+import { getMotivatorByType } from '../motivators/MotivatorProps';
 
 export default function IntroVideoScreen() {
   const { navigate } = useNavigation<NavigationProp<CompassionRoutes>>();
   const navigation = useNavigation<NavigationProp<CompassionRoutes>>();
   const video = React.useRef(null);
-
+  const props = getMotivatorByType('compassion');
   return (
     <>
-      <Title back color={PURPLE} text="Selbstbezogenes Mitgefühl" />
+      <Title Icon={() => props.icon} back color={PURPLE} text="Selbstbezogenes Mitgefühl" />
       <View style={styles.container}>
         <View style={{ flex: 0 }}>
           <Text style={styles.heading}>Finde heraus was dahinter steckt!</Text>

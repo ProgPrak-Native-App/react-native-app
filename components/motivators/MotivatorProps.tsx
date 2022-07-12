@@ -76,7 +76,7 @@ const reframing: MotivatorProps = {
   color: MOTIVATOR.REFRAMING,
   exercises: mockExercises,
   icon: <Image source={require('../../assets/reframingIcon.png')} style={{ height: 80, width: 80 }} />,
-  screen: 'OldMotivator',
+  screen: 'Reframing',
   type: 'reframing',
 };
 
@@ -87,7 +87,7 @@ const socialSupport: MotivatorProps = {
   color: MOTIVATOR.SOCIALSUPPORT,
   exercises: mockExercises,
   // TODO add social support icon
-  icon: <Image source={require('../../assets/reframingIcon.png')} style={{ height: 80, width: 80 }} />,
+  icon: <Image source={require('../../assets/socialSupportIcon.png')} style={{ height: 80, width: 80 }} />,
   screen: 'SocialSupport',
   type: 'socialSupport',
 };
@@ -99,7 +99,7 @@ const compassion: MotivatorProps = {
   color: PURPLE,
   exercises: mockExercises,
   // TODO add social support icon
-  icon: <Image source={require('../../assets/reframingIcon.png')} style={{ height: 80, width: 80 }} />,
+  icon: <Image source={require('../../assets/compassionIcon.png')} style={{ height: 70, width: 70 }} />,
   screen: 'CompassionNavigation',
   type: 'compassion',
 };

@@ -7,6 +7,8 @@ import { TaskProp } from './GroupALP';
 import Checks from './Checks';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { EmoRoutes } from './Navigation';
+import { MotivatorRoutes } from '../motivators/Motivator';
+import { getMotivatorByType } from '../motivators/MotivatorProps';
 
 export default function NKontrolle() {
   /** get the users safed tasks from earlier */
@@ -17,8 +19,9 @@ export default function NKontrolle() {
     }
     return [];
   }
-
-  const { navigate } = useNavigation<NavigationProp<EmoRoutes>>();
+  const props = getMotivatorByType('situationControl');
+  const navigation = useNavigation<NavigationProp<EmoRoutes>>();
+  const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();
   const [tasks, setTasks] = useState<TaskProp[]>([]);
 
   /** get all tasks that they have set earlier */
@@ -46,16 +49,16 @@ export default function NKontrolle() {
     const d = tasks.filter((elem) => elem.checked === true).length;
     /** yeah */
     if (d / all >= 0.5) {
-      navigate('Nice');
+      navigation.navigate('Nice');
     } else {
       // navigate to checked off < 50%
-      navigate('Feedback', { name: 'IntroScreen', title: 'Situationskontrolle', color: PURPLE });
+      navigate('FeedbackNavigation', { name: 'IntroScreen', title: 'Situationskontrolle', color: PURPLE });
     }
   };
 
   return (
     <>
-      <Title back color={PURPLE} text="Situationskontrolle" />
+      <Title Icon={() => props.icon} back color={PURPLE} text="Situationskontrolle" />
       <ScrollView contentContainerStyle={styles.container}>
         <View>
           <Text style={styles.para}>

@@ -2,15 +2,11 @@ import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { StackScreenProps } from './Navigation';
 import Title from '../Title';
-// import SortableList from 'react-native-sortable-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ACCENT, BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import { TaskProp } from './GroupALP';
 import { AntDesign } from '@expo/vector-icons';
-
-/** for moving / sortable tasks:
- * source: https://github.com/gitim/react-native-sortable-list/blob/master/examples/Basic/App.js
- * */
+import { getMotivatorByType } from '../motivators/MotivatorProps';
 
 function Row(props: {
   data: string;
@@ -51,6 +47,7 @@ function E({ route, navigation }: StackScreenProps<'E'>) {
   const [newOrder, setNewOrder] = useState<TaskProp[]>(OGTasks);
   const [data, setData] = useState<TaskProp[]>(OGTasks);
   const [canGoOn, setCanGoOn] = useState(false);
+  const props = getMotivatorByType('situationControl');
 
   /** delete a task & save neworder */
   const deleteTask = (taskName: string) => {
@@ -111,7 +108,7 @@ function E({ route, navigation }: StackScreenProps<'E'>) {
 
   return (
     <>
-      <Title back color={PURPLE} text="Situationskontrolle" />
+      <Title Icon={() => props.icon} back color={PURPLE} text="Situationskontrolle" />
 
       <ScrollView contentContainerStyle={styles.container}>
         <View>

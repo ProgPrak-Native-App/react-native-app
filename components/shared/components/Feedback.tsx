@@ -1,15 +1,11 @@
-import { View, Text, Pressable, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { Image, View, Text, Pressable, StyleSheet, TextInput, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { BLACK, DARK_GREY, PRIMARY, RED, SIZES, TERTIARY, WHITE } from '../styles';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from './Title';
-import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
-import MoodDiary from './mood_diary/MoodDiary';
-import CompassionNavigation from './compassion/CompassionNavigation';
-import MotivatorCompleted from './MotivatorCompleted';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MotivatorRoutes } from './motivators/Motivator';
-import NewMotivator from './motivators/new_motivator/NewMotivator';
 
 export type Props = {
   name: keyof FeedbackRoutes;
@@ -26,24 +22,23 @@ export type FeedbackRoutes = {
 };
 
 export type FeedbackScreenProps<T extends keyof FeedbackRoutes> = NativeStackScreenProps<FeedbackRoutes, T>;
-
-const Stack = createNativeStackNavigator<FeedbackRoutes>();
-
-export function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {
-  return (
-    <>
-      <Stack.Navigator initialRouteName="Feedback" screenOptions={{ headerShown: false, animation: 'none' }}>
-        <Stack.Screen component={Feedback} initialParams={route.params} name="Feedback" />
-        <Stack.Screen component={MoodDiary} name="MoodDiary" />
-        <Stack.Screen component={CompassionNavigation} name="CompassionNavigation" />
-        <Stack.Screen component={MotivatorCompleted} name="MotivatorCompleted" />
-        <Stack.Screen component={NewMotivator} name="NewMotivator" />
-      </Stack.Navigator>
-    </>
-  );
-}
-
-export default function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
+const getImage = (name: string) => {
+  switch (name) {
+    case 'Soziale Unterstützung':
+      return <Image source={require('../assets/compassionIcon.png')} style={{ height: 70, width: 70 }} />;
+    case 'Optimismus':
+      return <Image source={require('../assets/optimismIcon.png')} style={{ height: 70, width: 70 }} />;
+    case 'Selbstbezogenes Mitgefühl':
+      return <Image source={require('../assets/compassionIcon.png')} style={{ height: 70, width: 70 }} />;
+    case 'Situationskontrolle':
+      return <Image source={require('../assets/situationControlIcon.png')} style={{ height: 70, width: 70 }} />;
+    case 'Refraiming':
+      return <Image source={require('../assets/reframingIcon.png')} style={{ height: 70, width: 70 }} />;
+    case 'Sicherheitsnetz':
+      return <Image source={require('../assets/securitynetIcon.png')} style={{ height: 70, width: 70 }} />;
+  }
+};
+export default function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {
   const navigation = useNavigation<NavigationProp<FeedbackRoutes>>();
   const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();
 
@@ -61,8 +56,7 @@ export default function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
     } else if (name.toString() === 'IntroScreen') {
       navigation.navigate('CompassionNavigation', { screen: 'IntroScreen' });
     } else if (name.toString() === 'MotivatorCompleted') {
-      // const navigation = useNavigation<NavigationProp<FeedbackRoutes>>();
-      // navigation.navigate('MotivatorCompleted');
+      navigation.navigate('MotivatorCompleted');
     }
   };
 
