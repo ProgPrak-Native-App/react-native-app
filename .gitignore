@@ -14,6 +14,8 @@ npm-debug.*
 *.orig.*
 web-build/
 /eslint_report.json
+e2e/
+ios/
 build-*.apk
 
 # macOS
