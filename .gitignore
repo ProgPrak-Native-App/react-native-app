@@ -14,7 +14,8 @@ npm-debug.*
 *.orig.*
 web-build/
 /eslint_report.json
-
+e2e/
+ios/
 # macOS
 .DS_Store
 
