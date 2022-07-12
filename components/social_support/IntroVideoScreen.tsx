@@ -5,13 +5,15 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { SocialSupportStackParamList } from './SocialNavigation';
 import { BACKGROUND, ORANGE, SIZES, TERTIARY } from '../../styles';
 import { ResizeMode, Video } from 'expo-av';
+import { getMotivatorByType } from '../motivators/MotivatorProps';
 
 export default function IntroVideoScreen() {
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
   const video = React.useRef(null);
+  const props = getMotivatorByType('socialSupport');
   return (
     <>
-      <Title back color={ORANGE} text="Soziale Unterstützung" />
+      <Title Icon={() => props.icon} back color={ORANGE} text="Soziale Unterstützung" />
       <View style={styles.container}>
         <View style={{ flex: 0 }}>
           <Text style={styles.heading}>Finde heraus was dahinter steckt!</Text>

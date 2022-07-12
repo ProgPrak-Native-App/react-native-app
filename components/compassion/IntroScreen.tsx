@@ -6,13 +6,15 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from '../Title';
 import { CompassionRoutes } from './CompassionNavigation';
 import { TabRoutes } from '../Routes';
+import { getMotivatorByType } from '../motivators/MotivatorProps';
 
 export default function IntroScreen() {
   const navigation = useNavigation<NavigationProp<CompassionRoutes>>();
   const { navigate } = useNavigation<NavigationProp<TabRoutes>>();
+  const props = getMotivatorByType('compassion');
   return (
     <>
-      <Title back color={PURPLE} text="Selbstbezogenes Mitgefühl" />
+      <Title Icon={() => props.icon} back color={PURPLE} text="Selbstbezogenes Mitgefühl" />
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.heading}>

@@ -33,7 +33,6 @@ export default function EmoNavigation() {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen component={IntroVideoScreen} name="IntroVideoScreen" />
       <Stack.Screen component={IntroScreen} name="IntroScreen" />
       <Stack.Screen component={IntroVideoScreen} name="IntroVideoScreen" />
       <Stack.Screen component={GroupALP} name="GroupALP" />

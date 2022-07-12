@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import Feedback from '../Feedback';
 import CompassionMeditation from './CompassionMeditation';
 import IntroScreen from './IntroScreen';
 import IntroVideoScreen from './IntroVideoScreen';
@@ -11,7 +10,6 @@ export type CompassionRoutes = {
   IntroVideoScreen: undefined;
   NewMotivator: undefined;
   CompassionMeditation: undefined;
-  Feedback: { name: string; title: string; color: string };
 };
 
 export const CompassionStack = createNativeStackNavigator<CompassionRoutes>();
@@ -24,7 +22,6 @@ export default function CompassionNavigation() {
         <CompassionStack.Screen component={IntroVideoScreen} name="IntroVideoScreen" />
         <CompassionStack.Screen component={CompassionMeditation} name="CompassionMeditation" />
         <CompassionStack.Screen component={NewMotivator} name="NewMotivator" />
-        <CompassionStack.Screen component={Feedback} name="Feedback" />
       </CompassionStack.Navigator>
     </>
   );

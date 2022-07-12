@@ -4,12 +4,14 @@ import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { EmoRoutes } from './Navigation';
+import { getMotivatorByType } from '../motivators/MotivatorProps';
 
 export default function InterScreen() {
   const { navigate } = useNavigation<NavigationProp<EmoRoutes>>();
+  const props = getMotivatorByType('situationControl');
   return (
     <>
-      <Title back color={PURPLE} text="Situationskontrolle" />
+      <Title Icon={() => props.icon} back color={PURPLE} text="Situationskontrolle" />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={[{ marginBottom: 30 }, styles.txt]}>Es ist Zeit deinen Tagesplan zu kontrollieren!</Text>
         <View style={{ width: '100%' }}>

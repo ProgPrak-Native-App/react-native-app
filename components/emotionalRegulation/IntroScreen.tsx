@@ -4,12 +4,14 @@ import { ACCENT, BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import { EmoRoutes } from './Navigation';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from '../Title';
+import { getMotivatorByType } from '../motivators/MotivatorProps';
 
 export default function IntroScreen() {
   const { navigate } = useNavigation<NavigationProp<EmoRoutes>>();
+  const props = getMotivatorByType('situationControl');
   return (
     <>
-      <Title back color={PURPLE} text="Emotionsregulation" />
+      <Title Icon={() => props.icon} back color={PURPLE} text="Situationskontrolle" />
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.text}>Wenn du Situationskontrolle üben möchtest, kann dir die ALPEN-Methode helfen.</Text>

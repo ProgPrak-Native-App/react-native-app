@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { BLACK, DARK_GREEN, GREY, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import Title from '../Title';
 import { NavigationProp, useFocusEffect, useNavigation } from '@react-navigation/native';
-import { CompassionRoutes } from './CompassionNavigation';
 import { AntDesign } from '@expo/vector-icons';
 import { Audio, AVPlaybackStatus } from 'expo-av';
 import Slider from '@react-native-community/slider';
 import Bold from '../Bold';
 import track from '../../assets/Compassion-Meditation-Example.mp3';
+import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { MotivatorRoutes } from '../motivators/Motivator';
 
 /** source code for audio player:
  * https://github.com/expo/playlist-example/blob/master/App.js
@@ -20,8 +21,8 @@ export default function CompassionMeditation() {
     setStatus(status);
     return sound;
   }
-
-  const { navigate } = useNavigation<NavigationProp<CompassionRoutes>>();
+  const props = getMotivatorByType('compassion');
+  const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();
 
   const [shouldPlayAtEndOfSeek, setShouldPlayAtEndOfSeek] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -53,45 +54,9 @@ export default function CompassionMeditation() {
     volume: 1.0,
   };
 
-  /** setting async sound */
-  useEffect(() => {
-    setUpSound().then(setSound);
-    return sound
-      ? () => {
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, []);
-
-  /** unload for goingBackwards, with clean up function for unmouted components :) */
-  useEffect(() => {
-    return sound
-      ? () => {
-          // console.log('Unloading Sound');
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, [sound]);
-
-  /** unload for going forward */
-  useFocusEffect(
-    React.useCallback(() => {
-      return () => {
-        sound.unloadAsync();
-      };
-    }, [sound])
-  );
-  /** set duration after status has figured out how long it is */
-  useEffect(() => {
-    if (status.durationMillis !== undefined) {
-      setDurationString(millisToMinutesAndSeconds(status.durationMillis));
-      setDuration(status.durationMillis);
-    }
-  }, [status]);
-
   /** if status changes of playback */
   const onPlaybackStatusUpdate = (status: AVPlaybackStatus) => {
-    if (status.isLoaded) {
+    if (sound && status.isLoaded) {
       setStatus({
         playbackInstancePosition: status.positionMillis,
         playbackInstanceDuration: status.durationMillis,
@@ -103,10 +68,6 @@ export default function CompassionMeditation() {
         volume: status.volume,
         shouldCorrectPitch: status.shouldCorrectPitch,
       });
-    } else {
-      if (status.error) {
-        console.log(`FATAL PLAYER ERROR: ${status.error}`);
-      }
     }
   };
 
@@ -170,9 +131,45 @@ export default function CompassionMeditation() {
     return '0:00';
   };
 
+  /** setting async sound */
+  useEffect(() => {
+    setUpSound().then(setSound);
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, []);
+
+  /** unload for goingBackwards, with clean up function for unmouted components :) */
+  useEffect(() => {
+    return sound
+      ? () => {
+          // console.log('Unloading Sound');
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
+  /** unload for going forward */
+  useFocusEffect(
+    React.useCallback(() => {
+      return () => {
+        sound.unloadAsync();
+      };
+    }, [sound])
+  );
+  /** set duration after status has figured out how long it is */
+  useEffect(() => {
+    if (status.durationMillis !== undefined) {
+      setDurationString(millisToMinutesAndSeconds(status.durationMillis));
+      setDuration(status.durationMillis);
+    }
+  }, [status]);
+
   return (
     <>
-      <Title back color={PURPLE} text="Selbstbezogenes Mitgefühl" />
+      <Title Icon={() => props.icon} back color={PURPLE} text="Selbstbezogenes Mitgefühl" />
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.heading}>
@@ -207,7 +204,7 @@ export default function CompassionMeditation() {
           </View>
           <Pressable
             onPress={() =>
-              navigate('Feedback', { name: 'MoodEntry', title: 'Selbstbezogenes Mitgefühl', color: PURPLE })
+              navigate('FeedbackNavigation', { name: 'MoodEntry', title: 'Selbstbezogenes Mitgefühl', color: PURPLE })
             }
             style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.button]}>
             <Text style={styles.text}>Geschafft!</Text>

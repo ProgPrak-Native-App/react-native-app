@@ -3,13 +3,15 @@ import React from 'react';
 import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { EmoRoutes } from './Navigation';
+import { MotivatorRoutes } from '../motivators/Motivator';
+import { getMotivatorByType } from '../motivators/MotivatorProps';
 
 export default function Nice() {
-  const { navigate } = useNavigation<NavigationProp<EmoRoutes>>();
+  const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();
+  const props = getMotivatorByType('situationControl');
   return (
     <>
-      <Title back color={PURPLE} text="Situationskontrolle" />
+      <Title Icon={() => props.icon} back color={PURPLE} text="Situationskontrolle" />
       <ScrollView contentContainerStyle={styles.container}>
         <View>
           <Text style={styles.heading}>Super gemacht!</Text>
