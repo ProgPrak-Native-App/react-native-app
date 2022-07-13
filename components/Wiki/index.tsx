@@ -1,15 +1,3 @@
-import WikiHeader from "./components/WikiHeader";
-import WikiEntry from "./components/WikiEntry";
-import Wiki from "./components/Wiki";
-import EntryTitle from "./components/EntryTitle";
-import Accordion from "./components/Accordion";
+import Navigation from './Navigation';
 
-
-export {Wiki, 
-    WikiEntry, 
-    WikiHeader,
-    EntryTitle,
-    Accordion,
-    }
-
-
+export default Navigation;
