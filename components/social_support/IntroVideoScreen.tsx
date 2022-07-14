@@ -1,10 +1,9 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
 import React from 'react';
 import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { SocialSupportStackParamList } from './SocialNavigation';
 import { BACKGROUND, ORANGE, SIZES, TERTIARY } from '../../styles';
-import { Video } from 'expo-av';
 
 export default function IntroVideoScreen() {
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
@@ -16,12 +15,11 @@ export default function IntroVideoScreen() {
         <View style={{ flex: 0 }}>
           <Text style={styles.heading}>Finde heraus was dahinter steckt!</Text>
         </View>
-        <View style={{ flex: 0 }}>
-          <Video
+        <View style={{ flex: 0, alignItems: 'center' }}>
+          <Image
             resizeMode="contain"
-            source={require('../../assets/Optimism_Infovideo_WIP.mov')}
+            source={require('../../assets/optimism-info-video.png')}
             style={{ aspectRatio: 16 / 9 }}
-            useNativeControls
           />
         </View>
         <View style={[styles.buttons, { flex: 0 }]}>
