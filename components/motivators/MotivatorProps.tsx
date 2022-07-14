@@ -83,7 +83,7 @@ const reframing: MotivatorProps = {
 // Soziale Unterstützung
 const socialSupport: MotivatorProps = {
   name: 'Soziale Unterstützung',
-  description: 'Optimismus heißt, das Gute im Leben zu sehen. Auch, wenn es mal nicht so einfach ist.',
+  description: 'Bei der Sozialen Unterstützung geht es darum, zu sehen welche Ressourcen Du im Umfeld hast.',
   color: MOTIVATOR.SOCIALSUPPORT,
   exercises: mockExercises,
   // TODO add social support icon
