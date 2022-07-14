@@ -15,10 +15,13 @@ import IntroThirdLevel from './IntroThirdLevel';
 
 import 'react-native-get-random-values';
 import { nanoid } from 'nanoid';
+import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { MotivatorRoutes } from '../motivators/Motivator';
 
 // const helper = 'Klicke einfach auf das plus-Symbol, um Personen dem jeweiligen Kreis hinzuzufügen.';s
 const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>) => {
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
+  const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   const [addVisible, setAddVisible] = useState(false);
   const [updateVisible, setUpdateVisible] = useState(false);
   const [onBoardingVisible, setOnBoardingVisible] = useState(true);
@@ -32,20 +35,14 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
     subtitle: '',
   });
 
-  useEffect(() => {
-    data.sort((a, b) => {
-      return a.id - b.id;
-    });
-    setting(2);
-  }, []);
-
   /** value states for animation of view size */
   const innerSize = useRef(new Animated.Value(260)).current;
   const middleSize = useRef(new Animated.Value(280)).current;
   const level = route.params.level;
-  if (level === 3) {
-    return <IntroThirdLevel />;
-  }
+  const subtitleLvl2 =
+    '❤️ = Emotionale Unterstützung \n 📚 = Informationale Unterstützung \n 💪 = Instrumentale Unterstützung';
+
+  const props = getMotivatorByType('socialSupport');
 
   /** toggles the onboarding screens & popups */
   const toggleOnBoard = () => {
@@ -133,7 +130,11 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
   const goAhead = (id: number) => {
     setData((prevData) => prevData.map((item) => (item.id === id ? { ...item, people } : item)));
     if (id === 0) {
-      navigate('FeedbackNavigation', { name: 'MoodEntry' });
+      navigation.navigate('FeedbackNavigation', {
+        name: 'MoodEntry',
+        title: 'Soziale Unterstützung',
+        color: ORANGE,
+      });
     } else if (id === 1) {
       setting(--id);
       changeSize(middleSize, 90);
@@ -165,13 +166,21 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
     }).start();
   };
 
-  const subtitleLvl2 =
-    '❤️ = Emotionale Unterstützung \n 📚 = Informationale Unterstützung \n 💪 = Instrumentale Unterstützung';
+  useEffect(() => {
+    data.sort((a, b) => {
+      return a.id - b.id;
+    });
+    setting(2);
+  }, []);
+
+  if (level === 3) {
+    return <IntroThirdLevel />;
+  }
 
   return (
     <>
       {onBoardingVisible && <OnBoardingModal level={route.params.level} toggle={toggleOnBoard} />}
-      <Title back color={ORANGE} text="Soziale Unterstützung" />
+      <Title Icon={() => props.icon} back color={ORANGE} text="Soziale Unterstützung" />
       <ScrollView contentContainerStyle={{ minHeight: '100%' }}>
         <View>
           <View style={{ minHeight: 142 }}>

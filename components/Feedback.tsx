@@ -1,41 +1,48 @@
-import { View, Text, Pressable, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { Image, View, Text, Pressable, StyleSheet, TextInput, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { BLACK, DARK_GREY, ORANGE, PRIMARY, RED, SIZES, TERTIARY, WHITE } from '../styles';
+import { BLACK, DARK_GREY, PRIMARY, RED, SIZES, TERTIARY, WHITE } from '../styles';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from './Title';
-import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
-import MoodDiary from './mood_diary/MoodDiary';
-import CompassionNavigation from './compassion/CompassionNavigation';
-import MotivatorCompleted from './MotivatorCompleted';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { MotivatorRoutes } from './motivators/Motivator';
+
+export type Props = {
+  name: keyof FeedbackRoutes;
+  title: string;
+  color: string;
+};
 
 export type FeedbackRoutes = {
-  Feedback: { name: keyof FeedbackRoutes };
+  Feedback: { name: string; title: string; color: string };
+  NewMotivator: { screen: string };
   MoodDiary: { screen: string };
   CompassionNavigation: { screen: string };
   MotivatorCompleted: undefined;
 };
+
 export type FeedbackScreenProps<T extends keyof FeedbackRoutes> = NativeStackScreenProps<FeedbackRoutes, T>;
-
-const Stack = createNativeStackNavigator<FeedbackRoutes>();
-
-export function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {
-  return (
-    <>
-      <Stack.Navigator initialRouteName="Feedback" screenOptions={{ headerShown: false, animation: 'none' }}>
-        <Stack.Screen component={Feedback} initialParams={{ name: route.params.name }} name="Feedback" />
-        <Stack.Screen component={MoodDiary} name="MoodDiary" />
-        <Stack.Screen component={CompassionNavigation} name="CompassionNavigation" />
-        <Stack.Screen component={MotivatorCompleted} name="MotivatorCompleted" />
-      </Stack.Navigator>
-    </>
-  );
-}
-
-function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
-  const { name } = route.params;
-
+const getImage = (name: string) => {
+  switch (name) {
+    case 'Soziale Unterstützung':
+      return <Image source={require('../assets/compassionIcon.png')} style={{ height: 70, width: 70 }} />;
+    case 'Optimismus':
+      return <Image source={require('../assets/optimismIcon.png')} style={{ height: 70, width: 70 }} />;
+    case 'Selbstbezogenes Mitgefühl':
+      return <Image source={require('../assets/compassionIcon.png')} style={{ height: 70, width: 70 }} />;
+    case 'Situationskontrolle':
+      return <Image source={require('../assets/situationControlIcon.png')} style={{ height: 70, width: 70 }} />;
+    case 'Refraiming':
+      return <Image source={require('../assets/reframingIcon.png')} style={{ height: 70, width: 70 }} />;
+    case 'Sicherheitsnetz':
+      return <Image source={require('../assets/securitynetIcon.png')} style={{ height: 70, width: 70 }} />;
+  }
+};
+export default function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {
   const navigation = useNavigation<NavigationProp<FeedbackRoutes>>();
+  const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();
+
+  const { name, title, color } = route.params;
 
   const [comment, setComment] = useState('');
   const [greenBtn, setGreenBtn] = useState(false);
@@ -47,13 +54,15 @@ function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
     if (name.toString() === 'MoodEntry') {
       navigation.navigate('MoodDiary', { screen: 'MoodEntry' });
     } else if (name.toString() === 'IntroScreen') {
-      navigation.navigate('CompassionNavigation', { screen: name.toString() });
+      navigation.navigate('CompassionNavigation', { screen: 'IntroScreen' });
+    } else if (name.toString() === 'MotivatorCompleted') {
+      navigation.navigate('MotivatorCompleted');
     }
   };
 
   return (
     <>
-      <Title back color={ORANGE} text="Soziale Unterstützung" />
+      <Title back color={color} text={title} />
       <ScrollView style={styles.container}>
         <Text style={styles.heading}>Wie hat Dir die Übung gefallen?</Text>
         <View style={styles.buttons}>
@@ -85,7 +94,7 @@ function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
         <View style={styles.buttons}>
           <Pressable
             accessibilityHint="Zurück zum Intro Screen"
-            onPress={handleNavigation}
+            onPress={() => navigate('NewMotivator')}
             style={({ pressed }) => [
               { backgroundColor: pressed ? PRIMARY : TERTIARY },
               styles.button,
@@ -123,7 +132,7 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE,
     borderColor: BLACK,
     borderWidth: 1,
-    minWidth: 48,
+    minWidth: SIZES.target_size,
     width: '100%',
     paddingVertical: 10,
     paddingHorizontal: 15,
@@ -168,9 +177,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 10,
     width: '60%',
-    backgroundColor: TERTIARY,
-    minHeight: 48,
-    borderColor: DARK_GREY,
+    minHeight: SIZES.target_size,
+    borderColor: BLACK,
     borderRadius: 20,
     borderWidth: 1,
     padding: 10,
