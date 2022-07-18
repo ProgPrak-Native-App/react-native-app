@@ -13,7 +13,7 @@ function navigate(
   navigation: NativeStackNavigationProp<SecurityNetRoutes, 'SecurityNetItem'>,
   currentComponent: SafetyNetDType
 ) {
-  if (currentComponent.title !== '' && currentComponent.icon !== '') {
+  if (currentComponent.title !== '' && currentComponent.type !== '') {
     navigation.navigate('SecurityNetAssistance', { component: currentComponent });
   } else {
     Alert.alert(
@@ -33,7 +33,6 @@ export default function SecurityNetItem({
 
   function setTypeAndIcon(component: SafetyNetDType, type: string) {
     component.type = type;
-    component.icon = type;
     setResource(type);
   }
 

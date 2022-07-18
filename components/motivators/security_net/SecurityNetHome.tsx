@@ -9,7 +9,6 @@ import { LIGHT_BLUE } from '../../../styles';
 
 export type SafetyNetDType = {
   type: string;
-  icon: string;
   title: string;
   strategies: [string, string, string];
 };
@@ -25,7 +24,6 @@ export const iconMap = new Map<string, JSX.Element>([
 
 export const empty: SafetyNetDType = {
   type: '',
-  icon: '',
   title: '',
   strategies: ['', '', ''],
 };
