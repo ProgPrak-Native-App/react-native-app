@@ -21,7 +21,6 @@ async function getSafetyNet() {
         const item = data[i];
         const newItem: SafetyNetDType = {
           type: item.type,
-          icon: item.type,
           title: item.name,
           strategies: item.strategies.slice(0, 3),
         };
@@ -50,7 +49,7 @@ function SecurityNetItemGridView(safetyNetItems: SafetyNetDType[], type: string)
             }}
             style={[styles.gridItem, styles.shadow]}>
             <Text style={styles.text}>{data.title}</Text>
-            {iconMap.get(data.icon)}
+            {iconMap.get(data.type)}
           </Pressable>
         ))}
     </>
