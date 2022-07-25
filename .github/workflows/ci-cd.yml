@@ -23,11 +23,8 @@ jobs:
     secrets: inherit
 
   unit-test:
-    name: "Run Unit Tests"
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Run Jest unit test"
-        run: npm test:ci
+    uses: ./.github/workflows/unit-test.yml
+    secrets: inherit
 
   build-android:
     if: github.event_name != 'pull_request'
