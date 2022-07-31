@@ -20,10 +20,12 @@ async function getSafetyNet() {
       for (const i in data) {
         const item = data[i];
         const newItem: SafetyNetDType = {
+          id: item.id,
           type: item.type,
           title: item.name,
           strategies: item.strategies.slice(0, 3),
         };
+        console.log(newItem);
         items.push(newItem);
       }
       return items;
@@ -45,7 +47,7 @@ function SecurityNetItemGridView(safetyNetItems: SafetyNetDType[], type: string)
           <Pressable
             key={index}
             onPress={() => {
-              navigation.navigate('SecurityNetItem', { component: data });
+              navigation.navigate('SecurityNetItem', { component: data, modifying: true });
             }}
             style={[styles.gridItem, styles.shadow]}>
             <Text style={styles.text}>{data.title}</Text>

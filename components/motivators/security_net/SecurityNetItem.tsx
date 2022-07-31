@@ -1,42 +1,63 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Title from '../../Title';
 import KopfsachenButton from '../../KopfsachenButton';
 import { getMotivatorByType } from '../MotivatorProps';
-import { SafetyNetDType } from './SecurityNetHome';
+import { empty, SafetyNetDType } from './SecurityNetHome';
 import { View, Text, StyleSheet, Pressable, TextInput, ScrollView, Alert } from 'react-native';
 import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { SecurityNetRoutes } from './SecurityNet';
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { BLACK, GREY, SHADOW } from '../../../styles';
 
-function navigate(
-  navigation: NativeStackNavigationProp<SecurityNetRoutes, 'SecurityNetItem'>,
-  currentComponent: SafetyNetDType
-) {
-  if (currentComponent.title !== '' && currentComponent.type !== '') {
-    navigation.navigate('SecurityNetAssistance', { component: currentComponent });
-  } else {
-    Alert.alert(
-      'Da hast du wohl was vergessen',
-      'Bitte wähle sowohl einen Titel als auch eine Kategorie für diese Komponente!'
-    );
-  }
-}
-
 export default function SecurityNetItem({
   navigation,
   route,
 }: NativeStackScreenProps<SecurityNetRoutes, 'SecurityNetItem'>) {
-  const props = getMotivatorByType('relaxation');
-  const iconSize = 48;
-  const [resource, setResource] = useState('');
+  function navigate(
+    navigation: NativeStackNavigationProp<SecurityNetRoutes, 'SecurityNetItem'>,
+    currentComponent: SafetyNetDType
+  ) {
+    if (!modifying) {
+      console.log(initialComponent);
+      if (currentComponent.title !== initialComponent.title && currentComponent.type !== initialComponent.type) {
+        navigation.navigate('SecurityNetAssistance', { component: currentComponent, modified: true });
+      } else {
+        Alert.alert(
+          'Da hast du wohl was vergessen',
+          'Bitte wähle sowohl einen Titel als auch eine Kategorie für diese Komponente!'
+        );
+      }
+    } else {
+      if (currentComponent.title !== initialComponent.title && currentComponent.type !== initialComponent.type) {
+        navigation.navigate('SecurityNetAssistance', { component: currentComponent, modified: true });
+      }
+      navigation.navigate('SecurityNetAssistance', { component: currentComponent, modified: false });
+    }
+  }
 
   function setTypeAndIcon(component: SafetyNetDType, type: string) {
     component.type = type;
     setResource(type);
   }
 
+  const props = getMotivatorByType('relaxation');
+  const iconSize = 48;
+  const [resource, setResource] = useState('');
+
+  useEffect(() => {
+    setResource(currentComponent.type);
+  });
+
   const currentComponent = route.params.component;
+  const test = JSON.parse(JSON.stringify(currentComponent));
+  const initialComponent: SafetyNetDType = {
+    id: currentComponent.id.valueOf(),
+    type: currentComponent.type.valueOf(),
+    title: currentComponent.title.valueOf(),
+    strategies: currentComponent.strategies,
+  };
+
+  const modifying = route.params.modifying;
 
   return (
     <>
