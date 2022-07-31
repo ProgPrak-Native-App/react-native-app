@@ -48,14 +48,6 @@ export default function SecurityNetItem({
     setResource(currentComponent.type);
   });
 
-  const props = getMotivatorByType('relaxation');
-  const iconSize = 48;
-  const [resource, setResource] = useState('');
-
-  useEffect(() => {
-    setResource(currentComponent.type);
-  });
-
   const currentComponent = route.params.component;
   const test = JSON.parse(JSON.stringify(currentComponent));
   const initialComponent: SafetyNetDType = {
