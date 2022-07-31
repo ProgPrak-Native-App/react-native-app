@@ -8,8 +8,8 @@ import NotImplemented from '../../NotImplemented';
 
 export type SecurityNetRoutes = {
   SecurityNetHome: undefined;
-  SecurityNetItem: { component: SafetyNetDType };
-  SecurityNetAssistance: { component: SafetyNetDType };
+  SecurityNetItem: { component: SafetyNetDType; modifying: boolean };
+  SecurityNetAssistance: { component: SafetyNetDType; modified: boolean };
   SecurityNetItemView: { type: string };
   NotImplemented: undefined;
 };
