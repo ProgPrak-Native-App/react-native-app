@@ -22,7 +22,6 @@
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
-    "babel-plugin-inline-dotenv": "^1.7.0",
     "@types/react-native-snap-carousel": "^3.8.5",
     "expo": "^45.0.0",
     "expo-av": "~11.2.3",
