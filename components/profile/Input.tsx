@@ -46,10 +46,11 @@ const styles = StyleSheet.create({
 const Input = ({ label, iconName, error, password, onFocus, onChangeText }: InputData) => {
   const [isFocused, setIsFocused] = React.useState(false);
   const [hidePassword, setHidePassword] = React.useState(false);
+
   return (
     <View style={{ marginBottom: 20 }}>
       <Text style={styles.label}>{label}</Text>
-      <View style={[styles.inputContainer, { borderColor: error ? ERROR : isFocused ? BLUE : ERROR }]}>
+      <View style={[styles.inputContainer, { borderColor: error ? ERROR : isFocused ? BLUE : '' }]}>
         <MaterialCommunityIcons name={iconName} style={styles.icon} />
         <TextInput
           autoCorrect={false}
