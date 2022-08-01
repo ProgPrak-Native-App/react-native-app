@@ -52,7 +52,7 @@ const relaxation: MotivatorProps = {
   color: MOTIVATOR.SECURITYNET,
   exercises: mockExercises,
   icon: <Image source={require('../../assets/securitynetIcon.png')} style={{ height: 80, width: 80 }} />,
-  screen: 'OldMotivator',
+  screen: 'SecurityNet',
   type: 'relaxation',
 };
 

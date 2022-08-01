@@ -158,6 +158,17 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'warn',
   },
 
+   // Fixes error 'JSX' and similar is not defined no-undef
+  // See https://github.com/typescript-eslint/typescript-eslint/blob/main/docs/linting/TROUBLESHOOTING.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
+  overrides: [
+    {
+      files: ['*.ts', '*.mts', '*.cts', '*.tsx'],
+      rules: {
+        'no-undef': 'off',
+      },
+    },
+  ],
+
   settings: {
     'import/ignore': ['node_modules/react-native/index\\.js$'],
   },

@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { BLACK, DARK_GREY, ORANGE, PRIMARY, RED, SIZES, TERTIARY, WHITE } from '../styles';
@@ -6,8 +6,6 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from './Title';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import MoodDiary from './mood_diary/MoodDiary';
-import CompassionNavigation from './compassion/CompassionNavigation';
-import MotivatorCompleted from './MotivatorCompleted';
 
 export type FeedbackRoutes = {
   Feedback: { name: keyof FeedbackRoutes };
@@ -25,8 +23,6 @@ export function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {
       <Stack.Navigator initialRouteName="Feedback" screenOptions={{ headerShown: false, animation: 'none' }}>
         <Stack.Screen component={Feedback} initialParams={{ name: route.params.name }} name="Feedback" />
         <Stack.Screen component={MoodDiary} name="MoodDiary" />
-        <Stack.Screen component={CompassionNavigation} name="CompassionNavigation" />
-        <Stack.Screen component={MotivatorCompleted} name="MotivatorCompleted" />
       </Stack.Navigator>
     </>
   );
@@ -104,6 +100,7 @@ function Feedback({ route }: FeedbackScreenProps<'Feedback'>) {
     </>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     marginVertical: 10,
