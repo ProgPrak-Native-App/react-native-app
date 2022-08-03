@@ -5,20 +5,21 @@ interface UserProviderProps {
   children: React.ReactElement;
 }
 
-interface User {
-  id: string;
-}
 interface UserContextInterface {
-  user: User | undefined;
-  addUser: (user: User) => void;
+  userId: string|undefined;
+  sessionToken: string|undefined;
+  addUser: () => void;
+  login: () => void;
 }
 
 const DEFAULT_CONTEXT_STATE = {
-  user: undefined,
-  addUser: (user: User) => console.log(user),
+  userId: undefined,
+  sessionToken: undefined,
+  addUser: () => console.log(""),
+  login: () => console.log(""),
 };
 
-export const parseJSONStoreData = (value: any, key = 'user') => {
+export const parseJSONStoreData = (value: any, key = 'userId') => {
   const result = JSON.parse(value);
 
   return result ? result[key] : result;
@@ -29,28 +30,72 @@ export const UserContext = createContext<UserContextInterface>(DEFAULT_CONTEXT_S
 export const useUserContext = () => useContext(UserContext);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [user, setUser] = useState<User | undefined>();
+  const [userId, setUserId] = useState<string|undefined>();
+  const [sessionToken, setSessionToken] = useState<string|undefined>();
+
 
   useEffect(() => {
     getLocalStoreData().then((value) => {
       if (value) {
-        const myData = parseJSONStoreData(value);
-        setUser(myData);
+        const myData = value;
+        setUserId(myData);
       }
     });
   }, []);
 
   // if things defined ín array change -> Component is called again, basically
   useEffect(() => {
-    if (user) {
-      const value = JSON.stringify({ user });
+    if (userId) {
+      const value =  userId;
       (async () => await setLocalStoreData(value))();
     }
-  }, [user]);
+  }, [userId]);
 
-  const addUser = useCallback((user: User) => {
-    setUser(user);
+
+
+
+
+  const addUser =  useCallback(async() => {
+  
+  const postURL = await apiCall('https://auth.api.live.mindtastic.lol/self-service/registration/api',"GET").then((data) => data.ui.action)
+  const responsePostCall = await apiCall(postURL,"POST")
+  console.log("response of Post", responsePostCall)
+  
+
+    
+
+  //self-registration api get
+  //self-registration post with flowId
+  // setUserId(userId);
+
   }, []);
 
-  return <UserContext.Provider value={{ user, addUser }}>{children}</UserContext.Provider>;
+  const login = useCallback(() => {
+    // login Api get
+    // login post with flowId and inside body of request userId as password 
+    
+  
+    }, []);
+
+  return <UserContext.Provider value={{ userId, sessionToken, addUser, login }}>{children}</UserContext.Provider>;
 };
+
+
+async function apiCall(url: RequestInfo , verb: "GET"| "POST"| "PUT"| "DELETE", data = {}) {
+  console.log("inside apicall", url,verb,data)
+  if(!url){
+    throw new Error("no url")
+  }
+
+  const requestsWithBody = ["POST","PUT"]
+  const body =  requestsWithBody.includes(verb) ? {body: JSON.stringify(data)}: {};
+
+  const response = await fetch(url ,{
+    method: verb, 
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    ...body
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
