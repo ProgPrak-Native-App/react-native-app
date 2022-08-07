@@ -2,7 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import IntroScreen from './IntroScreen';
 import SupportExercise from './SupportExercise';
-import { FeedbackNavigation } from '../Feedback';
+import { FeedbackNavigation } from '../shared/components/Feedback';
 import IntroVideoScreen from './IntroVideoScreen';
 import IntroThirdLevel from './IntroThirdLevel';
 import ThirdLevelCountDown from './ThirdLevelCountDown';

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { LIGHT_BLUE, TERTIARY } from '../styles';
+import { LIGHT_BLUE, TERTIARY } from '../shared/styles';
 import { IntroductionProp } from './Introduction';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 

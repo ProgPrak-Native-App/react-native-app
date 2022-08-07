@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
-import Title from '../Title';
+import Title from '../shared/components/Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { SocialSupportStackParamList } from './SocialNavigation';
-import { BACKGROUND, ORANGE, SIZES, TERTIARY } from '../../styles';
+import { BACKGROUND, ORANGE, SIZES, TERTIARY } from '../shared/styles';
 import { Video } from 'expo-av';
 
 export default function IntroVideoScreen() {

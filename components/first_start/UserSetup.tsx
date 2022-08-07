@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { LIGHT_BLUE, TERTIARY } from '../styles';
-import { useUserContext } from './UserProvider';
+import { LIGHT_BLUE, TERTIARY } from '../shared/styles';
+import { useUserContext } from '../UserProvider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const styles = StyleSheet.create({

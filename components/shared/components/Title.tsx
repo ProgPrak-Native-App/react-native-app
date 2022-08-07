@@ -1,9 +1,9 @@
 import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
-import { PRIMARY, SHADOW } from '../styles';
+import { PRIMARY, STYLES } from '../styles';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { TabRoutes } from './Routes';
+import { TabRoutes } from '../../Routes';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = {
@@ -20,7 +20,7 @@ export default function Title({ text, color, Icon, back, style }: Props) {
   const STATUSBAR_INSET_HEIGHT = useSafeAreaInsets().top;
 
   return (
-    <View style={[styles.container, { backgroundColor: color ?? PRIMARY }, style]}>
+    <View style={[styles.container, STYLES.shadow, { backgroundColor: color ?? PRIMARY }, style]}>
       <View style={[styles.buttonContainer, { paddingTop: STATUSBAR_INSET_HEIGHT }]}>
         <Pressable
           onPress={() => {
@@ -72,13 +72,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
-    shadowColor: SHADOW,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
   },
   text: {
     fontSize: 30,

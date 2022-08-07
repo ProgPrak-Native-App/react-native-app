@@ -5,7 +5,7 @@ import { BLACK, DARK_GREY, ORANGE, PRIMARY, RED, SIZES, TERTIARY, WHITE } from '
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from './Title';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
-import MoodDiary from './mood_diary/MoodDiary';
+import MoodDiary from '../../mood_diary/MoodDiary';
 
 export type FeedbackRoutes = {
   Feedback: { name: keyof FeedbackRoutes };

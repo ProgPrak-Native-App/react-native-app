@@ -9,11 +9,11 @@ import {
   Linking,
   ImageSourcePropType,
 } from 'react-native';
-import KsButton, { KsButtonProp } from '../shared/button/KsButton';
+import KsButton, { KsButtonProp } from '../shared/components/button/KsButton';
 import Card from '../shared/layout/Card';
 import { emergencies } from '../../assets/data/emergency';
 import { Emergency } from '../shared/model/emergency';
-import Title from '../Title';
+import Title from '../shared/components/Title';
 
 export default function EmergencyNumbers() {
   return (
@@ -41,7 +41,8 @@ export default function EmergencyNumbers() {
               <Image
                 accessibilityLabel={emergency.title}
                 source={emergency.logo as ImageSourcePropType}
-                style={styles.emergencyLogo}></Image>
+                style={styles.emergencyLogo}
+              />
             </TouchableHighlight>
             {/* Card Body */}
             <View style={styles.emergencyCardButtonContainer}>

@@ -1,4 +1,4 @@
-import { KsButtonProp } from '../button/KsButton';
+import { KsButtonProp } from '../components/button/KsButton';
 
 export type Emergency = {
   id?: string;

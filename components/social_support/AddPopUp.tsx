@@ -1,7 +1,7 @@
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
-import { BACKGROUND, BLACK, PRIMARY, SIZES, WHITE } from '../../styles';
+import { BACKGROUND, BLACK, GREY, PRIMARY, SIZES, WHITE } from '../shared/styles';
 
 export default function PopUp({
   person,
@@ -68,7 +68,7 @@ export default function PopUp({
 
 const styles = StyleSheet.create({
   overlay: {
-    backgroundColor: 'rgba(0.5,0.5,0.5,0.5)',
+    backgroundColor: GREY,
     height: '100%',
     width: '100%',
     position: 'absolute',

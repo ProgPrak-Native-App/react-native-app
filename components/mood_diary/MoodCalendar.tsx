@@ -6,7 +6,7 @@ import BasicDay from 'react-native-calendars/src/calendar/day/basic';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { LocaleConfig } from 'react-native-calendars';
 import { LocalDate, LocalDateTime } from '@js-joda/core';
-import Title from '../Title';
+import Title from '../shared/components/Title';
 import { MoodDiaryRoutes } from './MoodDiary';
 import MoodDiaryClient, { Mood } from '../../api/MoodDiaryClient';
 

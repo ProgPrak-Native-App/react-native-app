@@ -1,6 +1,6 @@
 import { GestureResponderEvent, Pressable, StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
 import React, { ReactNode } from 'react';
-import { TERTIARY } from '../styles';
+import { TERTIARY } from '../../styles';
 
 export type Props = {
   onPress?: (event: GestureResponderEvent) => void;

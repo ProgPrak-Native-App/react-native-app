@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import Home from './Home';
-import { PRIMARY, SHADOW } from '../styles';
+import { PRIMARY, SHADOW_COLOR } from './shared/styles';
 import MoodDiary from './mood_diary/MoodDiary';
 import Motivator from './motivators/Motivator';
 import Wiki from './Wiki';
@@ -91,14 +91,13 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderTopLeftRadius: 15,
     flex: 0.1,
-    shadowColor: SHADOW,
+    shadowColor: SHADOW_COLOR,
     shadowOffset: {
       width: 0,
       height: -2,
     },
-    shadowOpacity: 0.8,
+    shadowOpacity: 0.3,
     shadowRadius: 4,
-    elevation: -34,
   },
   items: {
     borderRadius: 15,

@@ -1,10 +1,10 @@
 import React from 'react';
-import Title from './Title';
+import Title from './shared/components/Title';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import KopfsachenButton from './KopfsachenButton';
+import KopfsachenButton from './shared/components/button/KopfsachenButton';
 import { TabRoutes } from './Routes';
-import { BACKGROUND, PRIMARY } from '../styles';
+import { BACKGROUND, PRIMARY } from './shared/styles';
 
 export default function Home() {
   const navigation = useNavigation<NavigationProp<TabRoutes>>();
