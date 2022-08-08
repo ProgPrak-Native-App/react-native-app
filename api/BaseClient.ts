@@ -8,11 +8,45 @@ export default class BaseClient {
     this.baseUrl = `https://${serviceName}.api.${Constants?.manifest?.extra?.environment}.mindtastic.lol`;
   }
 
-  async get<R>(path: string): Promise<R> {
-    const response = await fetch(new URL(path, this.baseUrl), {
-      method: 'GET',
-    });
+  async get<R>(path: string, options?: RequestInit): Promise<R> {
+    if (options) {
+      Object.assign(options, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+    }
+
+    const response = await fetch(new URL(path, this.baseUrl), options);
 
     return (await response.json()) as R;
+  }
+
+  async post(path: string, body: string | null, options?: RequestInit): Promise<Response> {
+    if (options) {
+      Object.assign(options, {
+        body: JSON.stringify(body),
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    }
+
+    return await fetch(new URL(path, this.baseUrl), { ...options });
+  }
+
+  async remove(path: string, options?: RequestInit): Promise<Response> {
+    if (options) {
+      Object.assign(options, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+    }
+
+    return await fetch(new URL(path, this.baseUrl), options);
   }
 }

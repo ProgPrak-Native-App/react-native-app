@@ -45,3 +45,19 @@ export const SIZES = {
   max_margin: 32,
   target_size: 48,
 };
+
+/* ---- Shadows ---- */
+export const SHADOW_COLOR = GREY;
+
+/* ---- Layout Colors --- */
+export const LAYOUT_COLOR_SAFEAREA_BACKGROUND = BACKGROUND;
+
+/* ---- Card Colors --- */
+export const CARD_BACKGROUND_COLOR = '#DCDCDE';
+/* ---- States Colors --- */
+export const STATE_COLOR_INACTIVE_BACKGROUND = WHITE;
+export const STATE_COLOR_INACTIVE_TINT = BLACK;
+export const STATE_COLOR_ACTIVE_TINT = BLACK;
+
+/* ---- TouchableHighlight Colors --- */
+export const TOUCHABLE_COLOR_UNDERLAY = '#C7C7C7';

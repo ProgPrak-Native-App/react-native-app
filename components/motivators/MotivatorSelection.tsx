@@ -10,8 +10,13 @@ import BaseClient from '../../api/BaseClient';
 
 async function getMotivators() {
   const baseClient = new BaseClient('motivator');
-  const { data } = await baseClient.get<{ data: { type: keyof MotivatorTypes }[] }>('/motivator');
-  return data.map(({ type }) => getMotivatorByType(type));
+  const { data } = await baseClient.get<{ data: { type: keyof MotivatorTypes }[] }>('/motivator', {
+    headers: {
+      Authorization: 'Bearer react-native-app',
+    },
+  });
+
+  return data;
 }
 
 function OldMotivatorGridView(motivators: MotivatorProps[]) {
@@ -23,7 +28,7 @@ function OldMotivatorGridView(motivators: MotivatorProps[]) {
         <Pressable
           accessibilityHint={'Übungen von ' + props.name + ' öffnen'}
           key={index}
-          onPress={() => navigation.navigate('OldMotivator', { props: props.type })}
+          onPress={() => navigation.navigate(props.screen, { props: props.type })}
           style={[styles.gridItem, { backgroundColor: props.color }, styles.shadow]}>
           <Text style={styles.text}>{props.name}</Text>
           {props.icon}
@@ -47,9 +52,8 @@ export default function MotivatorSelection() {
   return (
     <>
       <Title
-        Icon={() => <Image source={require('../../assets/motivator.png')} />}
+        Icon={() => <Image source={require('../../assets/motivator.png')} style={{ height: 80, width: 80 }} />}
         color={MOTIVATOR.DEFAULT}
-        style={styles.shadow}
         text="Meine Starkmacher"
       />
       <ScrollView>
@@ -94,8 +98,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   container: {
-    justifyContent: 'space-around',
-    height: 300,
+    marginTop: 15,
     marginHorizontal: 25,
   },
   text: {
@@ -105,6 +108,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
   },
   button: {
+    margin: 15,
     paddingHorizontal: 4,
     alignSelf: 'center',
   },
