@@ -6,18 +6,17 @@ import Title from '../Title';
 import React, { useEffect, useState } from 'react';
 import { MotivatorProps, MotivatorTypes, getMotivatorByType } from './MotivatorProps';
 import { GREY, MOTIVATOR, SHADOW } from '../../styles';
-import OldMotivator from './old_motivator/OldMotivator';
+import BaseClient from '../../api/BaseClient';
 
 async function getMotivators() {
-  // change to BASE_URL once merged -> feature/7/wiki
-  return await fetch('http://localhost:4010/motivator', {
+  const baseClient = new BaseClient('motivator');
+  const { data } = await baseClient.get<{ data: { type: keyof MotivatorTypes }[] }>('/motivator', {
     headers: {
       Authorization: 'Bearer react-native-app',
     },
-  })
-    .then((response) => response.json())
-    .then((data: { type: keyof MotivatorTypes }[]) => data.map((value) => getMotivatorByType(value.type)))
-    .catch(() => [getMotivatorByType('noMotivator')]);
+  });
+
+  return data;
 }
 
 function OldMotivatorGridView(motivators: MotivatorProps[]) {
@@ -40,13 +39,14 @@ function OldMotivatorGridView(motivators: MotivatorProps[]) {
 }
 
 export default function MotivatorSelection() {
-  const initialState: MotivatorProps[] = [];
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
-  const [oldMotivators, setOldMotivators] = useState(initialState);
+  const [oldMotivators, setOldMotivators] = useState<MotivatorProps[]>([]);
 
   // update state with motivators
   useEffect(() => {
-    getMotivators().then(setOldMotivators);
+    getMotivators()
+      .then(setOldMotivators)
+      .catch(() => setOldMotivators([getMotivatorByType('noMotivator')]));
   }, []);
 
   return (

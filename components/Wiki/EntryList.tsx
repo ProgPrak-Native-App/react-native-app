@@ -13,7 +13,7 @@ export default function EntryList() {
 
   // initially retrieve all wiki entries
   useEffect(() => {
-    new WikiClient('https://wiki.api.dev.mindtastic.lol')
+    new WikiClient('wiki')
       .getEntries()
       .then((entries) => entries.sort((a, b) => a.title.localeCompare(b.title)))
       .then(setAllEntries);

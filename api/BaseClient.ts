@@ -1,7 +1,14 @@
+import Constants from 'expo-constants';
 export default class BaseClient {
-  constructor(protected baseUrl: URL | string) {}
+  // Default environment is dev if not otherwise specified for NODE_ENV on runtime
+  // Available environments: [live, dev, stage]
+  private baseUrl: string;
 
-  protected async get<R>(path: string, options?: RequestInit): Promise<R> {
+  constructor(protected serviceName: URL | string) {
+    this.baseUrl = `https://${serviceName}.api.${Constants?.manifest?.extra?.environment}.mindtastic.lol`;
+  }
+
+  async get<R>(path: string, options?: RequestInit): Promise<R> {
     if (options) {
       Object.assign(options, {
         method: 'GET',
@@ -16,7 +23,7 @@ export default class BaseClient {
     return (await response.json()) as R;
   }
 
-  protected async post(path: string, body: string | null, options?: RequestInit): Promise<Response> {
+  async post(path: string, body: string | null, options?: RequestInit): Promise<Response> {
     if (options) {
       Object.assign(options, {
         body: JSON.stringify(body),
@@ -30,7 +37,7 @@ export default class BaseClient {
     return await fetch(new URL(path, this.baseUrl), { ...options });
   }
 
-  protected async remove(path: string, options?: RequestInit): Promise<Response> {
+  async remove(path: string, options?: RequestInit): Promise<Response> {
     if (options) {
       Object.assign(options, {
         method: 'DELETE',
