@@ -8,7 +8,6 @@ import { FontAwesome5, FontAwesome, Ionicons } from '@expo/vector-icons';
 import { LIGHT_BLUE } from '../../../styles';
 
 export type SafetyNetDType = {
-  id: number;
   type: string;
   title: string;
   strategies: [string, string, string];
@@ -24,7 +23,6 @@ export const iconMap = new Map<string, JSX.Element>([
 ]);
 
 export const empty: SafetyNetDType = {
-  id: -1,
   type: '',
   title: '',
   strategies: ['', '', ''],
