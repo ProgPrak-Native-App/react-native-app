@@ -20,12 +20,10 @@ async function getSafetyNet() {
       for (const i in data) {
         const item = data[i];
         const newItem: SafetyNetDType = {
-          id: item.id,
           type: item.type,
           title: item.name,
           strategies: item.strategies.slice(0, 3),
         };
-        console.log(newItem);
         items.push(newItem);
       }
       return items;

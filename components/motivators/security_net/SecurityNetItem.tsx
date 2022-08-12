@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Title from '../../Title';
 import KopfsachenButton from '../../KopfsachenButton';
 import { getMotivatorByType } from '../MotivatorProps';
-import { empty, SafetyNetDType } from './SecurityNetHome';
+import { SafetyNetDType } from './SecurityNetHome';
 import { View, Text, StyleSheet, Pressable, TextInput, ScrollView, Alert } from 'react-native';
 import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { SecurityNetRoutes } from './SecurityNet';
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { BLACK, GREY, SHADOW } from '../../../styles';
-
 export default function SecurityNetItem({
   navigation,
   route,
@@ -18,7 +17,6 @@ export default function SecurityNetItem({
     currentComponent: SafetyNetDType
   ) {
     if (!modifying) {
-      console.log(initialComponent);
       if (currentComponent.title !== initialComponent.title && currentComponent.type !== initialComponent.type) {
         navigation.navigate('SecurityNetAssistance', { component: currentComponent, modified: true });
       } else {
@@ -28,34 +26,18 @@ export default function SecurityNetItem({
         );
       }
     } else {
-      if (currentComponent.title !== initialComponent.title && currentComponent.type !== initialComponent.type) {
+      if (currentComponent.title !== initialComponent.title || currentComponent.type !== initialComponent.type) {
         navigation.navigate('SecurityNetAssistance', { component: currentComponent, modified: true });
+      } else {
+        navigation.navigate('SecurityNetAssistance', { component: currentComponent, modified: false });
       }
-      navigation.navigate('SecurityNetAssistance', { component: currentComponent, modified: false });
     }
-  }
-
-  function setTypeAndIcon(component: SafetyNetDType, type: string) {
-    component.type = type;
-    setResource(type);
   }
 
   const props = getMotivatorByType('relaxation');
   const iconSize = 48;
-  const [resource, setResource] = useState('');
-
-  useEffect(() => {
-    setResource(currentComponent.type);
-  });
-
-  const currentComponent = route.params.component;
-  const test = JSON.parse(JSON.stringify(currentComponent));
-  const initialComponent: SafetyNetDType = {
-    id: currentComponent.id.valueOf(),
-    type: currentComponent.type.valueOf(),
-    title: currentComponent.title.valueOf(),
-    strategies: currentComponent.strategies,
-  };
+  const initialComponent = route.params.component;
+  const [currentComponent, setResource] = useState(initialComponent);
 
   const modifying = route.params.modifying;
 
@@ -66,45 +48,45 @@ export default function SecurityNetItem({
         <Text style={styles.text}>Das bereitet mir Freude:</Text>
         <TextInput
           multiline
-          onChangeText={(input: string) => (currentComponent.title = input)}
+          onChangeText={(input: string) => setResource({ ...currentComponent, title: input })}
           placeholder={currentComponent.title !== '' ? currentComponent.title : 'Trage hier ein was dir Freude macht!'}
           style={styles.textinput}
         />
         <Text style={styles.text}>Zu welcher Kategorie gehört diese Ressource?</Text>
         <View style={styles.iconcontainer}>
-          <Pressable onPress={() => setTypeAndIcon(currentComponent, 'personalStrengths')}>
+          <Pressable onPress={() => setResource({ ...currentComponent, type: 'personalStrengths' })}>
             <Ionicons
               name="person"
               size={iconSize}
-              style={[styles.icon, resource === 'personalStrengths' ? { backgroundColor: GREY } : {}]}
+              style={[styles.icon, currentComponent.type === 'personalStrengths' ? { backgroundColor: GREY } : {}]}
             />
           </Pressable>
-          <Pressable onPress={() => setTypeAndIcon(currentComponent, 'people')}>
+          <Pressable onPress={() => setResource({ ...currentComponent, type: 'people' })}>
             <FontAwesome5
               name="user-friends"
               size={iconSize}
-              style={[styles.icon, resource === 'people' ? { backgroundColor: GREY } : {}]}
+              style={[styles.icon, currentComponent.type === 'people' ? { backgroundColor: GREY } : {}]}
             />
           </Pressable>
-          <Pressable onPress={() => setTypeAndIcon(currentComponent, 'pets')}>
+          <Pressable onPress={() => setResource({ ...currentComponent, type: 'pets' })}>
             <FontAwesome
               name="paw"
               size={iconSize}
-              style={[styles.icon, resource === 'pets' ? { backgroundColor: GREY } : {}]}
+              style={[styles.icon, currentComponent.type === 'pets' ? { backgroundColor: GREY } : {}]}
             />
           </Pressable>
-          <Pressable onPress={() => setTypeAndIcon(currentComponent, 'activities')}>
+          <Pressable onPress={() => setResource({ ...currentComponent, type: 'activities' })}>
             <FontAwesome
               name="soccer-ball-o"
               size={iconSize}
-              style={[styles.icon, resource === 'activities' ? { backgroundColor: GREY } : {}]}
+              style={[styles.icon, currentComponent.type === 'activities' ? { backgroundColor: GREY } : {}]}
             />
           </Pressable>
-          <Pressable onPress={() => setTypeAndIcon(currentComponent, 'other')}>
+          <Pressable onPress={() => setResource({ ...currentComponent, type: 'other' })}>
             <FontAwesome5
               name="tv"
               size={iconSize}
-              style={[styles.icon, resource === 'other' ? { backgroundColor: GREY } : {}]}
+              style={[styles.icon, currentComponent.type === 'other' ? { backgroundColor: GREY } : {}]}
             />
           </Pressable>
         </View>
