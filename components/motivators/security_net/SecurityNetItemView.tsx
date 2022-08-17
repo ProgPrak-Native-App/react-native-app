@@ -6,7 +6,9 @@ import Title from '../../Title';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Entypo } from '@expo/vector-icons';
 import { BLACK, SHADOW } from '../../../styles';
+import { setStringAsync } from 'expo-clipboard';
 
 async function getSafetyNet() {
   return await fetch('http://localhost:4010/safetyNet', {
@@ -20,8 +22,9 @@ async function getSafetyNet() {
       for (const i in data) {
         const item = data[i];
         const newItem: SafetyNetDType = {
+          id: item.id,
           type: item.type,
-          title: item.name,
+          name: item.name,
           strategies: item.strategies.slice(0, 3),
         };
         items.push(newItem);
@@ -34,35 +37,52 @@ async function getSafetyNet() {
     });
 }
 
-function SecurityNetItemGridView(safetyNetItems: SafetyNetDType[], type: string) {
-  const navigation = useNavigation<NavigationProp<SecurityNetRoutes>>();
-
-  return (
-    <>
-      {safetyNetItems
-        .filter((data) => data.type === type)
-        .map((data, index) => (
-          <Pressable
-            key={index}
-            onPress={() => {
-              navigation.navigate('SecurityNetItem', { component: data, modifying: true });
-            }}
-            style={[styles.gridItem, styles.shadow]}>
-            <Text style={styles.text}>{data.title}</Text>
-            {iconMap.get(data.type)}
-          </Pressable>
-        ))}
-    </>
-  );
+async function deleteEntry(id: number) {
+  return await fetch(`http://localhost:4010/safetyNet/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer react-native-app',
+    },
+  });
 }
 
 export default function SecurityNetItemView({
   route,
 }: NativeStackScreenProps<SecurityNetRoutes, 'SecurityNetItemView'>) {
+  function SecurityNetItemGridView(safetyNetItems: SafetyNetDType[], type: string) {
+    const navigation = useNavigation<NavigationProp<SecurityNetRoutes>>();
+    return (
+      <>
+        {safetyNetItems
+          .filter((data) => data.type === type)
+          .map((data, index) => (
+            <Pressable
+              key={index}
+              onPress={() => {
+                navigation.navigate('SecurityNetItem', { component: data, modifying: true });
+              }}
+              style={[styles.gridItem, styles.shadow]}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={{ width: 25, height: 24 }} />
+                <Text style={styles.text}>{data.name}</Text>
+                <Pressable
+                  onPress={() => {
+                    deleteEntry(data.id);
+                    setSafetyNetItems(safetyNetItems.splice(safetyNetItems.indexOf(data), 1));
+                  }}>
+                  <Entypo name="cross" size={24} />
+                </Pressable>
+              </View>
+              <View style={{ alignSelf: 'center' }}>{iconMap.get(data.type)}</View>
+            </Pressable>
+          ))}
+      </>
+    );
+  }
+
   const props = getMotivatorByType('relaxation');
   const initialState: SafetyNetDType[] = [];
   const [safetyNetItems, setSafetyNetItems] = useState(initialState);
-
   useEffect(() => {
     getSafetyNet().then(setSafetyNetItems);
   }, []);
@@ -81,7 +101,6 @@ export default function SecurityNetItemView({
 
 const styles = StyleSheet.create({
   gridItem: {
-    alignItems: 'center',
     justifyContent: 'space-around',
     width: '46%',
     height: 120,

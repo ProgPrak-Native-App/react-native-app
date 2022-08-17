@@ -9,7 +9,7 @@ import NotImplemented from '../../NotImplemented';
 export type SecurityNetRoutes = {
   SecurityNetHome: undefined;
   SecurityNetItem: { component: SafetyNetDType; modifying: boolean };
-  SecurityNetAssistance: { component: SafetyNetDType; modified: boolean };
+  SecurityNetAssistance: { component: SafetyNetDType; modified: boolean; modifying: boolean };
   SecurityNetItemView: { type: string };
   NotImplemented: undefined;
 };

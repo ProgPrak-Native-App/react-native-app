@@ -17,8 +17,12 @@ export default function SecurityNetItem({
     currentComponent: SafetyNetDType
   ) {
     if (!modifying) {
-      if (currentComponent.title !== initialComponent.title && currentComponent.type !== initialComponent.type) {
-        navigation.navigate('SecurityNetAssistance', { component: currentComponent, modified: true });
+      if (currentComponent.name !== initialComponent.name && currentComponent.type !== initialComponent.type) {
+        navigation.navigate('SecurityNetAssistance', {
+          component: currentComponent,
+          modified: true,
+          modifying,
+        });
       } else {
         Alert.alert(
           'Da hast du wohl was vergessen',
@@ -26,10 +30,18 @@ export default function SecurityNetItem({
         );
       }
     } else {
-      if (currentComponent.title !== initialComponent.title || currentComponent.type !== initialComponent.type) {
-        navigation.navigate('SecurityNetAssistance', { component: currentComponent, modified: true });
+      if (currentComponent.name !== initialComponent.name || currentComponent.type !== initialComponent.type) {
+        navigation.navigate('SecurityNetAssistance', {
+          component: currentComponent,
+          modified: true,
+          modifying,
+        });
       } else {
-        navigation.navigate('SecurityNetAssistance', { component: currentComponent, modified: false });
+        navigation.navigate('SecurityNetAssistance', {
+          component: currentComponent,
+          modified: false,
+          modifying,
+        });
       }
     }
   }
@@ -48,8 +60,8 @@ export default function SecurityNetItem({
         <Text style={styles.text}>Das bereitet mir Freude:</Text>
         <TextInput
           multiline
-          onChangeText={(input: string) => setResource({ ...currentComponent, title: input })}
-          placeholder={currentComponent.title !== '' ? currentComponent.title : 'Trage hier ein was dir Freude macht!'}
+          onChangeText={(input: string) => setResource({ ...currentComponent, name: input })}
+          placeholder={currentComponent.name !== '' ? currentComponent.name : 'Trage hier ein was dir Freude macht!'}
           style={styles.textinput}
         />
         <Text style={styles.text}>Zu welcher Kategorie gehört diese Ressource?</Text>

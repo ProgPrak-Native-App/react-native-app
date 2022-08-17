@@ -13,19 +13,27 @@ export default function SecurityNetAssistance({
   route,
 }: NativeStackScreenProps<SecurityNetRoutes, 'SecurityNetAssistance'>) {
   async function finishSecurityNetItem(navigation: NavigationProp<SecurityNetRoutes>, newComponent: SafetyNetDType) {
-    console.log(modified);
     if (newComponent.strategies[0] !== '' || newComponent.strategies[1] !== '' || newComponent.strategies[2] !== '') {
       if (modified) {
-        const response = await fetch('http://localhost:4010/safetyNet/75', {
-          method: 'POST',
-          headers: {
-            Authorization: 'Bearer react-native-app',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newComponent),
-        });
-        console.log(await response.json());
-        // TODO: send SafetyNetItem to DB with POST
+        if (modifying) {
+          const response = await fetch(`http://localhost:4010/safetyNet/${newComponent.id}`, {
+            method: 'PUT',
+            headers: {
+              Authorization: 'Bearer react-native-app',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newComponent),
+          });
+        } else {
+          const response = await fetch('http://localhost:4010/safetyNet', {
+            method: 'POST',
+            headers: {
+              Authorization: 'Bearer react-native-app',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newComponent),
+          });
+        }
       }
       navigation.navigate('SecurityNetHome');
     }
@@ -33,6 +41,7 @@ export default function SecurityNetAssistance({
 
   const props = getMotivatorByType('relaxation');
   const initialComponent = route.params.component;
+  const modifying = route.params.modifying;
   const [modified, setModified] = useState(route.params.modified);
   const [currentComponent, setResource] = useState(initialComponent);
 
