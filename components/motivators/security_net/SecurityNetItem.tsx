@@ -4,7 +4,7 @@ import KopfsachenButton from '../../KopfsachenButton';
 import { getMotivatorByType } from '../MotivatorProps';
 import { SafetyNetDType } from './SecurityNetHome';
 import { View, Text, StyleSheet, Pressable, TextInput, ScrollView, Alert } from 'react-native';
-import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { FontAwesome, FontAwesome5, Ionicons, Entypo } from '@expo/vector-icons';
 import { SecurityNetRoutes } from './SecurityNet';
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { BLACK, GREY, SHADOW } from '../../../styles';
@@ -95,8 +95,8 @@ export default function SecurityNetItem({
             />
           </Pressable>
           <Pressable onPress={() => setResource({ ...currentComponent, type: 'other' })}>
-            <FontAwesome5
-              name="tv"
+            <Entypo
+              name="dots-three-horizontal"
               size={iconSize}
               style={[styles.icon, currentComponent.type === 'other' ? { backgroundColor: GREY } : {}]}
             />

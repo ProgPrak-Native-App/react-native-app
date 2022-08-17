@@ -4,7 +4,7 @@ import { SecurityNetRoutes } from './SecurityNet';
 import Title from '../../Title';
 import { View, Text, StyleSheet, Image, Pressable, ImageBackground } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { FontAwesome5, FontAwesome, Ionicons } from '@expo/vector-icons';
+import { FontAwesome5, FontAwesome, Ionicons, Entypo } from '@expo/vector-icons';
 import { LIGHT_BLUE } from '../../../styles';
 
 export type SafetyNetDType = {
@@ -19,7 +19,7 @@ export const iconMap = new Map<string, JSX.Element>([
   ['personalStrengths', <Ionicons name="person" size={iconMapSize} />],
   ['people', <FontAwesome5 name="user-friends" size={iconMapSize} />],
   ['activities', <FontAwesome name="soccer-ball-o" size={iconMapSize} />],
-  ['other', <FontAwesome5 name="tv" size={iconMapSize} />],
+  ['other', <Entypo name="dots-three-horizontal" size={iconMapSize} />],
   ['pets', <FontAwesome name="paw" size={iconMapSize} />],
 ]);
 
@@ -62,7 +62,7 @@ export default function SecurityNetHome() {
               <FontAwesome name="soccer-ball-o" size={iconSize} style={styles.icon} />
             </Pressable>
             <Pressable onPress={() => navigation.navigate('SecurityNetItemView', { type: 'other' })}>
-              <FontAwesome name="music" size={iconSize} style={styles.icon} />
+              <Entypo name="dots-three-horizontal" size={iconSize} style={styles.icon} />
             </Pressable>
           </View>
           <Pressable

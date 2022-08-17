@@ -8,7 +8,6 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Entypo } from '@expo/vector-icons';
 import { BLACK, SHADOW } from '../../../styles';
-import { setStringAsync } from 'expo-clipboard';
 
 async function getSafetyNet() {
   return await fetch('http://localhost:4010/safetyNet', {
