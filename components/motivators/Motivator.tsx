@@ -12,7 +12,6 @@ import SocialSupportNavigation from '../social_support/SocialNavigation';
 import FeedbackNavigation from '../Feedback';
 import MotivatorCompleted from '../MotivatorCompleted';
 import Reframing from '../reframing/Reframing';
-import SecurityNet from './security_net/SecurityNet';
 
 export type MotivatorRoutes = {
   NewMotivator: undefined;
@@ -21,7 +20,6 @@ export type MotivatorRoutes = {
   OldMotivator: { props: unknown };
   SocialSupport: undefined;
   MotivatorSelection: undefined;
-  SecurityNet: undefined;
   CompassionNavigation: undefined;
   SecurityNet: undefined;
   Reframing: undefined;

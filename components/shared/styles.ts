@@ -49,8 +49,6 @@ export const SIZES = {
   target_size: 48,
 };
 
-
-
 /* ---- Shadows ---- */
 export const SHADOW_COLOR = GREY;
 
