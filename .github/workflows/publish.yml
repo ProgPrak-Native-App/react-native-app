@@ -60,7 +60,7 @@ jobs:
           echo "release_channel=$release_channel" | tee "$GITHUB_ENV"
 
       - name: Publish app
-        run: expo publish --release-channel=${{ env.release_channel }} --non-interactive
+        run: expo publish --release-channel=${{ env.release_channel }}
 
       - name: Save Expo Metadata
         uses: expo/expo-github-action/preview-comment@v7
