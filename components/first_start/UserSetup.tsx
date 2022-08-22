@@ -1,72 +1,72 @@
 import React from 'react';
 
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { LIGHT_BLUE, TERTIARY } from '../shared/styles';
+import { StyleSheet, Text, View } from 'react-native';
 import { useUserContext } from '../UserProvider';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { IntroductionProp } from './Introduction';
+import Title from '../shared/components/Title';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import KopfsachenButton from '../shared/components/button/KopfsachenButton';
+import Bold from '../shared/Bold';
+import { SIZES } from '../shared/styles';
+
+export default function UserSetup() {
+  const { register } = useUserContext();
+  const navigation = useNavigation<NavigationProp<IntroductionProp>>();
+
+  return (
+    <>
+      <Title emergencyButton={false} text="Herzlich Willkommen!" />
+      <View style={styles.textContainer}>
+        <MaterialCommunityIcons color="black" name="account-sync" size={80} />
+        <Text style={styles.text}>
+          Falls du die Kopfsachen-App schon auf einem anderen Gerät benutzt, kannst mit beiden Geräten am gleichen Stand
+          arbeiten.
+        </Text>
+      </View>
+      <KopfsachenButton onPress={() => navigation.navigate('QrScanner')} style={styles.button}>
+        Ich benutze die Kopfsachen-App <Bold>bereits auf einem anderen Gerät</Bold> und möchte hier weiterarbeiten.
+      </KopfsachenButton>
+
+      <View style={styles.spacer} />
+
+      <View style={styles.textContainer}>
+        <MaterialCommunityIcons color="black" name="account-plus" size={80} />
+        <Text style={styles.text}>
+          Benutzt du die Kopfsachen-App zum ersten Mal oder möchtest neu beginnen, lege hier los.
+        </Text>
+      </View>
+      <KopfsachenButton onPress={() => register()} style={styles.button}>
+        Ich benutze die Kopfsachen-App <Bold>zum ersten Mal</Bold>.
+      </KopfsachenButton>
+    </>
+  );
+}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    backgroundColor: LIGHT_BLUE,
-  },
-
-  headerContainer: {
-    flex: 1,
-  },
-
-  header: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 10,
-  },
-
   textContainer: {
-    flex: 8,
+    flexDirection: 'row',
     margin: 20,
-    justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+
+  spacer: {
+    height: '5%',
   },
 
   text: {
-    fontSize: 20,
-    textAlign: 'center',
+    flex: 1,
+    flexWrap: 'wrap',
+    fontSize: SIZES.font,
+    textAlign: 'left',
+    marginHorizontal: 10,
   },
 
-  buttonContainer: {
-    flex: 1,
-  },
   button: {
-    marginHorizontal: '25%',
-    borderWidth: 1,
-    borderRadius: 20,
-    backgroundColor: TERTIARY,
-    justifyContent: 'center',
-    height: 40,
+    flexGrow: 0,
+    flexShrink: 1,
+    marginHorizontal: '10%',
+    marginBottom: 10,
   },
 });
-
-export default function UserSetup() {
-  const { addUser } = useUserContext();
-  const STATUSBAR_INSET_HEIGHT = useSafeAreaInsets().top;
-
-  return (
-    <View style={[styles.container, { paddingTop: STATUSBAR_INSET_HEIGHT }]}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.header}>Create User</Text>
-      </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.text}>
-          This is a dummy page for later to see that a user is created once the button is pressed.
-        </Text>
-      </View>
-      <View style={styles.buttonContainer}>
-        <Pressable onPress={() => addUser()} style={styles.button}>
-          <Text style={styles.text}>Done</Text>
-        </Pressable>
-      </View>
-    </View>
-  );
-}
