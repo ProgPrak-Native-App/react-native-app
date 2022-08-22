@@ -23,6 +23,7 @@
     "@react-navigation/native-stack": "^6.6.2",
     "expo": "^46.0.0",
     "expo-av": "~12.0.4",
+    "expo-barcode-scanner": "~11.4.0",
     "expo-checkbox": "~2.2.0",
     "expo-clipboard": "~3.1.0",
     "expo-haptics": "~11.3.0",
@@ -35,6 +36,7 @@
     "expo-updates": "~0.14.5",
     "md5": "^2.3.0",
     "nanoid": "^4.0.0",
+    "qrcode": "^1.5.1",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.5",
@@ -47,19 +49,23 @@
     "react-native-screens": "~3.15.0",
     "react-native-snap-carousel": "^4.0.0-beta.6",
     "react-native-sortable-list": "^0.0.25",
-    "react-native-web": "~0.18.7"
+    "react-native-web": "~0.18.7",
+    "uuid": "^8.3.2",
+    "react-native-svg": "^12.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
     "@expo/webpack-config": "^0.17.0",
     "@types/markdown-it": "^12.2.3",
     "@types/md5": "^2.3.2",
+    "@types/qrcode": "^1.5.0",
     "@types/react": "~18.0.0",
     "@types/react-native": "~0.69.1",
     "@types/react-native-background-timer": "^2.0.0",
     "@types/react-native-countdown-component": "^2.7.0",
     "@types/react-native-snap-carousel": "^3.8.5",
     "@types/react-native-sortable-list": "^0.0.10",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
     "eslint": "^8.18.0",
@@ -88,8 +94,9 @@
     "browserslist": ">=4.16.5",
     "node-forge": ">=1.3.0",
     "nth-check": ">=2.0.1",
-    "react-native-svg": "<13.0.0",
-    "fbjs": ">=3.0.0"
+    "react-native-svg": "$react-native-svg",
+    "fbjs": ">=3.0.0",
+    "react-devtools-core": "4.14.0"
   },
   "private": true
 }

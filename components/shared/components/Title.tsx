@@ -12,76 +12,84 @@ type Props = {
   Icon?: () => JSX.Element;
   back?: true;
   style?: StyleProp<ViewStyle>;
+  emergencyButton?: boolean;
 };
 
-export default function Title({ text, color, Icon, back, style }: Props) {
-  const navigation = useNavigation<NavigationProp<never>>();
-  const mainNav = useNavigation<NavigationProp<TabRoutes>>();
-  const STATUSBAR_INSET_HEIGHT = useSafeAreaInsets().top;
+export default function Title({ text, color, Icon, back, style, emergencyButton }: Props) {
+  const navigation = useNavigation<NavigationProp<TabRoutes>>();
+  const statusbarInsetHeight = useSafeAreaInsets().top;
 
   return (
     <View style={[styles.container, STYLES.shadow, { backgroundColor: color ?? PRIMARY }, style]}>
-      <View style={[styles.buttonContainer, { paddingTop: STATUSBAR_INSET_HEIGHT }]}>
-        <Pressable
-          onPress={() => {
-            mainNav.navigate('EmergencyNumbers');
-          }}
-          style={styles.firstAidBtn}>
-          <FontAwesome5 name="first-aid" size={30} />
-          <Text style={{ fontSize: 11 }}>Notfall</Text>
-        </Pressable>
+      <View style={{ height: statusbarInsetHeight }} />
+      <View style={styles.innerContainer}>
         {back && navigation.canGoBack() && (
-          <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
-            <AntDesign color="black" name="left" size={30} />
-            <Text style={{ left: -5, fontSize: 12 }}>Zurück</Text>
+          <Pressable onPress={() => navigation.goBack()} style={[styles.button, { left: 5 }]}>
+            <AntDesign color="black" name="left" size={30} style={styles.buttonIcon} />
+            <Text style={styles.buttonCaption}>Zurück</Text>
           </Pressable>
         )}
+
+        {(emergencyButton ?? true) && (
+          <Pressable
+            onPress={() => {
+              navigation.navigate('EmergencyNumbers');
+            }}
+            style={[styles.button, { right: 5 }]}>
+            <FontAwesome5 name="first-aid" size={30} style={styles.buttonIcon} />
+            <Text style={styles.buttonCaption}>Notfall</Text>
+          </Pressable>
+        )}
+
+        <Text style={styles.text}>{text}</Text>
+
+        {Icon && (
+          <View>
+            <Icon />
+          </View>
+        )}
       </View>
-
-      <Text style={styles.text}>{text}</Text>
-
-      {Icon ? (
-        <View>
-          <Icon />
-        </View>
-      ) : (
-        <View />
-      )}
-
-      <View />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  firstAidBtn: {
-    height: 48,
-    width: 48,
-    alignItems: 'center',
-    fontSize: 11,
-  },
   container: {
     maxHeight: 240,
     height: '33%',
     zIndex: 100,
-    justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
+    flexDirection: 'column',
+    elevation: 10,
+  },
+  innerContainer: {
+    width: '100%',
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  button: {
+    height: 48,
+    width: 48,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 5,
+  },
+  buttonIcon: {
+    flexGrow: 1,
+  },
+  buttonCaption: {
+    fontSize: 12,
+    flexGrow: 0,
   },
   text: {
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
-  },
-  buttonContainer: {
-    flexDirection: 'row-reverse',
-    width: '100%',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
+    textAlignVertical: 'center',
   },
 });
