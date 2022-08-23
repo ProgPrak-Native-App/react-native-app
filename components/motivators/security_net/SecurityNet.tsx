@@ -1,6 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SecurityNetHome, { SafetyNetDType } from './SecurityNetHome';
+import SecurityNetHome from './SecurityNetHome';
+import { SafetyNetDType } from '../../../api/SecurityNetClient';
 import SecurityNetItem from './SecurityNetItem';
 import SecurityNetItemView from './SecurityNetItemView';
 import SecurityNetAssistance from './SecurityNetAssistance';

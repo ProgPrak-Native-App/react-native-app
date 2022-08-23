@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Title from '../../Title';
 import KopfsachenButton from '../../KopfsachenButton';
 import { getMotivatorByType } from '../MotivatorProps';
-import { SafetyNetDType } from './SecurityNetHome';
+import { SafetyNetDType } from '../../../api/SecurityNetClient';
 import { View, Text, StyleSheet, Pressable, TextInput, ScrollView, Alert } from 'react-native';
 import { FontAwesome, FontAwesome5, Ionicons, Entypo } from '@expo/vector-icons';
 import { SecurityNetRoutes } from './SecurityNet';

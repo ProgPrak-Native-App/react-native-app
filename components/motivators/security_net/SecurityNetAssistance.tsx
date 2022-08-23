@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Title from '../../Title';
 import KopfsachenButton from '../../KopfsachenButton';
+import SecurityNetClient, { SafetyNetDType } from '../../../api/SecurityNetClient';
 import { getMotivatorByType } from '../MotivatorProps';
-import { SafetyNetDType } from './SecurityNetHome';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { SecurityNetRoutes } from './SecurityNet';
@@ -16,23 +16,25 @@ export default function SecurityNetAssistance({
     if (newComponent.strategies[0] !== '' || newComponent.strategies[1] !== '' || newComponent.strategies[2] !== '') {
       if (modified) {
         if (modifying) {
-          const response = await fetch(`http://localhost:4010/safetyNet/${newComponent.id}`, {
+          new SecurityNetClient('http://localhost:4010/safetyNet').replaceItem(newComponent);
+          /* const response = await fetch(`http://localhost:4010/safetyNet/${newComponent.id}`, {
             method: 'PUT',
             headers: {
               Authorization: 'Bearer react-native-app',
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(newComponent),
-          });
+          }); */
         } else {
-          const response = await fetch('http://localhost:4010/safetyNet', {
+          new SecurityNetClient('http://localhost:4010/safetyNet').addItem(newComponent);
+          /* const response = await fetch('http://localhost:4010/safetyNet', {
             method: 'POST',
             headers: {
               Authorization: 'Bearer react-native-app',
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(newComponent),
-          });
+          }); */
         }
       }
       navigation.navigate('SecurityNetHome');

@@ -1,39 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { SecurityNetRoutes } from './SecurityNet';
 import { getMotivatorByType } from '../MotivatorProps';
-import { empty, iconMap, SafetyNetDType } from './SecurityNetHome';
+import { iconMap } from './SecurityNetHome';
+import SecurityNetClient, { SafetyNetDType } from '../../../api/SecurityNetClient';
 import Title from '../../Title';
-import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Entypo } from '@expo/vector-icons';
 import { BLACK, SHADOW } from '../../../styles';
 
 async function getSafetyNet() {
-  return await fetch('http://localhost:4010/safetyNet', {
-    headers: {
-      Authorization: 'Bearer react-native-app',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      const items: SafetyNetDType[] = [];
-      for (const i in data) {
-        const item = data[i];
-        const newItem: SafetyNetDType = {
-          id: item.id,
-          type: item.type,
-          name: item.name,
-          strategies: item.strategies.slice(0, 3),
-        };
-        items.push(newItem);
-      }
-      return items;
-    })
-    .catch(() => {
-      Alert.alert('Keine Verbindung', 'Leider besteht zur zeit keine Verbindung zu unserem Server :(');
-      return [empty, empty, empty];
-    });
+  const result = new SecurityNetClient('http://localhost:4010').getItems();
+  return result;
 }
 
 async function deleteEntry(id: number) {

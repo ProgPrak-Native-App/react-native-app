@@ -2,17 +2,11 @@ import React from 'react';
 import { getMotivatorByType } from '../MotivatorProps';
 import { SecurityNetRoutes } from './SecurityNet';
 import Title from '../../Title';
+import { empty } from '../../../api/SecurityNetClient';
 import { View, Text, StyleSheet, Image, Pressable, ImageBackground } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { FontAwesome5, FontAwesome, Ionicons, Entypo } from '@expo/vector-icons';
 import { LIGHT_BLUE } from '../../../styles';
-
-export type SafetyNetDType = {
-  id: number;
-  type: string;
-  name: string;
-  strategies: [string, string, string];
-};
 
 const iconMapSize = 32;
 export const iconMap = new Map<string, JSX.Element>([
@@ -22,13 +16,6 @@ export const iconMap = new Map<string, JSX.Element>([
   ['other', <Entypo name="dots-three-horizontal" size={iconMapSize} />],
   ['pets', <FontAwesome name="paw" size={iconMapSize} />],
 ]);
-
-export const empty: SafetyNetDType = {
-  id: NaN,
-  type: '',
-  name: '',
-  strategies: ['', '', ''],
-};
 
 export default function SecurityNetHome() {
   const iconSize = 40;
