@@ -1,6 +1,6 @@
 import React from 'react';
-import MotivatorSelection from './MotivatorSelection';
-import NotImplemented from '../NotImplemented';
+import MotivatorOverview from './new_motivator/MotivatorOverview';
+import NotImplemented from '../shared/components/NotImplemented';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import OldMotivator from './old_motivator/OldMotivator';
 import Optimism from './optimism/Optimism';
@@ -12,7 +12,7 @@ export type MotivatorRoutes = {
   Optimism: undefined;
   OldMotivator: { props: unknown };
   SocialSupport: undefined;
-  MotivatorSelection: undefined;
+  MotivatorOverview: undefined;
   SecurityNet: undefined;
   NotImplemented: undefined;
 };
@@ -22,7 +22,7 @@ const StackNavigator = createNativeStackNavigator<MotivatorRoutes>();
 export default function Motivator() {
   return (
     <StackNavigator.Navigator screenOptions={{ headerShown: false }}>
-      <StackNavigator.Screen component={MotivatorSelection} name="MotivatorSelection" />
+      <StackNavigator.Screen component={MotivatorOverview} name="MotivatorOverview" />
       <StackNavigator.Screen component={NewMotivator} name="NewMotivator" />
       <StackNavigator.Screen component={OldMotivator} name="OldMotivator" />
       <StackNavigator.Screen component={Optimism} name="Optimism" />

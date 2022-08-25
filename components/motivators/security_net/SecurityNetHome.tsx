@@ -1,11 +1,11 @@
 import React from 'react';
 import { getMotivatorByType } from '../MotivatorProps';
 import { SecurityNetRoutes } from './SecurityNet';
-import Title from '../../Title';
-import { View, Text, StyleSheet, Image, Pressable, ImageBackground } from 'react-native';
+import Title from '../../shared/components/Title';
+import { Image, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { FontAwesome5, FontAwesome, Ionicons } from '@expo/vector-icons';
-import { LIGHT_BLUE } from '../../../styles';
+import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { LIGHT_BLUE } from '../../shared/styles';
 
 export type SafetyNetDType = {
   type: string;

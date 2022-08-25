@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
-import { BACKGROUND } from '../../styles';
+import { BACKGROUND } from '../shared/styles';
 
 export type personProp = {
   name: string;

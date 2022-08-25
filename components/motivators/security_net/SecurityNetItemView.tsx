@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { SecurityNetRoutes } from './SecurityNet';
 import { getMotivatorByType } from '../MotivatorProps';
 import { empty, iconMap, SafetyNetDType } from './SecurityNetHome';
-import Title from '../../Title';
+import Title from '../../shared/components/Title';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { BLACK, SHADOW } from '../../../styles';
+import { SHADOW_COLOR, STYLES } from '../../shared/styles';
 
 async function getSafetyNet() {
   return await fetch('http://localhost:4010/safetyNet', {
@@ -48,7 +48,7 @@ function SecurityNetItemGridView(safetyNetItems: SafetyNetDType[], type: string)
             onPress={() => {
               navigation.navigate('SecurityNetItem', { component: data });
             }}
-            style={[styles.gridItem, styles.shadow]}>
+            style={[styles.gridItem, STYLES.shadow]}>
             <Text style={styles.text}>{data.title}</Text>
             {iconMap.get(data.icon)}
           </Pressable>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
     borderWidth: 0.5,
-    borderColor: SHADOW,
+    borderColor: SHADOW_COLOR,
   },
   gridContainer: {
     marginVertical: 5,
@@ -104,12 +104,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 26,
     letterSpacing: 0,
-  },
-  shadow: {
-    elevation: 4,
-    shadowColor: BLACK,
-    shadowOffset: { width: -2, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
   },
 });

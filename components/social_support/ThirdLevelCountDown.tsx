@@ -1,7 +1,7 @@
 import { Text, StyleSheet, ScrollView, Pressable, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import Title from '../Title';
-import { BLACK, DARK_GREY, ORANGE, PRIMARY, SIZES, TERTIARY } from '../../styles';
+import Title from '../shared/components/Title';
+import { BLACK, DARK_GREY, ORANGE, PRIMARY, SIZES, TERTIARY } from '../shared/styles';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { SocialSupportStackParamList } from './SocialNavigation';
 import CountDown from 'react-native-countdown-component';

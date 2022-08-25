@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { BACKGROUND, BLUE, ERROR } from '../../styles';
+import { BACKGROUND, BLUE, ERROR } from '../shared/styles';
 
 interface InputData {
   label: string;

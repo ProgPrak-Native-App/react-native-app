@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Image, Modal, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
-import Title from '../../Title';
+import Title from '../../shared/components/Title';
 import { getMotivatorByType } from '../MotivatorProps';
-import { BACKGROUND, SHADOW, SIZES } from '../../../styles';
-import KopfsachenButton from '../../KopfsachenButton';
+import { BACKGROUND, SIZES, STYLES } from '../../shared/styles';
+import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import { AntDesign } from '@expo/vector-icons';
 
 export default function OptimismHome({ navigation }: any) {
@@ -26,7 +26,7 @@ export default function OptimismHome({ navigation }: any) {
           }}
           style={styles.centeredView}>
           <TouchableWithoutFeedback>
-            <View style={styles.modalView}>
+            <View style={[styles.modalView, STYLES.shadow]}>
               <AntDesign
                 accessibilityHint={'Übung beginnen'}
                 color="black"
@@ -50,7 +50,7 @@ export default function OptimismHome({ navigation }: any) {
                   setModalVisible(!modalVisible);
                   navigation.navigate('OptimismExercise');
                 }}
-                style={styles.button}>
+                style={[styles.button, STYLES.shadow]}>
                 Let's go!
               </KopfsachenButton>
             </View>
@@ -65,13 +65,16 @@ export default function OptimismHome({ navigation }: any) {
       </View>
 
       <View style={styles.containerButtons}>
-        <KopfsachenButton accessibilityHint={'Zurück'} onPress={() => navigation.goBack()} style={styles.button}>
+        <KopfsachenButton
+          accessibilityHint={'Zurück'}
+          onPress={() => navigation.goBack()}
+          style={[styles.button, STYLES.shadow]}>
           Andere Strategie auswählen
         </KopfsachenButton>
         <KopfsachenButton
           accessibilityHint={'Das will ich üben'}
           onPress={() => setModalVisible(true)}
-          style={styles.button}>
+          style={[styles.button, STYLES.shadow]}>
           Das will ich üben
         </KopfsachenButton>
       </View>
@@ -93,14 +96,6 @@ const styles = StyleSheet.create({
     fontSize: SIZES.font,
     lineHeight: SIZES.default_line_height,
     textAlign: 'center',
-    shadowColor: SHADOW,
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
   },
   header: {
     paddingHorizontal: 25,
@@ -120,14 +115,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 20,
     alignItems: 'center',
-    shadowColor: SHADOW,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
   },
   modalText: {
     lineHeight: SIZES.default_line_height,

@@ -1,7 +1,7 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { Text, Modal, View, StyleSheet, Pressable } from 'react-native';
-import { DARK_GREEN, ORANGE, PRIMARY, PURPLE, SIZES, WHITE } from '../../styles';
+import { DARK_GREEN, ORANGE, PRIMARY, PURPLE, SIZES, WHITE } from '../shared/styles';
 import { SocialSupportStackParamList } from './SocialNavigation';
 
 const textLvl1 = [
