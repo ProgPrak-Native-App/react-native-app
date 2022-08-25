@@ -20,8 +20,8 @@ jobs:
       - name: Setup Expo
         uses: expo/expo-github-action@v7
         with:
-          expo-version: latest
-          eas-version: latest
+          expo-version: 6.0.5
+          eas-version: 1.1.1
           token: ${{ secrets.EXPO_TOKEN }}
           packager: npm
           expo-cache: false
@@ -50,13 +50,13 @@ jobs:
               exit 1
               ;;
           esac
-          
+
           # Remove illegal characters from release channel name
           # 1. Replace uppercase letters with lowercase
           # 2. Replace slashes with hyphens
           # 3. Remove all other illegal characters
           release_channel="$(echo -n "$release_channel" | tr "[:upper:]" "[:lower:]" | tr "/" "-" | tr -dc "[:lower:][:digit:].\-_")"
-          
+
           echo "release_channel=$release_channel" | tee "$GITHUB_ENV"
 
       - name: Publish app
