@@ -4,7 +4,7 @@ import { Alert, StyleSheet, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { ProfileRoutes } from './Profile';
 import { useUserContext } from '../UserProvider';
-import { SIZES } from '../../styles';
+import { SIZES } from '../shared/styles';
 
 export default function ProfileOverview() {
   const navigation = useNavigation<NavigationProp<ProfileRoutes>>();
@@ -16,19 +16,19 @@ export default function ProfileOverview() {
       undefined,
       // TODO: Actually delete the user account from the backend, and only then forget
       [{ text: 'Ja', onPress: () => forgetUser() }, { text: 'Nein' }],
-      { cancelable: true },
+      { cancelable: true }
     );
   }
 
   return (
     <View style={styles.container}>
-      <ProfileOption icon='user-alt' title='Account' />
-      <ProfileOption icon='chart-bar' title='Stimmungsverlauf' />
-      <ProfileOption icon='bell' title='Benachrichtigungen' />
-      <ProfileOption icon='shield-alt' title='Datenschutz' />
-      <ProfileOption icon='sliders-h' title='Einstellungen' />
-      <ProfileOption icon='qrcode' onPress={() => navigation.navigate('ProfileExport')} title='Profil übertragen' />
-      <ProfileOption color='red' icon='trash-alt' onPress={confirmDeleteUser} title='Profil löschen' />
+      <ProfileOption icon="user-alt" title="Account" />
+      <ProfileOption icon="chart-bar" title="Stimmungsverlauf" />
+      <ProfileOption icon="bell" title="Benachrichtigungen" />
+      <ProfileOption icon="shield-alt" title="Datenschutz" />
+      <ProfileOption icon="sliders-h" title="Einstellungen" />
+      <ProfileOption icon="qrcode" onPress={() => navigation.navigate('ProfileExport')} title="Profil übertragen" />
+      <ProfileOption color="red" icon="trash-alt" onPress={confirmDeleteUser} title="Profil löschen" />
     </View>
   );
 }

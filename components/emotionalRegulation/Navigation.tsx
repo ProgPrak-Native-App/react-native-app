@@ -11,7 +11,7 @@ import IntroVideoScreen from './IntroVideoScreen';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { MotivatorRoutes } from '../motivators/MotivatorNavigator';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { TabRoutes } from '../Routes';
+import { TabRoutes } from '../MainTabBar';
 
 export type EmoRoutes = {
   IntroVideoScreen: undefined;

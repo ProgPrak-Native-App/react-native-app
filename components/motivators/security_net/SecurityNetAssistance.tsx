@@ -3,7 +3,7 @@ import Title from '../../shared/components/Title';
 import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import { getMotivatorByType } from '../model';
 import SecurityNetClient, { SafetyNetDType } from '../../../api/SecurityNetClient';
-import { NativeSyntheticEvent, StyleSheet, Text, TextInput, TextInputEndEditingEventData, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { SecurityNetRoutes } from './SecurityNet';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';

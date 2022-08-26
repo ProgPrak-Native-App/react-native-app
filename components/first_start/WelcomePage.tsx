@@ -12,7 +12,7 @@ export default function WelcomePage() {
 
   return (
     <View style={styles.container}>
-      <Title text="Herzlich Willkommen!" emergencyButton={false} />
+      <Title emergencyButton={false} text="Herzlich Willkommen!" />
       <View style={styles.textContainer}>
         <Text style={styles.text}>
           In dieser App geht es darum, deine mentale Gesundheitskompetenz auszubauen: Wir werden an deinen persönlichen

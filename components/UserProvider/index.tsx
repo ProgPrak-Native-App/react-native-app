@@ -9,6 +9,7 @@ interface UserProviderProps {
 interface UserContextInterface {
   accountKey: string | undefined;
   sessionToken: string | undefined;
+  loading: boolean;
   setAccountKey: (accountKey: string) => void;
   login: (accountKey: string) => Promise<void>;
   register: () => Promise<void>;
@@ -18,6 +19,7 @@ interface UserContextInterface {
 const DEFAULT_CONTEXT_STATE: UserContextInterface = {
   accountKey: undefined,
   sessionToken: undefined,
+  loading: true,
   setAccountKey: contextMissing,
   login: contextMissing,
   register: contextMissing,
@@ -37,14 +39,18 @@ export const useUserContext = () => useContext(UserContext);
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [accountKey, setAccountKey] = useState<string | undefined>();
   const [sessionToken, setSessionToken] = useState<string | undefined>();
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     // initially load accountKey from storage
-    getLocalStoreData().then((value) => {
-      if (value) {
-        setAccountKey(value);
-      }
-    });
+    setLoading(true);
+    getLocalStoreData()
+      .then((value) => {
+        if (value) {
+          setAccountKey(value);
+        }
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
@@ -84,9 +90,15 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     setSessionToken(undefined);
   }, []);
 
-  return (
-    <UserContext.Provider value={{ accountKey, sessionToken, setAccountKey, forgetUser, login, register }}>
-      {children}
-    </UserContext.Provider>
-  );
+  const context = {
+    accountKey,
+    sessionToken,
+    loading,
+    setAccountKey,
+    forgetUser,
+    login,
+    register,
+  };
+
+  return <UserContext.Provider value={context}>{children}</UserContext.Provider>;
 };

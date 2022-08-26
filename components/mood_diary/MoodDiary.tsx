@@ -7,7 +7,7 @@ import PositiveIntro from './PositiveIntro';
 import NeutralIntro from './NeutralIntro';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { TabRoutes } from '../Routes';
+import { TabRoutes } from '../MainTabBar';
 
 export type MoodDiaryRoutes = {
   Calendar: undefined;

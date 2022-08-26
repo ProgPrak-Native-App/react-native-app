@@ -3,8 +3,8 @@ import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import { PRIMARY, STYLES } from '../styles';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { TabRoutes } from '../../Routes';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { TabRoutes } from '../../MainTabBar';
 
 type Props = {
   text: string;

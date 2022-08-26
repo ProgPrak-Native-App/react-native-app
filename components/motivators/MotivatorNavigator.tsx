@@ -13,8 +13,8 @@ import Feedback from '../shared/components/Feedback';
 import MotivatorOverview from './new_motivator/MotivatorOverview';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { NavigatorScreenParams } from '@react-navigation/native';
-import { TabRoutes } from '../Routes';
 import { MotivatorName } from './model';
+import { TabRoutes } from '../MainTabBar';
 
 export type MotivatorOrigin = 'MoodDiary';
 
