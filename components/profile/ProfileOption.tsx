@@ -1,5 +1,5 @@
 import React from 'react';
-import { GestureResponderEvent, Pressable, StyleSheet, Text, View } from 'react-native';
+import { GestureResponderEvent, Pressable, StyleSheet, Text } from 'react-native';
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 
 type Props = {
@@ -12,31 +12,27 @@ type Props = {
 export default function ProfileOption({ title, icon, onPress, color }: Props) {
   return (
     <Pressable onPress={onPress} style={styles.profileItem}>
-      <View style={styles.itemContainer}>
-        <FontAwesome5 color={color} name={icon} size={20} />
-        <Text style={[styles.text, { color }]}>{title}</Text>
-      </View>
+      <FontAwesome5 color={color} name={icon} size={20} style={styles.itemIcon} />
+      <Text style={[styles.itemText, { color }]}>{title}</Text>
       <AntDesign color={color} name="right" size={20} />
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  itemContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginHorizontal: 25,
-  },
   profileItem: {
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 25,
-    marginTop: 16,
+    justifyContent: 'flex-start',
+    marginBottom: 16,
   },
-  text: {
+  itemText: {
+    flexGrow: 1,
     fontSize: 20,
-    textAlign: 'center',
     marginLeft: 10,
+  },
+  itemIcon: {
+    flexBasis: 30,
+    textAlign: 'center',
   },
 });
