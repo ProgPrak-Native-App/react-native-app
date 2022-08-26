@@ -1,7 +1,7 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import React from 'react';
-import { ACCENT, SIZES } from '../../styles';
 import { props } from './L';
+import { ACCENT, SIZES } from '../shared/styles';
 
 export default function P({ puffer }: { puffer: props }) {
   return (

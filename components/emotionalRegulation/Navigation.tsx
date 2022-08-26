@@ -6,9 +6,9 @@ import E from './E';
 import N from './N';
 import NKontrolle from './NKontrolle';
 import Nice from './Nice';
-import Feedback from '../Feedback';
 import InterScreen from './InterScreen';
 import IntroVideoScreen from './IntroVideoScreen';
+import FeedbackNavigation from '../shared/components/Feedback';
 
 export type EmoRoutes = {
   IntroVideoScreen: undefined;
@@ -41,7 +41,7 @@ export default function EmoNavigation() {
       <Stack.Screen component={InterScreen} name="InterScreen" />
       <Stack.Screen component={NKontrolle} name="NKontrolle" />
       <Stack.Screen component={Nice} name="Nice" />
-      <Stack.Screen component={Feedback} name="Feedback" />
+      <Stack.Screen component={FeedbackNavigation} name="Feedback" />
     </Stack.Navigator>
   );
 }

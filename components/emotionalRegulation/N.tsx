@@ -1,11 +1,11 @@
 import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-import { ACCENT, BLACK, LIGHT_BLUE, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
-import Title from '../Title';
 import TimeModal from './TimeModal';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { EmoRoutes } from './Navigation';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { ACCENT, BLACK, LIGHT_BLUE, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
+import Title from '../shared/components/Title';
 
 export default function N() {
   const { navigate } = useNavigation<NavigationProp<EmoRoutes>>();

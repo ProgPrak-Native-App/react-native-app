@@ -5,7 +5,7 @@ import { BLACK, DARK_GREY, PRIMARY, RED, SIZES, TERTIARY, WHITE } from '../style
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from './Title';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { MotivatorRoutes } from './motivators/Motivator';
+import { MotivatorRoutes } from '../../motivators/Motivator';
 
 export type Props = {
   name: keyof FeedbackRoutes;
@@ -25,17 +25,17 @@ export type FeedbackScreenProps<T extends keyof FeedbackRoutes> = NativeStackScr
 const getImage = (name: string) => {
   switch (name) {
     case 'Soziale Unterstützung':
-      return <Image source={require('../assets/compassionIcon.png')} style={{ height: 70, width: 70 }} />;
+      return <Image source={require('../../../assets/compassionIcon.png')} style={{ height: 70, width: 70 }} />;
     case 'Optimismus':
-      return <Image source={require('../assets/optimismIcon.png')} style={{ height: 70, width: 70 }} />;
+      return <Image source={require('../../../assets/optimismIcon.png')} style={{ height: 70, width: 70 }} />;
     case 'Selbstbezogenes Mitgefühl':
-      return <Image source={require('../assets/compassionIcon.png')} style={{ height: 70, width: 70 }} />;
+      return <Image source={require('../../../assets/compassionIcon.png')} style={{ height: 70, width: 70 }} />;
     case 'Situationskontrolle':
-      return <Image source={require('../assets/situationControlIcon.png')} style={{ height: 70, width: 70 }} />;
+      return <Image source={require('../../../assets/situationControlIcon.png')} style={{ height: 70, width: 70 }} />;
     case 'Refraiming':
-      return <Image source={require('../assets/reframingIcon.png')} style={{ height: 70, width: 70 }} />;
+      return <Image source={require('../../../assets/reframingIcon.png')} style={{ height: 70, width: 70 }} />;
     case 'Sicherheitsnetz':
-      return <Image source={require('../assets/securitynetIcon.png')} style={{ height: 70, width: 70 }} />;
+      return <Image source={require('../../../assets/securitynetIcon.png')} style={{ height: 70, width: 70 }} />;
   }
 };
 export default function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {

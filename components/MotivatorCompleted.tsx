@@ -1,7 +1,7 @@
 import { Image, ScrollView, StyleSheet, Text } from 'react-native';
 import React from 'react';
-import Title from './Title';
-import { PINK, SIZES } from '../styles';
+import Title from './shared/components/Title';
+import { PINK, SIZES } from './shared/styles';
 
 export default function MotivatorCompleted() {
   return (

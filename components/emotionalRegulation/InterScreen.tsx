@@ -1,10 +1,10 @@
 import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
 import React from 'react';
-import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
-import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { EmoRoutes } from './Navigation';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
+import Title from '../shared/components/Title';
 
 export default function InterScreen() {
   const { navigate } = useNavigation<NavigationProp<EmoRoutes>>();

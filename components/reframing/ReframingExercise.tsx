@@ -1,10 +1,10 @@
 import { View, Text, ScrollView, StyleSheet, TextInput, Pressable } from 'react-native';
 import React, { useState } from 'react';
-import Title from '../Title';
-import { BLACK, PINK, PRIMARY, SIZES, TERTIARY, WHITE } from '../../styles';
 import { NavigationProp, useNavigation } from '@react-navigation/core';
 import { ReframingRoutes } from './Reframing';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { BLACK, PINK, PRIMARY, SIZES, TERTIARY, WHITE } from '../shared/styles';
+import Title from '../shared/components/Title';
 
 export type Props = {
   id: number;

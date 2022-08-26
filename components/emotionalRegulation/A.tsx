@@ -1,7 +1,7 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import React from 'react';
-import { ACCENT, BLACK, PRIMARY, SIZES, WHITE } from '../../styles';
 import Slider from '@react-native-community/slider';
+import { ACCENT, BLACK, PRIMARY, SIZES, WHITE } from '../shared/styles';
 
 export default function A({ desc, handleInput }: { desc: string; handleInput: (v: string, val: string) => void }) {
   return (

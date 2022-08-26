@@ -1,15 +1,15 @@
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { BLACK, DARK_GREEN, GREY, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
-import Title from '../Title';
 import { NavigationProp, useFocusEffect, useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 import { Audio, AVPlaybackStatus } from 'expo-av';
 import Slider from '@react-native-community/slider';
-import Bold from '../Bold';
 import track from '../../assets/Compassion-Meditation-Example.mp3';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
 import { MotivatorRoutes } from '../motivators/Motivator';
+import { BLACK, DARK_GREEN, GREY, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
+import Title from '../shared/components/Title';
+import Bold from '../shared/Bold';
 
 /** source code for audio player:
  * https://github.com/expo/playlist-example/blob/master/App.js

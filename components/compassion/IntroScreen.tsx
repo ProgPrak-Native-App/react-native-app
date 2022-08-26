@@ -1,12 +1,11 @@
 import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
 import React from 'react';
-import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
-
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import Title from '../Title';
 import { CompassionRoutes } from './CompassionNavigation';
 import { TabRoutes } from '../Routes';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
+import Title from '../shared/components/Title';
 
 export default function IntroScreen() {
   const navigation = useNavigation<NavigationProp<CompassionRoutes>>();

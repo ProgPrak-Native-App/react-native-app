@@ -1,8 +1,8 @@
 import { MotivatorRoutes } from './Motivator';
 import React from 'react';
 import { Image } from 'react-native';
-import { MOTIVATOR, PURPLE } from '../../styles';
 import { MaterialIcons } from '@expo/vector-icons';
+import { MOTIVATOR, PURPLE } from '../shared/styles';
 
 export type Exercise = { title: string; screen: keyof MotivatorRoutes };
 

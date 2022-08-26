@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
-import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { BLACK, PURPLE, SIZES, TERTIARY } from '../../styles';
 import { ResizeMode, Video } from 'expo-av';
 import { EmoRoutes } from './Navigation';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { BLACK, PURPLE, SIZES, TERTIARY } from '../shared/styles';
+import Title from '../shared/components/Title';
 
 export default function IntroVideoScreen() {
   const navigation = useNavigation<NavigationProp<EmoRoutes>>();

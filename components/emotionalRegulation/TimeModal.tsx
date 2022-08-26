@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet, Pressable, Modal, Alert, TouchableHighlight, Platform } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { BACKGROUND, DARK_GREEN, PRIMARY, SIZES, WHITE } from '../../styles';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import * as Notifications from 'expo-notifications';
+import { BACKGROUND, DARK_GREEN, PRIMARY, SIZES, WHITE } from '../shared/styles';
 
 /** source code for notifications:
  * https://anilvermaspeaks.medium.com/how-local-notifications-works-in-react-native-expo-538d1cfc2240

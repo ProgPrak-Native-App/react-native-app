@@ -1,7 +1,5 @@
 import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { ACCENT, BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
-import Title from '../Title';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TaskProp } from './GroupALP';
 import Checks from './Checks';
@@ -9,6 +7,8 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { EmoRoutes } from './Navigation';
 import { MotivatorRoutes } from '../motivators/Motivator';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { ACCENT, BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
+import Title from '../shared/components/Title';
 
 export default function NKontrolle() {
   /** get the users safed tasks from earlier */
@@ -46,7 +46,7 @@ export default function NKontrolle() {
   /** calc if they have checkd off more than 50% of tasks for navigation */
   const onDone = () => {
     const all = tasks.length;
-    const d = tasks.filter((elem) => elem.checked === true).length;
+    const d = tasks.filter((elem) => elem.checked).length;
     /** yeah */
     if (d / all >= 0.5) {
       navigation.navigate('Nice');

@@ -1,13 +1,13 @@
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import Title from '../Title';
-import { PRIMARY, PURPLE, SIZES, BLACK, TERTIARY } from '../../styles';
 import A from './A';
 import L from './L';
 import P from './P';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { EmoRoutes } from './Navigation';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
+import Title from '../shared/components/Title';
 
 export type TaskProp = {
   descr: string;

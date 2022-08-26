@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
-import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { BLACK, PINK, PRIMARY, SIZES, TERTIARY } from '../../styles';
 import { ResizeMode, Video } from 'expo-av';
 import { ReframingRoutes } from './Reframing';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import Title from '../shared/components/Title';
+import { BLACK, PINK, PRIMARY, SIZES, TERTIARY } from '../shared/styles';
 
 export default function IntroVideoScreen() {
   const navigator = useNavigation<NavigationProp<ReframingRoutes>>();

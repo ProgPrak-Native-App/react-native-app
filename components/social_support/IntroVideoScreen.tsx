@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
-import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { SocialSupportStackParamList } from './SocialNavigation';
-import { BACKGROUND, ORANGE, SIZES, TERTIARY } from '../../styles';
 import { ResizeMode, Video } from 'expo-av';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { BACKGROUND, ORANGE, SIZES, TERTIARY } from '../shared/styles';
+import Title from '../shared/components/Title';
 
 export default function IntroVideoScreen() {
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
@@ -27,7 +27,7 @@ export default function IntroVideoScreen() {
             useNativeControls
           />
         </View>
-        <View style={[styles.buttons, { flex: 0 }]}>
+        <View style={styles.buttons}>
           <Pressable onPress={() => navigate('SupportExercise', { level: 1 })} style={styles.buttonLvl}>
             <Text style={styles.text}>Level 1</Text>
           </Pressable>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   buttons: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
     width: '100%',
   },
   buttonLvl: {

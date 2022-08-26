@@ -1,6 +1,6 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import React from 'react';
-import { ACCENT, BLACK, SIZES, WHITE } from '../../styles';
+import { ACCENT, BLACK, SIZES, WHITE } from '../shared/styles';
 
 export type props = {
   days: string;

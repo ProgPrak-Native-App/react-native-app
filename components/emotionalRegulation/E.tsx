@@ -1,12 +1,12 @@
 import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { StackScreenProps } from './Navigation';
-import Title from '../Title';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ACCENT, BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import { TaskProp } from './GroupALP';
 import { AntDesign } from '@expo/vector-icons';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { ACCENT, BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
+import Title from '../shared/components/Title';
 
 function Row(props: {
   data: string;

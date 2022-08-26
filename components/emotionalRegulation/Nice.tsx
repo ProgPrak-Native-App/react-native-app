@@ -1,10 +1,10 @@
 import { View, Text, ScrollView, Pressable, StyleSheet, Image } from 'react-native';
 import React from 'react';
-import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
-import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { MotivatorRoutes } from '../motivators/Motivator';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
+import Title from '../shared/components/Title';
 
 export default function Nice() {
   const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();

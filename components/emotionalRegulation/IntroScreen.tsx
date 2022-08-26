@@ -1,10 +1,10 @@
 import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
 import React from 'react';
-import { ACCENT, BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import { EmoRoutes } from './Navigation';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import Title from '../Title';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { ACCENT, BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
+import Title from '../shared/components/Title';
 
 export default function IntroScreen() {
   const { navigate } = useNavigation<NavigationProp<EmoRoutes>>();

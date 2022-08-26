@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
-import Title from '../Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../../styles';
 import { ResizeMode, Video } from 'expo-av';
 import { CompassionRoutes } from './CompassionNavigation';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
+import Title from '../shared/components/Title';
 
 export default function IntroVideoScreen() {
   const { navigate } = useNavigation<NavigationProp<CompassionRoutes>>();

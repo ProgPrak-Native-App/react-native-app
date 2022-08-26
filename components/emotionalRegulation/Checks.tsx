@@ -2,7 +2,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import React, { useState } from 'react';
 import Checkbox from 'expo-checkbox';
 import { TaskProp } from './GroupALP';
-import { BLACK, PRIMARY, SIZES, WHITE } from '../../styles';
+import { BLACK, PRIMARY, SIZES, WHITE } from '../shared/styles';
 
 export default function Checks({ item, handleChecked }: { item: TaskProp; handleChecked: (item: TaskProp) => void }) {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);

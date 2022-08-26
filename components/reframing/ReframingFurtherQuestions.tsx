@@ -1,10 +1,10 @@
 import { View, Text, ScrollView, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
-import Title from '../Title';
-import { ACCENT, BLACK, PINK, PRIMARY, SIZES, TERTIARY } from '../../styles';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { MotivatorRoutes } from '../motivators/Motivator';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
+import Title from '../shared/components/Title';
+import { ACCENT, BLACK, PINK, PRIMARY, SIZES, TERTIARY } from '../shared/styles';
 
 export default function RefraimingFurtherQuestions() {
   const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();
