@@ -1,11 +1,11 @@
-import Title from '../Title';
+import Title from '../shared/components/Title';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { TabRoutes } from '../../App';
-import { NEUTRAL } from '../../styles';
+import { NEUTRAL } from '../shared/styles';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
-import KopfsachenButton from '../KopfsachenButton';
+import KopfsachenButton from '../shared/components/button/KopfsachenButton';
 
 export default function NeutralIntro() {
   const navigation = useNavigation<NavigationProp<TabRoutes>>();

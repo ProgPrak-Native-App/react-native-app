@@ -9,11 +9,11 @@ import {
   Linking,
   ImageSourcePropType,
 } from 'react-native';
-import KsButton, { KsButtonProp } from '../shared/button/KsButton';
+import LinkButton, { KsButtonProp } from '../shared/components/button/LinkButton';
 import Card from '../shared/layout/Card';
 import { emergencies } from '../../assets/data/emergency';
 import { Emergency } from '../shared/model/emergency';
-import Title from '../Title';
+import Title from '../shared/components/Title';
 
 export default function EmergencyNumbers() {
   return (
@@ -41,19 +41,20 @@ export default function EmergencyNumbers() {
               <Image
                 accessibilityLabel={emergency.title}
                 source={emergency.logo as ImageSourcePropType}
-                style={styles.emergencyLogo}></Image>
+                style={styles.emergencyLogo}
+              />
             </TouchableHighlight>
             {/* Card Body */}
             <View style={styles.emergencyCardButtonContainer}>
               {/* Emergency service features */}
               {emergency.buttons.map((button: KsButtonProp, buttonIndex) => {
                 return (
-                  <KsButton backgroundColor="#FFFFFF" icon={button.icon} key={buttonIndex} link={button.link}>
+                  <LinkButton backgroundColor="#FFFFFF" icon={button.icon} key={buttonIndex} link={button.link}>
                     <View>
                       <Text style={styles.emergencyButtonLabel}>{button.label}</Text>
                       {!!button.description && <Text>{button.description}</Text>}
                     </View>
-                  </KsButton>
+                  </LinkButton>
                 );
               })}
             </View>

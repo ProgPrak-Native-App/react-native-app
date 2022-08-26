@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import Title from '../../Title';
-import KopfsachenButton from '../../KopfsachenButton';
-import SecurityNetClient, { SafetyNetDType } from '../../../api/SecurityNetClient';
+import React from 'react';
+import Title from '../../shared/components/Title';
+import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import { getMotivatorByType } from '../MotivatorProps';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { SafetyNetDType } from './SecurityNetHome';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { SecurityNetRoutes } from './SecurityNet';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BLACK, STYLES } from '../../shared/styles';
 
 export default function SecurityNetAssistance({
   navigation,
@@ -99,7 +100,7 @@ export default function SecurityNetAssistance({
       </View>
       <KopfsachenButton
         onPress={() => finishSecurityNetItem(navigation, currentComponent)}
-        style={[styles.button, styles.shadow]}>
+        style={[styles.button, STYLES.shadow]}>
         Weiter!
       </KopfsachenButton>
     </>
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
   },
   textinput: {
     textAlign: 'center',
-    borderColor: 'black',
+    borderColor: BLACK,
     borderWidth: 1,
     borderRadius: 9,
     height: 50,
@@ -130,12 +131,5 @@ const styles = StyleSheet.create({
   button: {
     paddingHorizontal: 4,
     alignSelf: 'center',
-  },
-  shadow: {
-    elevation: 4,
-    shadowColor: '#171717',
-    shadowOffset: { width: -2, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
   },
 });

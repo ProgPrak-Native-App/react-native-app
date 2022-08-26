@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import Title from '../Title';
+import Title from '../shared/components/Title';
 import SearchBar from './SearchBar';
-import { SIZES, TERTIARY } from '../../styles';
+import { SIZES, TERTIARY } from '../shared/styles';
 import WikiClient, { WikiEntry } from '../../api/WikiClient';
 import EntryGroup from './EntryGroup';
 import { partitionBy } from '../../util';
@@ -13,7 +13,7 @@ export default function EntryList() {
 
   // initially retrieve all wiki entries
   useEffect(() => {
-    new WikiClient('https://wiki.api.dev.mindtastic.lol')
+    new WikiClient('https://wiki.api.live.mindtastic.lol')
       .getEntries()
       .then((entries) => entries.sort((a, b) => a.title.localeCompare(b.title)))
       .then(setAllEntries);

@@ -18,7 +18,7 @@ const DEFAULT_CONTEXT_STATE = {
   addUser: (user: User) => console.log(user),
 };
 
-export const parseJSONStoreData = (value: any, key = 'user') => {
+export const parseJSONStoreData = (value: string, key = 'user') => {
   const result = JSON.parse(value);
 
   return result ? result[key] : result;

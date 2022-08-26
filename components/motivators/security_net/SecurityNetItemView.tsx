@@ -3,12 +3,12 @@ import { SecurityNetRoutes } from './SecurityNet';
 import { getMotivatorByType } from '../MotivatorProps';
 import { iconMap } from './SecurityNetHome';
 import SecurityNetClient, { SafetyNetDType } from '../../../api/SecurityNetClient';
-import Title from '../../Title';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import Title from '../../shared/components/Title';
+import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Entypo } from '@expo/vector-icons';
-import { BLACK, SHADOW } from '../../../styles';
+import { SHADOW_COLOR, STYLES } from '../../shared/styles';
 
 async function getSafetyNet() {
   const result = new SecurityNetClient('http://localhost:4010').getItems();
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
     borderWidth: 0.5,
-    borderColor: SHADOW,
+    borderColor: SHADOW_COLOR,
   },
   gridContainer: {
     marginVertical: 5,
@@ -100,12 +100,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 26,
     letterSpacing: 0,
-  },
-  shadow: {
-    elevation: 4,
-    shadowColor: BLACK,
-    shadowOffset: { width: -2, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
   },
 });

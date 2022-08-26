@@ -1,7 +1,7 @@
 import { MotivatorRoutes } from './Motivator';
 import React from 'react';
 import { Image } from 'react-native';
-import { MOTIVATOR } from '../../styles';
+import { MOTIVATOR } from '../shared/styles';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export type Exercise = { title: string; screen: keyof MotivatorRoutes };

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import Title from '../../Title';
-import KopfsachenButton from '../../KopfsachenButton';
+import Title from '../../shared/components/Title';
+import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import { getMotivatorByType } from '../MotivatorProps';
 import { SafetyNetDType } from '../../../api/SecurityNetClient';
-import { View, Text, StyleSheet, Pressable, TextInput, ScrollView, Alert } from 'react-native';
-import { FontAwesome, FontAwesome5, Ionicons, Entypo } from '@expo/vector-icons';
+import { Alert, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Entypo, FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { SecurityNetRoutes } from './SecurityNet';
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
-import { BLACK, GREY, SHADOW } from '../../../styles';
+import { BLACK, GREY, STYLES } from '../../shared/styles';
+
 export default function SecurityNetItem({
   navigation,
   route,
@@ -102,7 +103,7 @@ export default function SecurityNetItem({
             />
           </Pressable>
         </View>
-        <KopfsachenButton onPress={() => navigate(navigation, currentComponent)} style={[styles.button, styles.shadow]}>
+        <KopfsachenButton onPress={() => navigate(navigation, currentComponent)} style={[styles.button, STYLES.shadow]}>
           Ressource hinzufügen!
         </KopfsachenButton>
       </ScrollView>
@@ -145,12 +146,5 @@ const styles = StyleSheet.create({
   button: {
     paddingHorizontal: 4,
     alignSelf: 'center',
-  },
-  shadow: {
-    elevation: 4,
-    shadowColor: SHADOW,
-    shadowOffset: { width: -2, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
   },
 });

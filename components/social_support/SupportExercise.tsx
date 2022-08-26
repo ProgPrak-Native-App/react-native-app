@@ -1,11 +1,11 @@
 import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
-import Title from '../Title';
+import Title from '../shared/components/Title';
 import PopUp from './AddPopUp';
 import TextHeader from './TextHeader';
 import { socialSupportData } from './data';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { BLACK, INNER_CIRCLE, ORANGE, PRIMARY, PURPLE, WHITE } from '../../styles';
+import { BLACK, INNER_CIRCLE, ORANGE, PRIMARY, PURPLE, WHITE } from '../shared/styles';
 import Circle, { personProp } from './Circle';
 import UpdatePopUp from './UpdatePopUp';
 import { NavigationProp, useNavigation } from '@react-navigation/native';

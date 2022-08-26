@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, Text } from 'react-native';
 import React, { ComponentType } from 'react';
-import Title from '../Title';
-import { SIZES, TERTIARY } from '../../styles';
+import Title from '../shared/components/Title';
+import { SIZES, TERTIARY } from '../shared/styles';
 import OriginalMarkdownComponent, {
   MarkdownIt,
   MarkdownProps,

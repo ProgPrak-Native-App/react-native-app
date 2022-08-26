@@ -1,5 +1,5 @@
 import React from 'react';
-import Title from '../Title';
+import Title from '../shared/components/Title';
 // add user-circle as title icon
 import ProfileOption from './ProfileOption';
 import { View, StyleSheet } from 'react-native';

@@ -1,12 +1,12 @@
 import React from 'react';
 import { getMotivatorByType } from '../MotivatorProps';
 import { SecurityNetRoutes } from './SecurityNet';
-import Title from '../../Title';
+import Title from '../../shared/components/Title';
 import { empty } from '../../../api/SecurityNetClient';
-import { View, Text, StyleSheet, Image, Pressable, ImageBackground } from 'react-native';
+import { Image, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { FontAwesome5, FontAwesome, Ionicons, Entypo } from '@expo/vector-icons';
-import { LIGHT_BLUE } from '../../../styles';
+import { Entypo, FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { LIGHT_BLUE } from '../../shared/styles';
 
 const iconMapSize = 32;
 export const iconMap = new Map<string, JSX.Element>([

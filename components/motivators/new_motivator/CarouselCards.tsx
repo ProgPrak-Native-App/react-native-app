@@ -49,7 +49,9 @@ export default function CarouselCards(props: { data: (keyof MotivatorTypes)[] })
           accessibilityHint={'nächster Starkmacher'}
           color="black"
           name="right"
-          onPress={() => carouselRef.current.snapToNext()}
+          onPress={() => {
+            carouselRef.current.snapToNext();
+          }}
           size={40}
         />
       </View>
