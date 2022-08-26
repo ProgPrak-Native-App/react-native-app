@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     backgroundColor: BLACK,
   },
-  // eslint-disable-next-line react-native/no-color-literals
   explanation: {
     position: 'absolute',
     flexDirection: 'column',

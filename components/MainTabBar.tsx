@@ -22,7 +22,7 @@ export type TabRoutes = {
 
 const Tab = createBottomTabNavigator<TabRoutes>();
 
-export default function Routes() {
+export default function MainTabBar() {
   return (
     <Tab.Navigator
       screenOptions={{

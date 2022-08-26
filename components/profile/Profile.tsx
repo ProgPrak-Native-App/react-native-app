@@ -15,10 +15,10 @@ const StackNavigator = createNativeStackNavigator<ProfileRoutes>();
 export default function Profile() {
   return (
     <>
-      <Title text='Profil' />
+      <Title text="Profil" />
       <StackNavigator.Navigator screenOptions={{ headerShown: false }}>
-        <StackNavigator.Screen component={ProfileOverview} name='ProfileOverview' />
-        <StackNavigator.Screen component={ProfileExport} name='ProfileExport' />
+        <StackNavigator.Screen component={ProfileOverview} name="ProfileOverview" />
+        <StackNavigator.Screen component={ProfileExport} name="ProfileExport" />
       </StackNavigator.Navigator>
     </>
   );

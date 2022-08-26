@@ -3,8 +3,8 @@ import Title from './shared/components/Title';
 import { StyleSheet, Text, View } from 'react-native';
 import KopfsachenButton from './shared/components/button/KopfsachenButton';
 import { BACKGROUND, PRIMARY } from './shared/styles';
-import { TabRoutes } from './Routes';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { TabRoutes } from './MainTabBar';
 
 export default function Home({ navigation }: BottomTabScreenProps<TabRoutes, 'Home'>) {
   return (
