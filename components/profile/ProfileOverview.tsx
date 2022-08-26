@@ -4,6 +4,7 @@ import { Alert, StyleSheet, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { ProfileRoutes } from './Profile';
 import { useUserContext } from '../UserProvider';
+import { SIZES } from '../../styles';
 
 export default function ProfileOverview() {
   const navigation = useNavigation<NavigationProp<ProfileRoutes>>();
@@ -34,6 +35,6 @@ export default function ProfileOverview() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 35,
+    margin: SIZES.max_margin,
   },
 });
