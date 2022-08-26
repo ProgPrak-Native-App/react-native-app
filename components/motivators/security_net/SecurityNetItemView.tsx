@@ -4,7 +4,7 @@ import { getMotivatorByType } from '../MotivatorProps';
 import { iconMap } from './SecurityNetHome';
 import SecurityNetClient, { SafetyNetDType } from '../../../api/SecurityNetClient';
 import Title from '../../shared/components/Title';
-import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Entypo } from '@expo/vector-icons';
@@ -15,13 +15,8 @@ async function getSafetyNet() {
   return result;
 }
 
-async function deleteEntry(id: number) {
-  return await fetch(`http://localhost:4010/safetyNet/${id}`, {
-    method: 'DELETE',
-    headers: {
-      Authorization: 'Bearer react-native-app',
-    },
-  });
+async function deleteEntry(item: SafetyNetDType) {
+  new SecurityNetClient('http://localhost:4010').deleteItem(item);
 }
 
 export default function SecurityNetItemView({
@@ -39,13 +34,13 @@ export default function SecurityNetItemView({
               onPress={() => {
                 navigation.navigate('SecurityNetItem', { component: data, modifying: true });
               }}
-              style={[styles.gridItem, styles.shadow]}>
+              style={[styles.gridItem, STYLES.shadow]}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <View style={{ width: 25, height: 24 }} />
                 <Text style={styles.text}>{data.name}</Text>
                 <Pressable
                   onPress={() => {
-                    deleteEntry(data.id);
+                    deleteEntry(data);
                     setSafetyNetItems(safetyNetItems.splice(safetyNetItems.indexOf(data), 1));
                   }}>
                   <Entypo name="cross" size={24} />

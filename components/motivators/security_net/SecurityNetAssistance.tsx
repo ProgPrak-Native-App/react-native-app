@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Title from '../../shared/components/Title';
 import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import { getMotivatorByType } from '../MotivatorProps';
-import { SafetyNetDType } from './SecurityNetHome';
+import SecurityNetClient, { SafetyNetDType } from '../../../api/SecurityNetClient';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { SecurityNetRoutes } from './SecurityNet';
@@ -18,24 +18,8 @@ export default function SecurityNetAssistance({
       if (modified) {
         if (modifying) {
           new SecurityNetClient('http://localhost:4010/safetyNet').replaceItem(newComponent);
-          /* const response = await fetch(`http://localhost:4010/safetyNet/${newComponent.id}`, {
-            method: 'PUT',
-            headers: {
-              Authorization: 'Bearer react-native-app',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newComponent),
-          }); */
         } else {
           new SecurityNetClient('http://localhost:4010/safetyNet').addItem(newComponent);
-          /* const response = await fetch('http://localhost:4010/safetyNet', {
-            method: 'POST',
-            headers: {
-              Authorization: 'Bearer react-native-app',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newComponent),
-          }); */
         }
       }
       navigation.navigate('SecurityNetHome');
