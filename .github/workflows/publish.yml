@@ -45,29 +45,35 @@ jobs:
         env:
           RUNTIME_VERSION: ${{ fromJson(env.EAS_UPDATE_RESULT)[0].runtimeVersion }}
           UPDATE_GROUP_ID: ${{ fromJson(env.EAS_UPDATE_RESULT)[0].group }}
-          DETAILS_URL: https://expo.dev/accounts/progprak_kopfsachen/projects/kopfsachen/updates/${{ env.UPDATE_GROUP_ID }}
-          QR_URL: ${{ format('https://qr.expo.dev/eas-update?projectId={0}&channel={1}&runtimeVersion={2}&appScheme=exp', env.EXPO_PROJECT_ID, env.RUNTIME_VERSION, env.EAS_BRANCH) }}
         run: |
           EAS_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
           
           echo 'REPORT<<EOF' >> $GITHUB_ENV
           # Write the report to the environment variable $REPORT and to the job summary at the same time
           cat <<EOF | tee -a $GITHUB_ENV $GITHUB_STEP_SUMMARY
-          ## EAS Update Report for Pull Request #${{ github.event.number }}
+          ## EAS Update Report
           
           This app was automatically published on branch **$EAS_BRANCH**.
-          View the update details [here]($DETAILS_URL).
+          View the update details [here](https://expo.dev/accounts/progprak_kopfsachen/projects/kopfsachen/updates/$UPDATE_GROUP_ID).
           
-          <img alt="Expo Go QR Code" src="$QR_URL" width="200" height="200">
+          <img alt="Expo Go QR Code" width="200" height="200"
+               src="https://qr.expo.dev/eas-update?projectId=$EXPO_PROJECT_ID&channel=$EAS_BRANCH&runtimeVersion=$RUNTIME_VERSION&appScheme=exp">
           
           <!-- created by publish workflow -->
           EOF
           echo 'EOF' >> $GITHUB_ENV
 
+      - # If the workflow s triggered by a push or manually, github.event.pull_request.number will not be set
+        # But we still want to comment on the PR associated with the branch, if any
+        name: Find associated PR
+        id: find_pr
+        uses: jwalton/gh-find-current-pr@v1
+
       - name: Comment on PR
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ steps.find_pr.outputs.number }}
         uses: actions-cool/maintain-one-comment@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ steps.find_pr.outputs.number }}
           body: ${{ env.REPORT }}
           body-include: <!-- created by publish workflow -->
