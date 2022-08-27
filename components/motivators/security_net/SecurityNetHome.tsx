@@ -2,33 +2,20 @@ import React from 'react';
 import { getMotivatorByType } from '../MotivatorProps';
 import { SecurityNetRoutes } from './SecurityNet';
 import Title from '../../shared/components/Title';
+import { empty } from '../../../api/SecurityNetClient';
 import { Image, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { Entypo, FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { LIGHT_BLUE } from '../../shared/styles';
-
-export type SafetyNetDType = {
-  type: string;
-  icon: string;
-  title: string;
-  strategies: [string, string, string];
-};
 
 const iconMapSize = 32;
 export const iconMap = new Map<string, JSX.Element>([
   ['personalStrengths', <Ionicons name="person" size={iconMapSize} />],
   ['people', <FontAwesome5 name="user-friends" size={iconMapSize} />],
   ['activities', <FontAwesome name="soccer-ball-o" size={iconMapSize} />],
-  ['other', <FontAwesome5 name="tv" size={iconMapSize} />],
+  ['other', <Entypo name="dots-three-horizontal" size={iconMapSize} />],
   ['pets', <FontAwesome name="paw" size={iconMapSize} />],
 ]);
-
-export const empty: SafetyNetDType = {
-  type: '',
-  icon: '',
-  title: '',
-  strategies: ['', '', ''],
-};
 
 export default function SecurityNetHome() {
   const iconSize = 40;
@@ -62,10 +49,13 @@ export default function SecurityNetHome() {
               <FontAwesome name="soccer-ball-o" size={iconSize} style={styles.icon} />
             </Pressable>
             <Pressable onPress={() => navigation.navigate('SecurityNetItemView', { type: 'other' })}>
-              <FontAwesome name="music" size={iconSize} style={styles.icon} />
+              <Entypo name="dots-three-horizontal" size={iconSize} style={styles.icon} />
             </Pressable>
           </View>
-          <Pressable onPress={() => navigation.navigate('SecurityNetItem', { component: empty })}>
+          <Pressable
+            onPress={() =>
+              navigation.navigate('SecurityNetItem', { component: structuredClone(empty), modifying: false })
+            }>
             <Image
               source={require('../../../assets/icon_plus.png')}
               style={{ height: 48, width: 48, alignSelf: 'center', marginTop: 5 }}
