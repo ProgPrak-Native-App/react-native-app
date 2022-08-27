@@ -15,17 +15,13 @@ export type WikiListResponse = {
 
 export default class WikiClient extends BaseClient {
   public async getEntries(): Promise<WikiEntry[]> {
-    let result: WikiListResponse = {
-      entry_count: 0,
-      entries: [],
-    };
-    await this.get<WikiListResponse>('/wiki')
-      .then((response) => {
-        result = response;
-      })
-      .catch(() => {
-        Alert.alert('Keine Verbindung', 'Leider besteht zurzeit keine Verbindung zu unserem Server');
-      });
+    const result = await this.get<WikiListResponse>('/wiki').catch(() => {
+      Alert.alert('Keine Verbindung', 'Leider besteht zurzeit keine Verbindung zu unserem Server');
+      return {
+        entry_count: 0,
+        entries: [],
+      };
+    });
     return [...result.entries, longExampleEntry];
   }
 }

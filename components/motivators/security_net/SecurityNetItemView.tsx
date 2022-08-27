@@ -11,8 +11,7 @@ import { Entypo } from '@expo/vector-icons';
 import { SHADOW_COLOR, STYLES } from '../../shared/styles';
 
 async function getSafetyNet() {
-  const result = new SecurityNetClient('http://localhost:4010').getItems();
-  return result;
+  return new SecurityNetClient('http://localhost:4010').getItems();
 }
 
 async function deleteEntry(item: SafetyNetDType) {
