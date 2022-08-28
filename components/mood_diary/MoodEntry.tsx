@@ -5,12 +5,50 @@ import Title from '../shared/components/Title';
 import { MoodDiaryRoutes } from './MoodDiary';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { NEGATIVE, NEUTRAL, POSITIVE } from '../shared/styles';
+import MoodDiaryClient, { MoodType } from '../../api/MoodDiaryClient';
+import { LocalDateTime } from '@js-joda/core';
 
-function MoodButton(props: { color: string; iconName: string; linkTo: keyof MoodDiaryRoutes; descriptions: string[] }) {
+function sendMood(moodType: keyof MoodDiaryRoutes, id: number) {
+  let type: MoodType = 'positive';
+  if (moodType === 'NeutralIntro') {
+    type = 'neutral';
+  } else if (moodType === 'NegativeIntro') {
+    type = 'negative';
+  }
+
+  if (id < 0) {
+    new MoodDiaryClient('https://diary.api.live.mindtastic.lol').addMood({
+      id: -1,
+      mood_day: LocalDateTime.now().toString(),
+      mood_descr: '',
+      mood_type: type,
+    });
+  } else {
+    new MoodDiaryClient('https://diary.api.live.mindtastic.lol').updateMood({
+      id,
+      mood_day: LocalDateTime.now().toString(),
+      mood_descr: '',
+      mood_type: type,
+    });
+  }
+}
+
+function MoodButton(props: {
+  color: string;
+  iconName: string;
+  linkTo: keyof MoodDiaryRoutes;
+  descriptions: string[];
+  id: number;
+}) {
   const navigation = useNavigation<NavigationProp<MoodDiaryRoutes>>();
   const { color, iconName, linkTo, descriptions } = props;
   return (
-    <Pressable onPress={() => navigation.navigate(linkTo)} style={[styles.moodButton, { backgroundColor: color }]}>
+    <Pressable
+      onPress={() => {
+        sendMood(linkTo, props.id);
+        navigation.navigate(linkTo);
+      }}
+      style={[styles.moodButton, { backgroundColor: color }]}>
       <View style={styles.moodButtonInner}>
         <FontAwesome5 color="black" name={iconName} size={80} />
         <View style={styles.moodDescriptionList}>
@@ -25,7 +63,7 @@ function MoodButton(props: { color: string; iconName: string; linkTo: keyof Mood
   );
 }
 
-export default function MoodEntry() {
+export default function MoodEntry(id: number) {
   return (
     <>
       <Title back text="Stimmungstagebuch" />
@@ -37,18 +75,21 @@ export default function MoodEntry() {
           color={NEGATIVE}
           descriptions={['wütend', 'traurig', 'ängstlich']}
           iconName="frown"
+          id={id}
           linkTo="NegativeIntro"
         />
         <MoodButton
           color={NEUTRAL}
           descriptions={['unmotiviert', 'müde', 'gleichgültig']}
           iconName="meh"
+          id={id}
           linkTo="NeutralIntro"
         />
         <MoodButton
           color={POSITIVE}
           descriptions={['fröhlich', 'aufgeregt', 'entspannt']}
           iconName="smile-beam"
+          id={id}
           linkTo="PositiveIntro"
         />
       </View>

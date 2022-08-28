@@ -3,7 +3,7 @@ import Title from '../../shared/components/Title';
 import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import { getMotivatorByType } from '../MotivatorProps';
 import SecurityNetClient, { SafetyNetDType } from '../../../api/SecurityNetClient';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { NativeSyntheticEvent, StyleSheet, Text, TextInput, TextInputEndEditingEventData, View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { SecurityNetRoutes } from './SecurityNet';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -38,7 +38,8 @@ export default function SecurityNetAssistance({
       <View style={styles.container}>
         <Text style={styles.text}>Trage bis zu 3 Wege ein, auf denen dir diese Person oder Aktivität helfen kann.</Text>
         <TextInput
-          onChangeText={(input: string) => {
+          onEndEditing={(e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
+            const input: string = e.nativeEvent.text;
             setResource({
               ...currentComponent,
               strategies: [input, currentComponent.strategies[1], currentComponent.strategies[2]],
@@ -53,7 +54,8 @@ export default function SecurityNetAssistance({
           style={styles.textinput}
         />
         <TextInput
-          onChangeText={(input: string) => {
+          onEndEditing={(e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
+            const input: string = e.nativeEvent.text;
             setResource({
               ...currentComponent,
               strategies: [currentComponent.strategies[0], input, currentComponent.strategies[2]],
@@ -68,12 +70,13 @@ export default function SecurityNetAssistance({
           style={styles.textinput}
         />
         <TextInput
-          onChangeText={(input: string) =>
+          onEndEditing={(e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
+            const input: string = e.nativeEvent.text;
             setResource({
               ...currentComponent,
               strategies: [currentComponent.strategies[0], currentComponent.strategies[1], input],
-            })
-          }
+            });
+          }}
           placeholder={
             currentComponent.strategies[2] !== ''
               ? currentComponent.strategies[2]

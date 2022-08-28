@@ -52,10 +52,7 @@ export default function SecurityNetHome() {
               <Entypo name="dots-three-horizontal" size={iconSize} style={styles.icon} />
             </Pressable>
           </View>
-          <Pressable
-            onPress={() =>
-              navigation.navigate('SecurityNetItem', { component: structuredClone(empty), modifying: false })
-            }>
+          <Pressable onPress={() => navigation.navigate('SecurityNetItem', { component: empty, modifying: false })}>
             <Image
               source={require('../../../assets/icon_plus.png')}
               style={{ height: 48, width: 48, alignSelf: 'center', marginTop: 5 }}

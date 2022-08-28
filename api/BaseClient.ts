@@ -7,7 +7,11 @@ export default class BaseClient {
       method: 'GET',
       headers: { Accept: 'application/json', ...options?.headers },
     });
-    return (await response.json()) as R;
+    if (response.ok) {
+      return (await response.json()) as R;
+    } else {
+      throw new Error(`${response.statusText}. Error code ${response.status}.`);
+    }
   }
 
   protected async post(path: string, body: string | null, options?: RequestInit): Promise<Response> {
