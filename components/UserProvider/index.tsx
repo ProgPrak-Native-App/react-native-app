@@ -1,19 +1,20 @@
 import React, { useContext, createContext, useEffect, useState, useCallback } from 'react';
 import { getLocalStoreData, setLocalStoreData } from './store';
+var md5 = require('md5');
 
 interface UserProviderProps {
   children: React.ReactElement;
 }
 
 interface UserContextInterface {
-  userId: string | undefined;
+  accountKey: string | undefined;
   sessionToken: string | undefined;
   addUser: () => void;
-  login: () => void;
+  login: (accountKey: string) => void;
 }
 
 const DEFAULT_CONTEXT_STATE = {
-  userId: undefined,
+  accountKey: undefined,
   sessionToken: undefined,
   addUser: () => console.log(''),
   login: () => console.log(''),
@@ -24,7 +25,7 @@ export const UserContext = createContext<UserContextInterface>(DEFAULT_CONTEXT_S
 export const useUserContext = () => useContext(UserContext);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [userId, setUserId] = useState<string | undefined>();
+  const [accountKey, setAccountKey] = useState<string | undefined>();
   const [sessionToken, setSessionToken] = useState<string | undefined>();
 
   //triggered only once
@@ -32,18 +33,18 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     getLocalStoreData().then((value) => {
       if (value) {
         const myData = value;
-        setUserId(myData);
+        setAccountKey(myData);
       }
     });
   }, []);
 
   // if things defined ín array change -> Component is called again, basically
   useEffect(() => {
-    if (userId) {
-      const value = userId;
+    if (accountKey) {
+      const value = accountKey;
       (async () => await setLocalStoreData(value))();
     }
-  }, [userId]);
+  }, [accountKey]);
 
   //useCallback used to automatically trigger rerender once user clicked button
   const addUser = useCallback(async () => {
@@ -53,16 +54,21 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
     const accountKey = await apiCall(postURL, 'POST').then((data) => data.identity.traits.accountKey);
 
-    setUserId(accountKey);
+    setAccountKey(accountKey);
   }, []);
 
-  //use this function for QR code login
-  const login = useCallback(() => {
-    // login Api get
-    // login post with flowId and inside body of request userId as password
+  //use this function for QR code login and pass accountKey from useUserContext as an argument
+  const login = useCallback(async (accountKey:string) => {
+    const postLoginURL = await apiCall('https://auth.api.live.mindtastic.lol/self-service/login/api', 'GET').then(
+      (data) => data.ui.action
+    );
+    //couldnt try this out
+    const sessionToken = await apiCall(postLoginURL, 'POST', { password: md5(accountKey) }).then((data) => data.session.id);
+
+    setSessionToken(sessionToken);
   }, []);
 
-  return <UserContext.Provider value={{ userId, sessionToken, addUser, login }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{ accountKey, sessionToken, addUser, login }}>{children}</UserContext.Provider>;
 };
 
 async function apiCall(url: RequestInfo, verb: 'GET' | 'POST' | 'PUT' | 'DELETE', data = {}) {
