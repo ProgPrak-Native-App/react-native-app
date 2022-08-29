@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { ResizeMode, Video } from 'expo-av';
 import { ReframingRoutes } from './Reframing';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { getMotivatorByType } from '../motivators/model';
 import Title from '../shared/components/Title';
 import { BLACK, PINK, PRIMARY, SIZES, TERTIARY } from '../shared/styles';
 

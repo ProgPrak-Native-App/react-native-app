@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { ResizeMode, Video } from 'expo-av';
 import { CompassionRoutes } from './CompassionNavigation';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { getMotivatorByType } from '../motivators/model';
 import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
 import Title from '../shared/components/Title';
 

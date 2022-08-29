@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Title from '../../shared/components/Title';
 import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
-import { getMotivatorByType } from '../MotivatorProps';
+import { getMotivatorByType } from '../model';
 import SecurityNetClient, { SafetyNetDType } from '../../../api/SecurityNetClient';
 import { NativeSyntheticEvent, StyleSheet, Text, TextInput, TextInputEndEditingEventData, View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';

@@ -2,54 +2,41 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Title from '../shared/components/Title';
-import { MoodDiaryRoutes } from './MoodDiary';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { NEGATIVE, NEUTRAL, POSITIVE } from '../shared/styles';
+import { MoodDiaryRoutes, MoodDiaryScreenProps } from './MoodDiary';
+import { NEGATIVE, NEUTRAL, POSITIVE, SIZES } from '../shared/styles';
 import MoodDiaryClient, { MoodType } from '../../api/MoodDiaryClient';
 import { LocalDateTime } from '@js-joda/core';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-function sendMood(moodType: keyof MoodDiaryRoutes, id: number) {
-  let type: MoodType = 'positive';
-  if (moodType === 'NeutralIntro') {
-    type = 'neutral';
-  } else if (moodType === 'NegativeIntro') {
-    type = 'negative';
-  }
+const client = new MoodDiaryClient('https://diary.api.live.mindtastic.lol');
 
-  if (id < 0) {
-    new MoodDiaryClient('https://diary.api.live.mindtastic.lol').addMood({
+function sendMood(moodType: MoodType, id?: number) {
+  if (id === undefined || id === null) {
+    client.addMood({
       id: -1,
       mood_day: LocalDateTime.now().toString(),
       mood_descr: 'test',
-      mood_type: type,
+      mood_type: moodType,
     });
   } else {
-    new MoodDiaryClient('https://diary.api.live.mindtastic.lol').updateMood({
+    client.updateMood({
       id,
       mood_day: LocalDateTime.now().toString(),
       mood_descr: 'test',
-      mood_type: type,
+      mood_type: moodType,
     });
   }
 }
 
-function MoodButton(props: {
+type ButtonProps = {
   color: string;
   iconName: string;
-  linkTo: keyof MoodDiaryRoutes;
+  onPress: () => void;
   descriptions: string[];
-  id: number;
-}) {
-  const navigation = useNavigation<NavigationProp<MoodDiaryRoutes>>();
-  const { color, iconName, linkTo, descriptions, id } = props;
+};
+
+function MoodButton({ color, iconName, onPress, descriptions }: ButtonProps) {
   return (
-    <Pressable
-      onPress={() => {
-        sendMood(linkTo, id);
-        navigation.navigate(linkTo);
-      }}
-      style={[styles.moodButton, { backgroundColor: color }]}>
+    <Pressable onPress={onPress} style={[styles.moodButton, { backgroundColor: color }]}>
       <View style={styles.moodButtonInner}>
         <FontAwesome5 color="black" name={iconName} size={80} />
         <View style={styles.moodDescriptionList}>
@@ -64,35 +51,54 @@ function MoodButton(props: {
   );
 }
 
-export default function MoodEntry({ route }: NativeStackScreenProps<MoodDiaryRoutes, 'MoodEntry'>) {
-  const id = route.params.id;
+const introScreenNames: Record<MoodType, keyof MoodDiaryRoutes> = {
+  positive: 'PositiveIntro',
+  neutral: 'NeutralIntro',
+  negative: 'NegativeIntro',
+};
+
+export default function MoodEntry({ navigation, route }: MoodDiaryScreenProps<'MoodEntry'>) {
+  const onPress = (mood: MoodType) => () => {
+    if (route.params?.returnFrom) {
+      // final move submitted -> submit and return to mood calendar, clearing the history of the mood diary navigator
+
+      sendMood(mood, route.params.id);
+      navigation.reset({
+        routes: [{ name: 'Calendar' }],
+      });
+    } else {
+      navigation.navigate(introScreenNames[mood]);
+    }
+  };
+
   return (
     <>
       <Title back text="Stimmungstagebuch" />
       <View style={styles.container}>
         <View style={styles.greetingContainer}>
-          <Text style={styles.greeting}>Hallo,{'\n'}wie geht's dir?</Text>
+          <Text style={styles.greeting}>
+            {route.params?.returnFrom === 'Motivator'
+              ? 'Welche Stimmung möchtest du für heute final abgeben?'
+              : "Hallo, wie geht's dir?"}
+          </Text>
         </View>
         <MoodButton
           color={NEGATIVE}
           descriptions={['wütend', 'traurig', 'ängstlich']}
           iconName="frown"
-          id={id}
-          linkTo="NegativeIntro"
+          onPress={onPress('negative')}
         />
         <MoodButton
           color={NEUTRAL}
           descriptions={['unmotiviert', 'müde', 'gleichgültig']}
           iconName="meh"
-          id={id}
-          linkTo="NeutralIntro"
+          onPress={onPress('neutral')}
         />
         <MoodButton
           color={POSITIVE}
           descriptions={['fröhlich', 'aufgeregt', 'entspannt']}
           iconName="smile-beam"
-          id={id}
-          linkTo="PositiveIntro"
+          onPress={onPress('positive')}
         />
       </View>
     </>
@@ -118,6 +124,7 @@ const styles = StyleSheet.create({
     flexGrow: 0.2,
     flexShrink: 1,
     flexBasis: 100,
+    margin: SIZES.min_margin,
   },
   moodButton: {
     flexGrow: 1,

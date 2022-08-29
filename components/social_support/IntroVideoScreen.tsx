@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { SocialSupportStackParamList } from './SocialNavigation';
 import { ResizeMode, Video } from 'expo-av';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { getMotivatorByType } from '../motivators/model';
 import { BACKGROUND, ORANGE, SIZES, TERTIARY } from '../shared/styles';
 import Title from '../shared/components/Title';
 

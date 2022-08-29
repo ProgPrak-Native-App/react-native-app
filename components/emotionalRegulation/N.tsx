@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import TimeModal from './TimeModal';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { EmoRoutes } from './Navigation';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { getMotivatorByType } from '../motivators/model';
 import { ACCENT, BLACK, LIGHT_BLUE, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
 import Title from '../shared/components/Title';
 

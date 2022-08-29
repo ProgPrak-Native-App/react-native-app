@@ -5,7 +5,7 @@ import { DateData } from 'react-native-calendars/src/types';
 import BasicDay from 'react-native-calendars/src/calendar/day/basic';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { LocaleConfig } from 'react-native-calendars';
-import { LocalDate, LocalDateTime } from '@js-joda/core';
+import { LocalDate } from '@js-joda/core';
 import Title from '../shared/components/Title';
 import { MoodDiaryRoutes } from './MoodDiary';
 import MoodDiaryClient, { Mood } from '../../api/MoodDiaryClient';
@@ -57,7 +57,7 @@ function DayWithMood({ mood }: { mood: Mood }) {
 function AddMoodButton() {
   const navigation = useNavigation<NavigationProp<MoodDiaryRoutes>>();
   return (
-    <Pressable onPress={() => navigation.navigate('MoodEntry', { id: -1 })}>
+    <Pressable onPress={() => navigation.navigate('MoodEntry')}>
       <Image source={require('../../assets/icon_plus.png')} style={styles.icon} />
     </Pressable>
   );
@@ -79,7 +79,7 @@ const Day = (moods: Mood[]) => (props: { date?: DateData }) => {
 };
 
 export default function MoodCalendar() {
-  const [moods, setMoods] = useState<Mood[]>([]);
+  const [moods, setMoods] = useState<Mood[]>();
   useEffect(() => {
     new MoodDiaryClient('https://diary.api.live.mindtastic.lol').getMoods().then(setMoods);
   }, []);
@@ -89,7 +89,7 @@ export default function MoodCalendar() {
       <Title text="Stimmungstagebuch" />
       <Calendar
         dayComponent={Day(moods ?? [])}
-        displayLoadingIndicator={moods === []}
+        displayLoadingIndicator={moods === undefined}
         theme={{ calendarBackground: undefined }}
       />
     </>

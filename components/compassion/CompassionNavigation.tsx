@@ -12,7 +12,7 @@ export type CompassionRoutes = {
   CompassionMeditation: undefined;
 };
 
-export const CompassionStack = createNativeStackNavigator<CompassionRoutes>();
+const CompassionStack = createNativeStackNavigator<CompassionRoutes>();
 
 export default function CompassionNavigation() {
   return (

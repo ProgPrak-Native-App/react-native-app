@@ -1,4 +1,4 @@
-import { Text, StyleSheet, ScrollView, Pressable, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Title from '../shared/components/Title';
 import { BLACK, DARK_GREY, ORANGE, PRIMARY, SIZES, TERTIARY } from '../shared/styles';
@@ -6,8 +6,8 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import CountDown from 'react-native-countdown-component';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Duration, Instant } from '@js-joda/core';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
-import { MotivatorRoutes } from '../motivators/Motivator';
+import { getMotivatorByType } from '../motivators/model';
+import { MotivatorRoutes } from '../motivators/MotivatorNavigator';
 
 /** source for storage code https://aloukissas.medium.com/how-to-build-a-background-timer-in-expo-react-native-without-ejecting-ea7d67478408 */
 export default function ThirdLevelCountDown() {
@@ -30,6 +30,7 @@ export default function ThirdLevelCountDown() {
       console.warn(err);
     }
   }
+
   /** if smth stored in async as start time challeng is running => hide start btn */
   async function setToggeling(): Promise<boolean> {
     return (await AsyncStorage.getItem('@start_time')) !== null;
@@ -110,14 +111,7 @@ export default function ThirdLevelCountDown() {
             </Pressable>
             <Pressable
               accessibilityHint="Zum Feedback und Übung beenden"
-              onPress={() =>
-                navigate('FeedbackNavigation', {
-                  name: 'MoodEntry',
-                  title: 'Soziale Unterstützung',
-                  color: ORANGE,
-                  icon: '../../assets/socialSupport.png',
-                })
-              }
+              onPress={() => navigate('Feedback', { motivator: 'socialSupport' })}
               style={styles.buttons}>
               <Text style={[styles.body, { fontWeight: 'bold' }]}>Weiter</Text>
             </Pressable>

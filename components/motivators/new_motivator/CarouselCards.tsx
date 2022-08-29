@@ -1,32 +1,25 @@
 import React, { useState } from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { MotivatorRoutes } from '../Motivator';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { Pressable, StyleSheet, View } from 'react-native';
 import CarouselCardItem, { ITEM_WIDTH, SLIDER_WIDTH } from './CarouselCardItem';
-import { getMotivatorByType, MotivatorTypes } from '../MotivatorProps';
+import { getMotivatorByType, MotivatorName } from '../model';
 import { AntDesign } from '@expo/vector-icons';
+import { MotivatorRoutes } from '../MotivatorNavigator';
 
-function getMotivatorParams(name: keyof MotivatorTypes) {
-  const motivator = getMotivatorByType(name);
-  return motivator.screen === 'OldMotivator' ? motivator.type : undefined;
-}
-
-export default function CarouselCards(props: { data: (keyof MotivatorTypes)[] }) {
+export default function CarouselCards(props: { data: MotivatorName[] }) {
   const carouselRef = React.createRef<any>();
   const [index, setIndex] = useState(0);
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
 
   function getRenderItem() {
     return function (props: { item: unknown }) {
-      const motivator = props.item as keyof MotivatorTypes;
+      const motivator = props.item as MotivatorName;
       return (
         <Pressable
-          onPress={() =>
-            navigation.navigate(getMotivatorByType(motivator).screen, { props: getMotivatorParams(motivator) })
-          }
+          onPress={() => navigation.navigate(getMotivatorByType(motivator).screen)}
           style={{ paddingBottom: 15 }}>
-          <CarouselCardItem item={props.item as keyof MotivatorTypes} />
+          <CarouselCardItem item={props.item as MotivatorName} />
         </Pressable>
       );
     };

@@ -1,82 +1,45 @@
-import { Image, View, Text, Pressable, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { BLACK, DARK_GREY, PRIMARY, RED, SIZES, TERTIARY, WHITE } from '../styles';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Title from './Title';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { MotivatorRoutes } from '../../motivators/Motivator';
+import { MotivatorNavigatorProps, MotivatorRoutes } from '../../motivators/MotivatorNavigator';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { motivators } from '../../motivators/model';
 
-export type Props = {
-  name: keyof FeedbackRoutes;
-  title: string;
-  color: string;
-};
+type Props = CompositeScreenProps<NativeStackScreenProps<MotivatorRoutes, 'Feedback'>, MotivatorNavigatorProps>;
 
-export type FeedbackRoutes = {
-  Feedback: { name: string; title: string; color: string };
-  NewMotivator: { screen: string };
-  MoodDiary: { screen: string };
-  CompassionNavigation: { screen: string };
-  MotivatorCompleted: undefined;
-};
+export default function Feedback({ navigation, route }: Props) {
+  const { motivator } = route.params;
 
-export type FeedbackScreenProps<T extends keyof FeedbackRoutes> = NativeStackScreenProps<FeedbackRoutes, T>;
-const getImage = (name: string) => {
-  switch (name) {
-    case 'Soziale Unterstützung':
-      return <Image source={require('../../../assets/compassionIcon.png')} style={{ height: 70, width: 70 }} />;
-    case 'Optimismus':
-      return <Image source={require('../../../assets/optimismIcon.png')} style={{ height: 70, width: 70 }} />;
-    case 'Selbstbezogenes Mitgefühl':
-      return <Image source={require('../../../assets/compassionIcon.png')} style={{ height: 70, width: 70 }} />;
-    case 'Situationskontrolle':
-      return <Image source={require('../../../assets/situationControlIcon.png')} style={{ height: 70, width: 70 }} />;
-    case 'Refraiming':
-      return <Image source={require('../../../assets/reframingIcon.png')} style={{ height: 70, width: 70 }} />;
-    case 'Sicherheitsnetz':
-      return <Image source={require('../../../assets/securitynetIcon.png')} style={{ height: 70, width: 70 }} />;
-  }
-};
-export default function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedback'>) {
-  const navigation = useNavigation<NavigationProp<FeedbackRoutes>>();
-  const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();
-
-  const { name, title, color } = route.params;
-
-  const [comment, setComment] = useState('');
-  const [greenBtn, setGreenBtn] = useState(false);
-  const [redBtn, setRedBtn] = useState(false);
+  const [comment, setComment] = useState<string>();
+  const [rating, setRating] = useState<'positive' | 'negative'>();
   const pressedGreenStyle = { borderColor: 'black', borderWidth: 2, backgroundColor: 'lightgreen' };
   const pressedRedStyle = { borderColor: 'black', borderWidth: 2, backgroundColor: 'red' };
 
-  const handleNavigation = () => {
-    if (name.toString() === 'MoodEntry') {
-      navigation.navigate('MoodDiary', { screen: 'MoodEntry' });
-    } else if (name.toString() === 'IntroScreen') {
-      navigation.navigate('CompassionNavigation', { screen: 'IntroScreen' });
-    } else if (name.toString() === 'MotivatorCompleted') {
-      navigation.navigate('MotivatorCompleted');
-    }
-  };
-
   return (
     <>
-      <Title back color={color} text={title} />
+      <Title
+        back
+        color={motivators[motivator].color}
+        text={motivators[motivator].name}
+        Icon={() => motivators[motivator].icon}
+      />
       <ScrollView style={styles.container}>
         <Text style={styles.heading}>Wie hat Dir die Übung gefallen?</Text>
         <View style={styles.buttons}>
           <Pressable
             accessibilityHint="Drücke hier falls Dir die Uebung gefallen hat"
-            onPress={() => setGreenBtn((prev) => !prev)}
-            style={[{ backgroundColor: PRIMARY }, styles.feedback, greenBtn ? pressedGreenStyle : {}]}>
+            onPress={() => setRating(rating === 'positive' ? undefined : 'positive')}
+            style={[{ backgroundColor: PRIMARY }, styles.feedback, rating === 'positive' ? pressedGreenStyle : {}]}>
             <FontAwesome5 color="black" name="smile-beam" size={30} style={styles.icons} />
             <Text style={styles.text}>Gut</Text>
           </Pressable>
           <Pressable
             accessibilityHint="Drücke hier falls Dir die Uebung nicht gefallen hat"
-            onPress={() => setRedBtn((prev) => !prev)}
-            style={[{ backgroundColor: RED }, styles.feedback, redBtn ? pressedRedStyle : {}]}>
+            onPress={() => setRating(rating === 'negative' ? undefined : 'negative')}
+            style={[{ backgroundColor: RED }, styles.feedback, rating === 'negative' ? pressedRedStyle : {}]}>
             <FontAwesome5 color="black" name="frown" size={30} style={styles.icons} />
             <Text style={styles.text}>Schlecht</Text>
           </Pressable>
@@ -94,7 +57,7 @@ export default function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedb
         <View style={styles.buttons}>
           <Pressable
             accessibilityHint="Zurück zum Intro Screen"
-            onPress={() => navigate('NewMotivator')}
+            onPress={() => navigation.navigate('NewMotivator')}
             style={({ pressed }) => [
               { backgroundColor: pressed ? PRIMARY : TERTIARY },
               styles.button,
@@ -104,7 +67,7 @@ export default function FeedbackNavigation({ route }: FeedbackScreenProps<'Feedb
           </Pressable>
           <Pressable
             accessibilityHint="Übung beenden"
-            onPress={handleNavigation}
+            onPress={() => navigation.navigate('MotivatorCompleted', { motivator })}
             style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.button]}>
             <Text style={styles.text}>Done</Text>
           </Pressable>

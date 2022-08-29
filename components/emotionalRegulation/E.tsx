@@ -4,7 +4,7 @@ import { StackScreenProps } from './Navigation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TaskProp } from './GroupALP';
 import { AntDesign } from '@expo/vector-icons';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { getMotivatorByType } from '../motivators/model';
 import { ACCENT, BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
 import Title from '../shared/components/Title';
 

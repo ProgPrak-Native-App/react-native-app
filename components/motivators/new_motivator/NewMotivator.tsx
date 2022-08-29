@@ -3,9 +3,9 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SIZES } from '../../shared/styles';
 import Title from '../../shared/components/Title';
 import CarouselCards from './CarouselCards';
-import { MotivatorTypes } from '../MotivatorProps';
+import { MotivatorName } from '../model';
 
-const motivators: (keyof MotivatorTypes)[] = [
+const motivators: MotivatorName[] = [
   'relaxation',
   'situationControl',
   'optimism',

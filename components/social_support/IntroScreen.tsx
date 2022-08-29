@@ -4,7 +4,7 @@ import Title from '../shared/components/Title';
 import { DARK_GREY, ORANGE, SIZES, TERTIARY } from '../shared/styles';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { SocialSupportStackParamList } from './SocialNavigation';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { getMotivatorByType } from '../motivators/model';
 
 export default function IntroScreen() {
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();

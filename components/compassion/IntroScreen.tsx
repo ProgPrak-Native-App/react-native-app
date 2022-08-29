@@ -1,9 +1,9 @@
-import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { CompassionRoutes } from './CompassionNavigation';
 import { TabRoutes } from '../Routes';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { getMotivatorByType } from '../motivators/model';
 import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
 import Title from '../shared/components/Title';
 
