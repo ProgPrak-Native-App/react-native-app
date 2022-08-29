@@ -12,6 +12,7 @@ export type Mood = {
 };
 
 export default class MoodDiaryClient extends BaseClient {
+  // Some of these API connections dont work yet but as soon as the API is ready they can be used
   public async getMoods(): Promise<Mood[]> {
     const result = await this.get<Mood[]>('/diary', {
       headers: { Authorization: 'Bearer nDpIgHo2Y2atmYVZsc2Va17XBhLVvmEA' },
