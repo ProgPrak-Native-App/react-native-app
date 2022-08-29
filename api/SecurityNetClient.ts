@@ -17,14 +17,12 @@ export const empty: SafetyNetDType = {
 
 export default class SecurityNetClient extends BaseClient {
   public async getItems(): Promise<SafetyNetDType[]> {
-    let result: SafetyNetDType[] = [];
-    await this.get<SafetyNetDType[]>('/safetyNet', { headers: { Authorization: 'Bearer react-native-app' } })
-      .then((response) => {
-        result = response;
-      })
-      .catch(() => {
-        Alert.alert('Keine Verbindung.', 'Leider besteht zurzeit keine Verbindung zu unserem Server :(');
-      });
+    const result = await this.get<SafetyNetDType[]>('/safetyNet', {
+      headers: { Authorization: 'Bearer react-native-app' },
+    }).catch(() => {
+      Alert.alert('Keine Verbindung.', 'Leider besteht zurzeit keine Verbindung zu unserem Server :(');
+      return [];
+    });
     return result;
   }
 

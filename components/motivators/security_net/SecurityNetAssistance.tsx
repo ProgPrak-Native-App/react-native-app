@@ -3,7 +3,7 @@ import Title from '../../shared/components/Title';
 import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import { getMotivatorByType } from '../MotivatorProps';
 import SecurityNetClient, { SafetyNetDType } from '../../../api/SecurityNetClient';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { NativeSyntheticEvent, StyleSheet, Text, TextInput, TextInputEndEditingEventData, View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { SecurityNetRoutes } from './SecurityNet';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -38,10 +38,10 @@ export default function SecurityNetAssistance({
       <View style={styles.container}>
         <Text style={styles.text}>Trage bis zu 3 Wege ein, auf denen dir diese Person oder Aktivität helfen kann.</Text>
         <TextInput
-          onChangeText={(input: string) => {
+          onChangeText={(value) => {
             setResource({
               ...currentComponent,
-              strategies: [input, currentComponent.strategies[1], currentComponent.strategies[2]],
+              strategies: [value, currentComponent.strategies[1], currentComponent.strategies[2]],
             });
             setModified(true);
           }}
@@ -51,12 +51,13 @@ export default function SecurityNetAssistance({
               : 'Trage hier ein wie dieses Thema dir hilft!'
           }
           style={styles.textinput}
+          value={currentComponent.strategies[0]}
         />
         <TextInput
-          onChangeText={(input: string) => {
+          onChangeText={(value) => {
             setResource({
               ...currentComponent,
-              strategies: [currentComponent.strategies[0], input, currentComponent.strategies[2]],
+              strategies: [currentComponent.strategies[0], value, currentComponent.strategies[2]],
             });
             setModified(true);
           }}
@@ -66,20 +67,23 @@ export default function SecurityNetAssistance({
               : 'Trage hier ein wie dieses Thema dir hilft!'
           }
           style={styles.textinput}
+          value={currentComponent.strategies[1]}
         />
         <TextInput
-          onChangeText={(input: string) =>
+          onChangeText={(value) => {
             setResource({
               ...currentComponent,
-              strategies: [currentComponent.strategies[0], currentComponent.strategies[1], input],
-            })
-          }
+              strategies: [currentComponent.strategies[0], currentComponent.strategies[1], value],
+            });
+            setModified(true);
+          }}
           placeholder={
             currentComponent.strategies[2] !== ''
               ? currentComponent.strategies[2]
               : 'Trage hier ein wie dieses Thema dir hilft!'
           }
           style={styles.textinput}
+          value={currentComponent.strategies[2]}
         />
       </View>
       <KopfsachenButton

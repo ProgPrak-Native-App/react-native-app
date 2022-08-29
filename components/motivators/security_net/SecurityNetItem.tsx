@@ -61,9 +61,10 @@ export default function SecurityNetItem({
         <Text style={styles.text}>Das bereitet mir Freude:</Text>
         <TextInput
           multiline
-          onChangeText={(input: string) => setResource({ ...currentComponent, name: input })}
+          onChangeText={(value) => setResource({ ...currentComponent, name: value })}
           placeholder={currentComponent.name !== '' ? currentComponent.name : 'Trage hier ein was dir Freude macht!'}
           style={styles.textinput}
+          value={currentComponent.name}
         />
         <Text style={styles.text}>Zu welcher Kategorie gehört diese Ressource?</Text>
         <View style={styles.iconcontainer}>

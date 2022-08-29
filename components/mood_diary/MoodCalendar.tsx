@@ -32,19 +32,32 @@ LocaleConfig.locales.de = {
 LocaleConfig.defaultLocale = 'de';
 
 function DayWithMood({ mood }: { mood: Mood }) {
-  if (mood.type === 'positive') {
-    return <Image source={require('../../assets/emoji_happy.png')} style={styles.icon} />;
-  } else if (mood.type === 'neutral') {
-    return <Image source={require('../../assets/emoji_neutral.png')} style={styles.icon} />;
+  const navigation = useNavigation<NavigationProp<MoodDiaryRoutes>>();
+  if (mood.mood_type === 'positive') {
+    return (
+      <Pressable onPress={() => navigation.navigate('MoodEntry', { id: mood.id })}>
+        <Image source={require('../../assets/emoji_happy.png')} style={styles.icon} />
+      </Pressable>
+    );
+  } else if (mood.mood_type === 'neutral') {
+    return (
+      <Pressable onPress={() => navigation.navigate('MoodEntry', { id: mood.id })}>
+        <Image source={require('../../assets/emoji_neutral.png')} style={styles.icon} />
+      </Pressable>
+    );
   } else {
-    return <Image source={require('../../assets/emoji_sad.png')} style={styles.icon} />;
+    return (
+      <Pressable onPress={() => navigation.navigate('MoodEntry', { id: mood.id })}>
+        <Image source={require('../../assets/emoji_sad.png')} style={styles.icon} />
+      </Pressable>
+    );
   }
 }
 
 function AddMoodButton() {
   const navigation = useNavigation<NavigationProp<MoodDiaryRoutes>>();
   return (
-    <Pressable onPress={() => navigation.navigate('MoodEntry')}>
+    <Pressable onPress={() => navigation.navigate('MoodEntry', { id: -1 })}>
       <Image source={require('../../assets/icon_plus.png')} style={styles.icon} />
     </Pressable>
   );
@@ -52,7 +65,7 @@ function AddMoodButton() {
 
 const Day = (moods: Mood[]) => (props: { date?: DateData }) => {
   const date = LocalDate.parse(props.date!.dateString);
-  const moodAtDate = moods.find((mood) => LocalDateTime.parse(mood.timestamp).toLocalDate().equals(date));
+  const moodAtDate = moods.find((mood) => LocalDate.parse(mood.mood_day).equals(date));
   if (moodAtDate) {
     // User has previously entered a mood for this day, so we show it
     return <DayWithMood mood={moodAtDate} />;
@@ -66,9 +79,9 @@ const Day = (moods: Mood[]) => (props: { date?: DateData }) => {
 };
 
 export default function MoodCalendar() {
-  const [moods, setMoods] = useState<Mood[] | null>(null);
+  const [moods, setMoods] = useState<Mood[]>([]);
   useEffect(() => {
-    new MoodDiaryClient().getMoods().then(setMoods);
+    new MoodDiaryClient('https://diary.api.live.mindtastic.lol').getMoods().then(setMoods);
   }, []);
 
   return (
@@ -76,7 +89,7 @@ export default function MoodCalendar() {
       <Title text="Stimmungstagebuch" />
       <Calendar
         dayComponent={Day(moods ?? [])}
-        displayLoadingIndicator={moods === null}
+        displayLoadingIndicator={moods === []}
         theme={{ calendarBackground: undefined }}
       />
     </>

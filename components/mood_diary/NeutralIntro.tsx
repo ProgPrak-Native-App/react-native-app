@@ -1,7 +1,7 @@
 import Title from '../shared/components/Title';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { TabRoutes } from '../../App';
+import { TabRoutes } from '../Routes';
 import { NEUTRAL } from '../shared/styles';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
