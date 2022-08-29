@@ -6,10 +6,10 @@ import Home from './Home';
 import { PRIMARY, SHADOW_COLOR } from './shared/styles';
 import MoodDiary, { MoodDiaryRoutes } from './mood_diary/MoodDiary';
 import Wiki from './Wiki';
-import Profile from './profile/Profile';
 import EmergencyNumbers from './emergencyNumbers/EmergencyNumbers';
 import MotivatorNavigator, { MotivatorOrigin, MotivatorRoutes } from './motivators/MotivatorNavigator';
 import { NavigatorScreenParams } from '@react-navigation/native';
+import Profile from './profile/Profile';
 
 export type TabRoutes = {
   Home: undefined;
