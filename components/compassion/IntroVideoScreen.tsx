@@ -1,19 +1,20 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { SocialSupportStackParamList } from './SocialNavigation';
 import { ResizeMode, Video } from 'expo-av';
+import { CompassionRoutes } from './CompassionNavigation';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
-import { BACKGROUND, ORANGE, SIZES, TERTIARY } from '../shared/styles';
+import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
 import Title from '../shared/components/Title';
 
 export default function IntroVideoScreen() {
-  const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
+  const { navigate } = useNavigation<NavigationProp<CompassionRoutes>>();
+  const navigation = useNavigation<NavigationProp<CompassionRoutes>>();
   const video = React.useRef(null);
-  const props = getMotivatorByType('socialSupport');
+  const props = getMotivatorByType('compassion');
   return (
     <>
-      <Title Icon={() => props.icon} back color={ORANGE} text="Soziale Unterstützung" />
+      <Title Icon={() => props.icon} back color={PURPLE} text="Selbstbezogenes Mitgefühl" />
       <View style={styles.container}>
         <View style={{ flex: 0 }}>
           <Text style={styles.heading}>Finde heraus was dahinter steckt!</Text>
@@ -28,14 +29,15 @@ export default function IntroVideoScreen() {
           />
         </View>
         <View style={styles.buttons}>
-          <Pressable onPress={() => navigate('SupportExercise', { level: 1 })} style={styles.buttonLvl}>
-            <Text style={styles.text}>Level 1</Text>
+          <Pressable
+            onPress={() => navigation.navigate('NewMotivator')}
+            style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.buttonLvl]}>
+            <Text style={styles.text}>Andere Stargeie auswählen</Text>
           </Pressable>
-          <Pressable onPress={() => navigate('SupportExercise', { level: 2 })} style={styles.buttonLvl}>
-            <Text style={styles.text}>Level 2</Text>
-          </Pressable>
-          <Pressable onPress={() => navigate('SupportExercise', { level: 3 })} style={styles.buttonLvl}>
-            <Text style={styles.text}>Level 3</Text>
+          <Pressable
+            onPress={() => navigate('CompassionMeditation')}
+            style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.buttonLvl]}>
+            <Text style={styles.text}>Das will ich üben</Text>
           </Pressable>
         </View>
       </View>
@@ -59,30 +61,30 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   text: {
+    marginVertical: 10,
+    paddingHorizontal: 5,
     textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     fontSize: SIZES.font,
     lineHeight: SIZES.default_line_height,
   },
   buttons: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     width: '100%',
   },
   buttonLvl: {
+    minHeight: SIZES.target_size,
+    textAlign: 'center',
     justifyContent: 'center',
     marginTop: 20,
     borderRadius: 15,
-    backgroundColor: TERTIARY,
-    height: 48,
+    maxWidth: '48%',
     paddingHorizontal: 10,
     marginHorizontal: 5,
-    shadowColor: BACKGROUND,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 100,
-    shadowRadius: 1,
+    borderColor: BLACK,
+    borderWidth: 1,
   },
 });

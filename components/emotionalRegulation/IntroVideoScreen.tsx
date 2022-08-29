@@ -1,19 +1,19 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { SocialSupportStackParamList } from './SocialNavigation';
 import { ResizeMode, Video } from 'expo-av';
+import { EmoRoutes } from './Navigation';
 import { getMotivatorByType } from '../motivators/MotivatorProps';
-import { BACKGROUND, ORANGE, SIZES, TERTIARY } from '../shared/styles';
+import { BLACK, PURPLE, SIZES, TERTIARY } from '../shared/styles';
 import Title from '../shared/components/Title';
 
 export default function IntroVideoScreen() {
-  const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
+  const navigation = useNavigation<NavigationProp<EmoRoutes>>();
   const video = React.useRef(null);
-  const props = getMotivatorByType('socialSupport');
+  const props = getMotivatorByType('situationControl');
   return (
     <>
-      <Title Icon={() => props.icon} back color={ORANGE} text="Soziale Unterstützung" />
+      <Title Icon={() => props.icon} back color={PURPLE} text="Situationskontrolle" />
       <View style={styles.container}>
         <View style={{ flex: 0 }}>
           <Text style={styles.heading}>Finde heraus was dahinter steckt!</Text>
@@ -27,15 +27,12 @@ export default function IntroVideoScreen() {
             useNativeControls
           />
         </View>
-        <View style={styles.buttons}>
-          <Pressable onPress={() => navigate('SupportExercise', { level: 1 })} style={styles.buttonLvl}>
-            <Text style={styles.text}>Level 1</Text>
+        <View style={[styles.buttons, { flex: 0 }]}>
+          <Pressable onPress={() => navigation.goBack()} style={styles.buttonLvl}>
+            <Text style={styles.text}>Andere Strategie auswählen</Text>
           </Pressable>
-          <Pressable onPress={() => navigate('SupportExercise', { level: 2 })} style={styles.buttonLvl}>
-            <Text style={styles.text}>Level 2</Text>
-          </Pressable>
-          <Pressable onPress={() => navigate('SupportExercise', { level: 3 })} style={styles.buttonLvl}>
-            <Text style={styles.text}>Level 3</Text>
+          <Pressable onPress={() => navigation.navigate('IntroScreen')} style={styles.buttonLvl}>
+            <Text style={styles.text}>Das will ich üben</Text>
           </Pressable>
         </View>
       </View>
@@ -62,27 +59,24 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: SIZES.font,
     lineHeight: SIZES.default_line_height,
+    padding: 5,
   },
   buttons: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     width: '100%',
   },
   buttonLvl: {
+    borderColor: BLACK,
+    borderWidth: 1,
     justifyContent: 'center',
     marginTop: 20,
     borderRadius: 15,
     backgroundColor: TERTIARY,
-    height: 48,
+    minHeight: SIZES.target_size,
+    maxWidth: '48%',
     paddingHorizontal: 10,
     marginHorizontal: 5,
-    shadowColor: BACKGROUND,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 100,
-    shadowRadius: 1,
   },
 });

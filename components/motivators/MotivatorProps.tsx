@@ -1,8 +1,8 @@
 import { MotivatorRoutes } from './Motivator';
 import React from 'react';
 import { Image } from 'react-native';
-import { MOTIVATOR } from '../shared/styles';
 import { MaterialIcons } from '@expo/vector-icons';
+import { MOTIVATOR, PURPLE } from '../shared/styles';
 
 export type Exercise = { title: string; screen: keyof MotivatorRoutes };
 
@@ -12,6 +12,7 @@ export type MotivatorTypes = {
   optimism: undefined;
   reframing: undefined;
   socialSupport: undefined;
+  compassion: undefined;
   noMotivator: undefined;
 };
 
@@ -41,7 +42,7 @@ const situationControl: MotivatorProps = {
   color: MOTIVATOR.SITUATIONCONTROLL,
   exercises: mockExercises,
   icon: <Image source={require('../../assets/situationControlIcon.png')} style={{ height: 80, width: 80 }} />,
-  screen: 'OldMotivator',
+  screen: 'EmoNavigation',
   type: 'situationControl',
 };
 
@@ -75,20 +76,32 @@ const reframing: MotivatorProps = {
   color: MOTIVATOR.REFRAMING,
   exercises: mockExercises,
   icon: <Image source={require('../../assets/reframingIcon.png')} style={{ height: 80, width: 80 }} />,
-  screen: 'OldMotivator',
+  screen: 'Reframing',
   type: 'reframing',
 };
 
 // Soziale Unterstützung
 const socialSupport: MotivatorProps = {
   name: 'Soziale Unterstützung',
-  description: 'Optimismus heißt, das Gute im Leben zu sehen. Auch, wenn es mal nicht so einfach ist.',
+  description: 'Bei der Sozialen Unterstützung geht es darum, zu sehen welche Ressourcen Du im Umfeld hast.',
   color: MOTIVATOR.SOCIALSUPPORT,
   exercises: mockExercises,
   // TODO add social support icon
-  icon: <Image source={require('../../assets/reframingIcon.png')} style={{ height: 80, width: 80 }} />,
+  icon: <Image source={require('../../assets/socialSupportIcon.png')} style={{ height: 80, width: 80 }} />,
   screen: 'SocialSupport',
   type: 'socialSupport',
+};
+
+// Selbstbezogenes Mitgefühl
+const compassion: MotivatorProps = {
+  name: 'Selbstbezogenes Mitgefühl',
+  description: 'Sei nett zu Dir.',
+  color: PURPLE,
+  exercises: mockExercises,
+  // TODO add social support icon
+  icon: <Image source={require('../../assets/compassionIcon.png')} style={{ height: 70, width: 70 }} />,
+  screen: 'CompassionNavigation',
+  type: 'compassion',
 };
 
 // export parsing of motivator type
@@ -104,6 +117,8 @@ export function getMotivatorByType(name: keyof MotivatorTypes) {
       return reframing;
     case 'socialSupport':
       return socialSupport;
+    case 'compassion':
+      return compassion;
     case 'noMotivator':
     default:
       return {

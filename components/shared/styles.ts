@@ -16,6 +16,7 @@ export const DARK_GREEN = '#00A873';
 export const WHITE = '#fff';
 export const BLACK = '#000';
 export const INNER_CIRCLE = '#f9bf9e';
+export const ACCENT = '#006646';
 
 export const MOTIVATOR = {
   DEFAULT: '#f2c7d0',
@@ -47,6 +48,9 @@ export const SIZES = {
   max_margin: 32,
   target_size: 48,
 };
+
+/* ---- Layout Colors --- */
+export const LAYOUT_COLOR_SAFEAREA_BACKGROUND = BACKGROUND;
 
 /* ---- Card Colors --- */
 export const CARD_BACKGROUND_COLOR = '#DCDCDE';

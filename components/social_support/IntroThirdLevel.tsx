@@ -4,13 +4,14 @@ import Title from '../shared/components/Title';
 import { DARK_GREY, ORANGE, SIZES, TERTIARY } from '../shared/styles';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { SocialSupportStackParamList } from './SocialNavigation';
+import { getMotivatorByType } from '../motivators/MotivatorProps';
 
 export default function IntroThirdLevel() {
   const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
-
+  const props = getMotivatorByType('socialSupport');
   return (
     <>
-      <Title back color={ORANGE} text="Soziale Unterstützung" />
+      <Title Icon={() => props.icon} back color={ORANGE} text="Soziale Unterstützung" />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.header}>Anderen zu helfen, hilft uns nicht selten auch selbst!</Text>
         <Text style={styles.body}>
