@@ -1,5 +1,5 @@
 import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Title from '../shared/components/Title';
 import PopUp from './AddPopUp';
 import TextHeader from './TextHeader';
@@ -15,8 +15,8 @@ import IntroThirdLevel from './IntroThirdLevel';
 
 import 'react-native-get-random-values';
 import { nanoid } from 'nanoid';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
-import { MotivatorRoutes } from '../motivators/Motivator';
+import { getMotivatorByType } from '../motivators/model';
+import { MotivatorRoutes } from '../motivators/MotivatorNavigator'; // const helper = 'Klicke einfach auf das plus-Symbol, um Personen dem jeweiligen Kreis hinzuzufügen.';s
 
 // const helper = 'Klicke einfach auf das plus-Symbol, um Personen dem jeweiligen Kreis hinzuzufügen.';s
 const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>) => {
@@ -130,11 +130,7 @@ const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>
   const goAhead = (id: number) => {
     setData((prevData) => prevData.map((item) => (item.id === id ? { ...item, people } : item)));
     if (id === 0) {
-      navigation.navigate('FeedbackNavigation', {
-        name: 'MoodEntry',
-        title: 'Soziale Unterstützung',
-        color: ORANGE,
-      });
+      navigation.navigate('Feedback', { motivator: 'socialSupport' });
     } else if (id === 1) {
       setting(--id);
       changeSize(middleSize, 90);

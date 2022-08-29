@@ -1,14 +1,14 @@
-import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TaskProp } from './GroupALP';
 import Checks from './Checks';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { EmoRoutes } from './Navigation';
-import { MotivatorRoutes } from '../motivators/Motivator';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { getMotivatorByType } from '../motivators/model';
 import { ACCENT, BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
 import Title from '../shared/components/Title';
+import { MotivatorRoutes } from '../motivators/MotivatorNavigator';
 
 export default function NKontrolle() {
   /** get the users safed tasks from earlier */
@@ -19,6 +19,7 @@ export default function NKontrolle() {
     }
     return [];
   }
+
   const props = getMotivatorByType('situationControl');
   const navigation = useNavigation<NavigationProp<EmoRoutes>>();
   const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();
@@ -52,7 +53,7 @@ export default function NKontrolle() {
       navigation.navigate('Nice');
     } else {
       // navigate to checked off < 50%
-      navigate('FeedbackNavigation', { name: 'IntroScreen', title: 'Situationskontrolle', color: PURPLE });
+      navigate('Feedback', { motivator: 'situationControl' });
     }
   };
 

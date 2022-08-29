@@ -1,15 +1,12 @@
 import Title from '../shared/components/Title';
 import React from 'react';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { TabRoutes } from '../Routes';
+import { MoodDiaryScreenProps } from './MoodDiary';
 import { NEUTRAL } from '../shared/styles';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import KopfsachenButton from '../shared/components/button/KopfsachenButton';
 
-export default function NeutralIntro() {
-  const navigation = useNavigation<NavigationProp<TabRoutes>>();
-
+export default function NeutralIntro({ navigation }: MoodDiaryScreenProps) {
   return (
     <>
       <Title Icon={() => <FontAwesome5 name="meh" size={80} />} back color={NEUTRAL} text="Stimmungstagebuch" />
@@ -18,10 +15,14 @@ export default function NeutralIntro() {
         sonst eine Freude bereitet oder du probierst eine neue Starkmacher-Übung aus!
       </Text>
       <View style={styles.buttonList}>
-        <KopfsachenButton onPress={() => console.log('SafetyNet not implemented')} style={styles.button}>
+        <KopfsachenButton
+          onPress={() => navigation.navigate('Motivators', { screen: 'SecurityNet', origin: 'MoodDiary' })}
+          style={styles.button}>
           Sicherheitsnetz
         </KopfsachenButton>
-        <KopfsachenButton onPress={() => navigation.navigate('Motivators')} style={styles.button}>
+        <KopfsachenButton
+          onPress={() => navigation.navigate('Motivators', { origin: 'MoodDiary' })}
+          style={styles.button}>
           Neue Starkmacher üben!
         </KopfsachenButton>
       </View>

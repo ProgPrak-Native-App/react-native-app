@@ -1,28 +1,25 @@
-import { View, Text, ScrollView, Pressable, StyleSheet, Image } from 'react-native';
+import { ImageBackground, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { MotivatorRoutes } from '../motivators/Motivator';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { motivators } from '../motivators/model';
 import { BLACK, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
 import Title from '../shared/components/Title';
+import { MotivatorRoutes } from '../motivators/MotivatorNavigator';
 
 export default function Nice() {
   const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();
-  const props = getMotivatorByType('situationControl');
   return (
     <>
-      <Title Icon={() => props.icon} back color={PURPLE} text="Situationskontrolle" />
+      <Title Icon={() => motivators.situationControl.icon} back color={PURPLE} text="Situationskontrolle" />
+      <ImageBackground source={require('../../assets/images/achievement-gf08e1d499_1920.png')} style={styles.img} />
       <ScrollView contentContainerStyle={styles.container}>
         <View>
           <Text style={styles.heading}>Super gemacht!</Text>
           <Text style={styles.description}>Du bist heute ein ganzes Stück weitergekommen mit deinen Aufgaben.</Text>
         </View>
-        <Image source={require('../../assets/images/achievement-gf08e1d499_1920.png')} style={styles.img} />
         <Pressable
           accessibilityHint="Beende die Übung"
-          onPress={() => {
-            navigate('FeedbackNavigation', { name: 'MoodEntry', title: 'Situationskontrolle', color: PURPLE });
-          }}
+          onPress={() => navigate('Feedback', { motivator: 'situationControl' })}
           style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.btn]}>
           <Text style={styles.txt}>Fertig</Text>
         </Pressable>
@@ -67,13 +64,11 @@ const styles = StyleSheet.create({
     fontSize: SIZES.font,
   },
   btn: {
-    position: 'absolute',
     minHeight: SIZES.target_size,
-    width: '40%',
+    minWidth: '40%',
     alignSelf: 'center',
     textAlign: 'center',
     justifyContent: 'center',
-    top: '270%',
     borderColor: BLACK,
     borderWidth: 1,
     borderRadius: 15,

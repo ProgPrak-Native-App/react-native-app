@@ -14,14 +14,14 @@ import {
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import Title from '../../shared/components/Title';
-import { getMotivatorByType } from '../MotivatorProps';
+import { getMotivatorByType } from '../model';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { BACKGROUND, GREY, MOTIVATOR, SIZES, STYLES } from '../../shared/styles';
 import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import * as Clipboard from 'expo-clipboard';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { MotivatorRoutes } from '../Motivator';
 import { AntDesign } from '@expo/vector-icons';
+import { MotivatorRoutes } from '../MotivatorNavigator';
 
 function formatTime(seconds: number) {
   return (
@@ -91,7 +91,7 @@ export default function OptimismExercise() {
                   accessibilityHint={'Übung abschließen'}
                   onPress={() => {
                     setModalVisible(!modalVisible);
-                    navigation.navigate('NewMotivator');
+                    navigation.navigate('Feedback', { motivator: 'optimism' });
                   }}
                   style={[styles.button, STYLES.shadow]}>
                   Fertig

@@ -2,7 +2,7 @@ import { View, Text, ScrollView, StyleSheet, TextInput, Pressable } from 'react-
 import React, { useState } from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/core';
 import { ReframingRoutes } from './Reframing';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { getMotivatorByType } from '../motivators/model';
 import { BLACK, PINK, PRIMARY, SIZES, TERTIARY, WHITE } from '../shared/styles';
 import Title from '../shared/components/Title';
 

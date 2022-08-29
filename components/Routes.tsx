@@ -4,17 +4,18 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import Home from './Home';
 import { PRIMARY, SHADOW_COLOR } from './shared/styles';
-import MoodDiary from './mood_diary/MoodDiary';
-import Motivator from './motivators/Motivator';
+import MoodDiary, { MoodDiaryRoutes } from './mood_diary/MoodDiary';
 import Wiki from './Wiki';
 import Profile from './profile/Profile';
 import EmergencyNumbers from './emergencyNumbers/EmergencyNumbers';
+import MotivatorNavigator, { MotivatorOrigin, MotivatorRoutes } from './motivators/MotivatorNavigator';
+import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type TabRoutes = {
   Home: undefined;
-  MoodDiary: undefined;
+  MoodDiary: NavigatorScreenParams<MoodDiaryRoutes> | undefined;
   Wiki: undefined;
-  Motivators: undefined;
+  Motivators: (Partial<NavigatorScreenParams<MotivatorRoutes>> & { origin?: MotivatorOrigin }) | undefined;
   EmergencyNumbers: undefined;
   Profil: undefined;
 };
@@ -56,7 +57,7 @@ export default function Routes() {
         }}
       />
       <Tab.Screen
-        component={Motivator}
+        component={MotivatorNavigator}
         name="Motivators"
         options={{
           title: 'Übungen',

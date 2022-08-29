@@ -5,11 +5,11 @@ import { AntDesign } from '@expo/vector-icons';
 import { Audio, AVPlaybackStatus } from 'expo-av';
 import Slider from '@react-native-community/slider';
 import track from '../../assets/Compassion-Meditation-Example.mp3';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
-import { MotivatorRoutes } from '../motivators/Motivator';
+import { getMotivatorByType } from '../motivators/model';
 import { BLACK, DARK_GREEN, GREY, PRIMARY, PURPLE, SIZES, TERTIARY } from '../shared/styles';
 import Title from '../shared/components/Title';
 import Bold from '../shared/Bold';
+import { MotivatorRoutes } from '../motivators/MotivatorNavigator';
 
 /** source code for audio player:
  * https://github.com/expo/playlist-example/blob/master/App.js
@@ -21,6 +21,7 @@ export default function CompassionMeditation() {
     setStatus(status);
     return sound;
   }
+
   const props = getMotivatorByType('compassion');
   const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();
 
@@ -203,9 +204,7 @@ export default function CompassionMeditation() {
             <Text style={styles.minutes}>{durationString}</Text>
           </View>
           <Pressable
-            onPress={() =>
-              navigate('FeedbackNavigation', { name: 'MoodEntry', title: 'Selbstbezogenes Mitgefühl', color: PURPLE })
-            }
+            onPress={() => navigate('Feedback', { motivator: 'compassion' })}
             style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.button]}>
             <Text style={styles.text}>Geschafft!</Text>
           </Pressable>

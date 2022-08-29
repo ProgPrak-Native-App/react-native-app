@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Image, Modal, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import Title from '../../shared/components/Title';
-import { getMotivatorByType } from '../MotivatorProps';
+import { getMotivatorByType } from '../model';
 import { BACKGROUND, SIZES, STYLES } from '../../shared/styles';
 import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import { AntDesign } from '@expo/vector-icons';

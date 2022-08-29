@@ -1,5 +1,5 @@
 import React from 'react';
-import { getMotivatorByType } from '../MotivatorProps';
+import { getMotivatorByType } from '../model';
 import { SecurityNetRoutes } from './SecurityNet';
 import Title from '../../shared/components/Title';
 import { empty } from '../../../api/SecurityNetClient';

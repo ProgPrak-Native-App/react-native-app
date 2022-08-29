@@ -1,25 +1,25 @@
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { MotivatorRoutes } from '../Motivator';
 import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import Title from '../../shared/components/Title';
 import React, { useEffect, useState } from 'react';
-import { getMotivatorByType, MotivatorProps, MotivatorTypes } from '../MotivatorProps';
+import { Motivator, MotivatorName, motivators } from '../model';
 import { GREY, MOTIVATOR, STYLES } from '../../shared/styles';
+import { MotivatorRoutes } from '../MotivatorNavigator';
 
-async function getMotivators() {
-  // change to BASE_URL once merged -> feature/7/wiki
+async function getMotivators(): Promise<Motivator[]> {
+  // change to BASE_URL once merged
   return await fetch('http://localhost:4010/motivator', {
     headers: {
       Authorization: 'Bearer react-native-app',
     },
   })
     .then((response) => response.json())
-    .then((data: { type: keyof MotivatorTypes }[]) => data.map((value) => getMotivatorByType(value.type)))
-    .catch(() => [getMotivatorByType('noMotivator')]);
+    .then((data: { type: MotivatorName }[]) => data.map((value) => motivators[value.type]))
+    .catch(() => [motivators.noMotivator]);
 }
 
-function OldMotivatorGridView(motivators: MotivatorProps[]) {
+function OldMotivatorGridView(motivators: Motivator[]) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
 
   return (
@@ -28,7 +28,7 @@ function OldMotivatorGridView(motivators: MotivatorProps[]) {
         <Pressable
           accessibilityHint={'Übungen von ' + props.name + ' öffnen'}
           key={index}
-          onPress={() => navigation.navigate(props.screen, { props: props.type })}
+          onPress={() => navigation.navigate(props.screen)}
           style={[styles.gridItem, { backgroundColor: props.color }, STYLES.shadow]}>
           <Text style={styles.text}>{props.name}</Text>
           {props.icon}
@@ -39,7 +39,7 @@ function OldMotivatorGridView(motivators: MotivatorProps[]) {
 }
 
 export default function MotivatorOverview() {
-  const initialState: MotivatorProps[] = [];
+  const initialState: Motivator[] = [];
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   const [oldMotivators, setOldMotivators] = useState(initialState);
 

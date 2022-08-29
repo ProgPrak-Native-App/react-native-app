@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SecurityNetRoutes } from './SecurityNet';
-import { getMotivatorByType } from '../MotivatorProps';
+import { getMotivatorByType } from '../model';
 import { iconMap } from './SecurityNetHome';
 import SecurityNetClient, { SafetyNetDType } from '../../../api/SecurityNetClient';
 import Title from '../../shared/components/Title';

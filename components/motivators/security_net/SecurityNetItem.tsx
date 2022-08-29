@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Title from '../../shared/components/Title';
 import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
-import { getMotivatorByType } from '../MotivatorProps';
+import { getMotivatorByType } from '../model';
 import { SafetyNetDType } from '../../../api/SecurityNetClient';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Entypo, FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';

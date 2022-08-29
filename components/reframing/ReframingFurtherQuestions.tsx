@@ -1,10 +1,10 @@
-import { View, Text, ScrollView, StyleSheet, Pressable } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { MotivatorRoutes } from '../motivators/Motivator';
-import { getMotivatorByType } from '../motivators/MotivatorProps';
+import { getMotivatorByType } from '../motivators/model';
 import Title from '../shared/components/Title';
 import { ACCENT, BLACK, PINK, PRIMARY, SIZES, TERTIARY } from '../shared/styles';
+import { MotivatorRoutes } from '../motivators/MotivatorNavigator';
 
 export default function RefraimingFurtherQuestions() {
   const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();
@@ -36,9 +36,7 @@ export default function RefraimingFurtherQuestions() {
 
         <View style={styles.btnConatiner}>
           <Pressable
-            onPress={() =>
-              navigate('FeedbackNavigation', { name: 'MotivatorCompleted', title: 'Refraiming', color: PINK })
-            }
+            onPress={() => navigate('Feedback', { motivator: 'reframing' })}
             style={({ pressed }) => [{ backgroundColor: pressed ? PRIMARY : TERTIARY }, styles.button]}>
             <Text style={styles.buttonText}>Ich bin zu einer neuen Bewertung der Situationen gekommen.</Text>
           </Pressable>
