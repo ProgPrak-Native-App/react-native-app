@@ -3,17 +3,7 @@ import Title from '../../shared/components/Title';
 import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import { getMotivatorByType } from '../MotivatorProps';
 import { SafetyNetDType } from '../../../api/SecurityNetClient';
-import {
-  Alert,
-  NativeSyntheticEvent,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TextInputEndEditingEventData,
-  View,
-} from 'react-native';
+import { Alert, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Entypo, FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { SecurityNetRoutes } from './SecurityNet';
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -71,12 +61,10 @@ export default function SecurityNetItem({
         <Text style={styles.text}>Das bereitet mir Freude:</Text>
         <TextInput
           multiline
-          onEndEditing={(e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
-            const input: string = e.nativeEvent.text;
-            setResource({ ...currentComponent, name: input });
-          }}
+          onChangeText={(value) => setResource({ ...currentComponent, name: value })}
           placeholder={currentComponent.name !== '' ? currentComponent.name : 'Trage hier ein was dir Freude macht!'}
           style={styles.textinput}
+          value={currentComponent.name}
         />
         <Text style={styles.text}>Zu welcher Kategorie gehört diese Ressource?</Text>
         <View style={styles.iconcontainer}>

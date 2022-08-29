@@ -38,11 +38,10 @@ export default function SecurityNetAssistance({
       <View style={styles.container}>
         <Text style={styles.text}>Trage bis zu 3 Wege ein, auf denen dir diese Person oder Aktivität helfen kann.</Text>
         <TextInput
-          onEndEditing={(e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
-            const input: string = e.nativeEvent.text;
+          onChangeText={(value) => {
             setResource({
               ...currentComponent,
-              strategies: [input, currentComponent.strategies[1], currentComponent.strategies[2]],
+              strategies: [value, currentComponent.strategies[1], currentComponent.strategies[2]],
             });
             setModified(true);
           }}
@@ -52,13 +51,13 @@ export default function SecurityNetAssistance({
               : 'Trage hier ein wie dieses Thema dir hilft!'
           }
           style={styles.textinput}
+          value={currentComponent.strategies[0]}
         />
         <TextInput
-          onEndEditing={(e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
-            const input: string = e.nativeEvent.text;
+          onChangeText={(value) => {
             setResource({
               ...currentComponent,
-              strategies: [currentComponent.strategies[0], input, currentComponent.strategies[2]],
+              strategies: [currentComponent.strategies[0], value, currentComponent.strategies[2]],
             });
             setModified(true);
           }}
@@ -68,14 +67,15 @@ export default function SecurityNetAssistance({
               : 'Trage hier ein wie dieses Thema dir hilft!'
           }
           style={styles.textinput}
+          value={currentComponent.strategies[1]}
         />
         <TextInput
-          onEndEditing={(e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
-            const input: string = e.nativeEvent.text;
+          onChangeText={(value) => {
             setResource({
               ...currentComponent,
-              strategies: [currentComponent.strategies[0], currentComponent.strategies[1], input],
+              strategies: [currentComponent.strategies[0], currentComponent.strategies[1], value],
             });
+            setModified(true);
           }}
           placeholder={
             currentComponent.strategies[2] !== ''
@@ -83,6 +83,7 @@ export default function SecurityNetAssistance({
               : 'Trage hier ein wie dieses Thema dir hilft!'
           }
           style={styles.textinput}
+          value={currentComponent.strategies[2]}
         />
       </View>
       <KopfsachenButton
