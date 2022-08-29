@@ -21,10 +21,10 @@ export default function Feedback({ navigation, route }: Props) {
   return (
     <>
       <Title
+        Icon={() => motivators[motivator].icon}
         back
         color={motivators[motivator].color}
         text={motivators[motivator].name}
-        Icon={() => motivators[motivator].icon}
       />
       <ScrollView style={styles.container}>
         <Text style={styles.heading}>Wie hat Dir die Übung gefallen?</Text>

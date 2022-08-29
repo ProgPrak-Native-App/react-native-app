@@ -8,7 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { MotivatorRoutes } from '../MotivatorNavigator';
 
 export default function CarouselCards(props: { data: MotivatorName[] }) {
-  const carouselRef = React.createRef<any>();
+  const carouselRef = React.createRef<Carousel<MotivatorName>>();
   const [index, setIndex] = useState(0);
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
 
@@ -32,7 +32,7 @@ export default function CarouselCards(props: { data: MotivatorName[] }) {
           accessibilityHint={'vorheriger Starkmacher'}
           color="black"
           name="left"
-          onPress={() => carouselRef.current.snapToPrev()}
+          onPress={() => carouselRef.current!.snapToPrev()}
           size={40}
         />
 
@@ -43,7 +43,7 @@ export default function CarouselCards(props: { data: MotivatorName[] }) {
           color="black"
           name="right"
           onPress={() => {
-            carouselRef.current.snapToNext();
+            carouselRef.current!.snapToNext();
           }}
           size={40}
         />

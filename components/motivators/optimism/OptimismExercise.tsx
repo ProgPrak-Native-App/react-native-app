@@ -19,9 +19,8 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { BACKGROUND, GREY, MOTIVATOR, SIZES, STYLES } from '../../shared/styles';
 import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import * as Clipboard from 'expo-clipboard';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
-import { MotivatorRoutes } from '../MotivatorNavigator';
+import { OptimismScreenProps } from './Optimism';
 
 function formatTime(seconds: number) {
   return (
@@ -33,9 +32,7 @@ function formatTime(seconds: number) {
   );
 }
 
-export default function OptimismExercise() {
-  const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
-
+export default function OptimismExercise({ navigation }: OptimismScreenProps) {
   const props = getMotivatorByType('optimism');
   const [isPlaying, setIsPlaying] = useState(false);
   const [key, setKey] = useState(0);

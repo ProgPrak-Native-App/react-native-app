@@ -16,7 +16,7 @@ import IntroThirdLevel from './IntroThirdLevel';
 import 'react-native-get-random-values';
 import { nanoid } from 'nanoid';
 import { getMotivatorByType } from '../motivators/model';
-import { MotivatorRoutes } from '../motivators/MotivatorNavigator'; // const helper = 'Klicke einfach auf das plus-Symbol, um Personen dem jeweiligen Kreis hinzuzufügen.';s
+import { MotivatorRoutes } from '../motivators/MotivatorNavigator';
 
 // const helper = 'Klicke einfach auf das plus-Symbol, um Personen dem jeweiligen Kreis hinzuzufügen.';s
 const SocialStart = ({ route }: SocialSupportStackScreenProps<'SupportExercise'>) => {
