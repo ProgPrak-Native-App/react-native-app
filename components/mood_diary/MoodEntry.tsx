@@ -7,6 +7,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { NEGATIVE, NEUTRAL, POSITIVE } from '../shared/styles';
 import MoodDiaryClient, { MoodType } from '../../api/MoodDiaryClient';
 import { LocalDateTime } from '@js-joda/core';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 function sendMood(moodType: keyof MoodDiaryRoutes, id: number) {
   let type: MoodType = 'positive';
@@ -20,14 +21,14 @@ function sendMood(moodType: keyof MoodDiaryRoutes, id: number) {
     new MoodDiaryClient('https://diary.api.live.mindtastic.lol').addMood({
       id: -1,
       mood_day: LocalDateTime.now().toString(),
-      mood_descr: '',
+      mood_descr: 'test',
       mood_type: type,
     });
   } else {
     new MoodDiaryClient('https://diary.api.live.mindtastic.lol').updateMood({
       id,
       mood_day: LocalDateTime.now().toString(),
-      mood_descr: '',
+      mood_descr: 'test',
       mood_type: type,
     });
   }
@@ -41,11 +42,11 @@ function MoodButton(props: {
   id: number;
 }) {
   const navigation = useNavigation<NavigationProp<MoodDiaryRoutes>>();
-  const { color, iconName, linkTo, descriptions } = props;
+  const { color, iconName, linkTo, descriptions, id } = props;
   return (
     <Pressable
       onPress={() => {
-        sendMood(linkTo, props.id);
+        sendMood(linkTo, id);
         navigation.navigate(linkTo);
       }}
       style={[styles.moodButton, { backgroundColor: color }]}>
@@ -63,7 +64,8 @@ function MoodButton(props: {
   );
 }
 
-export default function MoodEntry(id: number) {
+export default function MoodEntry({ route }: NativeStackScreenProps<MoodDiaryRoutes, 'MoodEntry'>) {
+  const id = route.params.id;
   return (
     <>
       <Title back text="Stimmungstagebuch" />

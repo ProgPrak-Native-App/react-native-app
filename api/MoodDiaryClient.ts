@@ -39,7 +39,7 @@ export default class MoodDiaryClient extends BaseClient {
 
   public async addMood(mood: Mood): Promise<void> {
     await this.post('/diary', JSON.stringify(mood), {
-      headers: { Authorization: 'Bearer react-native-app' },
+      headers: { Authorization: 'Bearer nDpIgHo2Y2atmYVZsc2Va17XBhLVvmEA' },
     }).catch(() => {
       Alert.alert('Keine Verbindung.', 'Leider besteht zurzeit keine Verbindung zu unserem Server :(');
     });
@@ -47,7 +47,7 @@ export default class MoodDiaryClient extends BaseClient {
 
   public async updateMood(mood: Mood): Promise<void> {
     await this.put(`/diary/${mood.id}`, JSON.stringify(mood), {
-      headers: { Authorization: 'Bearer react-native-app' },
+      headers: { Authorization: 'Bearer nDpIgHo2Y2atmYVZsc2Va17XBhLVvmEA' },
     }).catch(() => {
       Alert.alert('Keine Verbindung', 'Leider besteht zurzeit keine Verbindung zu unserem Server :(');
     });
