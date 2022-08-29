@@ -1,5 +1,5 @@
 import React from 'react';
-import { Keyboard, Pressable, StyleSheet, ScrollView, Text, View } from 'react-native';
+import { Keyboard, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Title from '../shared/components/Title';
 import Input from './Input';
 
@@ -39,10 +39,9 @@ export default function RegistrationScreen() {
     Keyboard.dismiss();
     if (!inputs.email) {
       handleError('Bitte Mailadresse eingeben', 'email');
-
-      // source: https://www.emailregex.com
     } else if (
       !inputs.email.match(
+        // source: https://www.emailregex.com
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       )
     ) {

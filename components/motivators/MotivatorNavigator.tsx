@@ -65,8 +65,8 @@ export default function MotivatorNavigator(props: MotivatorNavigatorProps) {
       <StackNavigator.Screen component={Feedback} name="Feedback" />
       <StackNavigator.Screen
         component={MotivatorCompleted}
-        name="MotivatorCompleted"
         initialParams={{ origin: props.route.params?.origin }}
+        name="MotivatorCompleted"
       />
     </StackNavigator.Navigator>
   );

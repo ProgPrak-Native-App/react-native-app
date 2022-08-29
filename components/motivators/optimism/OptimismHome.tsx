@@ -5,8 +5,9 @@ import { getMotivatorByType } from '../model';
 import { BACKGROUND, SIZES, STYLES } from '../../shared/styles';
 import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import { AntDesign } from '@expo/vector-icons';
+import { OptimismScreenProps } from './Optimism';
 
-export default function OptimismHome({ navigation }: any) {
+export default function OptimismHome({ navigation }: OptimismScreenProps) {
   const props = getMotivatorByType('optimism');
   const [modalVisible, setModalVisible] = useState(false);
 
