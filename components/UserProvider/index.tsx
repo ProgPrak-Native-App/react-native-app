@@ -1,6 +1,6 @@
 import React, { useContext, createContext, useEffect, useState, useCallback } from 'react';
 import { getLocalStoreData, setLocalStoreData } from './store';
-var md5 = require('md5');
+import md5 from 'md5';
 
 interface UserProviderProps {
   children: React.ReactElement;
