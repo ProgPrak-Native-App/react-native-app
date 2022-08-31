@@ -1,12 +1,12 @@
-import Title from '../Title';
+import Title from '../shared/components/Title';
 import React from 'react';
-import { NEGATIVE } from '../../styles';
+import { NEGATIVE } from '../shared/styles';
 import { StyleSheet, Text, View } from 'react-native';
-import KopfsachenButton from '../KopfsachenButton';
+import KopfsachenButton from '../shared/components/button/KopfsachenButton';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import Bold from '../Bold';
+import Bold from '../shared/Bold';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { TabRoutes } from '../../App';
+import { TabRoutes } from '../Routes';
 
 export default function NegativeIntro() {
   const navigation = useNavigation<NavigationProp<TabRoutes>>();
@@ -27,7 +27,7 @@ export default function NegativeIntro() {
         <KopfsachenButton onPress={() => navigation.navigate('Motivators')} style={styles.button}>
           Neue Strategie
         </KopfsachenButton>
-        <KopfsachenButton onPress={() => navigation.navigate('EmergencyNumber')} style={styles.button}>
+        <KopfsachenButton onPress={() => navigation.navigate('EmergencyNumbers')} style={styles.button}>
           Beratungs-&#13;stellen
         </KopfsachenButton>
       </View>

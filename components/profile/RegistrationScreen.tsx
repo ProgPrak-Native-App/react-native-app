@@ -1,9 +1,9 @@
 import React from 'react';
 import { Keyboard, Pressable, StyleSheet, ScrollView, Text, View } from 'react-native';
-import Title from '../Title';
+import Title from '../shared/components/Title';
 import Input from './Input';
 
-import { TERTIARY } from '../../styles';
+import { TERTIARY } from '../shared/styles';
 
 const styles = StyleSheet.create({
   button: {

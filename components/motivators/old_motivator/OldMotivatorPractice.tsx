@@ -1,10 +1,10 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import Title from '../../Title';
+import Title from '../../shared/components/Title';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { MotivatorRoutes } from '../Motivator';
 import { MotivatorProps } from '../MotivatorProps';
-import { MOTIVATOR, SHADOW } from '../../../styles';
+import { MOTIVATOR, STYLES } from '../../shared/styles';
 
 export default function OldMotivatorPractice(props: MotivatorProps) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
@@ -16,7 +16,7 @@ export default function OldMotivatorPractice(props: MotivatorProps) {
           <Pressable
             key={exercise.title}
             onPress={() => navigation.navigate(exercise.screen)}
-            style={[styles.taskButton, styles.shadow]}>
+            style={[styles.taskButton, STYLES.shadow]}>
             <Text style={styles.taskButtonText}>{exercise.title}</Text>
           </Pressable>
         ))}
@@ -41,12 +41,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     margin: 16,
     textAlign: 'left',
-  },
-  shadow: {
-    elevation: 5,
-    shadowColor: SHADOW,
-    shadowOffset: { width: -2, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
   },
 });

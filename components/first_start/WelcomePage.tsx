@@ -1,8 +1,9 @@
 import React from 'react';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { LIGHT_BLUE, TERTIARY } from '../styles';
-import { useUserContext } from './UserProvider';
+import { LIGHT_BLUE, TERTIARY } from '../shared/styles';
+import { IntroductionProp } from './Introduction';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const styles = StyleSheet.create({
@@ -48,23 +49,28 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function UserSetup() {
-  const { addUser } = useUserContext();
+export default function WelcomePage() {
+  const navigation = useNavigation<NavigationProp<IntroductionProp>>();
   const STATUSBAR_INSET_HEIGHT = useSafeAreaInsets().top;
 
   return (
     <View style={[styles.container, { paddingTop: STATUSBAR_INSET_HEIGHT }]}>
       <View style={styles.headerContainer}>
-        <Text style={styles.header}>Create User</Text>
+        <Text style={styles.header}>Herzlich Willkommen!</Text>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text}>
-          This is a dummy page for later to see that a user is created once the button is pressed.
+          In dieser App geht es darum deine mentale Gesundheitskompetenz auszubauen: Wir werden an deinen persönlichen
+          Starkmachern arbeiten. Du wirst jeden Tag nach deiner Stimmung gefragt. Je nachdem, wie deine Stimmung ist,
+          werden dir verschiedene Übungen vorgeschlagen. Diese Übungen werden dann zu deinem Starkmacherprofil
+          hinzugefügt. Außerdem findest du im Wiki Erklärungen zu psychologischen Begriffen. Falls du externe Hilfe
+          benötigst, findest du unter Notfallnummern verschiedene Beratungsstellen. Als erstes werden wir dein
+          persönliches Profil anlegen.
         </Text>
       </View>
       <View style={styles.buttonContainer}>
-        <Pressable onPress={() => addUser()} style={styles.button}>
-          <Text style={styles.text}>Done</Text>
+        <Pressable onPress={() => navigation.navigate('UserSetup')} style={styles.button}>
+          <Text style={styles.text}>Los geht's</Text>
         </Pressable>
       </View>
     </View>

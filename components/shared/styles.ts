@@ -1,3 +1,5 @@
+import { StyleSheet } from 'react-native';
+
 export const PRIMARY = '#00D08E';
 export const SECONDARY = '#00a954';
 export const TERTIARY = '#EED2BA';
@@ -7,13 +9,14 @@ export const NEUTRAL = '#F3803E';
 export const NEGATIVE = '#BB9AF3';
 
 export const BACKGROUND = '#f2f2f2';
-export const SHADOW = '#171717';
+export const SHADOW_COLOR = '#171717';
 export const ERROR = '#ff0000';
 
 export const DARK_GREEN = '#00A873';
 export const WHITE = '#fff';
 export const BLACK = '#000';
 export const INNER_CIRCLE = '#f9bf9e';
+export const ACCENT = '#006646';
 
 export const MOTIVATOR = {
   DEFAULT: '#f2c7d0',
@@ -46,18 +49,18 @@ export const SIZES = {
   target_size: 48,
 };
 
-/* ---- Shadows ---- */
-export const SHADOW_COLOR = GREY;
-
 /* ---- Layout Colors --- */
 export const LAYOUT_COLOR_SAFEAREA_BACKGROUND = BACKGROUND;
 
 /* ---- Card Colors --- */
 export const CARD_BACKGROUND_COLOR = '#DCDCDE';
-/* ---- States Colors --- */
-export const STATE_COLOR_INACTIVE_BACKGROUND = WHITE;
-export const STATE_COLOR_INACTIVE_TINT = BLACK;
-export const STATE_COLOR_ACTIVE_TINT = BLACK;
 
-/* ---- TouchableHighlight Colors --- */
-export const TOUCHABLE_COLOR_UNDERLAY = '#C7C7C7';
+export const STYLES = StyleSheet.create({
+  shadow: {
+    elevation: 4,
+    shadowColor: SHADOW_COLOR,
+    shadowOffset: { width: -2, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+  },
+});

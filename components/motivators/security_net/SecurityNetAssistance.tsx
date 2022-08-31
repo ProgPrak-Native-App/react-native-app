@@ -1,67 +1,94 @@
-import React from 'react';
-import Title from '../../Title';
-import KopfsachenButton from '../../KopfsachenButton';
+import React, { useState } from 'react';
+import Title from '../../shared/components/Title';
+import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import { getMotivatorByType } from '../MotivatorProps';
-import { SafetyNetDType } from './SecurityNetHome';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import SecurityNetClient, { SafetyNetDType } from '../../../api/SecurityNetClient';
+import { NativeSyntheticEvent, StyleSheet, Text, TextInput, TextInputEndEditingEventData, View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { SecurityNetRoutes } from './SecurityNet';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-
-async function finishSecurityNetItem(navigation: NavigationProp<SecurityNetRoutes>, newComponent: SafetyNetDType) {
-  if (
-    newComponent.strategies[0] !== '...' &&
-    newComponent.strategies[1] !== '...' &&
-    newComponent.strategies[2] !== '...'
-  ) {
-    // TODO: send SafetyNetItem to DB with POST
-    navigation.navigate('SecurityNetHome');
-  }
-}
+import { BLACK, STYLES } from '../../shared/styles';
 
 export default function SecurityNetAssistance({
   navigation,
   route,
 }: NativeStackScreenProps<SecurityNetRoutes, 'SecurityNetAssistance'>) {
+  async function finishSecurityNetItem(navigation: NavigationProp<SecurityNetRoutes>, newComponent: SafetyNetDType) {
+    if (newComponent.strategies[0] !== '' || newComponent.strategies[1] !== '' || newComponent.strategies[2] !== '') {
+      if (modified) {
+        if (modifying) {
+          new SecurityNetClient('http://localhost:4010/safetyNet').replaceItem(newComponent);
+        } else {
+          new SecurityNetClient('http://localhost:4010/safetyNet').addItem(newComponent);
+        }
+      }
+      navigation.navigate('SecurityNetHome');
+    }
+  }
+
   const props = getMotivatorByType('relaxation');
-  const currentComponent = route.params.component;
+  const initialComponent = route.params.component;
+  const modifying = route.params.modifying;
+  const [modified, setModified] = useState(route.params.modified);
+  const [currentComponent, setResource] = useState(initialComponent);
 
   return (
     <>
       <Title Icon={() => props.icon} back={true} color={props.color} text={props.name} />
       <View style={styles.container}>
-        <Text style={styles.text}>Trage 3 Wege ein, auf denen dir diese Person oder Aktivität helfen kann.</Text>
+        <Text style={styles.text}>Trage bis zu 3 Wege ein, auf denen dir diese Person oder Aktivität helfen kann.</Text>
         <TextInput
-          onChangeText={(input: string) => (currentComponent.strategies[0] = input)}
+          onChangeText={(value) => {
+            setResource({
+              ...currentComponent,
+              strategies: [value, currentComponent.strategies[1], currentComponent.strategies[2]],
+            });
+            setModified(true);
+          }}
           placeholder={
             currentComponent.strategies[0] !== ''
               ? currentComponent.strategies[0]
               : 'Trage hier ein wie dieses Thema dir hilft!'
           }
           style={styles.textinput}
+          value={currentComponent.strategies[0]}
         />
         <TextInput
-          onChangeText={(input: string) => (currentComponent.strategies[1] = input)}
+          onChangeText={(value) => {
+            setResource({
+              ...currentComponent,
+              strategies: [currentComponent.strategies[0], value, currentComponent.strategies[2]],
+            });
+            setModified(true);
+          }}
           placeholder={
             currentComponent.strategies[1] !== ''
               ? currentComponent.strategies[1]
               : 'Trage hier ein wie dieses Thema dir hilft!'
           }
           style={styles.textinput}
+          value={currentComponent.strategies[1]}
         />
         <TextInput
-          onChangeText={(input: string) => (currentComponent.strategies[2] = input)}
+          onChangeText={(value) => {
+            setResource({
+              ...currentComponent,
+              strategies: [currentComponent.strategies[0], currentComponent.strategies[1], value],
+            });
+            setModified(true);
+          }}
           placeholder={
             currentComponent.strategies[2] !== ''
               ? currentComponent.strategies[2]
               : 'Trage hier ein wie dieses Thema dir hilft!'
           }
           style={styles.textinput}
+          value={currentComponent.strategies[2]}
         />
       </View>
       <KopfsachenButton
         onPress={() => finishSecurityNetItem(navigation, currentComponent)}
-        style={[styles.button, styles.shadow]}>
+        style={[styles.button, STYLES.shadow]}>
         Weiter!
       </KopfsachenButton>
     </>
@@ -83,7 +110,7 @@ const styles = StyleSheet.create({
   },
   textinput: {
     textAlign: 'center',
-    borderColor: 'black',
+    borderColor: BLACK,
     borderWidth: 1,
     borderRadius: 9,
     height: 50,
@@ -92,12 +119,5 @@ const styles = StyleSheet.create({
   button: {
     paddingHorizontal: 4,
     alignSelf: 'center',
-  },
-  shadow: {
-    elevation: 4,
-    shadowColor: '#171717',
-    shadowOffset: { width: -2, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
   },
 });

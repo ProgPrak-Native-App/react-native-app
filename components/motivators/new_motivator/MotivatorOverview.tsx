@@ -1,12 +1,11 @@
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { MotivatorRoutes } from './Motivator';
-import KopfsachenButton from '../KopfsachenButton';
-import Title from '../Title';
+import { MotivatorRoutes } from '../Motivator';
+import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
+import Title from '../../shared/components/Title';
 import React, { useEffect, useState } from 'react';
-import { MotivatorProps, MotivatorTypes, getMotivatorByType } from './MotivatorProps';
-import { GREY, MOTIVATOR, SHADOW } from '../../styles';
-import OldMotivator from './old_motivator/OldMotivator';
+import { getMotivatorByType, MotivatorProps, MotivatorTypes } from '../MotivatorProps';
+import { GREY, MOTIVATOR, STYLES } from '../../shared/styles';
 
 async function getMotivators() {
   // change to BASE_URL once merged -> feature/7/wiki
@@ -30,7 +29,7 @@ function OldMotivatorGridView(motivators: MotivatorProps[]) {
           accessibilityHint={'Übungen von ' + props.name + ' öffnen'}
           key={index}
           onPress={() => navigation.navigate(props.screen, { props: props.type })}
-          style={[styles.gridItem, { backgroundColor: props.color }, styles.shadow]}>
+          style={[styles.gridItem, { backgroundColor: props.color }, STYLES.shadow]}>
           <Text style={styles.text}>{props.name}</Text>
           {props.icon}
         </Pressable>
@@ -39,7 +38,7 @@ function OldMotivatorGridView(motivators: MotivatorProps[]) {
   );
 }
 
-export default function MotivatorSelection() {
+export default function MotivatorOverview() {
   const initialState: MotivatorProps[] = [];
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   const [oldMotivators, setOldMotivators] = useState(initialState);
@@ -52,7 +51,7 @@ export default function MotivatorSelection() {
   return (
     <>
       <Title
-        Icon={() => <Image source={require('../../assets/motivator.png')} style={{ height: 80, width: 80 }} />}
+        Icon={() => <Image source={require('../../../assets/motivator.png')} style={{ height: 80, width: 80 }} />}
         color={MOTIVATOR.DEFAULT}
         text="Meine Starkmacher"
       />
@@ -67,7 +66,7 @@ export default function MotivatorSelection() {
           <KopfsachenButton
             accessibilityHint={'Neue Starkmacher entdecken'}
             onPress={() => navigation.navigate('NewMotivator')}
-            style={[styles.button, styles.shadow]}>
+            style={[styles.button, STYLES.shadow]}>
             Neue Starkmacher entdecken!
           </KopfsachenButton>
         </View>
@@ -111,12 +110,5 @@ const styles = StyleSheet.create({
     margin: 15,
     paddingHorizontal: 4,
     alignSelf: 'center',
-  },
-  shadow: {
-    elevation: 4,
-    shadowColor: SHADOW,
-    shadowOffset: { width: -2, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
   },
 });

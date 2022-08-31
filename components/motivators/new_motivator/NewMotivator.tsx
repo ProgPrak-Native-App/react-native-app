@@ -1,11 +1,18 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { SIZES } from '../../../styles';
-import Title from '../../Title';
+import { SIZES } from '../../shared/styles';
+import Title from '../../shared/components/Title';
 import CarouselCards from './CarouselCards';
 import { MotivatorTypes } from '../MotivatorProps';
 
-const motivators: (keyof MotivatorTypes)[] = ['relaxation', 'situationControl', 'optimism', 'reframing'];
+const motivators: (keyof MotivatorTypes)[] = [
+  'relaxation',
+  'situationControl',
+  'optimism',
+  'reframing',
+  'compassion',
+  'socialSupport',
+];
 
 export default function NewMotivator() {
   return (

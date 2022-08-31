@@ -8,7 +8,7 @@ import NeutralIntro from './NeutralIntro';
 
 export type MoodDiaryRoutes = {
   Calendar: undefined;
-  MoodEntry: undefined;
+  MoodEntry: { id: number };
   PositiveIntro: undefined;
   NeutralIntro: undefined;
   NegativeIntro: undefined;

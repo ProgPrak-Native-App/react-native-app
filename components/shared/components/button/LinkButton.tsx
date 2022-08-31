@@ -15,7 +15,7 @@ export type KsButtonProp = {
 };
 
 // From https://reactnative.dev/docs/linking#open-links-and-deep-links-universal-links
-const KsButton = (link: KsButtonProp) => {
+const LinkButton = (link: KsButtonProp) => {
   const backgroundColor = link.backgroundColor ? link.backgroundColor : '#53C991';
   const linkToOpen = link.link ? link.link : '';
   const handlePress = useCallback(async () => {
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default KsButton;
+export default LinkButton;
