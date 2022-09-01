@@ -63,7 +63,7 @@ export default function UserSetup() {
         </Text>
       </View>
       <View style={styles.buttonContainer}>
-        <Pressable onPress={() => addUser({ id: 'token1' })} style={styles.button}>
+        <Pressable onPress={() => addUser()} style={styles.button}>
           <Text style={styles.text}>Done</Text>
         </Pressable>
       </View>

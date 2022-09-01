@@ -5,7 +5,7 @@ import Introduction from './first_start/Introduction';
 import Routes from './Routes';
 
 export default function AppWrapper() {
-  const { user } = useUserContext();
+  const { accountKey } = useUserContext();
 
-  return <NavigationContainer>{user ? <Routes /> : <Introduction />}</NavigationContainer>;
+  return <NavigationContainer>{accountKey ? <Routes /> : <Introduction />}</NavigationContainer>;
 }
