@@ -7,11 +7,6 @@ import MainTabBar from './components/MainTabBar';
 import { PRIMARY } from './components/shared/styles';
 import Introduction from './components/first_start/Introduction';
 
-import { polyfillWebCrypto } from 'expo-standard-web-crypto';
-
-// uuid generation requires crypto.getRandomValues(), which this polyfills
-polyfillWebCrypto();
-
 function UserSwitch() {
   const { loading, accountKey } = useUserContext();
 
