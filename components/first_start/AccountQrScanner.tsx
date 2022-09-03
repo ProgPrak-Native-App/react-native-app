@@ -2,7 +2,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { BarCodeScannedCallback, BarCodeScanner, PermissionStatus } from 'expo-barcode-scanner';
 import React, { useEffect, useState } from 'react';
-import * as uuid from 'uuid';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { IntroductionProp } from './Introduction';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -34,8 +33,9 @@ export default function AccountQrScanner() {
     }
 
     const accountKey = data.substring(ACCOUNT_QR_CODE_PREFIX.length);
-    if (!uuid.validate(accountKey)) {
-      console.debug(`QR code does not contain a valid UUID after '${ACCOUNT_QR_CODE_PREFIX}', ignoring`);
+    // We can't use uuid.validate here because account keys aren't UUIDs, they just look a lot like them :/
+    if (accountKey.length !== 36) {
+      console.debug(`QR code does not contain a valid account key after '${ACCOUNT_QR_CODE_PREFIX}', ignoring`);
       return;
     }
 
