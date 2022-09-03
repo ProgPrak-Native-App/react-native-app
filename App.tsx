@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { UserProvider, useUserContext } from './components/UserProvider';
 import { NavigationContainer } from '@react-navigation/native';
-import { ActivityIndicator, Image, StyleSheet } from 'react-native';
+import { ActivityIndicator, Image, StatusBar, StyleSheet } from 'react-native';
 import MainTabBar from './components/MainTabBar';
 import { PRIMARY } from './components/shared/styles';
 import Introduction from './components/first_start/Introduction';
@@ -30,6 +30,8 @@ export default function App() {
     <SafeAreaProvider>
       <UserProvider>
         <NavigationContainer>
+          {/* make the status bar transparent */}
+          <StatusBar translucent={true} backgroundColor="#0000" />
           <UserSwitch />
         </NavigationContainer>
       </UserProvider>

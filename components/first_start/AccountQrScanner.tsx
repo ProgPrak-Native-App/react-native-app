@@ -45,7 +45,7 @@ export default function AccountQrScanner() {
   if (permission === PermissionStatus.GRANTED) {
     return (
       <View style={styles.container}>
-        <View style={[styles.explanation, { paddingTop: topInset }]}>
+        <View style={[styles.explanation, { top: topInset + SIZES.min_margin }]}>
           <View style={styles.explanationLine}>
             <Text style={styles.explanationNumber}>1</Text>
             <Text style={styles.explanationText}>Öffne die Kopfsachen-App auf deinem alten Gerät</Text>
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
   },
   scanner: {
     ...StyleSheet.absoluteFillObject,
-    top: 100,
+    top: 125,
   },
   permissionMessage: {
     ...StyleSheet.absoluteFillObject,
