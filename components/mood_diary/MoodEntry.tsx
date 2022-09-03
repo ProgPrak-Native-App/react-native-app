@@ -6,26 +6,7 @@ import { MoodDiaryRoutes, MoodDiaryScreenProps } from './MoodDiary';
 import { NEGATIVE, NEUTRAL, POSITIVE, SIZES } from '../shared/styles';
 import MoodDiaryClient, { MoodType } from '../../api/MoodDiaryClient';
 import { LocalDateTime } from '@js-joda/core';
-
-const client = new MoodDiaryClient('https://diary.api.live.mindtastic.lol');
-
-function sendMood(moodType: MoodType, id?: number) {
-  if (id === undefined || id === null) {
-    client.addMood({
-      id: -1,
-      mood_day: LocalDateTime.now().toString(),
-      mood_descr: 'test',
-      mood_type: moodType,
-    });
-  } else {
-    client.updateMood({
-      id,
-      mood_day: LocalDateTime.now().toString(),
-      mood_descr: 'test',
-      mood_type: moodType,
-    });
-  }
-}
+import { useUserContext } from '../UserProvider';
 
 type ButtonProps = {
   color: string;
@@ -58,16 +39,23 @@ const introScreenNames: Record<MoodType, keyof MoodDiaryRoutes> = {
 };
 
 export default function MoodEntry({ navigation, route }: MoodDiaryScreenProps<'MoodEntry'>) {
-  const onPress = (mood: MoodType) => () => {
-    if (route.params?.returnFrom) {
-      // final move submitted -> submit and return to mood calendar, clearing the history of the mood diary navigator
+  const { sessionToken } = useUserContext();
+  const client = new MoodDiaryClient(sessionToken);
 
-      sendMood(mood, route.params.id);
+  const onPress = (moodType: MoodType) => () => {
+    client.addMood({
+      mood_day: LocalDateTime.now().toString(),
+      mood_descr: 'test',
+      mood_type: moodType,
+    });
+
+    if (route.params?.returnFrom) {
+      // final move submitted -> return to mood calendar, clearing the history of the mood diary navigator
       navigation.reset({
         routes: [{ name: 'Calendar' }],
       });
     } else {
-      navigation.navigate(introScreenNames[mood]);
+      navigation.navigate(introScreenNames[moodType]);
     }
   };
 

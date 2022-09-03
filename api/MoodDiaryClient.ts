@@ -1,6 +1,5 @@
-import { LocalDateTime } from '@js-joda/core';
 import { Alert } from 'react-native';
-import BaseClient from './BaseClient';
+import AuthenticatedBaseClient from './AuthenticatedBaseClient';
 
 export type MoodType = 'positive' | 'neutral' | 'negative';
 
@@ -11,53 +10,32 @@ export type Mood = {
   mood_day: string;
 };
 
-export default class MoodDiaryClient extends BaseClient {
-  // Some of these API connections dont work yet but as soon as the API is ready they can be used
+export default class MoodDiaryClient extends AuthenticatedBaseClient {
   public async getMoods(): Promise<Mood[]> {
-    const result = await this.get<Mood[]>('/diary', {
-      headers: { Authorization: 'Bearer nDpIgHo2Y2atmYVZsc2Va17XBhLVvmEA' },
-    }).catch(() => {
+    return await this.get<Mood[]>('/diary').catch(() => {
       Alert.alert('Keine Verbindung.', 'Leider besteht zurzeit keine Verbindung zu unserem Server :(');
       return [];
     });
-    return result;
   }
 
-  public async getMood(id: number): Promise<Mood> {
-    const result = await this.get<Mood>(`/diary/${id}`, {
-      headers: { Authorization: 'Bearer react-native-app' },
-    }).catch(() => {
-      Alert.alert('Keine Verbindung.', 'Leider besteht zurzeit keine Verbindung zu unserem Server :(');
-      return {
-        id: -1,
-        mood_type: 'negative' as MoodType,
-        mood_descr: 'This mood is a placeholder for a failed connection.',
-        mood_day: LocalDateTime.now().toString(),
-      };
-    });
-    return result;
-  }
-
-  public async addMood(mood: Mood): Promise<void> {
-    await this.post('/diary', JSON.stringify(mood), {
-      headers: { Authorization: 'Bearer nDpIgHo2Y2atmYVZsc2Va17XBhLVvmEA' },
-    }).catch(() => {
+  public async addMood(mood: Omit<Mood, 'id'>): Promise<void> {
+    await this.post('/diary', JSON.stringify(mood)).catch(() => {
       Alert.alert('Keine Verbindung.', 'Leider besteht zurzeit keine Verbindung zu unserem Server :(');
     });
   }
 
+  // FIXME: Despite being specified in the API spec, the PUT endpoint is not implemented in the backend (yet).
+  //        Instead, we (ab)use the fact that multiple moods can be POSTed for each day, and use the one with the
+  //        highest ID.
   public async updateMood(mood: Mood): Promise<void> {
-    await this.put(`/diary/${mood.id}`, JSON.stringify(mood), {
-      headers: { Authorization: 'Bearer nDpIgHo2Y2atmYVZsc2Va17XBhLVvmEA' },
-    }).catch(() => {
+    await this.put(`/diary/${mood.id}`, JSON.stringify(mood)).catch(() => {
       Alert.alert('Keine Verbindung', 'Leider besteht zurzeit keine Verbindung zu unserem Server :(');
     });
   }
 
+  // FIXME: Also not implemented by the backend :(
   public async deleteMood(id: number): Promise<void> {
-    await this.remove(`/diary/${id}`, {
-      headers: { Authorization: 'Bearer react-native-app' },
-    }).catch(() => {
+    await this.remove(`/diary/${id}`).catch(() => {
       Alert.alert('Keine Verbindung', 'Leider besteht zurzeit keine Verbindung zu unserem Server :(');
     });
   }
