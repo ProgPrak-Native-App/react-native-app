@@ -12,17 +12,15 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    
     "plugins": [
       [
         "expo-notifications",
         {
-          "icon": "./local/assets/icon.png",
+          "icon": "./assets/icon.png",
           "color": "#ffffff"
         }
       ]
     ],
-
     "updates": {
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/2ed357a3-8d38-431d-bfaa-a6ed64e89caf"
@@ -46,6 +44,11 @@
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2ed357a3-8d38-431d-bfaa-a6ed64e89caf"
+      }
     }
   }
 }
