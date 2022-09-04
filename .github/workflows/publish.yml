@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   workflow_call:
 
+env:
+  EXPO_PROJECT_ID: 2ed357a3-8d38-431d-bfaa-a6ed64e89caf
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -24,61 +27,53 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
           packager: npm
-          expo-cache: false
-          eas-cache: false
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Set release channel
+      - name: Publish EAS update
         run: |
-          case "$GITHUB_REF" in
-            refs/pull/*/merge)
-              release_channel="pr-${{ github.event.number }}"
-              ;;
-            refs/heads/main|refs/heads/develop)
-              release_channel="${GITHUB_REF#refs/heads/}"
-              ;;
-            refs/heads/release/*)
-              release_channel="rc-${GITHUB_REF#refs/heads/release/}"
-              ;;
-            refs/heads/**)
-              release_channel="${GITHUB_REF#refs/heads/}"
-              ;;
-            *)
-              echo "::error title='Unsupported ref'::Can't infer expo release channel since ref '$GITHUB_REF' is neither a branch nor a PR."
-              exit 1
-              ;;
-          esac
-          
-          # Remove illegal characters from release channel name
-          # 1. Replace uppercase letters with lowercase
-          # 2. Replace slashes with hyphens
-          # 3. Remove all other illegal characters
-          release_channel="$(echo -n "$release_channel" | tr "[:upper:]" "[:lower:]" | tr "/" "-" | tr -dc "[:lower:][:digit:].\-_")"
-          
-          echo "release_channel=$release_channel" | tee "$GITHUB_ENV"
+          # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings
+          echo 'EAS_UPDATE_RESULT<<EOF' >> $GITHUB_ENV
+          # --auto sets the EAS branch name to the current git branch name and the update message to the HEAD commit message
+          # --json causes information about the update to be sent to stdout and regular output to stderr
+          # we redirect the json to an environment variable and the regular output back to stdout
+          eas update --auto --json 2>&1 1>>$GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
 
-      - name: Publish app
-        run: expo publish --release-channel=${{ env.release_channel }} --non-interactive
+      - name: Generate summary
+        env:
+          RUNTIME_VERSION: ${{ fromJson(env.EAS_UPDATE_RESULT)[0].runtimeVersion }}
+          UPDATE_GROUP_ID: ${{ fromJson(env.EAS_UPDATE_RESULT)[0].group }}
+        run: |
+          EAS_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          
+          echo 'REPORT<<EOF' >> $GITHUB_ENV
+          # Write the report to the environment variable $REPORT and to the job summary at the same time
+          cat <<EOF | tee -a $GITHUB_ENV $GITHUB_STEP_SUMMARY
+          ## EAS Update Report
+          
+          This app was automatically published on branch **$EAS_BRANCH**.
+          View the update details [here](https://expo.dev/accounts/progprak_kopfsachen/projects/kopfsachen/updates/$UPDATE_GROUP_ID).
+          
+          <img alt="Expo Go QR Code" width="200" height="200"
+               src="https://qr.expo.dev/eas-update?projectId=$EXPO_PROJECT_ID&channel=$EAS_BRANCH&runtimeVersion=$RUNTIME_VERSION&appScheme=exp">
+          
+          <!-- created by publish workflow -->
+          EOF
+          echo 'EOF' >> $GITHUB_ENV
 
-      - name: Save Expo Metadata
-        uses: expo/expo-github-action/preview-comment@v7
-        id: preview
-        with:
-          comment: false
-          channel: ${{ env.release_channel }}
+      - # If the workflow s triggered by a push or manually, github.event.pull_request.number will not be set
+        # But we still want to comment on the PR associated with the branch, if any
+        name: Find associated PR
+        id: find_pr
+        uses: jwalton/gh-find-current-pr@v1
 
       - name: Comment on PR
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ steps.find_pr.outputs.number }}
         uses: actions-cool/maintain-one-comment@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          body: |
-            ## Expo Build report for Pull Request #${{ github.event.number }}
-            This App was automatically deployed for project **${{ steps.preview.outputs.projectName }}** on channel **${{ env.release_channel }}**.
-            ### Current Build :rocket:
-            - Expo link [here](${{ steps.preview.outputs.projectLink }})
-            <img src="${{ steps.preview.outputs.projectQR }}" width="200" height="200">
-            <!-- created by publish workflow -->
+          number: ${{ steps.find_pr.outputs.number }}
+          body: ${{ env.REPORT }}
           body-include: <!-- created by publish workflow -->

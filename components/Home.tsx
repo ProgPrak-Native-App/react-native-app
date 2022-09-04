@@ -1,14 +1,12 @@
 import React from 'react';
-import Title from './Title';
+import Title from './shared/components/Title';
 import { StyleSheet, Text, View } from 'react-native';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import KopfsachenButton from './KopfsachenButton';
-import { TabRoutes } from './Routes';
-import { BACKGROUND, PRIMARY } from '../styles';
+import KopfsachenButton from './shared/components/button/KopfsachenButton';
+import { BACKGROUND, PRIMARY } from './shared/styles';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { TabRoutes } from './MainTabBar';
 
-export default function Home() {
-  const navigation = useNavigation<NavigationProp<TabRoutes>>();
-
+export default function Home({ navigation }: BottomTabScreenProps<TabRoutes, 'Home'>) {
   return (
     <>
       <Title color={PRIMARY} text="Herzlich Willkommen!" />
@@ -19,7 +17,14 @@ export default function Home() {
         <KopfsachenButton onPress={() => navigation.navigate('MoodDiary')} style={styles.button}>
           Ab zum Stimmungstagebuch.
         </KopfsachenButton>
-        <KopfsachenButton onPress={() => navigation.navigate('Motivators')} style={styles.button}>
+        <KopfsachenButton
+          onPress={() =>
+            navigation.navigate('Motivators', {
+              screen: 'EmoNavigation',
+              params: { screen: 'NKontrolle' },
+            })
+          }
+          style={styles.button}>
           Ich möchte an meinen offenen Aufgaben weiterarbeiten.
         </KopfsachenButton>
       </View>

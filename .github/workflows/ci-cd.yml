@@ -2,13 +2,9 @@ name: "CI/CD"
 
 on:
   push:
-    branches:
-      - main
-      - develop
-      - release/*
   pull_request:
-    branches:
-      - '*'
+    # We don't run on PR synchronize because we already run on any push, which already covers PR updates
+    types: [ opened ]
   workflow_dispatch: { }
 
 jobs:
@@ -23,13 +19,13 @@ jobs:
     secrets: inherit
 
   build-android:
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release/'))
     name: "Build Android APK"
     uses: ./.github/workflows/build-android.yml
     secrets: inherit
 
   build-ios:
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release/'))
     name: "Build iOS App"
     uses: ./.github/workflows/build-ios.yml
     secrets: inherit

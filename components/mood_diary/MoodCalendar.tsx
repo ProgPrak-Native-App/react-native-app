@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Image, Pressable, StyleSheet } from 'react-native';
+import { Image, Pressable, RefreshControl, ScrollView, StyleSheet } from 'react-native';
 import { Calendar } from 'react-native-calendars/src';
 import { DateData } from 'react-native-calendars/src/types';
 import BasicDay from 'react-native-calendars/src/calendar/day/basic';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { LocaleConfig } from 'react-native-calendars';
-import { LocalDate, LocalDateTime } from '@js-joda/core';
-import Title from '../Title';
-import { MoodDiaryRoutes } from './MoodDiary';
+import { LocalDate } from '@js-joda/core';
+import Title from '../shared/components/Title';
+import { MoodDiaryRoutes, MoodDiaryScreenProps } from './MoodDiary';
 import MoodDiaryClient, { Mood } from '../../api/MoodDiaryClient';
+import { useUserContext } from '../UserProvider';
 
 LocaleConfig.locales.de = {
   monthNames: [
@@ -32,12 +33,25 @@ LocaleConfig.locales.de = {
 LocaleConfig.defaultLocale = 'de';
 
 function DayWithMood({ mood }: { mood: Mood }) {
-  if (mood.type === 'positive') {
-    return <Image source={require('../../assets/emoji_happy.png')} style={styles.icon} />;
-  } else if (mood.type === 'neutral') {
-    return <Image source={require('../../assets/emoji_neutral.png')} style={styles.icon} />;
+  const navigation = useNavigation<NavigationProp<MoodDiaryRoutes>>();
+  if (mood.mood_type === 'positive') {
+    return (
+      <Pressable onPress={() => navigation.navigate('MoodEntry', { id: mood.id })}>
+        <Image source={require('../../assets/emoji_happy.png')} style={styles.icon} />
+      </Pressable>
+    );
+  } else if (mood.mood_type === 'neutral') {
+    return (
+      <Pressable onPress={() => navigation.navigate('MoodEntry', { id: mood.id })}>
+        <Image source={require('../../assets/emoji_neutral.png')} style={styles.icon} />
+      </Pressable>
+    );
   } else {
-    return <Image source={require('../../assets/emoji_sad.png')} style={styles.icon} />;
+    return (
+      <Pressable onPress={() => navigation.navigate('MoodEntry', { id: mood.id })}>
+        <Image source={require('../../assets/emoji_sad.png')} style={styles.icon} />
+      </Pressable>
+    );
   }
 }
 
@@ -50,9 +64,9 @@ function AddMoodButton() {
   );
 }
 
-const Day = (moods: Mood[]) => (props: { date?: DateData }) => {
+const Day = (moods: Record<string, Mood>) => (props: { date?: DateData }) => {
   const date = LocalDate.parse(props.date!.dateString);
-  const moodAtDate = moods.find((mood) => LocalDateTime.parse(mood.timestamp).toLocalDate().equals(date));
+  const moodAtDate = moods[date.toString()];
   if (moodAtDate) {
     // User has previously entered a mood for this day, so we show it
     return <DayWithMood mood={moodAtDate} />;
@@ -65,20 +79,45 @@ const Day = (moods: Mood[]) => (props: { date?: DateData }) => {
   }
 };
 
-export default function MoodCalendar() {
-  const [moods, setMoods] = useState<Mood[] | null>(null);
-  useEffect(() => {
-    new MoodDiaryClient().getMoods().then(setMoods);
-  }, []);
+function moodsToMap(moods: Mood[]): Record<string, Mood> {
+  const result: Record<string, Mood> = {};
+  for (const mood of moods) {
+    const previousAtDay = mood.mood_day in result && result[mood.mood_day];
+    if (!previousAtDay || previousAtDay.id < mood.id) {
+      result[mood.mood_day] = mood;
+    }
+  }
+  return result;
+}
+
+export default function MoodCalendar({ route }: MoodDiaryScreenProps<'Calendar'>) {
+  const [moodsByDate, setMoodsByDate] = useState<Record<string, Mood>>({});
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const { sessionToken } = useUserContext();
+  const client = new MoodDiaryClient(sessionToken);
+
+  function refreshMoods() {
+    setLoading(true);
+    client
+      .getMoods()
+      .then((moods) => setMoodsByDate(moodsToMap(moods)))
+      .finally(() => setLoading(false));
+  }
+
+  // refresh whenever the screen is navigated to (which causes route to change)
+  useEffect(refreshMoods, [route]);
 
   return (
     <>
       <Title text="Stimmungstagebuch" />
-      <Calendar
-        dayComponent={Day(moods ?? [])}
-        displayLoadingIndicator={moods === null}
-        theme={{ calendarBackground: undefined }}
-      />
+      <ScrollView refreshControl={<RefreshControl refreshing={loading} onRefresh={refreshMoods} />}>
+        <Calendar
+          dayComponent={Day(moodsByDate)}
+          displayLoadingIndicator={loading}
+          theme={{ calendarBackground: undefined }}
+        />
+      </ScrollView>
     </>
   );
 }

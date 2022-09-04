@@ -3,6 +3,7 @@
     "owner": "progprak_kopfsachen",
     "name": "Kopfsachen-Native-App",
     "slug": "kopfsachen",
+    "scheme": "kopfsachen",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,8 +12,18 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#ffffff"
+        }
+      ]
+    ],
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/2ed357a3-8d38-431d-bfaa-a6ed64e89caf"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -30,6 +41,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2ed357a3-8d38-431d-bfaa-a6ed64e89caf"
+      }
     }
   }
 }

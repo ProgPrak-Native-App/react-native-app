@@ -1,23 +1,25 @@
-import { Text, StyleSheet, ScrollView, Pressable, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import Title from '../Title';
-import { BLACK, DARK_GREY, ORANGE, PRIMARY, SIZES, TERTIARY } from '../../styles';
+import Title from '../shared/components/Title';
+import { BLACK, DARK_GREY, ORANGE, PRIMARY, SIZES, TERTIARY } from '../shared/styles';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { SocialSupportStackParamList } from './SocialNavigation';
 import CountDown from 'react-native-countdown-component';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Duration, Instant } from '@js-joda/core';
+import { getMotivatorByType } from '../motivators/model';
+import { MotivatorRoutes } from '../motivators/MotivatorNavigator';
 
 /** source for storage code https://aloukissas.medium.com/how-to-build-a-background-timer-in-expo-react-native-without-ejecting-ea7d67478408 */
 export default function ThirdLevelCountDown() {
-  const { navigate } = useNavigation<NavigationProp<SocialSupportStackParamList>>();
-
+  const { navigate } = useNavigation<NavigationProp<MotivatorRoutes>>();
   const timeLimit = 10;
   // 14 Tage =  14 * 24 * 60 * 60
   const [toggle, setToggle] = useState<boolean>();
 
   const [toggleFwd, setToggleFwd] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState<number>();
+
+  const props = getMotivatorByType('socialSupport');
 
   /** store the timestamp when the start btn was clicked */
   async function recordStartTime() {
@@ -28,6 +30,7 @@ export default function ThirdLevelCountDown() {
       console.warn(err);
     }
   }
+
   /** if smth stored in async as start time challeng is running => hide start btn */
   async function setToggeling(): Promise<boolean> {
     return (await AsyncStorage.getItem('@start_time')) !== null;
@@ -74,7 +77,7 @@ export default function ThirdLevelCountDown() {
 
   return (
     <>
-      <Title back color={ORANGE} text="Soziale Unterstützung" />
+      <Title Icon={() => props.icon} back color={ORANGE} text="Soziale Unterstützung" />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.body}>
           Challenge dich selbst – markiere in jedem der 3 Kreise eine Person und schaue in den nächsten 2 Wochen, ob du
@@ -108,7 +111,7 @@ export default function ThirdLevelCountDown() {
             </Pressable>
             <Pressable
               accessibilityHint="Zum Feedback und Übung beenden"
-              onPress={() => navigate('FeedbackNavigation', { name: 'MoodEntry' })}
+              onPress={() => navigate('Feedback', { motivator: 'socialSupport' })}
               style={styles.buttons}>
               <Text style={[styles.body, { fontWeight: 'bold' }]}>Weiter</Text>
             </Pressable>

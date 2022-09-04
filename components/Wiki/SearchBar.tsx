@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { BACKGROUND, DARK_GREY } from '../../styles';
+import { BACKGROUND, DARK_GREY } from '../shared/styles';
 
 type Props = {
   value: string;

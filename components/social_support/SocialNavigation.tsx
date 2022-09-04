@@ -2,7 +2,6 @@ import React from 'react';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import IntroScreen from './IntroScreen';
 import SupportExercise from './SupportExercise';
-import { FeedbackNavigation } from '../Feedback';
 import IntroVideoScreen from './IntroVideoScreen';
 import IntroThirdLevel from './IntroThirdLevel';
 import ThirdLevelCountDown from './ThirdLevelCountDown';
@@ -13,7 +12,6 @@ export type SocialSupportStackParamList = {
   IntroThirdLevel: undefined;
   ThirdLevelCountDown: undefined;
   SupportExercise: { level: number };
-  FeedbackNavigation: { name: string };
 };
 
 export type SocialSupportStackScreenProps<T extends keyof SocialSupportStackParamList> = NativeStackScreenProps<
@@ -21,7 +19,7 @@ export type SocialSupportStackScreenProps<T extends keyof SocialSupportStackPara
   T
 >;
 
-const SocialSupportStack = createNativeStackNavigator();
+const SocialSupportStack = createNativeStackNavigator<SocialSupportStackParamList>();
 
 export default function SocialSupportNavigation() {
   return (
@@ -35,7 +33,6 @@ export default function SocialSupportNavigation() {
       <SocialSupportStack.Screen component={IntroThirdLevel} name="IntroThirdLevel" />
       <SocialSupportStack.Screen component={ThirdLevelCountDown} name="ThirdLevelCountDown" />
       <SocialSupportStack.Screen component={SupportExercise} name="SupportExercise" />
-      <SocialSupportStack.Screen component={FeedbackNavigation} name="FeedbackNavigation" />
     </SocialSupportStack.Navigator>
   );
 }

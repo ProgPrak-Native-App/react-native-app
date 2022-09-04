@@ -1,7 +1,7 @@
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import { personProp } from './Circle';
-import { BACKGROUND, BLACK, PRIMARY, RED, SIZES, WHITE } from '../../styles';
+import { BACKGROUND, BLACK, PRIMARY, RED, SIZES, WHITE } from '../shared/styles';
 import { AntDesign } from '@expo/vector-icons';
 
 const UpdatePopUp = ({
@@ -82,7 +82,7 @@ const UpdatePopUp = ({
 };
 const styles = StyleSheet.create({
   overlay: {
-    backgroundColor: 'rgba(0.5,0.5,0.5,0.5)',
+    backgroundColor: BLACK,
     height: '100%',
     width: '100%',
     position: 'absolute',

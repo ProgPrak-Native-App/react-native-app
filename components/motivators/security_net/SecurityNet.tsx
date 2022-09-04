@@ -1,15 +1,16 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SecurityNetHome, { SafetyNetDType } from './SecurityNetHome';
+import SecurityNetHome from './SecurityNetHome';
+import { SafetyNetDType } from '../../../api/SecurityNetClient';
 import SecurityNetItem from './SecurityNetItem';
 import SecurityNetItemView from './SecurityNetItemView';
 import SecurityNetAssistance from './SecurityNetAssistance';
-import NotImplemented from '../../NotImplemented';
+import NotImplemented from '../../shared/components/NotImplemented';
 
 export type SecurityNetRoutes = {
   SecurityNetHome: undefined;
-  SecurityNetItem: { component: SafetyNetDType };
-  SecurityNetAssistance: { component: SafetyNetDType };
+  SecurityNetItem: { component: SafetyNetDType; modifying: boolean };
+  SecurityNetAssistance: { component: SafetyNetDType; modified: boolean; modifying: boolean };
   SecurityNetItemView: { type: string };
   NotImplemented: undefined;
 };

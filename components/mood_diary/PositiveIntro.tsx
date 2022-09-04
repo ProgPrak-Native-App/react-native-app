@@ -1,15 +1,12 @@
-import Title from '../Title';
+import Title from '../shared/components/Title';
 import React from 'react';
-import { POSITIVE } from '../../styles';
+import { POSITIVE } from '../shared/styles';
 import { StyleSheet, Text, View } from 'react-native';
-import KopfsachenButton from '../KopfsachenButton';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import KopfsachenButton from '../shared/components/button/KopfsachenButton';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { TabRoutes } from '../../App';
+import { MoodDiaryScreenProps } from './MoodDiary';
 
-export default function PositiveIntro() {
-  const navigation = useNavigation<NavigationProp<TabRoutes>>();
-
+export default function PositiveIntro({ navigation }: MoodDiaryScreenProps) {
   return (
     <>
       <Title Icon={() => <FontAwesome5 name="smile-beam" size={80} />} back color={POSITIVE} text="Stimmungstagebuch" />

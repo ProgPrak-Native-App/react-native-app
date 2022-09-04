@@ -1,18 +1,31 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import MoodCalendar from './MoodCalendar';
 import MoodEntry from './MoodEntry';
 import NegativeIntro from './NegativeIntro';
 import PositiveIntro from './PositiveIntro';
 import NeutralIntro from './NeutralIntro';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { TabRoutes } from '../MainTabBar';
 
 export type MoodDiaryRoutes = {
   Calendar: undefined;
-  MoodEntry: undefined;
+  MoodEntry:
+    | undefined
+    | {
+        id?: number;
+        returnFrom?: 'Motivator';
+      };
   PositiveIntro: undefined;
   NeutralIntro: undefined;
   NegativeIntro: undefined;
 };
+
+export type MoodDiaryScreenProps<Screen extends keyof MoodDiaryRoutes = keyof MoodDiaryRoutes> = CompositeScreenProps<
+  NativeStackScreenProps<MoodDiaryRoutes, Screen>,
+  BottomTabScreenProps<TabRoutes, 'MoodDiary'>
+>;
 
 const Stack = createNativeStackNavigator<MoodDiaryRoutes>();
 
