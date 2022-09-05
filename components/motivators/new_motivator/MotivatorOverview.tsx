@@ -6,21 +6,22 @@ import React, { useEffect, useState } from 'react';
 import { Motivator, MotivatorName, motivators } from '../model';
 import { GREY, MOTIVATOR, STYLES } from '../../shared/styles';
 import { MotivatorRoutes } from '../MotivatorNavigator';
+import MotivatorClient from '../../../api/MotivatorClient';
+import { useUserContext } from '../../UserProvider';
 
-async function getMotivators(): Promise<Motivator[]> {
-  // change to BASE_URL once merged
-  return await fetch('http://localhost:4010/motivator', {
-    headers: {
-      Authorization: 'Bearer react-native-app',
-    },
-  })
-    .then((response) => response.json())
-    .then((data: { type: MotivatorName }[]) => data.map((value) => motivators[value.type]))
-    .catch(() => [motivators.noMotivator]);
-}
+// change to BASE_URL once merged
+// return await fetch('http://localhost:4010/motivator', {
+//   headers: {
+//     Authorization: 'Bearer react-native-app',
+//   },
+// })
+//   .then((response) => response.json())
+//   .then((data: { type: MotivatorName }[]) => data.map((value) => motivators[value.type]))
+//   .catch(() => [motivators.noMotivator]);
 
 function OldMotivatorGridView(motivators: Motivator[]) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
+  const { sessionToken } = useUserContext();
 
   return (
     <>
@@ -42,10 +43,12 @@ export default function MotivatorOverview() {
   const initialState: Motivator[] = [];
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   const [oldMotivators, setOldMotivators] = useState(initialState);
+  const { sessionToken } = useUserContext();
 
   // update state with motivators
+  const client = new MotivatorClient(sessionToken, 'motivator');
   useEffect(() => {
-    getMotivators().then(setOldMotivators);
+    client.getMotivators().then(setOldMotivators);
   }, []);
 
   return (

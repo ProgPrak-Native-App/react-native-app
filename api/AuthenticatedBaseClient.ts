@@ -1,8 +1,10 @@
 import BaseClient from './BaseClient';
 
+export type PossibleEndpoints = 'diary' | 'motivator';
+
 export default class AuthenticatedBaseClient extends BaseClient {
-  constructor(protected readonly sessionToken?: string) {
-    super('https://diary.api.live.mindtastic.lol');
+  constructor(protected readonly sessionToken?: string, protected readonly endpoint?: PossibleEndpoints) {
+    super(`https://${endpoint}.api.live.mindtastic.lol`);
   }
 
   protected async request(method: string, path: string, options?: RequestInit): Promise<Response> {
