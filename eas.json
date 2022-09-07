@@ -4,18 +4,27 @@
   },
   "build": {
     "development": {
+      "extends": "preview",
       "developmentClient": true,
       "distribution": "internal"
     },
     "preview": {
+      "extends": "production",
+      "distribution": "internal",
+      "channel": "develop",
       "ios": {
         "simulator": true
       },
       "android": {
         "buildType": "apk",
         "withoutCredentials": "true"
-      },
-      "distribution": "internal"
+      }
+    },
+    "production": {
+      "channel": "main",
+      "android": {
+        "buildType": "apk"
+      }
     }
   }
 }

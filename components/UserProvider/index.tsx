@@ -1,56 +1,104 @@
-import React, { useContext, createContext, useEffect, useState, useCallback } from 'react';
-import { getLocalStoreData, setLocalStoreData } from './store';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { getLocalStoreData, removeLocalStoreData, setLocalStoreData } from './store';
+import AuthClient from '../../api/AuthClient';
 
 interface UserProviderProps {
   children: React.ReactElement;
 }
 
-interface User {
-  id: string;
-}
 interface UserContextInterface {
-  user: User | undefined;
-  addUser: (user: User) => void;
+  accountKey: string | undefined;
+  sessionToken: string | undefined;
+  loading: boolean;
+  setAccountKey: (accountKey: string) => void;
+  login: (accountKey: string) => Promise<void>;
+  register: () => Promise<void>;
+  forgetUser: () => void;
 }
 
-const DEFAULT_CONTEXT_STATE = {
-  user: undefined,
-  addUser: (user: User) => console.log(user),
+const DEFAULT_CONTEXT_STATE: UserContextInterface = {
+  accountKey: undefined,
+  sessionToken: undefined,
+  loading: true,
+  setAccountKey: contextMissing,
+  login: contextMissing,
+  register: contextMissing,
+  forgetUser: contextMissing,
 };
 
-export const parseJSONStoreData = (value: any, key = 'user') => {
-  const result = JSON.parse(value);
+function contextMissing(): never {
+  throw new Error('useUserContext can only be used within a UserProvider');
+}
 
-  return result ? result[key] : result;
-};
+const client = new AuthClient();
 
-export const UserContext = createContext<UserContextInterface>(DEFAULT_CONTEXT_STATE);
+const UserContext = createContext<UserContextInterface>(DEFAULT_CONTEXT_STATE);
 
 export const useUserContext = () => useContext(UserContext);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [user, setUser] = useState<User | undefined>();
+  const [accountKey, setAccountKey] = useState<string | undefined>();
+  const [sessionToken, setSessionToken] = useState<string | undefined>();
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    getLocalStoreData().then((value) => {
-      if (value) {
-        const myData = parseJSONStoreData(value);
-        setUser(myData);
-      }
-    });
+    // initially load accountKey from storage
+    setLoading(true);
+    getLocalStoreData()
+      .then((value) => {
+        if (value) {
+          setAccountKey(value);
+        }
+      })
+      .finally(() => setLoading(false));
   }, []);
 
-  // if things defined ín array change -> Component is called again, basically
   useEffect(() => {
-    if (user) {
-      const value = JSON.stringify({ user });
-      (async () => await setLocalStoreData(value))();
+    // write changes to storage whenever accountKey changes
+    if (accountKey) {
+      setLocalStoreData(accountKey);
+    } else {
+      removeLocalStoreData();
     }
-  }, [user]);
+  }, [accountKey]);
 
-  const addUser = useCallback((user: User) => {
-    setUser(user);
+  useEffect(() => {
+    // log in whenever accountKey changes and sessionToken is unset
+    if (accountKey && !sessionToken) {
+      login(accountKey);
+    }
+  }, [accountKey, sessionToken]);
+
+  const register = useCallback(async () => {
+    const flow = await client.startFlow('registration');
+    const response = await client.finishRegistrationFlow(flow);
+
+    setAccountKey(response.session.identity.traits.accountKey);
+    setSessionToken(response.session_token);
   }, []);
 
-  return <UserContext.Provider value={{ user, addUser }}>{children}</UserContext.Provider>;
+  const login = useCallback(async (accountKey: string) => {
+    const flow = await client.startFlow('login');
+    const response = await client.finishLoginFlow(flow, accountKey);
+
+    // TODO: when the session is close to expiring (as per response.session.expires_at), renew it
+    setSessionToken(response.session_token);
+  }, []);
+
+  const forgetUser = useCallback(() => {
+    setAccountKey(undefined);
+    setSessionToken(undefined);
+  }, []);
+
+  const context = {
+    accountKey,
+    sessionToken,
+    loading,
+    setAccountKey,
+    forgetUser,
+    login,
+    register,
+  };
+
+  return <UserContext.Provider value={context}>{children}</UserContext.Provider>;
 };

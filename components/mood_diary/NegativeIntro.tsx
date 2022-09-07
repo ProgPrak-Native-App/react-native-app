@@ -1,16 +1,13 @@
-import Title from '../Title';
+import Title from '../shared/components/Title';
 import React from 'react';
-import { NEGATIVE } from '../../styles';
+import { NEGATIVE } from '../shared/styles';
 import { StyleSheet, Text, View } from 'react-native';
-import KopfsachenButton from '../KopfsachenButton';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import Bold from '../Bold';
+import KopfsachenButton from '../shared/components/button/KopfsachenButton';
+import Bold from '../shared/Bold';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { TabRoutes } from '../../App';
+import { MoodDiaryScreenProps } from './MoodDiary';
 
-export default function NegativeIntro() {
-  const navigation = useNavigation<NavigationProp<TabRoutes>>();
-
+export default function NegativeIntro({ navigation }: MoodDiaryScreenProps) {
   return (
     <>
       <Title Icon={() => <FontAwesome5 name="frown" size={80} />} back color={NEGATIVE} text="Stimmungstagebuch" />
@@ -21,13 +18,17 @@ export default function NegativeIntro() {
         benötigst, haben wir auch eine Übersicht mit <Bold>Beratungsstellen</Bold> für dich.
       </Text>
       <View style={styles.buttonList}>
-        <KopfsachenButton onPress={() => console.log('EmotionRegulation not implemented')} style={styles.button}>
+        <KopfsachenButton
+          onPress={() => navigation.navigate('Motivators', { screen: 'SecurityNet', origin: 'MoodDiary' })}
+          style={styles.button}>
           Sicherheits-&#13;netz
         </KopfsachenButton>
-        <KopfsachenButton onPress={() => navigation.navigate('Motivators')} style={styles.button}>
+        <KopfsachenButton
+          onPress={() => navigation.navigate('Motivators', { screen: 'MotivatorOverview', origin: 'MoodDiary' })}
+          style={styles.button}>
           Neue Strategie
         </KopfsachenButton>
-        <KopfsachenButton onPress={() => navigation.navigate('EmergencyNumber')} style={styles.button}>
+        <KopfsachenButton onPress={() => navigation.navigate('EmergencyNumbers')} style={styles.button}>
           Beratungs-&#13;stellen
         </KopfsachenButton>
       </View>

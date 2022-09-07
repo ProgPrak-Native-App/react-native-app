@@ -133,7 +133,8 @@ module.exports = {
 
     // TypeScript
     quotes: 'off',
-    '@typescript-eslint/quotes': ['error', 'single'],
+    // avoidEscape allows double quotes when the string contains a ' which would otherwise need to be escaped
+    '@typescript-eslint/quotes': ['error', 'single', { avoidEscape: true }],
 
     // Turn it off because already in @typescript-eslint
     'no-unsafe-assignment': 'off',
@@ -158,7 +159,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'warn',
   },
 
-   // Fixes error 'JSX' and similar is not defined no-undef
+  // Fixes error 'JSX' and similar is not defined no-undef
   // See https://github.com/typescript-eslint/typescript-eslint/blob/main/docs/linting/TROUBLESHOOTING.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
   overrides: [
     {

@@ -11,7 +11,7 @@ export type WikiStackParamList = {
 
 export type WikiStackScreenProps<T extends keyof WikiStackParamList> = NativeStackScreenProps<WikiStackParamList, T>;
 
-const WikiStack = createNativeStackNavigator();
+const WikiStack = createNativeStackNavigator<WikiStackParamList>();
 
 export default function Navigation() {
   return (

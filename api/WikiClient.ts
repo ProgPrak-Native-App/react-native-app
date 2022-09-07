@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import BaseClient from './BaseClient';
 import longExampleEntry from './wiki-long-example.json';
 
@@ -14,6 +15,13 @@ export type WikiListResponse = {
 
 export default class WikiClient extends BaseClient {
   public async getEntries(): Promise<WikiEntry[]> {
-    return [...(await this.get<WikiListResponse>('/wiki')).entries, longExampleEntry];
+    const result = await this.get<WikiListResponse>('/wiki').catch(() => {
+      Alert.alert('Keine Verbindung', 'Leider besteht zurzeit keine Verbindung zu unserem Server');
+      return {
+        entry_count: 0,
+        entries: [],
+      };
+    });
+    return [...result.entries, longExampleEntry];
   }
 }

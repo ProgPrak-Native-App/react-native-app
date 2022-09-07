@@ -13,15 +13,14 @@ import {
   View,
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import Title from '../../Title';
-import { getMotivatorByType } from '../MotivatorProps';
+import Title from '../../shared/components/Title';
+import { getMotivatorByType } from '../model';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
-import { BACKGROUND, GREY, MOTIVATOR, SHADOW, SIZES } from '../../../styles';
-import KopfsachenButton from '../../KopfsachenButton';
+import { BACKGROUND, GREY, MOTIVATOR, SIZES, STYLES } from '../../shared/styles';
+import KopfsachenButton from '../../shared/components/button/KopfsachenButton';
 import * as Clipboard from 'expo-clipboard';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { MotivatorRoutes } from '../Motivator';
 import { AntDesign } from '@expo/vector-icons';
+import { OptimismScreenProps } from './Optimism';
 
 function formatTime(seconds: number) {
   return (
@@ -33,9 +32,7 @@ function formatTime(seconds: number) {
   );
 }
 
-export default function OptimismExercise() {
-  const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
-
+export default function OptimismExercise({ navigation }: OptimismScreenProps) {
   const props = getMotivatorByType('optimism');
   const [isPlaying, setIsPlaying] = useState(false);
   const [key, setKey] = useState(0);
@@ -71,7 +68,7 @@ export default function OptimismExercise() {
           }}
           style={styles.centeredView}>
           <TouchableWithoutFeedback>
-            <View style={styles.modalView}>
+            <View style={[styles.modalView, STYLES.shadow]}>
               <AntDesign
                 accessibilityHint={'Schließen'}
                 color="black"
@@ -91,9 +88,9 @@ export default function OptimismExercise() {
                   accessibilityHint={'Übung abschließen'}
                   onPress={() => {
                     setModalVisible(!modalVisible);
-                    navigation.navigate('NewMotivator');
+                    navigation.navigate('Feedback', { motivator: 'optimism' });
                   }}
-                  style={styles.button}>
+                  style={[styles.button, STYLES.shadow]}>
                   Fertig
                 </KopfsachenButton>
                 <KopfsachenButton
@@ -101,7 +98,7 @@ export default function OptimismExercise() {
                   onPress={() => {
                     copyToClipboard().then(() => Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success));
                   }}
-                  style={styles.button}>
+                  style={[styles.button, STYLES.shadow]}>
                   Kopieren in die Zwischenablage
                 </KopfsachenButton>
               </View>
@@ -150,7 +147,7 @@ export default function OptimismExercise() {
               <KopfsachenButton
                 accessibilityHint={'Start countdown'}
                 onPress={() => setIsPlaying(true)}
-                style={styles.taskButton}>
+                style={[styles.taskButton, STYLES.shadow]}>
                 Start
               </KopfsachenButton>
               <KopfsachenButton
@@ -159,13 +156,13 @@ export default function OptimismExercise() {
                   setKey((prevKey) => prevKey + 1);
                   setIsPlaying(false);
                 }}
-                style={styles.taskButton}>
+                style={[styles.taskButton, STYLES.shadow]}>
                 Reset
               </KopfsachenButton>
               <KopfsachenButton
                 accessibilityHint={'Stop countdown'}
                 onPress={() => setIsPlaying(false)}
-                style={styles.taskButton}>
+                style={[styles.taskButton, STYLES.shadow]}>
                 Stop
               </KopfsachenButton>
             </View>
@@ -225,14 +222,6 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     paddingHorizontal: 20,
     alignItems: 'center',
-    shadowColor: SHADOW,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
   },
   modalText: {
     lineHeight: SIZES.default_line_height,
@@ -262,14 +251,6 @@ const styles = StyleSheet.create({
     fontSize: SIZES.font,
     lineHeight: SIZES.default_line_height,
     textAlign: 'center',
-    shadowColor: SHADOW,
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
   },
   button: {
     minWidth: '30%',
@@ -278,14 +259,6 @@ const styles = StyleSheet.create({
     fontSize: SIZES.font,
     lineHeight: SIZES.default_line_height,
     textAlign: 'center',
-    shadowColor: SHADOW,
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
   },
   resultContainer: {
     minWidth: '80%',

@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, ColorValue, StyleProp, ViewStyle } from 'react-native';
+import { ColorValue, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import WrapperOuter from './WrapperOuter';
 import WrapperInner from './WrapperInner';
-import { CARD_BACKGROUND_COLOR } from '../../../styles';
+import { CARD_BACKGROUND_COLOR } from '../styles';
 
 type CardProps = {
   color?: ColorValue;
