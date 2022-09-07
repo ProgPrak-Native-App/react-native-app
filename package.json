@@ -83,7 +83,7 @@
     "jest-coverage-badges": "^1.1.2",
     "jest-expo": "^45.0.1",
     "prettier": "^2.6.2",
-    "react-test-renderer": "^17.0.2",
+    "react-native-svg": "~12.3.0",
     "ts-node": "^10.8.2",
     "typescript": "^4.7.4",
     "webpack-dev-server": "^4.9.3"
