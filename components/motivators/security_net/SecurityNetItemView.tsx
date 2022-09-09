@@ -9,18 +9,20 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Entypo } from '@expo/vector-icons';
 import { SHADOW_COLOR, STYLES } from '../../shared/styles';
+import { useUserContext } from '../../UserProvider';
 
-async function getSafetyNet() {
-  return new SecurityNetClient('http://localhost:4010').getItems();
+async function getSafetyNet(sessionToken?: string) {
+  return new SecurityNetClient(sessionToken, 'motivator').getItems();
 }
 
-async function deleteEntry(item: SafetyNetDType) {
-  new SecurityNetClient('http://localhost:4010').deleteItem(item);
+async function deleteEntry(item: SafetyNetDType, sessionToken?: string) {
+  new SecurityNetClient(sessionToken, 'motivator').deleteItem(item);
 }
 
 export default function SecurityNetItemView({
   route,
 }: NativeStackScreenProps<SecurityNetRoutes, 'SecurityNetItemView'>) {
+  const { sessionToken } = useUserContext();
   function SecurityNetItemGridView(safetyNetItems: SafetyNetDType[], type: string) {
     const navigation = useNavigation<NavigationProp<SecurityNetRoutes>>();
     return (
@@ -39,7 +41,7 @@ export default function SecurityNetItemView({
                 <Text style={styles.text}>{data.name}</Text>
                 <Pressable
                   onPress={() => {
-                    deleteEntry(data);
+                    deleteEntry(data, sessionToken);
                     setSafetyNetItems(safetyNetItems.splice(safetyNetItems.indexOf(data), 1));
                   }}>
                   <Entypo name="cross" size={24} />
@@ -56,7 +58,7 @@ export default function SecurityNetItemView({
   const initialState: SafetyNetDType[] = [];
   const [safetyNetItems, setSafetyNetItems] = useState(initialState);
   useEffect(() => {
-    getSafetyNet().then(setSafetyNetItems);
+    getSafetyNet(sessionToken).then(setSafetyNetItems);
   }, []);
 
   const type = route.params.type;

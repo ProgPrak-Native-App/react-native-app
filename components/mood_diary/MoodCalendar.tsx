@@ -95,7 +95,7 @@ export default function MoodCalendar({ route }: MoodDiaryScreenProps<'Calendar'>
   const [loading, setLoading] = useState<boolean>(true);
 
   const { sessionToken } = useUserContext();
-  const client = new MoodDiaryClient(sessionToken);
+  const client = new MoodDiaryClient(sessionToken, 'diary');
 
   function refreshMoods() {
     setLoading(true);
@@ -111,7 +111,7 @@ export default function MoodCalendar({ route }: MoodDiaryScreenProps<'Calendar'>
   return (
     <>
       <Title text="Stimmungstagebuch" />
-      <ScrollView refreshControl={<RefreshControl refreshing={loading} onRefresh={refreshMoods} />}>
+      <ScrollView refreshControl={<RefreshControl onRefresh={refreshMoods} refreshing={loading} />}>
         <Calendar
           dayComponent={Day(moodsByDate)}
           displayLoadingIndicator={loading}

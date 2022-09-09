@@ -8,18 +8,20 @@ import { NavigationProp } from '@react-navigation/native';
 import { SecurityNetRoutes } from './SecurityNet';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { BLACK, STYLES } from '../../shared/styles';
+import { useUserContext } from '../../UserProvider';
 
 export default function SecurityNetAssistance({
   navigation,
   route,
 }: NativeStackScreenProps<SecurityNetRoutes, 'SecurityNetAssistance'>) {
+  const { sessionToken } = useUserContext();
   async function finishSecurityNetItem(navigation: NavigationProp<SecurityNetRoutes>, newComponent: SafetyNetDType) {
     if (newComponent.strategies[0] !== '' || newComponent.strategies[1] !== '' || newComponent.strategies[2] !== '') {
       if (modified) {
         if (modifying) {
-          new SecurityNetClient('http://localhost:4010/safetyNet').replaceItem(newComponent);
+          new SecurityNetClient(sessionToken, 'motivator').replaceItem(newComponent);
         } else {
-          new SecurityNetClient('http://localhost:4010/safetyNet').addItem(newComponent);
+          new SecurityNetClient(sessionToken, 'motivator').addItem(newComponent);
         }
       }
       navigation.navigate('SecurityNetHome');

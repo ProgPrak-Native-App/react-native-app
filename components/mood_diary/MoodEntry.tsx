@@ -40,7 +40,7 @@ const introScreenNames: Record<MoodType, keyof MoodDiaryRoutes> = {
 
 export default function MoodEntry({ navigation, route }: MoodDiaryScreenProps<'MoodEntry'>) {
   const { sessionToken } = useUserContext();
-  const client = new MoodDiaryClient(sessionToken);
+  const client = new MoodDiaryClient(sessionToken, 'diary');
 
   const onPress = (moodType: MoodType) => () => {
     client.addMood({
