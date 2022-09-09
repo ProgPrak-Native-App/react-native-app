@@ -34,7 +34,7 @@ The latest Expo release is available on the `main` Expo release-channel [here](h
 
 You can also scan the QR code with the Expo Go app on your phone:
 
-<img alt="Expo QR" src="https://qr.expo.dev/expo-go?owner=progprak_kopfsachen&slug=kopfsachen&releaseChannel=main" width="200" height="200">
+<img alt="Expo QR" src="https://qr.expo.dev/eas-update?projectId=2ed357a3-8d38-431d-bfaa-a6ed64e89caf&channel=main&runtimeVersion=exposdk:46.0.0&appScheme=exp" width="200" height="200">
 
 ## 🚀 Usage
 ### Prerequisites
