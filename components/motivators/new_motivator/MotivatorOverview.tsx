@@ -9,16 +9,6 @@ import { MotivatorRoutes } from '../MotivatorNavigator';
 import MotivatorClient from '../../../api/MotivatorClient';
 import { useUserContext } from '../../UserProvider';
 
-// change to BASE_URL once merged
-// return await fetch('http://localhost:4010/motivator', {
-//   headers: {
-//     Authorization: 'Bearer react-native-app',
-//   },
-// })
-//   .then((response) => response.json())
-//   .then((data: { type: MotivatorName }[]) => data.map((value) => motivators[value.type]))
-//   .catch(() => [motivators.noMotivator]);
-
 function OldMotivatorGridView(motivators: Motivator[]) {
   const navigation = useNavigation<NavigationProp<MotivatorRoutes>>();
   const { sessionToken } = useUserContext();

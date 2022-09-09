@@ -8,7 +8,6 @@ export default class MotivatorClient extends AuthenticatedBaseClient {
       Alert.alert('Keine Verbindung.', 'Leider besteht zurzeit keine Verbindung zu unserem Server :(');
       return [];
     });
-    console.log(result);
     return result;
   }
 }
